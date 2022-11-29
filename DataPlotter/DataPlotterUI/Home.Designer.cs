@@ -56,12 +56,14 @@
             // 
             // btn_dataFilePath
             // 
+            this.btn_dataFilePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.btn_dataFilePath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
             this.btn_dataFilePath.Location = new System.Drawing.Point(12, 12);
             this.btn_dataFilePath.Name = "btn_dataFilePath";
             this.btn_dataFilePath.Size = new System.Drawing.Size(95, 30);
             this.btn_dataFilePath.TabIndex = 2;
             this.btn_dataFilePath.Text = "Data File";
-            this.btn_dataFilePath.UseVisualStyleBackColor = true;
+            this.btn_dataFilePath.UseVisualStyleBackColor = false;
             this.btn_dataFilePath.Click += new System.EventHandler(this.Btn_dataFilePath_Click);
             // 
             // label_dataPath
@@ -76,12 +78,14 @@
             // 
             // btn_InfoPath
             // 
+            this.btn_InfoPath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.btn_InfoPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
             this.btn_InfoPath.Location = new System.Drawing.Point(12, 62);
             this.btn_InfoPath.Name = "btn_InfoPath";
             this.btn_InfoPath.Size = new System.Drawing.Size(95, 30);
             this.btn_InfoPath.TabIndex = 2;
             this.btn_InfoPath.Text = "Info File";
-            this.btn_InfoPath.UseVisualStyleBackColor = true;
+            this.btn_InfoPath.UseVisualStyleBackColor = false;
             this.btn_InfoPath.Click += new System.EventHandler(this.Btn_InfoPath_Click);
             // 
             // label_infoPath
