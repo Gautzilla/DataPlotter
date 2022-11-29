@@ -40,6 +40,8 @@
             this.listBox_yVar2 = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.listBox_yVar2Levels = new System.Windows.Forms.ListBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // label_xVar
@@ -60,6 +62,7 @@
             this.btn_dataFilePath.TabIndex = 2;
             this.btn_dataFilePath.Text = "Data File";
             this.btn_dataFilePath.UseVisualStyleBackColor = true;
+            this.btn_dataFilePath.Click += new System.EventHandler(this.btn_dataFilePath_Click);
             // 
             // label_dataPath
             // 
@@ -79,6 +82,7 @@
             this.btn_InfoPath.TabIndex = 2;
             this.btn_InfoPath.Text = "Info File";
             this.btn_InfoPath.UseVisualStyleBackColor = true;
+            this.btn_InfoPath.Click += new System.EventHandler(this.btn_InfoPath_Click);
             // 
             // label_infoPath
             // 
@@ -164,6 +168,14 @@
             this.listBox_yVar2Levels.Size = new System.Drawing.Size(230, 80);
             this.listBox_yVar2Levels.TabIndex = 4;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // openFileDialog2
+            // 
+            this.openFileDialog2.FileName = "openFileDialog2";
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -204,6 +216,8 @@
         private System.Windows.Forms.ListBox listBox_yVar2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox listBox_yVar2Levels;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog2;
     }
 }
 
