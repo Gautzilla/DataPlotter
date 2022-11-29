@@ -45,6 +45,7 @@
             // label_xVar
             // 
             this.label_xVar.AutoSize = true;
+            this.label_xVar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
             this.label_xVar.Location = new System.Drawing.Point(8, 339);
             this.label_xVar.Name = "label_xVar";
             this.label_xVar.Size = new System.Drawing.Size(131, 19);
@@ -63,6 +64,7 @@
             // label_dataPath
             // 
             this.label_dataPath.AutoSize = true;
+            this.label_dataPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
             this.label_dataPath.Location = new System.Drawing.Point(113, 18);
             this.label_dataPath.Name = "label_dataPath";
             this.label_dataPath.Size = new System.Drawing.Size(133, 19);
@@ -81,6 +83,7 @@
             // label_infoPath
             // 
             this.label_infoPath.AutoSize = true;
+            this.label_infoPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
             this.label_infoPath.Location = new System.Drawing.Point(113, 68);
             this.label_infoPath.Name = "label_infoPath";
             this.label_infoPath.Size = new System.Drawing.Size(133, 19);
@@ -89,6 +92,8 @@
             // 
             // listBox_xVar
             // 
+            this.listBox_xVar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.listBox_xVar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
             this.listBox_xVar.FormattingEnabled = true;
             this.listBox_xVar.ItemHeight = 19;
             this.listBox_xVar.Location = new System.Drawing.Point(12, 123);
@@ -99,6 +104,7 @@
             // label_yVar
             // 
             this.label_yVar.AutoSize = true;
+            this.label_yVar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
             this.label_yVar.Location = new System.Drawing.Point(244, 339);
             this.label_yVar.Name = "label_yVar";
             this.label_yVar.Size = new System.Drawing.Size(140, 38);
@@ -107,6 +113,8 @@
             // 
             // listBox_yVar
             // 
+            this.listBox_yVar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.listBox_yVar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
             this.listBox_yVar.FormattingEnabled = true;
             this.listBox_yVar.ItemHeight = 19;
             this.listBox_yVar.Location = new System.Drawing.Point(248, 123);
@@ -117,6 +125,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
             this.label2.Location = new System.Drawing.Point(480, 206);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(164, 19);
@@ -125,6 +134,8 @@
             // 
             // listBox_yVar2
             // 
+            this.listBox_yVar2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.listBox_yVar2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
             this.listBox_yVar2.FormattingEnabled = true;
             this.listBox_yVar2.ItemHeight = 19;
             this.listBox_yVar2.Location = new System.Drawing.Point(484, 123);
@@ -135,6 +146,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
             this.label1.Location = new System.Drawing.Point(480, 339);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(208, 19);
@@ -143,6 +155,8 @@
             // 
             // listBox_yVar2Levels
             // 
+            this.listBox_yVar2Levels.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.listBox_yVar2Levels.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
             this.listBox_yVar2Levels.FormattingEnabled = true;
             this.listBox_yVar2Levels.ItemHeight = 19;
             this.listBox_yVar2Levels.Location = new System.Drawing.Point(484, 256);
@@ -154,6 +168,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(54)))), ((int)(((byte)(57)))));
             this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.listBox_yVar2Levels);
             this.Controls.Add(this.listBox_yVar2);
