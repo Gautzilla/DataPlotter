@@ -33,13 +33,13 @@
             this.label_dataPath = new System.Windows.Forms.Label();
             this.btn_InfoPath = new System.Windows.Forms.Button();
             this.label_infoPath = new System.Windows.Forms.Label();
-            this.listBox_xVar = new System.Windows.Forms.ListBox();
+            this.ListBox_xVar = new System.Windows.Forms.ListBox();
             this.label_yVar = new System.Windows.Forms.Label();
-            this.listBox_yVar = new System.Windows.Forms.ListBox();
+            this.ListBox_yVar = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.listBox_yVar2 = new System.Windows.Forms.ListBox();
+            this.ListBox_yVar2 = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.listBox_yVar2Levels = new System.Windows.Forms.ListBox();
+            this.ListBox_yVar2Levels = new System.Windows.Forms.ListBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
@@ -62,7 +62,7 @@
             this.btn_dataFilePath.TabIndex = 2;
             this.btn_dataFilePath.Text = "Data File";
             this.btn_dataFilePath.UseVisualStyleBackColor = true;
-            this.btn_dataFilePath.Click += new System.EventHandler(this.btn_dataFilePath_Click);
+            this.btn_dataFilePath.Click += new System.EventHandler(this.Btn_dataFilePath_Click);
             // 
             // label_dataPath
             // 
@@ -82,7 +82,7 @@
             this.btn_InfoPath.TabIndex = 2;
             this.btn_InfoPath.Text = "Info File";
             this.btn_InfoPath.UseVisualStyleBackColor = true;
-            this.btn_InfoPath.Click += new System.EventHandler(this.btn_InfoPath_Click);
+            this.btn_InfoPath.Click += new System.EventHandler(this.Btn_InfoPath_Click);
             // 
             // label_infoPath
             // 
@@ -94,16 +94,17 @@
             this.label_infoPath.TabIndex = 3;
             this.label_infoPath.Text = "No loaded data";
             // 
-            // listBox_xVar
+            // ListBox_xVar
             // 
-            this.listBox_xVar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
-            this.listBox_xVar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.listBox_xVar.FormattingEnabled = true;
-            this.listBox_xVar.ItemHeight = 19;
-            this.listBox_xVar.Location = new System.Drawing.Point(12, 123);
-            this.listBox_xVar.Name = "listBox_xVar";
-            this.listBox_xVar.Size = new System.Drawing.Size(230, 213);
-            this.listBox_xVar.TabIndex = 4;
+            this.ListBox_xVar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.ListBox_xVar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.ListBox_xVar.FormattingEnabled = true;
+            this.ListBox_xVar.ItemHeight = 19;
+            this.ListBox_xVar.Location = new System.Drawing.Point(12, 123);
+            this.ListBox_xVar.Name = "ListBox_xVar";
+            this.ListBox_xVar.Size = new System.Drawing.Size(230, 213);
+            this.ListBox_xVar.TabIndex = 4;
+            this.ListBox_xVar.SelectedIndexChanged += new System.EventHandler(this.ListBox_xVar_SelectedIndexChanged);
             // 
             // label_yVar
             // 
@@ -115,16 +116,17 @@
             this.label_yVar.TabIndex = 1;
             this.label_yVar.Text = "Y-axis variable\r\n(distinct curves)";
             // 
-            // listBox_yVar
+            // ListBox_yVar
             // 
-            this.listBox_yVar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
-            this.listBox_yVar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.listBox_yVar.FormattingEnabled = true;
-            this.listBox_yVar.ItemHeight = 19;
-            this.listBox_yVar.Location = new System.Drawing.Point(248, 123);
-            this.listBox_yVar.Name = "listBox_yVar";
-            this.listBox_yVar.Size = new System.Drawing.Size(230, 213);
-            this.listBox_yVar.TabIndex = 4;
+            this.ListBox_yVar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.ListBox_yVar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.ListBox_yVar.FormattingEnabled = true;
+            this.ListBox_yVar.ItemHeight = 19;
+            this.ListBox_yVar.Location = new System.Drawing.Point(248, 123);
+            this.ListBox_yVar.Name = "ListBox_yVar";
+            this.ListBox_yVar.Size = new System.Drawing.Size(230, 213);
+            this.ListBox_yVar.TabIndex = 4;
+            this.ListBox_yVar.SelectedIndexChanged += new System.EventHandler(this.ListBox_yVar_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -136,16 +138,17 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "2nd y-axis variable";
             // 
-            // listBox_yVar2
+            // ListBox_yVar2
             // 
-            this.listBox_yVar2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
-            this.listBox_yVar2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.listBox_yVar2.FormattingEnabled = true;
-            this.listBox_yVar2.ItemHeight = 19;
-            this.listBox_yVar2.Location = new System.Drawing.Point(484, 123);
-            this.listBox_yVar2.Name = "listBox_yVar2";
-            this.listBox_yVar2.Size = new System.Drawing.Size(230, 80);
-            this.listBox_yVar2.TabIndex = 4;
+            this.ListBox_yVar2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.ListBox_yVar2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.ListBox_yVar2.FormattingEnabled = true;
+            this.ListBox_yVar2.ItemHeight = 19;
+            this.ListBox_yVar2.Location = new System.Drawing.Point(484, 123);
+            this.ListBox_yVar2.Name = "ListBox_yVar2";
+            this.ListBox_yVar2.Size = new System.Drawing.Size(230, 80);
+            this.ListBox_yVar2.TabIndex = 4;
+            this.ListBox_yVar2.SelectedIndexChanged += new System.EventHandler(this.ListBox_yVar2_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -157,16 +160,17 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "2nd y-axis variable level";
             // 
-            // listBox_yVar2Levels
+            // ListBox_yVar2Levels
             // 
-            this.listBox_yVar2Levels.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
-            this.listBox_yVar2Levels.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.listBox_yVar2Levels.FormattingEnabled = true;
-            this.listBox_yVar2Levels.ItemHeight = 19;
-            this.listBox_yVar2Levels.Location = new System.Drawing.Point(484, 256);
-            this.listBox_yVar2Levels.Name = "listBox_yVar2Levels";
-            this.listBox_yVar2Levels.Size = new System.Drawing.Size(230, 80);
-            this.listBox_yVar2Levels.TabIndex = 4;
+            this.ListBox_yVar2Levels.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.ListBox_yVar2Levels.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.ListBox_yVar2Levels.FormattingEnabled = true;
+            this.ListBox_yVar2Levels.ItemHeight = 19;
+            this.ListBox_yVar2Levels.Location = new System.Drawing.Point(484, 256);
+            this.ListBox_yVar2Levels.Name = "ListBox_yVar2Levels";
+            this.ListBox_yVar2Levels.Size = new System.Drawing.Size(230, 80);
+            this.ListBox_yVar2Levels.TabIndex = 4;
+            this.ListBox_yVar2Levels.SelectedIndexChanged += new System.EventHandler(this.ListBox_yVar2Levels_SelectedIndexChanged);
             // 
             // openFileDialog1
             // 
@@ -182,10 +186,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(54)))), ((int)(((byte)(57)))));
             this.ClientSize = new System.Drawing.Size(1904, 1041);
-            this.Controls.Add(this.listBox_yVar2Levels);
-            this.Controls.Add(this.listBox_yVar2);
-            this.Controls.Add(this.listBox_yVar);
-            this.Controls.Add(this.listBox_xVar);
+            this.Controls.Add(this.ListBox_yVar2Levels);
+            this.Controls.Add(this.ListBox_yVar2);
+            this.Controls.Add(this.ListBox_yVar);
+            this.Controls.Add(this.ListBox_xVar);
             this.Controls.Add(this.label_infoPath);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label_dataPath);
@@ -209,13 +213,13 @@
         private System.Windows.Forms.Label label_dataPath;
         private System.Windows.Forms.Button btn_InfoPath;
         private System.Windows.Forms.Label label_infoPath;
-        private System.Windows.Forms.ListBox listBox_xVar;
+        private System.Windows.Forms.ListBox ListBox_xVar;
         private System.Windows.Forms.Label label_yVar;
-        private System.Windows.Forms.ListBox listBox_yVar;
+        private System.Windows.Forms.ListBox ListBox_yVar;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListBox listBox_yVar2;
+        private System.Windows.Forms.ListBox ListBox_yVar2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBox_yVar2Levels;
+        private System.Windows.Forms.ListBox ListBox_yVar2Levels;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
     }
