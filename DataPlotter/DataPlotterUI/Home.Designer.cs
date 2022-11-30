@@ -52,6 +52,12 @@
             this.Label_xMax = new System.Windows.Forms.Label();
             this.TextBox_xMin = new System.Windows.Forms.TextBox();
             this.TextBox_xMax = new System.Windows.Forms.TextBox();
+            this.Label_yMin = new System.Windows.Forms.Label();
+            this.Label_yMax = new System.Windows.Forms.Label();
+            this.TextBox_yMin = new System.Windows.Forms.TextBox();
+            this.TextBox_yMax = new System.Windows.Forms.TextBox();
+            this.CheckBox_isXLog = new System.Windows.Forms.CheckBox();
+            this.CheckBox_isYLog = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label_xVar
@@ -198,7 +204,7 @@
             // 
             this.TextBox_chartWidth.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_chartWidth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_chartWidth.Location = new System.Drawing.Point(846, 309);
+            this.TextBox_chartWidth.Location = new System.Drawing.Point(853, 190);
             this.TextBox_chartWidth.Name = "TextBox_chartWidth";
             this.TextBox_chartWidth.Size = new System.Drawing.Size(111, 27);
             this.TextBox_chartWidth.TabIndex = 5;
@@ -208,7 +214,7 @@
             // 
             this.TextBox_chartHeight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_chartHeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_chartHeight.Location = new System.Drawing.Point(963, 309);
+            this.TextBox_chartHeight.Location = new System.Drawing.Point(970, 190);
             this.TextBox_chartHeight.Name = "TextBox_chartHeight";
             this.TextBox_chartHeight.Size = new System.Drawing.Size(111, 27);
             this.TextBox_chartHeight.TabIndex = 5;
@@ -218,7 +224,7 @@
             // 
             this.Label_chartWidth.AutoSize = true;
             this.Label_chartWidth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_chartWidth.Location = new System.Drawing.Point(846, 339);
+            this.Label_chartWidth.Location = new System.Drawing.Point(853, 220);
             this.Label_chartWidth.Name = "Label_chartWidth";
             this.Label_chartWidth.Size = new System.Drawing.Size(105, 19);
             this.Label_chartWidth.TabIndex = 1;
@@ -228,7 +234,7 @@
             // 
             this.Label_chartHeight.AutoSize = true;
             this.Label_chartHeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_chartHeight.Location = new System.Drawing.Point(963, 339);
+            this.Label_chartHeight.Location = new System.Drawing.Point(970, 220);
             this.Label_chartHeight.Name = "Label_chartHeight";
             this.Label_chartHeight.Size = new System.Drawing.Size(111, 19);
             this.Label_chartHeight.TabIndex = 1;
@@ -238,7 +244,7 @@
             // 
             this.TextBox_depVarName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_depVarName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_depVarName.Location = new System.Drawing.Point(846, 232);
+            this.TextBox_depVarName.Location = new System.Drawing.Point(853, 113);
             this.TextBox_depVarName.Name = "TextBox_depVarName";
             this.TextBox_depVarName.Size = new System.Drawing.Size(228, 27);
             this.TextBox_depVarName.TabIndex = 5;
@@ -248,7 +254,7 @@
             // 
             this.Label_depVarName.AutoSize = true;
             this.Label_depVarName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_depVarName.Location = new System.Drawing.Point(846, 262);
+            this.Label_depVarName.Location = new System.Drawing.Point(853, 143);
             this.Label_depVarName.Name = "Label_depVarName";
             this.Label_depVarName.Size = new System.Drawing.Size(219, 19);
             this.Label_depVarName.TabIndex = 1;
@@ -258,7 +264,7 @@
             // 
             this.Label_xMin.AutoSize = true;
             this.Label_xMin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_xMin.Location = new System.Drawing.Point(12, 442);
+            this.Label_xMin.Location = new System.Drawing.Point(853, 284);
             this.Label_xMin.Name = "Label_xMin";
             this.Label_xMin.Size = new System.Drawing.Size(100, 19);
             this.Label_xMin.TabIndex = 1;
@@ -268,7 +274,7 @@
             // 
             this.Label_xMax.AutoSize = true;
             this.Label_xMax.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_xMax.Location = new System.Drawing.Point(129, 442);
+            this.Label_xMax.Location = new System.Drawing.Point(970, 284);
             this.Label_xMax.Name = "Label_xMax";
             this.Label_xMax.Size = new System.Drawing.Size(105, 19);
             this.Label_xMax.TabIndex = 1;
@@ -278,7 +284,7 @@
             // 
             this.TextBox_xMin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_xMin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_xMin.Location = new System.Drawing.Point(12, 412);
+            this.TextBox_xMin.Location = new System.Drawing.Point(853, 254);
             this.TextBox_xMin.Name = "TextBox_xMin";
             this.TextBox_xMin.Size = new System.Drawing.Size(111, 27);
             this.TextBox_xMin.TabIndex = 5;
@@ -288,11 +294,75 @@
             // 
             this.TextBox_xMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_xMax.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_xMax.Location = new System.Drawing.Point(129, 412);
+            this.TextBox_xMax.Location = new System.Drawing.Point(970, 254);
             this.TextBox_xMax.Name = "TextBox_xMax";
             this.TextBox_xMax.Size = new System.Drawing.Size(111, 27);
             this.TextBox_xMax.TabIndex = 5;
             this.TextBox_xMax.Leave += new System.EventHandler(this.TextBox_xMax_Leave);
+            // 
+            // Label_yMin
+            // 
+            this.Label_yMin.AutoSize = true;
+            this.Label_yMin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.Label_yMin.Location = new System.Drawing.Point(853, 346);
+            this.Label_yMin.Name = "Label_yMin";
+            this.Label_yMin.Size = new System.Drawing.Size(99, 19);
+            this.Label_yMin.TabIndex = 1;
+            this.Label_yMin.Text = "y minValue";
+            // 
+            // Label_yMax
+            // 
+            this.Label_yMax.AutoSize = true;
+            this.Label_yMax.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.Label_yMax.Location = new System.Drawing.Point(970, 346);
+            this.Label_yMax.Name = "Label_yMax";
+            this.Label_yMax.Size = new System.Drawing.Size(104, 19);
+            this.Label_yMax.TabIndex = 1;
+            this.Label_yMax.Text = "y maxValue";
+            // 
+            // TextBox_yMin
+            // 
+            this.TextBox_yMin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.TextBox_yMin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.TextBox_yMin.Location = new System.Drawing.Point(853, 316);
+            this.TextBox_yMin.Name = "TextBox_yMin";
+            this.TextBox_yMin.Size = new System.Drawing.Size(111, 27);
+            this.TextBox_yMin.TabIndex = 5;
+            this.TextBox_yMin.Leave += new System.EventHandler(this.TextBox_yMin_Leave);
+            // 
+            // TextBox_yMax
+            // 
+            this.TextBox_yMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.TextBox_yMax.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.TextBox_yMax.Location = new System.Drawing.Point(970, 316);
+            this.TextBox_yMax.Name = "TextBox_yMax";
+            this.TextBox_yMax.Size = new System.Drawing.Size(111, 27);
+            this.TextBox_yMax.TabIndex = 5;
+            this.TextBox_yMax.Leave += new System.EventHandler(this.TextBox_yMax_Leave);
+            // 
+            // CheckBox_isXLog
+            // 
+            this.CheckBox_isXLog.AutoSize = true;
+            this.CheckBox_isXLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.CheckBox_isXLog.Location = new System.Drawing.Point(1096, 256);
+            this.CheckBox_isXLog.Name = "CheckBox_isXLog";
+            this.CheckBox_isXLog.Size = new System.Drawing.Size(175, 23);
+            this.CheckBox_isXLog.TabIndex = 6;
+            this.CheckBox_isXLog.Text = "logarithmic x-axis";
+            this.CheckBox_isXLog.UseVisualStyleBackColor = true;
+            this.CheckBox_isXLog.CheckedChanged += new System.EventHandler(this.CheckBox_isXLog_CheckedChanged);
+            // 
+            // CheckBox_isYLog
+            // 
+            this.CheckBox_isYLog.AutoSize = true;
+            this.CheckBox_isYLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.CheckBox_isYLog.Location = new System.Drawing.Point(1096, 318);
+            this.CheckBox_isYLog.Name = "CheckBox_isYLog";
+            this.CheckBox_isYLog.Size = new System.Drawing.Size(174, 23);
+            this.CheckBox_isYLog.TabIndex = 6;
+            this.CheckBox_isYLog.Text = "logarithmic y-axis";
+            this.CheckBox_isYLog.UseVisualStyleBackColor = true;
+            this.CheckBox_isYLog.CheckedChanged += new System.EventHandler(this.CheckBox_isYLog_CheckedChanged);
             // 
             // Home
             // 
@@ -300,9 +370,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(54)))), ((int)(((byte)(57)))));
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.CheckBox_isYLog);
+            this.Controls.Add(this.CheckBox_isXLog);
+            this.Controls.Add(this.TextBox_yMax);
             this.Controls.Add(this.TextBox_xMax);
             this.Controls.Add(this.TextBox_chartHeight);
             this.Controls.Add(this.TextBox_depVarName);
+            this.Controls.Add(this.TextBox_yMin);
             this.Controls.Add(this.TextBox_xMin);
             this.Controls.Add(this.TextBox_chartWidth);
             this.Controls.Add(this.ListBox_yVar2Levels);
@@ -314,9 +388,11 @@
             this.Controls.Add(this.label_dataPath);
             this.Controls.Add(this.Label_yVar2);
             this.Controls.Add(this.btn_InfoPath);
+            this.Controls.Add(this.Label_yMax);
             this.Controls.Add(this.label_yVar);
             this.Controls.Add(this.Label_xMax);
             this.Controls.Add(this.btn_dataFilePath);
+            this.Controls.Add(this.Label_yMin);
             this.Controls.Add(this.Label_chartHeight);
             this.Controls.Add(this.Label_xMin);
             this.Controls.Add(this.Label_depVarName);
@@ -356,6 +432,12 @@
         private System.Windows.Forms.Label Label_xMax;
         private System.Windows.Forms.TextBox TextBox_xMin;
         private System.Windows.Forms.TextBox TextBox_xMax;
+        private System.Windows.Forms.Label Label_yMin;
+        private System.Windows.Forms.Label Label_yMax;
+        private System.Windows.Forms.TextBox TextBox_yMin;
+        private System.Windows.Forms.TextBox TextBox_yMax;
+        private System.Windows.Forms.CheckBox CheckBox_isXLog;
+        private System.Windows.Forms.CheckBox CheckBox_isYLog;
     }
 }
 

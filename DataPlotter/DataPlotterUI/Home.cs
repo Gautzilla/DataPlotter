@@ -14,22 +14,39 @@ namespace DataPlotter
 {
     public partial class Home : Form
     {
+        #region Data Settings
+
         private string _dataFilePath = string.Empty;
         private string _infoFilePath = string.Empty;
         private DataManager _dataManager;
         private string[] _variableNames;
-        private (int w, int h) _chartSize = (0,0);
-        private string _depVarName = string.Empty;
-        private (float min, float max) _xRange = (0f, 0f);
+
+        #endregion
+
+        #region Chart Variables Settings
 
         private string _xVar = string.Empty;
         private string _yVar = string.Empty;
         private string _yVar2 = string.Empty;
         private string _yVar2Level = string.Empty;
 
+        #endregion
+
+        #region Chart Display Settings
+
+        private (int w, int h) _chartSize = (0,0);
+        private string _depVarName = string.Empty;
+        private (float min, float max) _xRange = (0f, 0f);
+        private (float min, float max) _yRange = (0f, 0f);
+        private (bool x, bool y) _IsAxisLog;
+
+        #endregion
+
         public Home()
         {
             InitializeComponent();
+
+            _IsAxisLog = (CheckBox_isXLog.Checked, CheckBox_isYLog.Checked);
         }
 
         private void Btn_dataFilePath_Click(object sender, EventArgs e)
@@ -168,6 +185,44 @@ namespace DataPlotter
                 TextBox_xMax.Text = String.Empty;
                 _xRange.max = 0f;
             }
+        }
+
+        private void TextBox_yMin_Leave(object sender, EventArgs e)
+        {
+            if (float.TryParse(TextBox_yMin.Text, out float yMin))
+            {
+                _yRange.min = yMin;
+            }
+            else
+            {
+                MessageBox.Show("y min value must be an float.");
+                TextBox_yMin.Text = String.Empty;
+                _yRange.min = 0f;
+            }
+        }
+
+        private void TextBox_yMax_Leave(object sender, EventArgs e)
+        {
+            if (float.TryParse(TextBox_yMax.Text, out float yMax))
+            {
+                _yRange.max = yMax;
+            }
+            else
+            {
+                MessageBox.Show("y max value must be an float.");
+                TextBox_yMax.Text = String.Empty;
+                _yRange.max = 0f;
+            }
+        }
+
+        private void CheckBox_isXLog_CheckedChanged(object sender, EventArgs e)
+        {
+            _IsAxisLog.x = CheckBox_isXLog.Checked;
+        }
+
+        private void CheckBox_isYLog_CheckedChanged(object sender, EventArgs e)
+        {
+            _IsAxisLog.y = CheckBox_isYLog.Checked;
         }
     }
 }
