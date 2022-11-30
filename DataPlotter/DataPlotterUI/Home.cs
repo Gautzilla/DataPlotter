@@ -150,58 +150,23 @@ namespace DataPlotter
             _depVarName = TextBox_depVarName.Text;
         }
 
-        private void TextBox_xMin_Leave(object sender, EventArgs e)
+        private void TextBox_axisRange_Leave(object sender, EventArgs e)
         {
-            if (float.TryParse(TextBox_xMin.Text, out float xMin))
+            TextBox textBox = sender as TextBox;
+
+            if (float.TryParse(textBox.Text, out float rangeValue))
             {
-                _xRange.min = xMin;
+                if (textBox.Equals(TextBox_xMin)) _xRange.min = rangeValue;
+                if (textBox.Equals(TextBox_xMax)) _xRange.max = rangeValue;
+                if (textBox.Equals(TextBox_yMin)) _yRange.min = rangeValue;
+                if (textBox.Equals(TextBox_xMax)) _yRange.max = rangeValue;
             } else
             {
-                MessageBox.Show("x min value must be an float.");
-                TextBox_xMin.Text = String.Empty;
-                _xRange.min = 0f;
-            }
-        }
-
-        private void TextBox_xMax_Leave(object sender, EventArgs e)
-        {
-            if (float.TryParse(TextBox_xMax.Text, out float xMax))
-            {
-                _xRange.max = xMax;
-            }
-            else
-            {
-                MessageBox.Show("x max value must be an float.");
-                TextBox_xMax.Text = String.Empty;
-                _xRange.max = 0f;
-            }
-        }
-
-        private void TextBox_yMin_Leave(object sender, EventArgs e)
-        {
-            if (float.TryParse(TextBox_yMin.Text, out float yMin))
-            {
-                _yRange.min = yMin;
-            }
-            else
-            {
-                MessageBox.Show("y min value must be an float.");
-                TextBox_yMin.Text = String.Empty;
-                _yRange.min = 0f;
-            }
-        }
-
-        private void TextBox_yMax_Leave(object sender, EventArgs e)
-        {
-            if (float.TryParse(TextBox_yMax.Text, out float yMax))
-            {
-                _yRange.max = yMax;
-            }
-            else
-            {
-                MessageBox.Show("y max value must be an float.");
-                TextBox_yMax.Text = String.Empty;
-                _yRange.max = 0f;
+                textBox.Text = String.Empty;
+                if (textBox.Equals(TextBox_xMin)) _xRange.min = 0f;
+                if (textBox.Equals(TextBox_xMax)) _xRange.max = 0f;
+                if (textBox.Equals(TextBox_yMin)) _yRange.min = 0f;
+                if (textBox.Equals(TextBox_xMax)) _yRange.max = 0f;
             }
         }
 

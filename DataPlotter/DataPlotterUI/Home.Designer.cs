@@ -302,7 +302,7 @@
             this.TextBox_xMin.Name = "TextBox_xMin";
             this.TextBox_xMin.Size = new System.Drawing.Size(111, 27);
             this.TextBox_xMin.TabIndex = 5;
-            this.TextBox_xMin.Leave += new System.EventHandler(this.TextBox_xMin_Leave);
+            this.TextBox_xMin.Leave += new System.EventHandler(this.TextBox_axisRange_Leave);
             // 
             // TextBox_xMax
             // 
@@ -312,7 +312,7 @@
             this.TextBox_xMax.Name = "TextBox_xMax";
             this.TextBox_xMax.Size = new System.Drawing.Size(111, 27);
             this.TextBox_xMax.TabIndex = 5;
-            this.TextBox_xMax.Leave += new System.EventHandler(this.TextBox_xMax_Leave);
+            this.TextBox_xMax.Leave += new System.EventHandler(this.TextBox_axisRange_Leave);
             // 
             // Label_yMin
             // 
@@ -342,7 +342,7 @@
             this.TextBox_yMin.Name = "TextBox_yMin";
             this.TextBox_yMin.Size = new System.Drawing.Size(111, 27);
             this.TextBox_yMin.TabIndex = 5;
-            this.TextBox_yMin.Leave += new System.EventHandler(this.TextBox_yMin_Leave);
+            this.TextBox_yMin.Leave += new System.EventHandler(this.TextBox_axisRange_Leave);
             // 
             // TextBox_yMax
             // 
@@ -352,7 +352,7 @@
             this.TextBox_yMax.Name = "TextBox_yMax";
             this.TextBox_yMax.Size = new System.Drawing.Size(111, 27);
             this.TextBox_yMax.TabIndex = 5;
-            this.TextBox_yMax.Leave += new System.EventHandler(this.TextBox_yMax_Leave);
+            this.TextBox_yMax.Leave += new System.EventHandler(this.TextBox_axisRange_Leave);
             // 
             // CheckBox_isXLog
             // 
