@@ -364,7 +364,7 @@
             this.CheckBox_isXLog.TabIndex = 6;
             this.CheckBox_isXLog.Text = "logarithmic x-axis";
             this.CheckBox_isXLog.UseVisualStyleBackColor = true;
-            this.CheckBox_isXLog.CheckedChanged += new System.EventHandler(this.CheckBox_isXLog_CheckedChanged);
+            this.CheckBox_isXLog.CheckedChanged += new System.EventHandler(this.CheckBox_isAxisLog_CheckedChanged);
             // 
             // CheckBox_isYLog
             // 
@@ -376,7 +376,7 @@
             this.CheckBox_isYLog.TabIndex = 6;
             this.CheckBox_isYLog.Text = "logarithmic y-axis";
             this.CheckBox_isYLog.UseVisualStyleBackColor = true;
-            this.CheckBox_isYLog.CheckedChanged += new System.EventHandler(this.CheckBox_isYLog_CheckedChanged);
+            this.CheckBox_isYLog.CheckedChanged += new System.EventHandler(this.CheckBox_isAxisLog_CheckedChanged);
             // 
             // ListBox_xMajorTicks
             // 

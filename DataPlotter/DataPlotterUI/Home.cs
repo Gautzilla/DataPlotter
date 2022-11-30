@@ -170,17 +170,15 @@ namespace DataPlotter
             }
         }
 
-        private void CheckBox_isXLog_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox_isAxisLog_CheckedChanged(object sender, EventArgs e)
         {
-            _IsAxisLog.x = CheckBox_isXLog.Checked;
+            CheckBox checkBox = sender as CheckBox;
+
+            if (checkBox.Equals(CheckBox_isXLog)) _IsAxisLog.x = checkBox.Checked;
+            if (checkBox.Equals(CheckBox_isYLog)) _IsAxisLog.y = checkBox.Checked;
         }
 
-        private void CheckBox_isYLog_CheckedChanged(object sender, EventArgs e)
-        {
-            _IsAxisLog.y = CheckBox_isYLog.Checked;
-        }
-
-        #region Major Ticks
+        #region Ticks
 
         private void Btn_addXMajorTick_Click(object sender, EventArgs e) => AddMajorTick(Btn_addXMajorTick);
         private void Btn_removeXMajorTick_Click(object sender, EventArgs e) => RemoveMajorTick(Btn_removeXMajorTick);
