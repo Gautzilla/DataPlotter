@@ -48,6 +48,10 @@
             this.Label_chartHeight = new System.Windows.Forms.Label();
             this.TextBox_depVarName = new System.Windows.Forms.TextBox();
             this.Label_depVarName = new System.Windows.Forms.Label();
+            this.Label_xMin = new System.Windows.Forms.Label();
+            this.Label_xMax = new System.Windows.Forms.Label();
+            this.TextBox_xMin = new System.Windows.Forms.TextBox();
+            this.TextBox_xMax = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label_xVar
@@ -250,14 +254,56 @@
             this.Label_depVarName.TabIndex = 1;
             this.Label_depVarName.Text = "Dependent variable name";
             // 
+            // Label_xMin
+            // 
+            this.Label_xMin.AutoSize = true;
+            this.Label_xMin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.Label_xMin.Location = new System.Drawing.Point(12, 442);
+            this.Label_xMin.Name = "Label_xMin";
+            this.Label_xMin.Size = new System.Drawing.Size(100, 19);
+            this.Label_xMin.TabIndex = 1;
+            this.Label_xMin.Text = "x minValue";
+            // 
+            // Label_xMax
+            // 
+            this.Label_xMax.AutoSize = true;
+            this.Label_xMax.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.Label_xMax.Location = new System.Drawing.Point(129, 442);
+            this.Label_xMax.Name = "Label_xMax";
+            this.Label_xMax.Size = new System.Drawing.Size(105, 19);
+            this.Label_xMax.TabIndex = 1;
+            this.Label_xMax.Text = "x maxValue";
+            // 
+            // TextBox_xMin
+            // 
+            this.TextBox_xMin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.TextBox_xMin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.TextBox_xMin.Location = new System.Drawing.Point(12, 412);
+            this.TextBox_xMin.Name = "TextBox_xMin";
+            this.TextBox_xMin.Size = new System.Drawing.Size(111, 27);
+            this.TextBox_xMin.TabIndex = 5;
+            this.TextBox_xMin.Leave += new System.EventHandler(this.TextBox_xMin_Leave);
+            // 
+            // TextBox_xMax
+            // 
+            this.TextBox_xMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.TextBox_xMax.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.TextBox_xMax.Location = new System.Drawing.Point(129, 412);
+            this.TextBox_xMax.Name = "TextBox_xMax";
+            this.TextBox_xMax.Size = new System.Drawing.Size(111, 27);
+            this.TextBox_xMax.TabIndex = 5;
+            this.TextBox_xMax.Leave += new System.EventHandler(this.TextBox_xMax_Leave);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(54)))), ((int)(((byte)(57)))));
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.TextBox_xMax);
             this.Controls.Add(this.TextBox_chartHeight);
             this.Controls.Add(this.TextBox_depVarName);
+            this.Controls.Add(this.TextBox_xMin);
             this.Controls.Add(this.TextBox_chartWidth);
             this.Controls.Add(this.ListBox_yVar2Levels);
             this.Controls.Add(this.ListBox_yVar2);
@@ -269,8 +315,10 @@
             this.Controls.Add(this.Label_yVar2);
             this.Controls.Add(this.btn_InfoPath);
             this.Controls.Add(this.label_yVar);
+            this.Controls.Add(this.Label_xMax);
             this.Controls.Add(this.btn_dataFilePath);
             this.Controls.Add(this.Label_chartHeight);
+            this.Controls.Add(this.Label_xMin);
             this.Controls.Add(this.Label_depVarName);
             this.Controls.Add(this.Label_chartWidth);
             this.Controls.Add(this.label_xVar);
@@ -304,6 +352,10 @@
         private System.Windows.Forms.Label Label_chartHeight;
         private System.Windows.Forms.TextBox TextBox_depVarName;
         private System.Windows.Forms.Label Label_depVarName;
+        private System.Windows.Forms.Label Label_xMin;
+        private System.Windows.Forms.Label Label_xMax;
+        private System.Windows.Forms.TextBox TextBox_xMin;
+        private System.Windows.Forms.TextBox TextBox_xMax;
     }
 }
 

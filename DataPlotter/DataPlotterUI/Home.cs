@@ -20,6 +20,7 @@ namespace DataPlotter
         private string[] _variableNames;
         private (int w, int h) _chartSize = (0,0);
         private string _depVarName = string.Empty;
+        private (float min, float max) _xRange = (0f, 0f);
 
         private string _xVar = string.Empty;
         private string _yVar = string.Empty;
@@ -140,6 +141,33 @@ namespace DataPlotter
         private void TextBox_depVarName_Leave(object sender, EventArgs e)
         {
             _depVarName = TextBox_depVarName.Text;
+        }
+
+        private void TextBox_xMin_Leave(object sender, EventArgs e)
+        {
+            if (float.TryParse(TextBox_xMin.Text, out float xMin))
+            {
+                _xRange.min = xMin;
+            } else
+            {
+                MessageBox.Show("x min value must be an float.");
+                TextBox_xMin.Text = String.Empty;
+                _xRange.min = 0f;
+            }
+        }
+
+        private void TextBox_xMax_Leave(object sender, EventArgs e)
+        {
+            if (float.TryParse(TextBox_xMax.Text, out float xMax))
+            {
+                _xRange.max = xMax;
+            }
+            else
+            {
+                MessageBox.Show("x max value must be an float.");
+                TextBox_xMax.Text = String.Empty;
+                _xRange.max = 0f;
+            }
         }
     }
 }
