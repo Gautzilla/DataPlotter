@@ -194,17 +194,19 @@
             this.TextBox_chartWidth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
             this.TextBox_chartWidth.Location = new System.Drawing.Point(12, 451);
             this.TextBox_chartWidth.Name = "TextBox_chartWidth";
-            this.TextBox_chartWidth.Size = new System.Drawing.Size(170, 27);
+            this.TextBox_chartWidth.Size = new System.Drawing.Size(111, 27);
             this.TextBox_chartWidth.TabIndex = 5;
+            this.TextBox_chartWidth.Leave += new System.EventHandler(this.TextBox_chartWidth_Leave);
             // 
             // TextBox_chartHeight
             // 
             this.TextBox_chartHeight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_chartHeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_chartHeight.Location = new System.Drawing.Point(188, 451);
+            this.TextBox_chartHeight.Location = new System.Drawing.Point(129, 451);
             this.TextBox_chartHeight.Name = "TextBox_chartHeight";
-            this.TextBox_chartHeight.Size = new System.Drawing.Size(170, 27);
+            this.TextBox_chartHeight.Size = new System.Drawing.Size(111, 27);
             this.TextBox_chartHeight.TabIndex = 5;
+            this.TextBox_chartHeight.Leave += new System.EventHandler(this.TextBox_chartHeight_Leave);
             // 
             // Label_chartWidth
             // 
@@ -220,7 +222,7 @@
             // 
             this.Label_chartHeight.AutoSize = true;
             this.Label_chartHeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_chartHeight.Location = new System.Drawing.Point(188, 481);
+            this.Label_chartHeight.Location = new System.Drawing.Point(129, 481);
             this.Label_chartHeight.Name = "Label_chartHeight";
             this.Label_chartHeight.Size = new System.Drawing.Size(111, 19);
             this.Label_chartHeight.TabIndex = 1;

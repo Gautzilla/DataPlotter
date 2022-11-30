@@ -18,6 +18,7 @@ namespace DataPlotter
         private string _infoFilePath = string.Empty;
         private DataManager _dataManager;
         private string[] _variableNames;
+        private (int w, int h) _chartSize;
 
         private string _xVar = string.Empty;
         private string _yVar = string.Empty;
@@ -105,6 +106,45 @@ namespace DataPlotter
         private void ListBox_yVar2Levels_SelectedIndexChanged(object sender, EventArgs e)
         {
             _yVar2Level = ListBox_yVar2Levels.SelectedItem.ToString();
+        }
+
+        private void TextBox_chartWidth_Leave(object sender, EventArgs e)
+        {
+            if (int.TryParse(TextBox_chartWidth.Text, out int chartWidth))
+            {
+                _chartSize.w = chartWidth;
+            }
+            else
+            {
+                MessageBox.Show("Chart width must be an integer.");
+                TextBox_chartWidth.Text = String.Empty;
+            }
+        }
+
+        private void TextBox_chartHeight_TextChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(TextBox_chartHeight.Text, out int chartHeight))
+            {
+                _chartSize.h = chartHeight;
+            }
+            else
+            {
+                MessageBox.Show("Chart height must be an integer.");
+                TextBox_chartHeight.Text = String.Empty;
+            }
+        }
+
+        private void TextBox_chartHeight_Leave(object sender, EventArgs e)
+        {
+            if (int.TryParse(TextBox_chartHeight.Text, out int chartHeight))
+            {
+                _chartSize.h = chartHeight;
+            }
+            else
+            {
+                MessageBox.Show("Chart height must be an integer.");
+                TextBox_chartHeight.Text = String.Empty;
+            }
         }
     }
 }
