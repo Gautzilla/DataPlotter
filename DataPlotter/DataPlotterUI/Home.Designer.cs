@@ -72,13 +72,23 @@
             this.Label_xMinorTicksInterval = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.TextBox_yMinorTicksInterval = new System.Windows.Forms.TextBox();
+            this.GroupBox_Variables = new System.Windows.Forms.GroupBox();
+            this.GroupBox_filesManager = new System.Windows.Forms.GroupBox();
+            this.GroupBox_gridTicks = new System.Windows.Forms.GroupBox();
+            this.GroupBox_axesParameters = new System.Windows.Forms.GroupBox();
+            this.GroupBox_chartParameters = new System.Windows.Forms.GroupBox();
+            this.GroupBox_Variables.SuspendLayout();
+            this.GroupBox_filesManager.SuspendLayout();
+            this.GroupBox_gridTicks.SuspendLayout();
+            this.GroupBox_axesParameters.SuspendLayout();
+            this.GroupBox_chartParameters.SuspendLayout();
             this.SuspendLayout();
             // 
             // label_xVar
             // 
             this.label_xVar.AutoSize = true;
             this.label_xVar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.label_xVar.Location = new System.Drawing.Point(8, 339);
+            this.label_xVar.Location = new System.Drawing.Point(2, 242);
             this.label_xVar.Name = "label_xVar";
             this.label_xVar.Size = new System.Drawing.Size(131, 19);
             this.label_xVar.TabIndex = 1;
@@ -88,7 +98,7 @@
             // 
             this.btn_dataFilePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.btn_dataFilePath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.btn_dataFilePath.Location = new System.Drawing.Point(12, 12);
+            this.btn_dataFilePath.Location = new System.Drawing.Point(6, 26);
             this.btn_dataFilePath.Name = "btn_dataFilePath";
             this.btn_dataFilePath.Size = new System.Drawing.Size(95, 30);
             this.btn_dataFilePath.TabIndex = 2;
@@ -100,7 +110,7 @@
             // 
             this.label_dataPath.AutoSize = true;
             this.label_dataPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.label_dataPath.Location = new System.Drawing.Point(113, 18);
+            this.label_dataPath.Location = new System.Drawing.Point(107, 32);
             this.label_dataPath.Name = "label_dataPath";
             this.label_dataPath.Size = new System.Drawing.Size(133, 19);
             this.label_dataPath.TabIndex = 3;
@@ -110,7 +120,7 @@
             // 
             this.Btn_addXMajorTick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.Btn_addXMajorTick.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.Btn_addXMajorTick.Location = new System.Drawing.Point(81, 514);
+            this.Btn_addXMajorTick.Location = new System.Drawing.Point(40, 59);
             this.Btn_addXMajorTick.Name = "Btn_addXMajorTick";
             this.Btn_addXMajorTick.Size = new System.Drawing.Size(30, 30);
             this.Btn_addXMajorTick.TabIndex = 2;
@@ -122,7 +132,7 @@
             // 
             this.label_infoPath.AutoSize = true;
             this.label_infoPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.label_infoPath.Location = new System.Drawing.Point(113, 68);
+            this.label_infoPath.Location = new System.Drawing.Point(107, 82);
             this.label_infoPath.Name = "label_infoPath";
             this.label_infoPath.Size = new System.Drawing.Size(133, 19);
             this.label_infoPath.TabIndex = 3;
@@ -134,7 +144,7 @@
             this.ListBox_xVar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
             this.ListBox_xVar.FormattingEnabled = true;
             this.ListBox_xVar.ItemHeight = 19;
-            this.ListBox_xVar.Location = new System.Drawing.Point(12, 123);
+            this.ListBox_xVar.Location = new System.Drawing.Point(6, 26);
             this.ListBox_xVar.Name = "ListBox_xVar";
             this.ListBox_xVar.Size = new System.Drawing.Size(230, 213);
             this.ListBox_xVar.TabIndex = 4;
@@ -144,7 +154,7 @@
             // 
             this.label_yVar.AutoSize = true;
             this.label_yVar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.label_yVar.Location = new System.Drawing.Point(244, 339);
+            this.label_yVar.Location = new System.Drawing.Point(238, 242);
             this.label_yVar.Name = "label_yVar";
             this.label_yVar.Size = new System.Drawing.Size(140, 38);
             this.label_yVar.TabIndex = 1;
@@ -156,7 +166,7 @@
             this.ListBox_yVar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
             this.ListBox_yVar.FormattingEnabled = true;
             this.ListBox_yVar.ItemHeight = 19;
-            this.ListBox_yVar.Location = new System.Drawing.Point(248, 123);
+            this.ListBox_yVar.Location = new System.Drawing.Point(242, 26);
             this.ListBox_yVar.Name = "ListBox_yVar";
             this.ListBox_yVar.Size = new System.Drawing.Size(230, 213);
             this.ListBox_yVar.TabIndex = 4;
@@ -166,7 +176,7 @@
             // 
             this.Label_yVar2.AutoSize = true;
             this.Label_yVar2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_yVar2.Location = new System.Drawing.Point(480, 206);
+            this.Label_yVar2.Location = new System.Drawing.Point(474, 109);
             this.Label_yVar2.Name = "Label_yVar2";
             this.Label_yVar2.Size = new System.Drawing.Size(164, 19);
             this.Label_yVar2.TabIndex = 1;
@@ -178,7 +188,7 @@
             this.ListBox_yVar2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
             this.ListBox_yVar2.FormattingEnabled = true;
             this.ListBox_yVar2.ItemHeight = 19;
-            this.ListBox_yVar2.Location = new System.Drawing.Point(484, 123);
+            this.ListBox_yVar2.Location = new System.Drawing.Point(478, 26);
             this.ListBox_yVar2.Name = "ListBox_yVar2";
             this.ListBox_yVar2.Size = new System.Drawing.Size(230, 80);
             this.ListBox_yVar2.TabIndex = 4;
@@ -188,7 +198,7 @@
             // 
             this.Label_yVar2Levels.AutoSize = true;
             this.Label_yVar2Levels.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_yVar2Levels.Location = new System.Drawing.Point(480, 339);
+            this.Label_yVar2Levels.Location = new System.Drawing.Point(474, 242);
             this.Label_yVar2Levels.Name = "Label_yVar2Levels";
             this.Label_yVar2Levels.Size = new System.Drawing.Size(208, 19);
             this.Label_yVar2Levels.TabIndex = 1;
@@ -200,7 +210,7 @@
             this.ListBox_yVar2Levels.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
             this.ListBox_yVar2Levels.FormattingEnabled = true;
             this.ListBox_yVar2Levels.ItemHeight = 19;
-            this.ListBox_yVar2Levels.Location = new System.Drawing.Point(484, 256);
+            this.ListBox_yVar2Levels.Location = new System.Drawing.Point(478, 159);
             this.ListBox_yVar2Levels.Name = "ListBox_yVar2Levels";
             this.ListBox_yVar2Levels.Size = new System.Drawing.Size(230, 80);
             this.ListBox_yVar2Levels.TabIndex = 4;
@@ -218,7 +228,7 @@
             // 
             this.TextBox_chartWidth.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_chartWidth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_chartWidth.Location = new System.Drawing.Point(853, 190);
+            this.TextBox_chartWidth.Location = new System.Drawing.Point(6, 26);
             this.TextBox_chartWidth.Name = "TextBox_chartWidth";
             this.TextBox_chartWidth.Size = new System.Drawing.Size(111, 27);
             this.TextBox_chartWidth.TabIndex = 5;
@@ -228,7 +238,7 @@
             // 
             this.TextBox_chartHeight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_chartHeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_chartHeight.Location = new System.Drawing.Point(970, 190);
+            this.TextBox_chartHeight.Location = new System.Drawing.Point(123, 26);
             this.TextBox_chartHeight.Name = "TextBox_chartHeight";
             this.TextBox_chartHeight.Size = new System.Drawing.Size(111, 27);
             this.TextBox_chartHeight.TabIndex = 5;
@@ -238,7 +248,7 @@
             // 
             this.Label_chartWidth.AutoSize = true;
             this.Label_chartWidth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_chartWidth.Location = new System.Drawing.Point(853, 220);
+            this.Label_chartWidth.Location = new System.Drawing.Point(6, 56);
             this.Label_chartWidth.Name = "Label_chartWidth";
             this.Label_chartWidth.Size = new System.Drawing.Size(105, 19);
             this.Label_chartWidth.TabIndex = 1;
@@ -248,7 +258,7 @@
             // 
             this.Label_chartHeight.AutoSize = true;
             this.Label_chartHeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_chartHeight.Location = new System.Drawing.Point(970, 220);
+            this.Label_chartHeight.Location = new System.Drawing.Point(123, 56);
             this.Label_chartHeight.Name = "Label_chartHeight";
             this.Label_chartHeight.Size = new System.Drawing.Size(111, 19);
             this.Label_chartHeight.TabIndex = 1;
@@ -258,7 +268,7 @@
             // 
             this.TextBox_depVarName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_depVarName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_depVarName.Location = new System.Drawing.Point(853, 113);
+            this.TextBox_depVarName.Location = new System.Drawing.Point(6, 26);
             this.TextBox_depVarName.Name = "TextBox_depVarName";
             this.TextBox_depVarName.Size = new System.Drawing.Size(228, 27);
             this.TextBox_depVarName.TabIndex = 5;
@@ -268,7 +278,7 @@
             // 
             this.Label_depVarName.AutoSize = true;
             this.Label_depVarName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_depVarName.Location = new System.Drawing.Point(853, 143);
+            this.Label_depVarName.Location = new System.Drawing.Point(6, 56);
             this.Label_depVarName.Name = "Label_depVarName";
             this.Label_depVarName.Size = new System.Drawing.Size(219, 19);
             this.Label_depVarName.TabIndex = 1;
@@ -278,7 +288,7 @@
             // 
             this.Label_xMin.AutoSize = true;
             this.Label_xMin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_xMin.Location = new System.Drawing.Point(853, 284);
+            this.Label_xMin.Location = new System.Drawing.Point(6, 232);
             this.Label_xMin.Name = "Label_xMin";
             this.Label_xMin.Size = new System.Drawing.Size(100, 19);
             this.Label_xMin.TabIndex = 1;
@@ -288,7 +298,7 @@
             // 
             this.Label_xMax.AutoSize = true;
             this.Label_xMax.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_xMax.Location = new System.Drawing.Point(970, 284);
+            this.Label_xMax.Location = new System.Drawing.Point(123, 232);
             this.Label_xMax.Name = "Label_xMax";
             this.Label_xMax.Size = new System.Drawing.Size(105, 19);
             this.Label_xMax.TabIndex = 1;
@@ -298,7 +308,7 @@
             // 
             this.TextBox_xMin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_xMin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_xMin.Location = new System.Drawing.Point(853, 254);
+            this.TextBox_xMin.Location = new System.Drawing.Point(6, 202);
             this.TextBox_xMin.Name = "TextBox_xMin";
             this.TextBox_xMin.Size = new System.Drawing.Size(111, 27);
             this.TextBox_xMin.TabIndex = 5;
@@ -308,7 +318,7 @@
             // 
             this.TextBox_xMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_xMax.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_xMax.Location = new System.Drawing.Point(970, 254);
+            this.TextBox_xMax.Location = new System.Drawing.Point(123, 202);
             this.TextBox_xMax.Name = "TextBox_xMax";
             this.TextBox_xMax.Size = new System.Drawing.Size(111, 27);
             this.TextBox_xMax.TabIndex = 5;
@@ -318,7 +328,7 @@
             // 
             this.Label_yMin.AutoSize = true;
             this.Label_yMin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_yMin.Location = new System.Drawing.Point(853, 346);
+            this.Label_yMin.Location = new System.Drawing.Point(6, 294);
             this.Label_yMin.Name = "Label_yMin";
             this.Label_yMin.Size = new System.Drawing.Size(99, 19);
             this.Label_yMin.TabIndex = 1;
@@ -328,7 +338,7 @@
             // 
             this.Label_yMax.AutoSize = true;
             this.Label_yMax.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_yMax.Location = new System.Drawing.Point(970, 346);
+            this.Label_yMax.Location = new System.Drawing.Point(123, 294);
             this.Label_yMax.Name = "Label_yMax";
             this.Label_yMax.Size = new System.Drawing.Size(104, 19);
             this.Label_yMax.TabIndex = 1;
@@ -338,7 +348,7 @@
             // 
             this.TextBox_yMin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_yMin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_yMin.Location = new System.Drawing.Point(853, 316);
+            this.TextBox_yMin.Location = new System.Drawing.Point(6, 264);
             this.TextBox_yMin.Name = "TextBox_yMin";
             this.TextBox_yMin.Size = new System.Drawing.Size(111, 27);
             this.TextBox_yMin.TabIndex = 5;
@@ -348,7 +358,7 @@
             // 
             this.TextBox_yMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_yMax.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_yMax.Location = new System.Drawing.Point(970, 316);
+            this.TextBox_yMax.Location = new System.Drawing.Point(123, 264);
             this.TextBox_yMax.Name = "TextBox_yMax";
             this.TextBox_yMax.Size = new System.Drawing.Size(111, 27);
             this.TextBox_yMax.TabIndex = 5;
@@ -358,7 +368,7 @@
             // 
             this.CheckBox_isXLog.AutoSize = true;
             this.CheckBox_isXLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.CheckBox_isXLog.Location = new System.Drawing.Point(1096, 256);
+            this.CheckBox_isXLog.Location = new System.Drawing.Point(249, 204);
             this.CheckBox_isXLog.Name = "CheckBox_isXLog";
             this.CheckBox_isXLog.Size = new System.Drawing.Size(175, 23);
             this.CheckBox_isXLog.TabIndex = 6;
@@ -370,7 +380,7 @@
             // 
             this.CheckBox_isYLog.AutoSize = true;
             this.CheckBox_isYLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.CheckBox_isYLog.Location = new System.Drawing.Point(1096, 318);
+            this.CheckBox_isYLog.Location = new System.Drawing.Point(249, 266);
             this.CheckBox_isYLog.Name = "CheckBox_isYLog";
             this.CheckBox_isYLog.Size = new System.Drawing.Size(174, 23);
             this.CheckBox_isYLog.TabIndex = 6;
@@ -384,7 +394,7 @@
             this.ListBox_xMajorTicks.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
             this.ListBox_xMajorTicks.FormattingEnabled = true;
             this.ListBox_xMajorTicks.ItemHeight = 19;
-            this.ListBox_xMajorTicks.Location = new System.Drawing.Point(117, 481);
+            this.ListBox_xMajorTicks.Location = new System.Drawing.Point(76, 26);
             this.ListBox_xMajorTicks.Name = "ListBox_xMajorTicks";
             this.ListBox_xMajorTicks.Size = new System.Drawing.Size(88, 213);
             this.ListBox_xMajorTicks.TabIndex = 4;
@@ -393,7 +403,7 @@
             // 
             this.Label_xMajorTicks.AutoSize = true;
             this.Label_xMajorTicks.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_xMajorTicks.Location = new System.Drawing.Point(113, 697);
+            this.Label_xMajorTicks.Location = new System.Drawing.Point(72, 242);
             this.Label_xMajorTicks.Name = "Label_xMajorTicks";
             this.Label_xMajorTicks.Size = new System.Drawing.Size(103, 19);
             this.Label_xMajorTicks.TabIndex = 1;
@@ -403,7 +413,7 @@
             // 
             this.Label_yMajorTicks.AutoSize = true;
             this.Label_yMajorTicks.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_yMajorTicks.Location = new System.Drawing.Point(314, 697);
+            this.Label_yMajorTicks.Location = new System.Drawing.Point(273, 242);
             this.Label_yMajorTicks.Name = "Label_yMajorTicks";
             this.Label_yMajorTicks.Size = new System.Drawing.Size(103, 19);
             this.Label_yMajorTicks.TabIndex = 1;
@@ -415,7 +425,7 @@
             this.ListBox_yMajorTicks.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
             this.ListBox_yMajorTicks.FormattingEnabled = true;
             this.ListBox_yMajorTicks.ItemHeight = 19;
-            this.ListBox_yMajorTicks.Location = new System.Drawing.Point(318, 481);
+            this.ListBox_yMajorTicks.Location = new System.Drawing.Point(277, 26);
             this.ListBox_yMajorTicks.Name = "ListBox_yMajorTicks";
             this.ListBox_yMajorTicks.Size = new System.Drawing.Size(88, 213);
             this.ListBox_yMajorTicks.TabIndex = 4;
@@ -424,7 +434,7 @@
             // 
             this.TextBox_xMajorTick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_xMajorTick.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_xMajorTick.Location = new System.Drawing.Point(47, 481);
+            this.TextBox_xMajorTick.Location = new System.Drawing.Point(6, 26);
             this.TextBox_xMajorTick.Name = "TextBox_xMajorTick";
             this.TextBox_xMajorTick.Size = new System.Drawing.Size(64, 27);
             this.TextBox_xMajorTick.TabIndex = 5;
@@ -434,7 +444,7 @@
             // 
             this.Btn_addYMajorTick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.Btn_addYMajorTick.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.Btn_addYMajorTick.Location = new System.Drawing.Point(282, 514);
+            this.Btn_addYMajorTick.Location = new System.Drawing.Point(241, 59);
             this.Btn_addYMajorTick.Name = "Btn_addYMajorTick";
             this.Btn_addYMajorTick.Size = new System.Drawing.Size(30, 30);
             this.Btn_addYMajorTick.TabIndex = 2;
@@ -446,7 +456,7 @@
             // 
             this.TextBox_yMajorTick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_yMajorTick.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_yMajorTick.Location = new System.Drawing.Point(248, 481);
+            this.TextBox_yMajorTick.Location = new System.Drawing.Point(207, 26);
             this.TextBox_yMajorTick.Name = "TextBox_yMajorTick";
             this.TextBox_yMajorTick.Size = new System.Drawing.Size(64, 27);
             this.TextBox_yMajorTick.TabIndex = 5;
@@ -456,7 +466,7 @@
             // 
             this.Btn_removeXMajorTick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.Btn_removeXMajorTick.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.Btn_removeXMajorTick.Location = new System.Drawing.Point(81, 550);
+            this.Btn_removeXMajorTick.Location = new System.Drawing.Point(40, 95);
             this.Btn_removeXMajorTick.Name = "Btn_removeXMajorTick";
             this.Btn_removeXMajorTick.Size = new System.Drawing.Size(30, 30);
             this.Btn_removeXMajorTick.TabIndex = 2;
@@ -468,7 +478,7 @@
             // 
             this.Btn_removeYMajorTick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.Btn_removeYMajorTick.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.Btn_removeYMajorTick.Location = new System.Drawing.Point(282, 550);
+            this.Btn_removeYMajorTick.Location = new System.Drawing.Point(241, 95);
             this.Btn_removeYMajorTick.Name = "Btn_removeYMajorTick";
             this.Btn_removeYMajorTick.Size = new System.Drawing.Size(30, 30);
             this.Btn_removeYMajorTick.TabIndex = 2;
@@ -480,7 +490,7 @@
             // 
             this.Btn_infoFilePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.Btn_infoFilePath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.Btn_infoFilePath.Location = new System.Drawing.Point(12, 62);
+            this.Btn_infoFilePath.Location = new System.Drawing.Point(6, 76);
             this.Btn_infoFilePath.Name = "Btn_infoFilePath";
             this.Btn_infoFilePath.Size = new System.Drawing.Size(95, 30);
             this.Btn_infoFilePath.TabIndex = 2;
@@ -492,7 +502,7 @@
             // 
             this.TextBox_xMinorTicksInterval.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_xMinorTicksInterval.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_xMinorTicksInterval.Location = new System.Drawing.Point(47, 719);
+            this.TextBox_xMinorTicksInterval.Location = new System.Drawing.Point(6, 264);
             this.TextBox_xMinorTicksInterval.Name = "TextBox_xMinorTicksInterval";
             this.TextBox_xMinorTicksInterval.Size = new System.Drawing.Size(64, 27);
             this.TextBox_xMinorTicksInterval.TabIndex = 5;
@@ -502,7 +512,7 @@
             // 
             this.Label_xMinorTicksInterval.AutoSize = true;
             this.Label_xMinorTicksInterval.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_xMinorTicksInterval.Location = new System.Drawing.Point(43, 749);
+            this.Label_xMinorTicksInterval.Location = new System.Drawing.Point(2, 294);
             this.Label_xMinorTicksInterval.Name = "Label_xMinorTicksInterval";
             this.Label_xMinorTicksInterval.Size = new System.Drawing.Size(167, 38);
             this.Label_xMinorTicksInterval.TabIndex = 1;
@@ -512,7 +522,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.label1.Location = new System.Drawing.Point(244, 749);
+            this.label1.Location = new System.Drawing.Point(203, 294);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(167, 38);
             this.label1.TabIndex = 1;
@@ -522,11 +532,103 @@
             // 
             this.TextBox_yMinorTicksInterval.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_yMinorTicksInterval.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_yMinorTicksInterval.Location = new System.Drawing.Point(248, 719);
+            this.TextBox_yMinorTicksInterval.Location = new System.Drawing.Point(207, 264);
             this.TextBox_yMinorTicksInterval.Name = "TextBox_yMinorTicksInterval";
             this.TextBox_yMinorTicksInterval.Size = new System.Drawing.Size(64, 27);
             this.TextBox_yMinorTicksInterval.TabIndex = 5;
             this.TextBox_yMinorTicksInterval.Leave += new System.EventHandler(this.TextBox_MinorTicksInterval_Leave);
+            // 
+            // GroupBox_Variables
+            // 
+            this.GroupBox_Variables.Controls.Add(this.ListBox_xVar);
+            this.GroupBox_Variables.Controls.Add(this.label_xVar);
+            this.GroupBox_Variables.Controls.Add(this.label_yVar);
+            this.GroupBox_Variables.Controls.Add(this.Label_yVar2);
+            this.GroupBox_Variables.Controls.Add(this.Label_yVar2Levels);
+            this.GroupBox_Variables.Controls.Add(this.ListBox_yVar);
+            this.GroupBox_Variables.Controls.Add(this.ListBox_yVar2);
+            this.GroupBox_Variables.Controls.Add(this.ListBox_yVar2Levels);
+            this.GroupBox_Variables.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.GroupBox_Variables.Location = new System.Drawing.Point(12, 132);
+            this.GroupBox_Variables.Name = "GroupBox_Variables";
+            this.GroupBox_Variables.Size = new System.Drawing.Size(718, 290);
+            this.GroupBox_Variables.TabIndex = 7;
+            this.GroupBox_Variables.TabStop = false;
+            this.GroupBox_Variables.Text = "Variables to plot";
+            // 
+            // GroupBox_filesManager
+            // 
+            this.GroupBox_filesManager.Controls.Add(this.btn_dataFilePath);
+            this.GroupBox_filesManager.Controls.Add(this.Btn_infoFilePath);
+            this.GroupBox_filesManager.Controls.Add(this.label_dataPath);
+            this.GroupBox_filesManager.Controls.Add(this.label_infoPath);
+            this.GroupBox_filesManager.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.GroupBox_filesManager.Location = new System.Drawing.Point(12, 12);
+            this.GroupBox_filesManager.Name = "GroupBox_filesManager";
+            this.GroupBox_filesManager.Size = new System.Drawing.Size(243, 114);
+            this.GroupBox_filesManager.TabIndex = 8;
+            this.GroupBox_filesManager.TabStop = false;
+            this.GroupBox_filesManager.Text = "Files manager";
+            // 
+            // GroupBox_gridTicks
+            // 
+            this.GroupBox_gridTicks.Controls.Add(this.TextBox_xMajorTick);
+            this.GroupBox_gridTicks.Controls.Add(this.Label_xMajorTicks);
+            this.GroupBox_gridTicks.Controls.Add(this.Label_xMinorTicksInterval);
+            this.GroupBox_gridTicks.Controls.Add(this.label1);
+            this.GroupBox_gridTicks.Controls.Add(this.Label_yMajorTicks);
+            this.GroupBox_gridTicks.Controls.Add(this.Btn_addXMajorTick);
+            this.GroupBox_gridTicks.Controls.Add(this.Btn_removeXMajorTick);
+            this.GroupBox_gridTicks.Controls.Add(this.Btn_removeYMajorTick);
+            this.GroupBox_gridTicks.Controls.Add(this.Btn_addYMajorTick);
+            this.GroupBox_gridTicks.Controls.Add(this.ListBox_xMajorTicks);
+            this.GroupBox_gridTicks.Controls.Add(this.ListBox_yMajorTicks);
+            this.GroupBox_gridTicks.Controls.Add(this.TextBox_yMajorTick);
+            this.GroupBox_gridTicks.Controls.Add(this.TextBox_xMinorTicksInterval);
+            this.GroupBox_gridTicks.Controls.Add(this.TextBox_yMinorTicksInterval);
+            this.GroupBox_gridTicks.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.GroupBox_gridTicks.Location = new System.Drawing.Point(12, 442);
+            this.GroupBox_gridTicks.Name = "GroupBox_gridTicks";
+            this.GroupBox_gridTicks.Size = new System.Drawing.Size(380, 337);
+            this.GroupBox_gridTicks.TabIndex = 9;
+            this.GroupBox_gridTicks.TabStop = false;
+            this.GroupBox_gridTicks.Text = "Grid ticks";
+            // 
+            // GroupBox_axesParameters
+            // 
+            this.GroupBox_axesParameters.Controls.Add(this.TextBox_depVarName);
+            this.GroupBox_axesParameters.Controls.Add(this.Label_depVarName);
+            this.GroupBox_axesParameters.Controls.Add(this.Label_xMin);
+            this.GroupBox_axesParameters.Controls.Add(this.Label_yMin);
+            this.GroupBox_axesParameters.Controls.Add(this.CheckBox_isYLog);
+            this.GroupBox_axesParameters.Controls.Add(this.Label_xMax);
+            this.GroupBox_axesParameters.Controls.Add(this.CheckBox_isXLog);
+            this.GroupBox_axesParameters.Controls.Add(this.Label_yMax);
+            this.GroupBox_axesParameters.Controls.Add(this.TextBox_yMax);
+            this.GroupBox_axesParameters.Controls.Add(this.TextBox_xMin);
+            this.GroupBox_axesParameters.Controls.Add(this.TextBox_xMax);
+            this.GroupBox_axesParameters.Controls.Add(this.TextBox_yMin);
+            this.GroupBox_axesParameters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.GroupBox_axesParameters.Location = new System.Drawing.Point(438, 442);
+            this.GroupBox_axesParameters.Name = "GroupBox_axesParameters";
+            this.GroupBox_axesParameters.Size = new System.Drawing.Size(426, 337);
+            this.GroupBox_axesParameters.TabIndex = 10;
+            this.GroupBox_axesParameters.TabStop = false;
+            this.GroupBox_axesParameters.Text = "Axes parameters";
+            // 
+            // GroupBox_chartParameters
+            // 
+            this.GroupBox_chartParameters.Controls.Add(this.TextBox_chartWidth);
+            this.GroupBox_chartParameters.Controls.Add(this.Label_chartWidth);
+            this.GroupBox_chartParameters.Controls.Add(this.Label_chartHeight);
+            this.GroupBox_chartParameters.Controls.Add(this.TextBox_chartHeight);
+            this.GroupBox_chartParameters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.GroupBox_chartParameters.Location = new System.Drawing.Point(736, 141);
+            this.GroupBox_chartParameters.Name = "GroupBox_chartParameters";
+            this.GroupBox_chartParameters.Size = new System.Drawing.Size(244, 85);
+            this.GroupBox_chartParameters.TabIndex = 11;
+            this.GroupBox_chartParameters.TabStop = false;
+            this.GroupBox_chartParameters.Text = "Chart parameters";
             // 
             // Home
             // 
@@ -534,54 +636,26 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(54)))), ((int)(((byte)(57)))));
             this.ClientSize = new System.Drawing.Size(1904, 1041);
-            this.Controls.Add(this.CheckBox_isYLog);
-            this.Controls.Add(this.CheckBox_isXLog);
-            this.Controls.Add(this.TextBox_yMax);
-            this.Controls.Add(this.TextBox_xMax);
-            this.Controls.Add(this.TextBox_chartHeight);
-            this.Controls.Add(this.TextBox_depVarName);
-            this.Controls.Add(this.TextBox_yMin);
-            this.Controls.Add(this.TextBox_xMin);
-            this.Controls.Add(this.TextBox_yMajorTick);
-            this.Controls.Add(this.TextBox_yMinorTicksInterval);
-            this.Controls.Add(this.TextBox_xMinorTicksInterval);
-            this.Controls.Add(this.TextBox_xMajorTick);
-            this.Controls.Add(this.TextBox_chartWidth);
-            this.Controls.Add(this.ListBox_yVar2Levels);
-            this.Controls.Add(this.ListBox_yVar2);
-            this.Controls.Add(this.ListBox_yVar);
-            this.Controls.Add(this.ListBox_yMajorTicks);
-            this.Controls.Add(this.ListBox_xMajorTicks);
-            this.Controls.Add(this.ListBox_xVar);
-            this.Controls.Add(this.label_infoPath);
-            this.Controls.Add(this.Label_yVar2Levels);
-            this.Controls.Add(this.label_dataPath);
-            this.Controls.Add(this.Btn_addYMajorTick);
-            this.Controls.Add(this.Label_yVar2);
-            this.Controls.Add(this.Btn_removeYMajorTick);
-            this.Controls.Add(this.Btn_removeXMajorTick);
-            this.Controls.Add(this.Btn_addXMajorTick);
-            this.Controls.Add(this.Label_yMax);
-            this.Controls.Add(this.label_yVar);
-            this.Controls.Add(this.Label_xMax);
-            this.Controls.Add(this.Btn_infoFilePath);
-            this.Controls.Add(this.btn_dataFilePath);
-            this.Controls.Add(this.Label_yMin);
-            this.Controls.Add(this.Label_chartHeight);
-            this.Controls.Add(this.Label_xMin);
-            this.Controls.Add(this.Label_depVarName);
-            this.Controls.Add(this.Label_yMajorTicks);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.Label_chartWidth);
-            this.Controls.Add(this.Label_xMinorTicksInterval);
-            this.Controls.Add(this.Label_xMajorTicks);
-            this.Controls.Add(this.label_xVar);
+            this.Controls.Add(this.GroupBox_chartParameters);
+            this.Controls.Add(this.GroupBox_axesParameters);
+            this.Controls.Add(this.GroupBox_gridTicks);
+            this.Controls.Add(this.GroupBox_filesManager);
+            this.Controls.Add(this.GroupBox_Variables);
             this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Home";
             this.Text = "DataPlotter";
+            this.GroupBox_Variables.ResumeLayout(false);
+            this.GroupBox_Variables.PerformLayout();
+            this.GroupBox_filesManager.ResumeLayout(false);
+            this.GroupBox_filesManager.PerformLayout();
+            this.GroupBox_gridTicks.ResumeLayout(false);
+            this.GroupBox_gridTicks.PerformLayout();
+            this.GroupBox_axesParameters.ResumeLayout(false);
+            this.GroupBox_axesParameters.PerformLayout();
+            this.GroupBox_chartParameters.ResumeLayout(false);
+            this.GroupBox_chartParameters.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -630,6 +704,11 @@
         private System.Windows.Forms.Label Label_xMinorTicksInterval;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TextBox_yMinorTicksInterval;
+        private System.Windows.Forms.GroupBox GroupBox_Variables;
+        private System.Windows.Forms.GroupBox GroupBox_filesManager;
+        private System.Windows.Forms.GroupBox GroupBox_gridTicks;
+        private System.Windows.Forms.GroupBox GroupBox_axesParameters;
+        private System.Windows.Forms.GroupBox GroupBox_chartParameters;
     }
 }
 
