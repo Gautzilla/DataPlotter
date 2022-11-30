@@ -41,6 +41,7 @@ namespace DataPlotter
         private (float min, float max) _yRange = (0f, 0f);
         private (bool x, bool y) _IsAxisLog;
         private (List<float> x, List<float> y) _majorTicks = (new List<float>(), new List<float>());
+        private (float x, float y) _minorTicksInterval = (0f, 0f);
 
         #endregion
 
@@ -283,6 +284,22 @@ namespace DataPlotter
             List<float> updatedList = listBox == ListBox_xMajorTicks ? _majorTicks.x : _majorTicks.y;
             listBox.Items.Clear();
             listBox.Items.AddRange(updatedList.OrderBy(f => f).Select(f => f.ToString()).ToArray());
+        }
+
+        private void TextBox_MinorTicksInterval_Leave(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            if (float.TryParse(textBox.Text, out float minorTicksInterval))
+            {
+                if (textBox.Equals(TextBox_xMinorTicksInterval)) _minorTicksInterval.x = minorTicksInterval;
+                if (textBox.Equals(TextBox_yMinorTicksInterval)) _minorTicksInterval.y = minorTicksInterval;
+            } else
+            {
+                if (textBox.Equals(TextBox_xMinorTicksInterval)) _minorTicksInterval.x = 0f;
+                if (textBox.Equals(TextBox_yMinorTicksInterval)) _minorTicksInterval.y = 0f;
+                textBox.Text = String.Empty;
+            }
         }
 
         #endregion

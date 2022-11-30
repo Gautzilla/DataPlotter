@@ -68,6 +68,10 @@
             this.Btn_removeXMajorTick = new System.Windows.Forms.Button();
             this.Btn_removeYMajorTick = new System.Windows.Forms.Button();
             this.Btn_infoFilePath = new System.Windows.Forms.Button();
+            this.TextBox_xMinorTicksInterval = new System.Windows.Forms.TextBox();
+            this.Label_xMinorTicksInterval = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.TextBox_yMinorTicksInterval = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label_xVar
@@ -106,7 +110,7 @@
             // 
             this.Btn_addXMajorTick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.Btn_addXMajorTick.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.Btn_addXMajorTick.Location = new System.Drawing.Point(151, 514);
+            this.Btn_addXMajorTick.Location = new System.Drawing.Point(81, 514);
             this.Btn_addXMajorTick.Name = "Btn_addXMajorTick";
             this.Btn_addXMajorTick.Size = new System.Drawing.Size(30, 30);
             this.Btn_addXMajorTick.TabIndex = 2;
@@ -380,7 +384,7 @@
             this.ListBox_xMajorTicks.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
             this.ListBox_xMajorTicks.FormattingEnabled = true;
             this.ListBox_xMajorTicks.ItemHeight = 19;
-            this.ListBox_xMajorTicks.Location = new System.Drawing.Point(187, 481);
+            this.ListBox_xMajorTicks.Location = new System.Drawing.Point(117, 481);
             this.ListBox_xMajorTicks.Name = "ListBox_xMajorTicks";
             this.ListBox_xMajorTicks.Size = new System.Drawing.Size(88, 213);
             this.ListBox_xMajorTicks.TabIndex = 4;
@@ -389,7 +393,7 @@
             // 
             this.Label_xMajorTicks.AutoSize = true;
             this.Label_xMajorTicks.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_xMajorTicks.Location = new System.Drawing.Point(183, 697);
+            this.Label_xMajorTicks.Location = new System.Drawing.Point(113, 697);
             this.Label_xMajorTicks.Name = "Label_xMajorTicks";
             this.Label_xMajorTicks.Size = new System.Drawing.Size(103, 19);
             this.Label_xMajorTicks.TabIndex = 1;
@@ -399,7 +403,7 @@
             // 
             this.Label_yMajorTicks.AutoSize = true;
             this.Label_yMajorTicks.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_yMajorTicks.Location = new System.Drawing.Point(407, 697);
+            this.Label_yMajorTicks.Location = new System.Drawing.Point(314, 697);
             this.Label_yMajorTicks.Name = "Label_yMajorTicks";
             this.Label_yMajorTicks.Size = new System.Drawing.Size(103, 19);
             this.Label_yMajorTicks.TabIndex = 1;
@@ -411,7 +415,7 @@
             this.ListBox_yMajorTicks.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
             this.ListBox_yMajorTicks.FormattingEnabled = true;
             this.ListBox_yMajorTicks.ItemHeight = 19;
-            this.ListBox_yMajorTicks.Location = new System.Drawing.Point(411, 481);
+            this.ListBox_yMajorTicks.Location = new System.Drawing.Point(318, 481);
             this.ListBox_yMajorTicks.Name = "ListBox_yMajorTicks";
             this.ListBox_yMajorTicks.Size = new System.Drawing.Size(88, 213);
             this.ListBox_yMajorTicks.TabIndex = 4;
@@ -420,9 +424,9 @@
             // 
             this.TextBox_xMajorTick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_xMajorTick.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_xMajorTick.Location = new System.Drawing.Point(70, 481);
+            this.TextBox_xMajorTick.Location = new System.Drawing.Point(47, 481);
             this.TextBox_xMajorTick.Name = "TextBox_xMajorTick";
-            this.TextBox_xMajorTick.Size = new System.Drawing.Size(111, 27);
+            this.TextBox_xMajorTick.Size = new System.Drawing.Size(64, 27);
             this.TextBox_xMajorTick.TabIndex = 5;
             this.TextBox_xMajorTick.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBox_MajorTick_KeyUp);
             // 
@@ -430,7 +434,7 @@
             // 
             this.Btn_addYMajorTick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.Btn_addYMajorTick.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.Btn_addYMajorTick.Location = new System.Drawing.Point(375, 514);
+            this.Btn_addYMajorTick.Location = new System.Drawing.Point(282, 514);
             this.Btn_addYMajorTick.Name = "Btn_addYMajorTick";
             this.Btn_addYMajorTick.Size = new System.Drawing.Size(30, 30);
             this.Btn_addYMajorTick.TabIndex = 2;
@@ -442,9 +446,9 @@
             // 
             this.TextBox_yMajorTick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_yMajorTick.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_yMajorTick.Location = new System.Drawing.Point(294, 481);
+            this.TextBox_yMajorTick.Location = new System.Drawing.Point(248, 481);
             this.TextBox_yMajorTick.Name = "TextBox_yMajorTick";
-            this.TextBox_yMajorTick.Size = new System.Drawing.Size(111, 27);
+            this.TextBox_yMajorTick.Size = new System.Drawing.Size(64, 27);
             this.TextBox_yMajorTick.TabIndex = 5;
             this.TextBox_yMajorTick.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBox_MajorTick_KeyUp);
             // 
@@ -452,7 +456,7 @@
             // 
             this.Btn_removeXMajorTick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.Btn_removeXMajorTick.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.Btn_removeXMajorTick.Location = new System.Drawing.Point(151, 550);
+            this.Btn_removeXMajorTick.Location = new System.Drawing.Point(81, 550);
             this.Btn_removeXMajorTick.Name = "Btn_removeXMajorTick";
             this.Btn_removeXMajorTick.Size = new System.Drawing.Size(30, 30);
             this.Btn_removeXMajorTick.TabIndex = 2;
@@ -464,7 +468,7 @@
             // 
             this.Btn_removeYMajorTick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.Btn_removeYMajorTick.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.Btn_removeYMajorTick.Location = new System.Drawing.Point(375, 550);
+            this.Btn_removeYMajorTick.Location = new System.Drawing.Point(282, 550);
             this.Btn_removeYMajorTick.Name = "Btn_removeYMajorTick";
             this.Btn_removeYMajorTick.Size = new System.Drawing.Size(30, 30);
             this.Btn_removeYMajorTick.TabIndex = 2;
@@ -484,6 +488,46 @@
             this.Btn_infoFilePath.UseVisualStyleBackColor = false;
             this.Btn_infoFilePath.Click += new System.EventHandler(this.Btn_infoFilePath_Click);
             // 
+            // TextBox_xMinorTicksInterval
+            // 
+            this.TextBox_xMinorTicksInterval.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.TextBox_xMinorTicksInterval.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.TextBox_xMinorTicksInterval.Location = new System.Drawing.Point(47, 719);
+            this.TextBox_xMinorTicksInterval.Name = "TextBox_xMinorTicksInterval";
+            this.TextBox_xMinorTicksInterval.Size = new System.Drawing.Size(64, 27);
+            this.TextBox_xMinorTicksInterval.TabIndex = 5;
+            this.TextBox_xMinorTicksInterval.Leave += new System.EventHandler(this.TextBox_MinorTicksInterval_Leave);
+            // 
+            // Label_xMinorTicksInterval
+            // 
+            this.Label_xMinorTicksInterval.AutoSize = true;
+            this.Label_xMinorTicksInterval.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.Label_xMinorTicksInterval.Location = new System.Drawing.Point(43, 749);
+            this.Label_xMinorTicksInterval.Name = "Label_xMinorTicksInterval";
+            this.Label_xMinorTicksInterval.Size = new System.Drawing.Size(167, 38);
+            this.Label_xMinorTicksInterval.TabIndex = 1;
+            this.Label_xMinorTicksInterval.Text = "X-axis \r\nminor ticks interval";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.label1.Location = new System.Drawing.Point(244, 749);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(167, 38);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Y-axis\r\nminor ticks interval";
+            // 
+            // TextBox_yMinorTicksInterval
+            // 
+            this.TextBox_yMinorTicksInterval.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.TextBox_yMinorTicksInterval.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.TextBox_yMinorTicksInterval.Location = new System.Drawing.Point(248, 719);
+            this.TextBox_yMinorTicksInterval.Name = "TextBox_yMinorTicksInterval";
+            this.TextBox_yMinorTicksInterval.Size = new System.Drawing.Size(64, 27);
+            this.TextBox_yMinorTicksInterval.TabIndex = 5;
+            this.TextBox_yMinorTicksInterval.Leave += new System.EventHandler(this.TextBox_MinorTicksInterval_Leave);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -499,6 +543,8 @@
             this.Controls.Add(this.TextBox_yMin);
             this.Controls.Add(this.TextBox_xMin);
             this.Controls.Add(this.TextBox_yMajorTick);
+            this.Controls.Add(this.TextBox_yMinorTicksInterval);
+            this.Controls.Add(this.TextBox_xMinorTicksInterval);
             this.Controls.Add(this.TextBox_xMajorTick);
             this.Controls.Add(this.TextBox_chartWidth);
             this.Controls.Add(this.ListBox_yVar2Levels);
@@ -525,7 +571,9 @@
             this.Controls.Add(this.Label_xMin);
             this.Controls.Add(this.Label_depVarName);
             this.Controls.Add(this.Label_yMajorTicks);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.Label_chartWidth);
+            this.Controls.Add(this.Label_xMinorTicksInterval);
             this.Controls.Add(this.Label_xMajorTicks);
             this.Controls.Add(this.label_xVar);
             this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -578,6 +626,10 @@
         private System.Windows.Forms.Button Btn_removeXMajorTick;
         private System.Windows.Forms.Button Btn_removeYMajorTick;
         private System.Windows.Forms.Button Btn_infoFilePath;
+        private System.Windows.Forms.TextBox TextBox_xMinorTicksInterval;
+        private System.Windows.Forms.Label Label_xMinorTicksInterval;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox TextBox_yMinorTicksInterval;
     }
 }
 
