@@ -35,6 +35,7 @@ namespace DataPlotter
 
         #region Chart Display Settings
 
+        private string _chartName = string.Empty;
         private (int w, int h) _chartSize = (0,0);
         private string _depVarName = string.Empty;
         private (float min, float max) _xRange = (0f, 0f);
@@ -253,5 +254,10 @@ namespace DataPlotter
         }
 
         #endregion
+
+        private void TextBox_chartName_Leave(object sender, EventArgs e)
+        {
+            _chartName = TextBox_chartName.Text;
+        }
     }
 }

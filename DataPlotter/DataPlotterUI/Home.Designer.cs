@@ -77,6 +77,8 @@
             this.GroupBox_gridTicks = new System.Windows.Forms.GroupBox();
             this.GroupBox_axesParameters = new System.Windows.Forms.GroupBox();
             this.GroupBox_chartParameters = new System.Windows.Forms.GroupBox();
+            this.Label_chartName = new System.Windows.Forms.Label();
+            this.TextBox_chartName = new System.Windows.Forms.TextBox();
             this.GroupBox_Variables.SuspendLayout();
             this.GroupBox_filesManager.SuspendLayout();
             this.GroupBox_gridTicks.SuspendLayout();
@@ -228,7 +230,7 @@
             // 
             this.TextBox_chartWidth.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_chartWidth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_chartWidth.Location = new System.Drawing.Point(6, 26);
+            this.TextBox_chartWidth.Location = new System.Drawing.Point(6, 92);
             this.TextBox_chartWidth.Name = "TextBox_chartWidth";
             this.TextBox_chartWidth.Size = new System.Drawing.Size(111, 27);
             this.TextBox_chartWidth.TabIndex = 5;
@@ -238,7 +240,7 @@
             // 
             this.TextBox_chartHeight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_chartHeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_chartHeight.Location = new System.Drawing.Point(123, 26);
+            this.TextBox_chartHeight.Location = new System.Drawing.Point(123, 92);
             this.TextBox_chartHeight.Name = "TextBox_chartHeight";
             this.TextBox_chartHeight.Size = new System.Drawing.Size(111, 27);
             this.TextBox_chartHeight.TabIndex = 5;
@@ -248,7 +250,7 @@
             // 
             this.Label_chartWidth.AutoSize = true;
             this.Label_chartWidth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_chartWidth.Location = new System.Drawing.Point(6, 56);
+            this.Label_chartWidth.Location = new System.Drawing.Point(6, 122);
             this.Label_chartWidth.Name = "Label_chartWidth";
             this.Label_chartWidth.Size = new System.Drawing.Size(105, 19);
             this.Label_chartWidth.TabIndex = 1;
@@ -258,7 +260,7 @@
             // 
             this.Label_chartHeight.AutoSize = true;
             this.Label_chartHeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_chartHeight.Location = new System.Drawing.Point(123, 56);
+            this.Label_chartHeight.Location = new System.Drawing.Point(123, 122);
             this.Label_chartHeight.Name = "Label_chartHeight";
             this.Label_chartHeight.Size = new System.Drawing.Size(111, 19);
             this.Label_chartHeight.TabIndex = 1;
@@ -609,7 +611,7 @@
             this.GroupBox_axesParameters.Controls.Add(this.TextBox_xMax);
             this.GroupBox_axesParameters.Controls.Add(this.TextBox_yMin);
             this.GroupBox_axesParameters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.GroupBox_axesParameters.Location = new System.Drawing.Point(438, 442);
+            this.GroupBox_axesParameters.Location = new System.Drawing.Point(398, 442);
             this.GroupBox_axesParameters.Name = "GroupBox_axesParameters";
             this.GroupBox_axesParameters.Size = new System.Drawing.Size(426, 337);
             this.GroupBox_axesParameters.TabIndex = 10;
@@ -618,6 +620,8 @@
             // 
             // GroupBox_chartParameters
             // 
+            this.GroupBox_chartParameters.Controls.Add(this.TextBox_chartName);
+            this.GroupBox_chartParameters.Controls.Add(this.Label_chartName);
             this.GroupBox_chartParameters.Controls.Add(this.TextBox_chartWidth);
             this.GroupBox_chartParameters.Controls.Add(this.Label_chartWidth);
             this.GroupBox_chartParameters.Controls.Add(this.Label_chartHeight);
@@ -625,10 +629,30 @@
             this.GroupBox_chartParameters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
             this.GroupBox_chartParameters.Location = new System.Drawing.Point(736, 141);
             this.GroupBox_chartParameters.Name = "GroupBox_chartParameters";
-            this.GroupBox_chartParameters.Size = new System.Drawing.Size(244, 85);
+            this.GroupBox_chartParameters.Size = new System.Drawing.Size(244, 150);
             this.GroupBox_chartParameters.TabIndex = 11;
             this.GroupBox_chartParameters.TabStop = false;
             this.GroupBox_chartParameters.Text = "Chart parameters";
+            // 
+            // Label_chartName
+            // 
+            this.Label_chartName.AutoSize = true;
+            this.Label_chartName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.Label_chartName.Location = new System.Drawing.Point(6, 56);
+            this.Label_chartName.Name = "Label_chartName";
+            this.Label_chartName.Size = new System.Drawing.Size(104, 19);
+            this.Label_chartName.TabIndex = 1;
+            this.Label_chartName.Text = "Chart name";
+            // 
+            // TextBox_chartName
+            // 
+            this.TextBox_chartName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.TextBox_chartName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.TextBox_chartName.Location = new System.Drawing.Point(6, 26);
+            this.TextBox_chartName.Name = "TextBox_chartName";
+            this.TextBox_chartName.Size = new System.Drawing.Size(228, 27);
+            this.TextBox_chartName.TabIndex = 5;
+            this.TextBox_chartName.Leave += new System.EventHandler(this.TextBox_chartName_Leave);
             // 
             // Home
             // 
@@ -709,6 +733,8 @@
         private System.Windows.Forms.GroupBox GroupBox_gridTicks;
         private System.Windows.Forms.GroupBox GroupBox_axesParameters;
         private System.Windows.Forms.GroupBox GroupBox_chartParameters;
+        private System.Windows.Forms.TextBox TextBox_chartName;
+        private System.Windows.Forms.Label Label_chartName;
     }
 }
 
