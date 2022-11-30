@@ -67,7 +67,7 @@ namespace DataPlotter.DataPlotterLibrary
                     .Select(v => _variables.FirstOrDefault(var => var.Name == v).Levels[varComb / LevelsAfter(v) % _variables.FirstOrDefault(var => var.Name == v).Levels.Length])
                     .ToList();
 
-                _data.Add((variableLevels, lines.Select(l => float.Parse(l.Split(',').ToArray()[varComb], System.Globalization.CultureInfo.InvariantCulture)).ToList()));
+                _data.Add((variableLevels, lines.Select(l => float.Parse(l.Split(',').ToArray()[varComb])).ToList()));
             }
         }
 

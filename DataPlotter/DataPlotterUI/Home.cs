@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -39,13 +40,14 @@ namespace DataPlotter
         private (float min, float max) _xRange = (0f, 0f);
         private (float min, float max) _yRange = (0f, 0f);
         private (bool x, bool y) _IsAxisLog;
+        private (List<float> x, List<float> y) _majorTicks = (new List<float>(), new List<float>());
 
         #endregion
 
         public Home()
         {
             InitializeComponent();
-
+            CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
             _IsAxisLog = (CheckBox_isXLog.Checked, CheckBox_isYLog.Checked);
         }
 
@@ -57,7 +59,7 @@ namespace DataPlotter
             label_dataPath.Text = dataFileName;
         }
 
-        private void Btn_InfoPath_Click(object sender, EventArgs e)
+        private void Btn_infoFilePath_Click(object sender, EventArgs e)
         {
             if (_dataFilePath == string.Empty)
             {
@@ -224,5 +226,65 @@ namespace DataPlotter
         {
             _IsAxisLog.y = CheckBox_isYLog.Checked;
         }
+
+        #region Major Ticks
+
+        private void Btn_addXMajorTick_Click(object sender, EventArgs e) => AddMajorTick(Btn_addXMajorTick);
+        private void Btn_removeXMajorTick_Click(object sender, EventArgs e) => RemoveMajorTick(Btn_removeXMajorTick);
+        private void Btn_addYMajorTick_Click(object sender, EventArgs e) => AddMajorTick(Btn_addYMajorTick);
+        private void Btn_removeYMajorTick_Click(object sender, EventArgs e) => RemoveMajorTick(Btn_removeYMajorTick);
+
+        private void TextBox_MajorTick_KeyUp(object sender, KeyEventArgs e)
+        {
+            TextBox textBox = sender.Equals(TextBox_xMajorTick) ? TextBox_xMajorTick : TextBox_yMajorTick;
+            Button button = sender.Equals(TextBox_xMajorTick) ? Btn_addXMajorTick : Btn_addYMajorTick;
+
+            if (e.KeyCode == Keys.Return)
+            {
+                button.PerformClick();
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                textBox.Text = String.Empty;
+            }
+        }
+
+        private void AddMajorTick(Button button)
+        {
+            List<float> tickList = button == Btn_addXMajorTick ? _majorTicks.x : _majorTicks.y;
+            TextBox textBox = button == Btn_addXMajorTick ? TextBox_xMajorTick : TextBox_yMajorTick;
+            ListBox listBox = button == Btn_addXMajorTick ? ListBox_xMajorTicks : ListBox_yMajorTicks;
+
+            if (float.TryParse(textBox.Text, out float majorTick))
+            {
+                if (!tickList.Contains(majorTick))
+                {
+                    tickList.Add(majorTick);
+                    UpdateMajorTickListBox(listBox);
+                }
+            }
+
+            textBox.Text = string.Empty;
+        }
+
+        private void RemoveMajorTick(Button button)
+        {
+            List<float> tickList = button == Btn_removeXMajorTick ? _majorTicks.x : _majorTicks.y;
+            ListBox listBox = button == Btn_removeXMajorTick ? ListBox_xMajorTicks : ListBox_yMajorTicks;
+
+            if (listBox.SelectedItem == null) return;
+
+            tickList.RemoveAll(t => t.ToString() == listBox.SelectedItem.ToString());
+            UpdateMajorTickListBox(listBox);
+        }
+
+        private void UpdateMajorTickListBox(ListBox listBox)
+        {
+            List<float> updatedList = listBox == ListBox_xMajorTicks ? _majorTicks.x : _majorTicks.y;
+            listBox.Items.Clear();
+            listBox.Items.AddRange(updatedList.OrderBy(f => f).Select(f => f.ToString()).ToArray());
+        }
+
+        #endregion
     }
 }

@@ -31,7 +31,7 @@
             this.label_xVar = new System.Windows.Forms.Label();
             this.btn_dataFilePath = new System.Windows.Forms.Button();
             this.label_dataPath = new System.Windows.Forms.Label();
-            this.btn_InfoPath = new System.Windows.Forms.Button();
+            this.Btn_addXMajorTick = new System.Windows.Forms.Button();
             this.label_infoPath = new System.Windows.Forms.Label();
             this.ListBox_xVar = new System.Windows.Forms.ListBox();
             this.label_yVar = new System.Windows.Forms.Label();
@@ -58,6 +58,16 @@
             this.TextBox_yMax = new System.Windows.Forms.TextBox();
             this.CheckBox_isXLog = new System.Windows.Forms.CheckBox();
             this.CheckBox_isYLog = new System.Windows.Forms.CheckBox();
+            this.ListBox_xMajorTicks = new System.Windows.Forms.ListBox();
+            this.Label_xMajorTicks = new System.Windows.Forms.Label();
+            this.Label_yMajorTicks = new System.Windows.Forms.Label();
+            this.ListBox_yMajorTicks = new System.Windows.Forms.ListBox();
+            this.TextBox_xMajorTick = new System.Windows.Forms.TextBox();
+            this.Btn_addYMajorTick = new System.Windows.Forms.Button();
+            this.TextBox_yMajorTick = new System.Windows.Forms.TextBox();
+            this.Btn_removeXMajorTick = new System.Windows.Forms.Button();
+            this.Btn_removeYMajorTick = new System.Windows.Forms.Button();
+            this.Btn_infoFilePath = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label_xVar
@@ -92,17 +102,17 @@
             this.label_dataPath.TabIndex = 3;
             this.label_dataPath.Text = "No loaded data";
             // 
-            // btn_InfoPath
+            // Btn_addXMajorTick
             // 
-            this.btn_InfoPath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
-            this.btn_InfoPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.btn_InfoPath.Location = new System.Drawing.Point(12, 62);
-            this.btn_InfoPath.Name = "btn_InfoPath";
-            this.btn_InfoPath.Size = new System.Drawing.Size(95, 30);
-            this.btn_InfoPath.TabIndex = 2;
-            this.btn_InfoPath.Text = "Info File";
-            this.btn_InfoPath.UseVisualStyleBackColor = false;
-            this.btn_InfoPath.Click += new System.EventHandler(this.Btn_InfoPath_Click);
+            this.Btn_addXMajorTick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.Btn_addXMajorTick.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.Btn_addXMajorTick.Location = new System.Drawing.Point(151, 514);
+            this.Btn_addXMajorTick.Name = "Btn_addXMajorTick";
+            this.Btn_addXMajorTick.Size = new System.Drawing.Size(30, 30);
+            this.Btn_addXMajorTick.TabIndex = 2;
+            this.Btn_addXMajorTick.Text = "+";
+            this.Btn_addXMajorTick.UseVisualStyleBackColor = false;
+            this.Btn_addXMajorTick.Click += new System.EventHandler(this.Btn_addXMajorTick_Click);
             // 
             // label_infoPath
             // 
@@ -364,6 +374,116 @@
             this.CheckBox_isYLog.UseVisualStyleBackColor = true;
             this.CheckBox_isYLog.CheckedChanged += new System.EventHandler(this.CheckBox_isYLog_CheckedChanged);
             // 
+            // ListBox_xMajorTicks
+            // 
+            this.ListBox_xMajorTicks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.ListBox_xMajorTicks.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.ListBox_xMajorTicks.FormattingEnabled = true;
+            this.ListBox_xMajorTicks.ItemHeight = 19;
+            this.ListBox_xMajorTicks.Location = new System.Drawing.Point(187, 481);
+            this.ListBox_xMajorTicks.Name = "ListBox_xMajorTicks";
+            this.ListBox_xMajorTicks.Size = new System.Drawing.Size(88, 213);
+            this.ListBox_xMajorTicks.TabIndex = 4;
+            // 
+            // Label_xMajorTicks
+            // 
+            this.Label_xMajorTicks.AutoSize = true;
+            this.Label_xMajorTicks.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.Label_xMajorTicks.Location = new System.Drawing.Point(183, 697);
+            this.Label_xMajorTicks.Name = "Label_xMajorTicks";
+            this.Label_xMajorTicks.Size = new System.Drawing.Size(103, 19);
+            this.Label_xMajorTicks.TabIndex = 1;
+            this.Label_xMajorTicks.Text = "X-axis ticks";
+            // 
+            // Label_yMajorTicks
+            // 
+            this.Label_yMajorTicks.AutoSize = true;
+            this.Label_yMajorTicks.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.Label_yMajorTicks.Location = new System.Drawing.Point(407, 697);
+            this.Label_yMajorTicks.Name = "Label_yMajorTicks";
+            this.Label_yMajorTicks.Size = new System.Drawing.Size(103, 19);
+            this.Label_yMajorTicks.TabIndex = 1;
+            this.Label_yMajorTicks.Text = "Y-axis ticks";
+            // 
+            // ListBox_yMajorTicks
+            // 
+            this.ListBox_yMajorTicks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.ListBox_yMajorTicks.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.ListBox_yMajorTicks.FormattingEnabled = true;
+            this.ListBox_yMajorTicks.ItemHeight = 19;
+            this.ListBox_yMajorTicks.Location = new System.Drawing.Point(411, 481);
+            this.ListBox_yMajorTicks.Name = "ListBox_yMajorTicks";
+            this.ListBox_yMajorTicks.Size = new System.Drawing.Size(88, 213);
+            this.ListBox_yMajorTicks.TabIndex = 4;
+            // 
+            // TextBox_xMajorTick
+            // 
+            this.TextBox_xMajorTick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.TextBox_xMajorTick.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.TextBox_xMajorTick.Location = new System.Drawing.Point(70, 481);
+            this.TextBox_xMajorTick.Name = "TextBox_xMajorTick";
+            this.TextBox_xMajorTick.Size = new System.Drawing.Size(111, 27);
+            this.TextBox_xMajorTick.TabIndex = 5;
+            this.TextBox_xMajorTick.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBox_MajorTick_KeyUp);
+            // 
+            // Btn_addYMajorTick
+            // 
+            this.Btn_addYMajorTick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.Btn_addYMajorTick.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.Btn_addYMajorTick.Location = new System.Drawing.Point(375, 514);
+            this.Btn_addYMajorTick.Name = "Btn_addYMajorTick";
+            this.Btn_addYMajorTick.Size = new System.Drawing.Size(30, 30);
+            this.Btn_addYMajorTick.TabIndex = 2;
+            this.Btn_addYMajorTick.Text = "+";
+            this.Btn_addYMajorTick.UseVisualStyleBackColor = false;
+            this.Btn_addYMajorTick.Click += new System.EventHandler(this.Btn_addYMajorTick_Click);
+            // 
+            // TextBox_yMajorTick
+            // 
+            this.TextBox_yMajorTick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.TextBox_yMajorTick.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.TextBox_yMajorTick.Location = new System.Drawing.Point(294, 481);
+            this.TextBox_yMajorTick.Name = "TextBox_yMajorTick";
+            this.TextBox_yMajorTick.Size = new System.Drawing.Size(111, 27);
+            this.TextBox_yMajorTick.TabIndex = 5;
+            this.TextBox_yMajorTick.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBox_MajorTick_KeyUp);
+            // 
+            // Btn_removeXMajorTick
+            // 
+            this.Btn_removeXMajorTick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.Btn_removeXMajorTick.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.Btn_removeXMajorTick.Location = new System.Drawing.Point(151, 550);
+            this.Btn_removeXMajorTick.Name = "Btn_removeXMajorTick";
+            this.Btn_removeXMajorTick.Size = new System.Drawing.Size(30, 30);
+            this.Btn_removeXMajorTick.TabIndex = 2;
+            this.Btn_removeXMajorTick.Text = "-";
+            this.Btn_removeXMajorTick.UseVisualStyleBackColor = false;
+            this.Btn_removeXMajorTick.Click += new System.EventHandler(this.Btn_removeXMajorTick_Click);
+            // 
+            // Btn_removeYMajorTick
+            // 
+            this.Btn_removeYMajorTick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.Btn_removeYMajorTick.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.Btn_removeYMajorTick.Location = new System.Drawing.Point(375, 550);
+            this.Btn_removeYMajorTick.Name = "Btn_removeYMajorTick";
+            this.Btn_removeYMajorTick.Size = new System.Drawing.Size(30, 30);
+            this.Btn_removeYMajorTick.TabIndex = 2;
+            this.Btn_removeYMajorTick.Text = "-";
+            this.Btn_removeYMajorTick.UseVisualStyleBackColor = false;
+            this.Btn_removeYMajorTick.Click += new System.EventHandler(this.Btn_removeYMajorTick_Click);
+            // 
+            // Btn_infoFilePath
+            // 
+            this.Btn_infoFilePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.Btn_infoFilePath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.Btn_infoFilePath.Location = new System.Drawing.Point(12, 62);
+            this.Btn_infoFilePath.Name = "Btn_infoFilePath";
+            this.Btn_infoFilePath.Size = new System.Drawing.Size(95, 30);
+            this.Btn_infoFilePath.TabIndex = 2;
+            this.Btn_infoFilePath.Text = "Info File";
+            this.Btn_infoFilePath.UseVisualStyleBackColor = false;
+            this.Btn_infoFilePath.Click += new System.EventHandler(this.Btn_infoFilePath_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -378,25 +498,35 @@
             this.Controls.Add(this.TextBox_depVarName);
             this.Controls.Add(this.TextBox_yMin);
             this.Controls.Add(this.TextBox_xMin);
+            this.Controls.Add(this.TextBox_yMajorTick);
+            this.Controls.Add(this.TextBox_xMajorTick);
             this.Controls.Add(this.TextBox_chartWidth);
             this.Controls.Add(this.ListBox_yVar2Levels);
             this.Controls.Add(this.ListBox_yVar2);
             this.Controls.Add(this.ListBox_yVar);
+            this.Controls.Add(this.ListBox_yMajorTicks);
+            this.Controls.Add(this.ListBox_xMajorTicks);
             this.Controls.Add(this.ListBox_xVar);
             this.Controls.Add(this.label_infoPath);
             this.Controls.Add(this.Label_yVar2Levels);
             this.Controls.Add(this.label_dataPath);
+            this.Controls.Add(this.Btn_addYMajorTick);
             this.Controls.Add(this.Label_yVar2);
-            this.Controls.Add(this.btn_InfoPath);
+            this.Controls.Add(this.Btn_removeYMajorTick);
+            this.Controls.Add(this.Btn_removeXMajorTick);
+            this.Controls.Add(this.Btn_addXMajorTick);
             this.Controls.Add(this.Label_yMax);
             this.Controls.Add(this.label_yVar);
             this.Controls.Add(this.Label_xMax);
+            this.Controls.Add(this.Btn_infoFilePath);
             this.Controls.Add(this.btn_dataFilePath);
             this.Controls.Add(this.Label_yMin);
             this.Controls.Add(this.Label_chartHeight);
             this.Controls.Add(this.Label_xMin);
             this.Controls.Add(this.Label_depVarName);
+            this.Controls.Add(this.Label_yMajorTicks);
             this.Controls.Add(this.Label_chartWidth);
+            this.Controls.Add(this.Label_xMajorTicks);
             this.Controls.Add(this.label_xVar);
             this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
@@ -411,7 +541,7 @@
         private System.Windows.Forms.Label label_xVar;
         private System.Windows.Forms.Button btn_dataFilePath;
         private System.Windows.Forms.Label label_dataPath;
-        private System.Windows.Forms.Button btn_InfoPath;
+        private System.Windows.Forms.Button Btn_addXMajorTick;
         private System.Windows.Forms.Label label_infoPath;
         private System.Windows.Forms.ListBox ListBox_xVar;
         private System.Windows.Forms.Label label_yVar;
@@ -438,6 +568,16 @@
         private System.Windows.Forms.TextBox TextBox_yMax;
         private System.Windows.Forms.CheckBox CheckBox_isXLog;
         private System.Windows.Forms.CheckBox CheckBox_isYLog;
+        private System.Windows.Forms.ListBox ListBox_xMajorTicks;
+        private System.Windows.Forms.Label Label_xMajorTicks;
+        private System.Windows.Forms.Label Label_yMajorTicks;
+        private System.Windows.Forms.ListBox ListBox_yMajorTicks;
+        private System.Windows.Forms.TextBox TextBox_xMajorTick;
+        private System.Windows.Forms.Button Btn_addYMajorTick;
+        private System.Windows.Forms.TextBox TextBox_yMajorTick;
+        private System.Windows.Forms.Button Btn_removeXMajorTick;
+        private System.Windows.Forms.Button Btn_removeYMajorTick;
+        private System.Windows.Forms.Button Btn_infoFilePath;
     }
 }
 
