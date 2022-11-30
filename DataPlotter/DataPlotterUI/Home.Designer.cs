@@ -222,7 +222,7 @@
             this.TextBox_chartWidth.Name = "TextBox_chartWidth";
             this.TextBox_chartWidth.Size = new System.Drawing.Size(111, 27);
             this.TextBox_chartWidth.TabIndex = 5;
-            this.TextBox_chartWidth.Leave += new System.EventHandler(this.TextBox_chartWidth_Leave);
+            this.TextBox_chartWidth.Leave += new System.EventHandler(this.TextBox_chartSize_Leave);
             // 
             // TextBox_chartHeight
             // 
@@ -232,7 +232,7 @@
             this.TextBox_chartHeight.Name = "TextBox_chartHeight";
             this.TextBox_chartHeight.Size = new System.Drawing.Size(111, 27);
             this.TextBox_chartHeight.TabIndex = 5;
-            this.TextBox_chartHeight.Leave += new System.EventHandler(this.TextBox_chartHeight_Leave);
+            this.TextBox_chartHeight.Leave += new System.EventHandler(this.TextBox_chartSize_Leave);
             // 
             // Label_chartWidth
             // 

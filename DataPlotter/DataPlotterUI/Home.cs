@@ -130,31 +130,18 @@ namespace DataPlotter
             _yVar2Level = ListBox_yVar2Levels.SelectedItem.ToString();
         }
 
-        private void TextBox_chartWidth_Leave(object sender, EventArgs e)
+        private void TextBox_chartSize_Leave(object sender, EventArgs e)
         {
-            if (int.TryParse(TextBox_chartWidth.Text, out int chartWidth))
+            TextBox textBox = sender as TextBox;
+            if (int.TryParse(textBox.Text, out int chartSize))
             {
-                _chartSize.w = chartWidth;
-            }
-            else
+                if (textBox.Equals(TextBox_chartWidth)) _chartSize.w = chartSize;
+                if (textBox.Equals(TextBox_chartHeight)) _chartSize.h = chartSize;
+            } else
             {
-                MessageBox.Show("Chart width must be an integer.");
-                TextBox_chartWidth.Text = String.Empty;
-                _chartSize.w = 0;
-            }
-        }
-
-        private void TextBox_chartHeight_Leave(object sender, EventArgs e)
-        {
-            if (int.TryParse(TextBox_chartHeight.Text, out int chartHeight))
-            {
-                _chartSize.h = chartHeight;
-            }
-            else
-            {
-                MessageBox.Show("Chart height must be an integer.");
-                TextBox_chartHeight.Text = String.Empty;
-                _chartSize.h = 0;
+                if (textBox.Equals(TextBox_chartWidth)) _chartSize.w = 0;
+                if (textBox.Equals(TextBox_chartHeight)) _chartSize.h = 0;
+                textBox.Text = String.Empty;
             }
         }
 
