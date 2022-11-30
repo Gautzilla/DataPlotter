@@ -46,6 +46,8 @@
             this.TextBox_chartHeight = new System.Windows.Forms.TextBox();
             this.Label_chartWidth = new System.Windows.Forms.Label();
             this.Label_chartHeight = new System.Windows.Forms.Label();
+            this.TextBox_depVarName = new System.Windows.Forms.TextBox();
+            this.Label_depVarName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label_xVar
@@ -192,7 +194,7 @@
             // 
             this.TextBox_chartWidth.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_chartWidth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_chartWidth.Location = new System.Drawing.Point(12, 451);
+            this.TextBox_chartWidth.Location = new System.Drawing.Point(846, 309);
             this.TextBox_chartWidth.Name = "TextBox_chartWidth";
             this.TextBox_chartWidth.Size = new System.Drawing.Size(111, 27);
             this.TextBox_chartWidth.TabIndex = 5;
@@ -202,7 +204,7 @@
             // 
             this.TextBox_chartHeight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_chartHeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_chartHeight.Location = new System.Drawing.Point(129, 451);
+            this.TextBox_chartHeight.Location = new System.Drawing.Point(963, 309);
             this.TextBox_chartHeight.Name = "TextBox_chartHeight";
             this.TextBox_chartHeight.Size = new System.Drawing.Size(111, 27);
             this.TextBox_chartHeight.TabIndex = 5;
@@ -212,7 +214,7 @@
             // 
             this.Label_chartWidth.AutoSize = true;
             this.Label_chartWidth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_chartWidth.Location = new System.Drawing.Point(12, 481);
+            this.Label_chartWidth.Location = new System.Drawing.Point(846, 339);
             this.Label_chartWidth.Name = "Label_chartWidth";
             this.Label_chartWidth.Size = new System.Drawing.Size(105, 19);
             this.Label_chartWidth.TabIndex = 1;
@@ -222,11 +224,31 @@
             // 
             this.Label_chartHeight.AutoSize = true;
             this.Label_chartHeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_chartHeight.Location = new System.Drawing.Point(129, 481);
+            this.Label_chartHeight.Location = new System.Drawing.Point(963, 339);
             this.Label_chartHeight.Name = "Label_chartHeight";
             this.Label_chartHeight.Size = new System.Drawing.Size(111, 19);
             this.Label_chartHeight.TabIndex = 1;
             this.Label_chartHeight.Text = "Chart height";
+            // 
+            // TextBox_depVarName
+            // 
+            this.TextBox_depVarName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.TextBox_depVarName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.TextBox_depVarName.Location = new System.Drawing.Point(846, 232);
+            this.TextBox_depVarName.Name = "TextBox_depVarName";
+            this.TextBox_depVarName.Size = new System.Drawing.Size(228, 27);
+            this.TextBox_depVarName.TabIndex = 5;
+            this.TextBox_depVarName.Leave += new System.EventHandler(this.TextBox_depVarName_Leave);
+            // 
+            // Label_depVarName
+            // 
+            this.Label_depVarName.AutoSize = true;
+            this.Label_depVarName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.Label_depVarName.Location = new System.Drawing.Point(846, 262);
+            this.Label_depVarName.Name = "Label_depVarName";
+            this.Label_depVarName.Size = new System.Drawing.Size(219, 19);
+            this.Label_depVarName.TabIndex = 1;
+            this.Label_depVarName.Text = "Dependent variable name";
             // 
             // Home
             // 
@@ -235,6 +257,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(54)))), ((int)(((byte)(57)))));
             this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.TextBox_chartHeight);
+            this.Controls.Add(this.TextBox_depVarName);
             this.Controls.Add(this.TextBox_chartWidth);
             this.Controls.Add(this.ListBox_yVar2Levels);
             this.Controls.Add(this.ListBox_yVar2);
@@ -248,6 +271,7 @@
             this.Controls.Add(this.label_yVar);
             this.Controls.Add(this.btn_dataFilePath);
             this.Controls.Add(this.Label_chartHeight);
+            this.Controls.Add(this.Label_depVarName);
             this.Controls.Add(this.Label_chartWidth);
             this.Controls.Add(this.label_xVar);
             this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -278,6 +302,8 @@
         private System.Windows.Forms.TextBox TextBox_chartHeight;
         private System.Windows.Forms.Label Label_chartWidth;
         private System.Windows.Forms.Label Label_chartHeight;
+        private System.Windows.Forms.TextBox TextBox_depVarName;
+        private System.Windows.Forms.Label Label_depVarName;
     }
 }
 

@@ -18,7 +18,8 @@ namespace DataPlotter
         private string _infoFilePath = string.Empty;
         private DataManager _dataManager;
         private string[] _variableNames;
-        private (int w, int h) _chartSize;
+        private (int w, int h) _chartSize = (0,0);
+        private string _depVarName = string.Empty;
 
         private string _xVar = string.Empty;
         private string _yVar = string.Empty;
@@ -118,19 +119,7 @@ namespace DataPlotter
             {
                 MessageBox.Show("Chart width must be an integer.");
                 TextBox_chartWidth.Text = String.Empty;
-            }
-        }
-
-        private void TextBox_chartHeight_TextChanged(object sender, EventArgs e)
-        {
-            if (int.TryParse(TextBox_chartHeight.Text, out int chartHeight))
-            {
-                _chartSize.h = chartHeight;
-            }
-            else
-            {
-                MessageBox.Show("Chart height must be an integer.");
-                TextBox_chartHeight.Text = String.Empty;
+                _chartSize.w = 0;
             }
         }
 
@@ -144,7 +133,13 @@ namespace DataPlotter
             {
                 MessageBox.Show("Chart height must be an integer.");
                 TextBox_chartHeight.Text = String.Empty;
+                _chartSize.h = 0;
             }
+        }
+
+        private void TextBox_depVarName_Leave(object sender, EventArgs e)
+        {
+            _depVarName = TextBox_depVarName.Text;
         }
     }
 }
