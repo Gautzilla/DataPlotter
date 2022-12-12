@@ -239,5 +239,30 @@ namespace DataPlotter
         {
             _chart.Name = TextBox_chartName.Text;
         }
+
+        private void LoadChartInfos(Chart chart)
+        {
+            // Parameters
+            TextBox_chartName.Text = chart.Name;
+            TextBox_chartWidth.Text = chart.Size.w.ToString();
+            TextBox_chartHeight.Text = chart.Size.h.ToString();
+
+            // Grid ticks
+            ListBox_xMajorTicks.Items.AddRange(chart.MajorTicks.x.Select(x => x.ToString()).ToArray());
+            ListBox_yMajorTicks.Items.AddRange(chart.MajorTicks.y.Select(x => x.ToString()).ToArray());
+            TextBox_xMinorTicksInterval.Text = chart.MinorTicksInterval.x.ToString();
+            TextBox_yMinorTicksInterval.Text = chart.MinorTicksInterval.y.ToString();
+
+            // Axes parameters
+            TextBox_depVarName.Text = chart.DepVarName;
+            TextBox_xMin.Text = chart.XRange.min.ToString();
+            TextBox_xMax.Text = chart.XRange.max.ToString();
+            TextBox_yMin.Text = chart.YRange.min.ToString();
+            TextBox_yMax.Text = chart.YRange.max.ToString();
+            CheckBox_isXLog.Checked = chart.IsAxisLog.x;
+            CheckBox_isYLog.Checked = chart.IsAxisLog.y;
+
+            _chart = chart;
+        }
     }
 }
