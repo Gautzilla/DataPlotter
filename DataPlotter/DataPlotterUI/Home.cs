@@ -16,6 +16,7 @@ namespace DataPlotter
     public partial class Home : Form
     {
         private Chart _chart;
+        private static List<Chart> _savedCharts;
 
         #region Data Settings
 
@@ -30,6 +31,8 @@ namespace DataPlotter
         {
             InitializeComponent();
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+
+            _savedCharts = PresetManager.LoadPresets();
 
             _chart = new Chart();
             _chart.IsAxisLog = (CheckBox_isXLog.Checked, CheckBox_isYLog.Checked);
@@ -240,6 +243,15 @@ namespace DataPlotter
             _chart.Name = TextBox_chartName.Text;
         }
 
+        private void LoadChartPreset()
+        {
+            if (PresetManager.DoesPresetExists(_chart, _dataFilePath))
+            {
+                _chart = PresetManager.LoadPreset(_chart, _dataFilePath);
+                LoadChartInfos(_chart);
+            }
+        }
+
         private void LoadChartInfos(Chart chart)
         {
             // Parameters
@@ -263,6 +275,26 @@ namespace DataPlotter
             CheckBox_isYLog.Checked = chart.IsAxisLog.y;
 
             _chart = chart;
+        }
+
+        private void Btn_plot_Click(object sender, EventArgs e)
+        {
+            if (!ValidInputs(_chart))
+            {
+                return;
+            }
+
+            PresetManager.UpdatePresets(_chart, _dataFilePath);
+        }
+
+        private bool ValidInputs(Chart chart)
+        {
+            return true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            LoadChartPreset();
         }
     }
 }

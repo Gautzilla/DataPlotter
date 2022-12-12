@@ -48,6 +48,43 @@ namespace DataPlotter.DataPlotterLibrary
         {
 
         }
+
+        public Chart(string preset)
+        {
+            string[] param = preset.Split('@').ToArray();
+
+            string[] variables = string.Join("",param[1].Split(' ').Skip(1)).Split('*');
+            _xVar = variables[0];
+            _yVar = variables[1];
+            _yVar2 = variables.Length > 2 ? variables[2] : string.Empty;
+            _yVar2Level = variables.Length > 3 ? variables[3] : string.Empty;
+
+            _name = param[2].Split(' ').Last();
+
+            int width = int.Parse(param[3].Split(' ').Last());
+            int height = int.Parse(param[4].Split(' ').Last());
+            _size = (width, height);
+
+            _majorTicks.x = param[5].Split(' ').Last().Split('&').Select(t => float.Parse(t)).ToList();
+            Console.WriteLine(param[5]);
+            _minorTicksInterval.x = int.Parse(param[6].Split(' ').Last());
+
+            _majorTicks.y = param[7].Split(' ').Last().Split('&').Select(t => float.Parse(t)).ToList();
+            _minorTicksInterval.y = int.Parse(param[8].Split(' ').Last());
+
+            _depVarName = param[9].Split(' ').Last();
+
+            float xMin = float.Parse(param[10].Split(' ').Last());
+            float xMax = float.Parse(param[11].Split(' ').Last());
+            _xRange = (xMin, xMax);
+
+            float yMin = float.Parse(param[12].Split(' ').Last());
+            float yMax = float.Parse(param[13].Split(' ').Last());
+            _yRange = (yMin, yMax);
+
+            _IsAxisLog.x = param[14].Split(' ').Last() == "true";
+            _IsAxisLog.y = param[15].Split(' ').Last() == "true";
+        }
         
     }
 }
