@@ -13,14 +13,14 @@ namespace DataPlotter.DataPlotterUI
 {
     public partial class Plot : Form
     {
-        internal Plot(DataManager data, ChartInfo chart)
+        internal Plot(DataManager data, ChartInfo chartInfo)
         {
             InitializeComponent();
         }
 
         private void Plot_Load(object sender, EventArgs e)
         {
-
+            chart.Dock = DockStyle.Fill;
         }
     }
 }

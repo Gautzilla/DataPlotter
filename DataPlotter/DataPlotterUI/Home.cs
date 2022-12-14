@@ -10,12 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataPlotter.DataPlotterLibrary;
+using DataPlotter.DataPlotterUI;
 
 namespace DataPlotter
 {
     public partial class Home : Form
     {
-        private ChartInfo _chart;
+        private ChartInfo _chartInfo;
         private static List<ChartInfo> _savedCharts;
 
         #region Data Settings
@@ -34,8 +35,8 @@ namespace DataPlotter
 
             _savedCharts = PresetManager.LoadPresets();
 
-            _chart = new ChartInfo();
-            _chart.IsAxisLog = (CheckBox_isXLog.Checked, CheckBox_isYLog.Checked);
+            _chartInfo = new ChartInfo();
+            _chartInfo.IsAxisLog = (CheckBox_isXLog.Checked, CheckBox_isYLog.Checked);
         }
 
         private void Btn_dataFilePath_Click(object sender, EventArgs e)
@@ -73,7 +74,7 @@ namespace DataPlotter
 
         private void ListBox_xVar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _chart.XVar = ListBox_xVar.SelectedItem.ToString();
+            _chartInfo.XVar = ListBox_xVar.SelectedItem.ToString();
             UpdateYvar1ListBox();
         }
 
@@ -81,39 +82,39 @@ namespace DataPlotter
         {
             ListBox_yVar.Items.Clear();
             ListBox_yVar.Items.Add("None (simple effect)");
-            ListBox_yVar.Items.AddRange(_variableNames.Where(var => var != _chart.XVar).ToArray());
+            ListBox_yVar.Items.AddRange(_variableNames.Where(var => var != _chartInfo.XVar).ToArray());
         }
 
         private void ListBox_yVar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _chart.YVar = ListBox_yVar.SelectedIndex == 0 ? String.Empty : ListBox_yVar.SelectedItem.ToString();
+            _chartInfo.YVar = ListBox_yVar.SelectedIndex == 0 ? String.Empty : ListBox_yVar.SelectedItem.ToString();
             UpdateYvar2ListBox();
         }
         
         private void UpdateYvar2ListBox()
         {
             ListBox_yVar2.Items.Clear();
-            if (_chart.YVar == String.Empty) return;
+            if (_chartInfo.YVar == String.Empty) return;
             ListBox_yVar2.Items.Add("None (2-factors interaction)");
-            ListBox_yVar2.Items.AddRange(_variableNames.Where(var => var != _chart.XVar && var != _chart.YVar).ToArray());
+            ListBox_yVar2.Items.AddRange(_variableNames.Where(var => var != _chartInfo.XVar && var != _chartInfo.YVar).ToArray());
         }
 
         private void ListBox_yVar2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _chart.YVar2 = ListBox_yVar2.SelectedIndex == 0 ? String.Empty : ListBox_yVar2.SelectedItem.ToString();
+            _chartInfo.YVar2 = ListBox_yVar2.SelectedIndex == 0 ? String.Empty : ListBox_yVar2.SelectedItem.ToString();
             UpdateYvar2LevelsListBox();
         }
 
         private void UpdateYvar2LevelsListBox()
         {
             ListBox_yVar2Levels.Items.Clear();
-            if (_chart.YVar2 == String.Empty) return;
-            ListBox_yVar2Levels.Items.AddRange(_dataManager.GetLevels(_chart.YVar2).ToArray());
+            if (_chartInfo.YVar2 == String.Empty) return;
+            ListBox_yVar2Levels.Items.AddRange(_dataManager.GetLevels(_chartInfo.YVar2).ToArray());
         }
 
         private void ListBox_yVar2Levels_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _chart.YVar2Level = ListBox_yVar2Levels.SelectedItem.ToString();
+            _chartInfo.YVar2Level = ListBox_yVar2Levels.SelectedItem.ToString();
         }
 
         private void TextBox_chartSize_Leave(object sender, EventArgs e)
@@ -128,13 +129,13 @@ namespace DataPlotter
                 textBox.Text = String.Empty;
             }
 
-            if (textBox.Equals(TextBox_chartWidth)) _chart.Size = (chartSize, _chart.Size.h);
-            if (textBox.Equals(TextBox_chartHeight)) _chart.Size = (_chart.Size.w, chartSize);
+            if (textBox.Equals(TextBox_chartWidth)) _chartInfo.Size = (chartSize, _chartInfo.Size.h);
+            if (textBox.Equals(TextBox_chartHeight)) _chartInfo.Size = (_chartInfo.Size.w, chartSize);
         }
 
         private void TextBox_depVarName_Leave(object sender, EventArgs e)
         {
-            _chart.DepVarName = TextBox_depVarName.Text;
+            _chartInfo.DepVarName = TextBox_depVarName.Text;
         }
 
         private void TextBox_axisRange_Leave(object sender, EventArgs e)
@@ -148,18 +149,18 @@ namespace DataPlotter
                 textBox.Text = String.Empty;
             }
 
-            if (textBox.Equals(TextBox_xMin)) _chart.XRange = (rangeValue, _chart.XRange.max);
-            if (textBox.Equals(TextBox_xMax)) _chart.XRange = (_chart.XRange.min, rangeValue);
-            if (textBox.Equals(TextBox_yMin)) _chart.YRange = (rangeValue, _chart.YRange.max);
-            if (textBox.Equals(TextBox_yMax)) _chart.YRange = (_chart.YRange.min, rangeValue);
+            if (textBox.Equals(TextBox_xMin)) _chartInfo.XRange = (rangeValue, _chartInfo.XRange.max);
+            if (textBox.Equals(TextBox_xMax)) _chartInfo.XRange = (_chartInfo.XRange.min, rangeValue);
+            if (textBox.Equals(TextBox_yMin)) _chartInfo.YRange = (rangeValue, _chartInfo.YRange.max);
+            if (textBox.Equals(TextBox_yMax)) _chartInfo.YRange = (_chartInfo.YRange.min, rangeValue);
         }
 
         private void CheckBox_isAxisLog_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox checkBox = sender as CheckBox;
 
-            if (checkBox.Equals(CheckBox_isXLog)) _chart.IsAxisLog = (checkBox.Checked, _chart.IsAxisLog.y);
-            if (checkBox.Equals(CheckBox_isYLog)) _chart.IsAxisLog = (_chart.IsAxisLog.x, checkBox.Checked);
+            if (checkBox.Equals(CheckBox_isXLog)) _chartInfo.IsAxisLog = (checkBox.Checked, _chartInfo.IsAxisLog.y);
+            if (checkBox.Equals(CheckBox_isYLog)) _chartInfo.IsAxisLog = (_chartInfo.IsAxisLog.x, checkBox.Checked);
         }
 
         #region Ticks
@@ -186,7 +187,7 @@ namespace DataPlotter
 
         private void AddMajorTick(Button button)
         {
-            List<float> tickList = button == Btn_addXMajorTick ? _chart.MajorTicks.x : _chart.MajorTicks.y;
+            List<float> tickList = button == Btn_addXMajorTick ? _chartInfo.MajorTicks.x : _chartInfo.MajorTicks.y;
             TextBox textBox = button == Btn_addXMajorTick ? TextBox_xMajorTick : TextBox_yMajorTick;
             ListBox listBox = button == Btn_addXMajorTick ? ListBox_xMajorTicks : ListBox_yMajorTicks;
 
@@ -204,7 +205,7 @@ namespace DataPlotter
 
         private void RemoveMajorTick(Button button)
         {
-            List<float> tickList = button == Btn_removeXMajorTick ? _chart.MajorTicks.x : _chart.MajorTicks.y;
+            List<float> tickList = button == Btn_removeXMajorTick ? _chartInfo.MajorTicks.x : _chartInfo.MajorTicks.y;
             ListBox listBox = button == Btn_removeXMajorTick ? ListBox_xMajorTicks : ListBox_yMajorTicks;
 
             if (listBox.SelectedItem == null) return;
@@ -215,7 +216,7 @@ namespace DataPlotter
 
         private void UpdateMajorTickListBox(ListBox listBox)
         {
-            List<float> updatedList = listBox == ListBox_xMajorTicks ? _chart.MajorTicks.x : _chart.MajorTicks.y;
+            List<float> updatedList = listBox == ListBox_xMajorTicks ? _chartInfo.MajorTicks.x : _chartInfo.MajorTicks.y;
             listBox.Items.Clear();
             listBox.Items.AddRange(updatedList.OrderBy(f => f).Select(f => f.ToString()).ToArray());
         }
@@ -232,59 +233,62 @@ namespace DataPlotter
                 textBox.Text = String.Empty;
             }
 
-            if (textBox.Equals(TextBox_xMinorTicksInterval)) _chart.MinorTicksInterval = (minorTicksInterval, _chart.MinorTicksInterval.y);
-            if (textBox.Equals(TextBox_yMinorTicksInterval)) _chart.MinorTicksInterval = (_chart.MinorTicksInterval.x, minorTicksInterval);
+            if (textBox.Equals(TextBox_xMinorTicksInterval)) _chartInfo.MinorTicksInterval = (minorTicksInterval, _chartInfo.MinorTicksInterval.y);
+            if (textBox.Equals(TextBox_yMinorTicksInterval)) _chartInfo.MinorTicksInterval = (_chartInfo.MinorTicksInterval.x, minorTicksInterval);
         }
 
         #endregion
 
         private void TextBox_chartName_Leave(object sender, EventArgs e)
         {
-            _chart.Name = TextBox_chartName.Text;
+            _chartInfo.Name = TextBox_chartName.Text;
         }
 
         private void LoadChartPreset()
         {
-            if (PresetManager.DoesPresetExists(_chart, _dataFilePath))
+            if (PresetManager.DoesPresetExists(_chartInfo, _dataFilePath))
             {
-                _chart = PresetManager.LoadPreset(_chart, _dataFilePath);
-                LoadChartInfos(_chart);
+                _chartInfo = PresetManager.LoadPreset(_chartInfo, _dataFilePath);
+                LoadChartInfos(_chartInfo);
             }
         }
 
-        private void LoadChartInfos(ChartInfo chart)
+        private void LoadChartInfos(ChartInfo chartInfo)
         {
             // Parameters
-            TextBox_chartName.Text = chart.Name;
-            TextBox_chartWidth.Text = chart.Size.w.ToString();
-            TextBox_chartHeight.Text = chart.Size.h.ToString();
+            TextBox_chartName.Text = chartInfo.Name;
+            TextBox_chartWidth.Text = chartInfo.Size.w.ToString();
+            TextBox_chartHeight.Text = chartInfo.Size.h.ToString();
 
             // Grid ticks
-            ListBox_xMajorTicks.Items.AddRange(chart.MajorTicks.x.Select(x => x.ToString()).ToArray());
-            ListBox_yMajorTicks.Items.AddRange(chart.MajorTicks.y.Select(x => x.ToString()).ToArray());
-            TextBox_xMinorTicksInterval.Text = chart.MinorTicksInterval.x.ToString();
-            TextBox_yMinorTicksInterval.Text = chart.MinorTicksInterval.y.ToString();
+            ListBox_xMajorTicks.Items.AddRange(chartInfo.MajorTicks.x.Select(x => x.ToString()).ToArray());
+            ListBox_yMajorTicks.Items.AddRange(chartInfo.MajorTicks.y.Select(x => x.ToString()).ToArray());
+            TextBox_xMinorTicksInterval.Text = chartInfo.MinorTicksInterval.x.ToString();
+            TextBox_yMinorTicksInterval.Text = chartInfo.MinorTicksInterval.y.ToString();
 
             // Axes parameters
-            TextBox_depVarName.Text = chart.DepVarName;
-            TextBox_xMin.Text = chart.XRange.min.ToString();
-            TextBox_xMax.Text = chart.XRange.max.ToString();
-            TextBox_yMin.Text = chart.YRange.min.ToString();
-            TextBox_yMax.Text = chart.YRange.max.ToString();
-            CheckBox_isXLog.Checked = chart.IsAxisLog.x;
-            CheckBox_isYLog.Checked = chart.IsAxisLog.y;
+            TextBox_depVarName.Text = chartInfo.DepVarName;
+            TextBox_xMin.Text = chartInfo.XRange.min.ToString();
+            TextBox_xMax.Text = chartInfo.XRange.max.ToString();
+            TextBox_yMin.Text = chartInfo.YRange.min.ToString();
+            TextBox_yMax.Text = chartInfo.YRange.max.ToString();
+            CheckBox_isXLog.Checked = chartInfo.IsAxisLog.x;
+            CheckBox_isYLog.Checked = chartInfo.IsAxisLog.y;
 
-            _chart = chart;
+            _chartInfo = chartInfo;
         }
 
         private void Btn_plot_Click(object sender, EventArgs e)
         {
-            if (!ValidInputs(_chart))
+            if (!ValidInputs(_chartInfo))
             {
                 return;
             }
 
-            PresetManager.UpdatePresets(_chart, _dataFilePath);
+            PresetManager.UpdatePresets(_chartInfo, _dataFilePath);
+            Plot plotForm = new Plot(_dataManager, _chartInfo);
+            plotForm.Show();
+            this.Hide();
         }
 
         private bool ValidInputs(ChartInfo chart)
