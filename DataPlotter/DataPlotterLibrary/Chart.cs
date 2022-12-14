@@ -66,11 +66,11 @@ namespace DataPlotter.DataPlotterLibrary
             _size = (width, height);
 
             _majorTicks.x = param[5].Split(' ').Last().Split('&').Select(t => float.Parse(t)).ToList();
-            Console.WriteLine(param[5]);
-            _minorTicksInterval.x = int.Parse(param[6].Split(' ').Last());
+
+            _minorTicksInterval.x = float.Parse(param[6].Split(' ').Last());
 
             _majorTicks.y = param[7].Split(' ').Last().Split('&').Select(t => float.Parse(t)).ToList();
-            _minorTicksInterval.y = int.Parse(param[8].Split(' ').Last());
+            _minorTicksInterval.y = float.Parse(param[8].Split(' ').Last());
 
             _depVarName = param[9].Split(' ').Last();
 
@@ -82,8 +82,8 @@ namespace DataPlotter.DataPlotterLibrary
             float yMax = float.Parse(param[13].Split(' ').Last());
             _yRange = (yMin, yMax);
 
-            _IsAxisLog.x = param[14].Split(' ').Last() == "true";
-            _IsAxisLog.y = param[15].Split(' ').Last() == "true";
+            _IsAxisLog.x = param[14].Split(' ').Last() == "True";
+            _IsAxisLog.y = param[15].Split(' ').Last() == "True";
         }
         
     }
