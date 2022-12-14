@@ -15,8 +15,8 @@ namespace DataPlotter
 {
     public partial class Home : Form
     {
-        private Chart _chart;
-        private static List<Chart> _savedCharts;
+        private ChartInfo _chart;
+        private static List<ChartInfo> _savedCharts;
 
         #region Data Settings
 
@@ -34,7 +34,7 @@ namespace DataPlotter
 
             _savedCharts = PresetManager.LoadPresets();
 
-            _chart = new Chart();
+            _chart = new ChartInfo();
             _chart.IsAxisLog = (CheckBox_isXLog.Checked, CheckBox_isYLog.Checked);
         }
 
@@ -252,7 +252,7 @@ namespace DataPlotter
             }
         }
 
-        private void LoadChartInfos(Chart chart)
+        private void LoadChartInfos(ChartInfo chart)
         {
             // Parameters
             TextBox_chartName.Text = chart.Name;
@@ -287,7 +287,7 @@ namespace DataPlotter
             PresetManager.UpdatePresets(_chart, _dataFilePath);
         }
 
-        private bool ValidInputs(Chart chart)
+        private bool ValidInputs(ChartInfo chart)
         {
             return true;
         }

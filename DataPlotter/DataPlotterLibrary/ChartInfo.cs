@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataPlotter.DataPlotterLibrary
 {
-    internal class Chart
+    internal class ChartInfo
     {
         #region Variables Settings
 
@@ -44,12 +44,12 @@ namespace DataPlotter.DataPlotterLibrary
 
         #endregion
 
-        public Chart()
+        public ChartInfo()
         {
 
         }
 
-        public Chart(string preset)
+        public ChartInfo(string preset)
         {
             string[] param = preset.Split('@').ToArray();
 
