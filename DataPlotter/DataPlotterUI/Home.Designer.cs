@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label_xVar = new System.Windows.Forms.Label();
-            this.btn_dataFilePath = new System.Windows.Forms.Button();
+            this.Btn_dataFilePath = new System.Windows.Forms.Button();
             this.label_dataPath = new System.Windows.Forms.Label();
             this.Btn_addXMajorTick = new System.Windows.Forms.Button();
             this.label_infoPath = new System.Windows.Forms.Label();
@@ -77,8 +77,10 @@
             this.GroupBox_gridTicks = new System.Windows.Forms.GroupBox();
             this.GroupBox_axesParameters = new System.Windows.Forms.GroupBox();
             this.GroupBox_chartParameters = new System.Windows.Forms.GroupBox();
-            this.Label_chartName = new System.Windows.Forms.Label();
             this.TextBox_chartName = new System.Windows.Forms.TextBox();
+            this.Label_chartName = new System.Windows.Forms.Label();
+            this.Btn_plot = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.GroupBox_Variables.SuspendLayout();
             this.GroupBox_filesManager.SuspendLayout();
             this.GroupBox_gridTicks.SuspendLayout();
@@ -96,17 +98,17 @@
             this.label_xVar.TabIndex = 1;
             this.label_xVar.Text = "X-axis variable";
             // 
-            // btn_dataFilePath
+            // Btn_dataFilePath
             // 
-            this.btn_dataFilePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
-            this.btn_dataFilePath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.btn_dataFilePath.Location = new System.Drawing.Point(6, 26);
-            this.btn_dataFilePath.Name = "btn_dataFilePath";
-            this.btn_dataFilePath.Size = new System.Drawing.Size(95, 30);
-            this.btn_dataFilePath.TabIndex = 2;
-            this.btn_dataFilePath.Text = "Data File";
-            this.btn_dataFilePath.UseVisualStyleBackColor = false;
-            this.btn_dataFilePath.Click += new System.EventHandler(this.Btn_dataFilePath_Click);
+            this.Btn_dataFilePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.Btn_dataFilePath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.Btn_dataFilePath.Location = new System.Drawing.Point(6, 26);
+            this.Btn_dataFilePath.Name = "Btn_dataFilePath";
+            this.Btn_dataFilePath.Size = new System.Drawing.Size(95, 30);
+            this.Btn_dataFilePath.TabIndex = 2;
+            this.Btn_dataFilePath.Text = "Data File";
+            this.Btn_dataFilePath.UseVisualStyleBackColor = false;
+            this.Btn_dataFilePath.Click += new System.EventHandler(this.Btn_dataFilePath_Click);
             // 
             // label_dataPath
             // 
@@ -560,7 +562,7 @@
             // 
             // GroupBox_filesManager
             // 
-            this.GroupBox_filesManager.Controls.Add(this.btn_dataFilePath);
+            this.GroupBox_filesManager.Controls.Add(this.Btn_dataFilePath);
             this.GroupBox_filesManager.Controls.Add(this.Btn_infoFilePath);
             this.GroupBox_filesManager.Controls.Add(this.label_dataPath);
             this.GroupBox_filesManager.Controls.Add(this.label_infoPath);
@@ -634,16 +636,6 @@
             this.GroupBox_chartParameters.TabStop = false;
             this.GroupBox_chartParameters.Text = "Chart parameters";
             // 
-            // Label_chartName
-            // 
-            this.Label_chartName.AutoSize = true;
-            this.Label_chartName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_chartName.Location = new System.Drawing.Point(6, 56);
-            this.Label_chartName.Name = "Label_chartName";
-            this.Label_chartName.Size = new System.Drawing.Size(104, 19);
-            this.Label_chartName.TabIndex = 1;
-            this.Label_chartName.Text = "Chart name";
-            // 
             // TextBox_chartName
             // 
             this.TextBox_chartName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
@@ -654,12 +646,48 @@
             this.TextBox_chartName.TabIndex = 5;
             this.TextBox_chartName.Leave += new System.EventHandler(this.TextBox_chartName_Leave);
             // 
+            // Label_chartName
+            // 
+            this.Label_chartName.AutoSize = true;
+            this.Label_chartName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.Label_chartName.Location = new System.Drawing.Point(6, 56);
+            this.Label_chartName.Name = "Label_chartName";
+            this.Label_chartName.Size = new System.Drawing.Size(104, 19);
+            this.Label_chartName.TabIndex = 1;
+            this.Label_chartName.Text = "Chart name";
+            // 
+            // Btn_plot
+            // 
+            this.Btn_plot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.Btn_plot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.Btn_plot.Location = new System.Drawing.Point(404, 44);
+            this.Btn_plot.Name = "Btn_plot";
+            this.Btn_plot.Size = new System.Drawing.Size(160, 62);
+            this.Btn_plot.TabIndex = 2;
+            this.Btn_plot.Text = "PLOT";
+            this.Btn_plot.UseVisualStyleBackColor = false;
+            this.Btn_plot.Click += new System.EventHandler(this.Btn_plot_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.button1.Location = new System.Drawing.Point(570, 44);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(160, 62);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "load";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(54)))), ((int)(((byte)(57)))));
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Btn_plot);
             this.Controls.Add(this.GroupBox_chartParameters);
             this.Controls.Add(this.GroupBox_axesParameters);
             this.Controls.Add(this.GroupBox_gridTicks);
@@ -685,7 +713,7 @@
 
         #endregion
         private System.Windows.Forms.Label label_xVar;
-        private System.Windows.Forms.Button btn_dataFilePath;
+        private System.Windows.Forms.Button Btn_dataFilePath;
         private System.Windows.Forms.Label label_dataPath;
         private System.Windows.Forms.Button Btn_addXMajorTick;
         private System.Windows.Forms.Label label_infoPath;
@@ -735,6 +763,8 @@
         private System.Windows.Forms.GroupBox GroupBox_chartParameters;
         private System.Windows.Forms.TextBox TextBox_chartName;
         private System.Windows.Forms.Label Label_chartName;
+        private System.Windows.Forms.Button Btn_plot;
+        private System.Windows.Forms.Button button1;
     }
 }
 

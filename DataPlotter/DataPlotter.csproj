@@ -47,7 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataPlotterLibrary\Chart.cs" />
     <Compile Include="DataPlotterLibrary\DataManager.cs" />
+    <Compile Include="DataPlotterLibrary\PresetManager.cs" />
     <Compile Include="DataPlotterLibrary\Variable.cs" />
     <Compile Include="DataPlotterUI\Home.cs">
       <SubType>Form</SubType>
