@@ -64,7 +64,7 @@ namespace DataPlotter.DataPlotterUI
                 // CONFIDENCE INTERVAL
                 PlotConfidenceInterval(lineName, line);
 
-                // MEAN
+                // MEAN : are plotted in the PaintLine event handler
                 _meanLines = _data.MeanLine(_chartInfo.XVar, _chartInfo.IsAxisLog.y, _chartInfo.YVar, _chartInfo.YVar2Level);
             }
         }
@@ -108,7 +108,7 @@ namespace DataPlotter.DataPlotterUI
             }
         }
 
-        private void chart_Paint(object sender, PaintEventArgs e)
+        private void Chart_Paint(object sender, PaintEventArgs e)
         {
             var g = e.Graphics;
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
