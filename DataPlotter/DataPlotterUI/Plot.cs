@@ -66,6 +66,7 @@ namespace DataPlotter.DataPlotterUI
 
                 // CONFIDENCE INTERVAL
                 PlotConfidenceInterval(lineName, line);
+                ErrorBarDisplay();
 
                 // MEAN : are plotted in the PaintLine event handler
                 _meanLines = _data.MeanLine(_chartInfo.XVar, _chartInfo.IsAxisLog.y, _chartInfo.YVar, _chartInfo.YVar2Level);
@@ -95,9 +96,6 @@ namespace DataPlotter.DataPlotterUI
 
             chart.Series[lineIndex].ChartType = SeriesChartType.ErrorBar;
 
-            chart.Series[lineIndex].CustomProperties = "PixelPointWidth = 10";
-            //LineLook($"{lineName} sd", Color.Black, ChartDashStyle.Solid, MarkerStyle.None, false);
-
             int x = 0;
 
             foreach (var point in sdLine[lineIndex])
@@ -111,6 +109,15 @@ namespace DataPlotter.DataPlotterUI
                     chart.Series[$"{lineName} sd"].Points.AddXY(x + _xOffset, 0, point.y.l, point.y.h);
                     x++;
                 }
+            }
+        }
+
+        private void ErrorBarDisplay()
+        {
+            foreach (var series in chart.Series)
+            {
+                series.Color = Color.Black;
+                series.CustomProperties = "PixelPointWidth = 10";
             }
         }
 
