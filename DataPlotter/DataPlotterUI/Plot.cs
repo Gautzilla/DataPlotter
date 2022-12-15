@@ -146,7 +146,13 @@ namespace DataPlotter.DataPlotterUI
                 if (xIsNumerical)
                 {
                     List<(float x, float y)> points = _meanLines[line].Select(mean => (float.Parse(mean.x) * (1 + _xOffset), mean.y)).ToList();
-                    PaintLine(g, pen, points);
+                    
+                    List<Point> pointsList = points.Select(p => new Point((int)chart.ChartAreas[0].AxisX.ValueToPixelPosition(p.x), (int)chart.ChartAreas[0].AxisY.ValueToPixelPosition(p.y))).ToList();
+
+                    for (int p = 1; p < pointsList.Count; p++)
+                    {
+                        g.DrawLine(pen, pointsList[p - 1], pointsList[p]);
+                    }
                 }
                 else
                 {
@@ -337,6 +343,12 @@ namespace DataPlotter.DataPlotterUI
             if (_chartInfo.YVar != string.Empty) figureName += "X" + _chartInfo.YVar.RemoveWhiteSpaces();
             if (_chartInfo.YVar2 != string.Empty) figureName += "X" + _chartInfo.YVar2.RemoveWhiteSpaces() + $"({_chartInfo.YVar2Level.RemoveWhiteSpaces()})";
             chart.SaveImage($@"C:\Users\User\Documents\DataPlotter\{figureName}.emf", ChartImageFormat.Emf);
+            
+            using (Bitmap bmp = new Bitmap(chart.Size.Width, chart.Size.Height))
+            {
+                chart.DrawToBitmap(bmp, new Rectangle(0, 0, chart.Size.Width, chart.Size.Height));
+                bmp.Save($@"C:\Users\User\Documents\DataPlotter\{figureName}.png", System.Drawing.Imaging.ImageFormat.Png);
+            }
         }
     }
 }
