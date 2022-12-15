@@ -14,13 +14,24 @@ namespace DataPlotter.DataPlotterUI
 {
     public partial class Plot : Form
     {
+        private readonly Home _home;
         private readonly DataManager _data;
         private readonly ChartInfo _chartInfo;
-        internal Plot(DataManager data, ChartInfo chartInfo)
+        private static List<List<(string x, float y)>> _meanLines;
+        private static readonly Pen[] _pens =
+        {
+            new Pen(Color.Black),
+            new Pen(Color.Black){DashPattern = new float[]{ 4f, 2f, 1f, 3f } },
+            new Pen(Color.Black){DashPattern = new float[]{ 1f, 1f, 1f, 3f } },
+
+        };
+        private static float _xOffset = 0.2f; // Offset between each line
+        internal Plot(DataManager data, ChartInfo chartInfo, Home home)
         {
             InitializeComponent();
             _data = data;
             _chartInfo = chartInfo;
+            _home = home;
         }
 
         private void Plot_Load(object sender, EventArgs e)
@@ -45,16 +56,16 @@ namespace DataPlotter.DataPlotterUI
 
             for (int line = 0; line < yVarLevels.Count; line++)
             {
-                float xOffset = LinesOffset(yVarLevels.Count, line, 0.2f);
+                _xOffset = LinesOffset(yVarLevels.Count, line, 0.2f);
 
                 string lineName = yVarLevels[line] ?? _chartInfo.XVar;
 
 
                 // CONFIDENCE INTERVAL
-                PlotConfidenceInterval(lineName, line, xOffset);
+                PlotConfidenceInterval(lineName, line);
 
                 // MEAN
-                //_meanLines = data.MeanLine(variableX, logY, variableY, restrictionLevels);
+                _meanLines = _data.MeanLine(_chartInfo.XVar, _chartInfo.IsAxisLog.y, _chartInfo.YVar, _chartInfo.YVar2Level);
             }
         }
 
@@ -74,7 +85,7 @@ namespace DataPlotter.DataPlotterUI
             return ratio;
         }
 
-        private void PlotConfidenceInterval(string lineName, int lineIndex, float xOffset)
+        private void PlotConfidenceInterval(string lineName, int lineIndex)
         {
             var sdLine = _data.Std(_chartInfo.XVar, _chartInfo.IsAxisLog.y, _chartInfo.YVar, _chartInfo.YVar2Level);
             chart.Series.Add($"{lineName} sd");
@@ -87,14 +98,61 @@ namespace DataPlotter.DataPlotterUI
             {
                 if (int.TryParse(point.x, out int xVal))
                 {
-                    chart.Series[$"{lineName} sd"].Points.AddXY(xVal * (1 + xOffset), 0, point.y.l, point.y.h);
+                    chart.Series[$"{lineName} sd"].Points.AddXY(xVal * (1 + _xOffset), 0, point.y.l, point.y.h);
                 }
                 else
                 {
-                    chart.Series[$"{lineName} sd"].Points.AddXY(x + xOffset, 0, point.y.l, point.y.h);
+                    chart.Series[$"{lineName} sd"].Points.AddXY(x + _xOffset, 0, point.y.l, point.y.h);
                     x++;
                 }
             }
+        }
+
+        private void chart_Paint(object sender, PaintEventArgs e)
+        {
+            var g = e.Graphics;
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            bool xIsNumerical = _meanLines.All(mL => mL.All(mean => float.TryParse(mean.x, out float numMean)));
+
+            for (int line = 0; line < _meanLines.Count; line++)
+            {
+                Pen pen = _pens[line];
+                float xOffset = _xOffset;
+                float x = 0;
+                switch (_meanLines.Count)
+                {
+                    case 1: xOffset *= 0; break;
+                    case 2: xOffset *= (line == 0 ? -1 : 1); break;
+                    default: xOffset *= (line - 1); break;
+                }
+
+                if (xIsNumerical)
+                {
+                    List<(float x, float y)> points = _meanLines[line].Select(mean => (float.Parse(mean.x) * (1 + xOffset), mean.y)).ToList();
+                    PaintLine(g, pen, points);
+                }
+                else
+                {
+                    List<(float x, float y)> points = _meanLines[line].Select(mean => (x, mean.y)).ToList();
+                    x++;
+                    PaintLine(g, pen, points);
+                }
+            }
+        }
+
+        private void PaintLine(Graphics g, Pen pen, List<(float x, float y)> points)
+        {
+            List<Point> pointsList = points.Select(p => new Point((int)chart.ChartAreas[0].AxisX.ValueToPixelPosition(p.x), (int)chart.ChartAreas[0].AxisY.ValueToPixelPosition(p.y))).ToList();
+
+            for (int p = 1; p < pointsList.Count; p++)
+            {
+                g.DrawLine(pen, pointsList[p - 1], pointsList[p]);
+            }
+        }
+
+        private void Plot_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _home.Show();
         }
     }
 }

@@ -286,7 +286,7 @@ namespace DataPlotter
             }
 
             PresetManager.UpdatePresets(_chartInfo, _dataFilePath);
-            Plot plotForm = new Plot(_dataManager, _chartInfo);
+            Plot plotForm = new Plot(_dataManager, _chartInfo, this);
             plotForm.Show();
             this.Hide();
         }
