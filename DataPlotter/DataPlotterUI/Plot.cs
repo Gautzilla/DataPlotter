@@ -25,7 +25,7 @@ namespace DataPlotter.DataPlotterUI
             new Pen(Color.Black){DashPattern = new float[]{ 1f, 1f, 1f, 3f } },
 
         };
-        private static readonly float _xOffsetRatio = 0.2f; // Offset between each line
+        private static readonly float _xOffsetRatio = 0.02f; // Offset between each line
         private static float _xOffset; // Offset between each line
         internal Plot(DataManager data, ChartInfo chartInfo, Home home)
         {
@@ -71,6 +71,8 @@ namespace DataPlotter.DataPlotterUI
                 // MEAN : are plotted in the PaintLine event handler
                 _meanLines = _data.MeanLine(_chartInfo.XVar, _chartInfo.IsAxisLog.y, _chartInfo.YVar, _chartInfo.YVar2Level);
             }
+
+            ChartDisplay();
         }
 
         /// <summary>
@@ -156,6 +158,93 @@ namespace DataPlotter.DataPlotterUI
             {
                 g.DrawLine(pen, pointsList[p - 1], pointsList[p]);
             }
+        }
+
+        private void ChartDisplay()
+        {
+            AxisDisplay("x");
+            AxisDisplay("y");
+        }
+
+        private void AxisDisplay(string axis)
+        {
+            ChartArea cA = chart.ChartAreas.First();
+            Axis axis1 = axis == "x" ? cA.AxisX : cA.AxisY;
+            Axis axis2 = axis == "x" ? cA.AxisX2 : cA.AxisY2;
+
+            axis1.MajorTickMark.Enabled = false;
+            axis2.MajorTickMark.Enabled = false;
+
+            // Offset for labels fromPosition and toPosition
+            float labelOffset = 0.2f;
+
+            Console.WriteLine(String.Join("\n", _data.Variables.Select(v => v.Name)));
+            Variable var = axis == "x" ? _data.Variables.Single(v => v.Name == _chartInfo.XVar) : _data.Variables.Single(v => v.Name == _chartInfo.DepVarName);
+
+            if (var.IsNum)
+            {
+                float min = axis == "x" ? _chartInfo.XRange.min : _chartInfo.YRange.min;
+                float max = axis == "x" ? _chartInfo.XRange.max : _chartInfo.YRange.max;
+                bool isLog = axis == "x" ? _chartInfo.IsAxisLog.x : _chartInfo.IsAxisLog.y;
+
+                axis1.Minimum = min;
+                axis1.Maximum = max;
+
+                axis2.Enabled = AxisEnabled.True;
+                axis2.MajorGrid.LineDashStyle = ChartDashStyle.Dot;
+                axis2.MajorGrid.LineWidth = 1;
+                axis2.MajorGrid.LineColor = Color.LightGray;
+                axis2.LabelStyle.Enabled = false;
+                axis2.LineWidth = 0;
+
+                axis2.Minimum = cA.AxisX.Minimum;
+                axis2.Maximum = cA.AxisX.Maximum;
+
+                axis1.IsLogarithmic = isLog;
+                axis2.IsLogarithmic = isLog;
+                axis1.LogarithmBase = 2;
+                axis2.LogarithmBase = 2;
+
+                if (isLog)
+                {
+                    List<float> majorTicks = axis == "x" ? _chartInfo.MajorTicks.x : _chartInfo.MajorTicks.y;
+                    float minorTicksInterval = axis == "x" ? _chartInfo.MinorTicksInterval.x : _chartInfo.MinorTicksInterval.y;
+
+                    var ticks = GetLogLabels((int)min, (int)Math.Ceiling(max), majorTicks, labelOffset, minorTicksInterval);
+                    foreach (var tick in ticks.major) axis1.CustomLabels.Add(tick);
+                    foreach (var tick in ticks.minor) axis2.CustomLabels.Add(tick);
+                }
+            }
+        }
+
+        private (List<CustomLabel> major, List<CustomLabel> minor) GetLogLabels(int min, int max, List<float> majorTicks, float offset, float tickInterval)
+        {
+            List<CustomLabel> majorCL = new List<CustomLabel>();
+            List<CustomLabel> minorCL = new List<CustomLabel>();
+
+            // TODO: float major ticks
+            int[] majorTicksInt = majorTicks.Select(f => (int)f).ToArray();
+
+            float[] tickPositions = Enumerable.Range(min, (int)((max - min) / tickInterval) + 1).Select((i, x) => min + x * tickInterval).ToArray();
+
+            foreach (float tick in tickPositions)
+            {
+                double linPos = Math.Log(tick, 2); // Log values on linear axis
+
+                CustomLabel cL = new CustomLabel();
+
+                cL.FromPosition = linPos - offset;
+                cL.ToPosition = linPos + offset;
+
+                cL.Text = tick.ToString();
+
+                cL.LabelMark = LabelMarkStyle.Box;
+                cL.GridTicks = GridTickTypes.Gridline;
+
+                if (majorTicksInt.Any(t => Math.Abs(t - tick) < 0.00001f)) majorCL.Add(cL);
+                else minorCL.Add(cL);
+            }
+            return (majorCL, minorCL);
         }
 
         private void Plot_FormClosing(object sender, FormClosingEventArgs e)

@@ -55,7 +55,7 @@ namespace DataPlotter.DataPlotterLibrary
 
             string[] variables = param.Single(s => s.StartsWith("variables:")).Remove(0, "variables: ".Length).Split('*');
             _xVar = variables[0];
-            _yVar = variables.Length > 1 ? variables[1] : String.Empty;
+            _yVar = variables.Length > 1 ? variables[1] : string.Empty;
             _yVar2 = variables.Length > 2 ? variables[2] : string.Empty;
             _yVar2Level = variables.Length > 3 ? variables[3] : string.Empty;
 

@@ -93,8 +93,10 @@ namespace DataPlotter.DataPlotterLibrary
         /// </summary>
         /// <param name="variable">Name of the variable.</param>
         /// <returns>List of the variable's levels.</returns>
-        public List<string> GetLevels(string variable) => variable == string.Empty ? new List<string>() { null } : _variables.FirstOrDefault(v => v.Name == variable).Levels.ToList();
-
+        public List<string> GetLevels(string variable)
+        {
+            return variable == string.Empty ? new List<string>() { null } : _variables.Single(v => v.Name == variable).Levels.ToList();
+        }
 
         /// <summary>
         /// Compute the mean points along levels of a given effect or interaction.
