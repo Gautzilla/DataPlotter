@@ -25,7 +25,8 @@ namespace DataPlotter.DataPlotterUI
             new Pen(Color.Black){DashPattern = new float[]{ 1f, 1f, 1f, 3f } },
 
         };
-        private static float _xOffset = 0.2f; // Offset between each line
+        private static readonly float _xOffsetRatio = 0.2f; // Offset between each line
+        private static float _xOffset; // Offset between each line
         internal Plot(DataManager data, ChartInfo chartInfo, Home home)
         {
             InitializeComponent();
@@ -56,7 +57,7 @@ namespace DataPlotter.DataPlotterUI
 
             for (int line = 0; line < yVarLevels.Count; line++)
             {
-                _xOffset = LinesOffset(yVarLevels.Count, line, 0.2f);
+                _xOffset = LinesOffset(yVarLevels.Count, line, _xOffsetRatio);
 
                 string lineName = yVarLevels[line] ?? _chartInfo.XVar;
 
@@ -90,6 +91,8 @@ namespace DataPlotter.DataPlotterUI
             var sdLine = _data.Std(_chartInfo.XVar, _chartInfo.IsAxisLog.y, _chartInfo.YVar, _chartInfo.YVar2Level);
             chart.Series.Add($"{lineName} sd");
             chart.Series[$"{lineName} sd"].ChartType = SeriesChartType.ErrorBar;
+
+            //chart.Series[$"{lineName} sd"].BorderWidth
             //LineLook($"{lineName} sd", Color.Black, ChartDashStyle.Solid, MarkerStyle.None, false);
 
             int x = 0;
@@ -117,18 +120,13 @@ namespace DataPlotter.DataPlotterUI
             for (int line = 0; line < _meanLines.Count; line++)
             {
                 Pen pen = _pens[line];
-                float xOffset = _xOffset;
+
+                _xOffset = LinesOffset(_meanLines.Count, line, _xOffsetRatio);
                 float x = 0;
-                switch (_meanLines.Count)
-                {
-                    case 1: xOffset *= 0; break;
-                    case 2: xOffset *= (line == 0 ? -1 : 1); break;
-                    default: xOffset *= (line - 1); break;
-                }
 
                 if (xIsNumerical)
                 {
-                    List<(float x, float y)> points = _meanLines[line].Select(mean => (float.Parse(mean.x) * (1 + xOffset), mean.y)).ToList();
+                    List<(float x, float y)> points = _meanLines[line].Select(mean => (float.Parse(mean.x) * (1 + _xOffset), mean.y)).ToList();
                     PaintLine(g, pen, points);
                 }
                 else
