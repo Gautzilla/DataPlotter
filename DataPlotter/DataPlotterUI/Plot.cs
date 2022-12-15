@@ -77,7 +77,6 @@ namespace DataPlotter.DataPlotterUI
                 // MEAN : are plotted in the PaintLine event handler
                 _meanLines = _data.MeanLine(_chartInfo.XVar, _chartInfo.IsAxisLog.y, _chartInfo.YVar, _chartInfo.YVar2Level);
             }
-
             ChartDisplay();
         }
 
@@ -173,6 +172,9 @@ namespace DataPlotter.DataPlotterUI
             AxisDisplay("x");
             AxisDisplay("y");
             if (_chartInfo.YVar != String.Empty) LegendDisplay();
+            chart.ChartAreas.First().BorderWidth = 2;
+            chart.ChartAreas.First().BorderColor = Color.Black;
+            chart.ChartAreas.First().BorderDashStyle = ChartDashStyle.Solid;
         }
 
         private void AxisDisplay(string axis)
@@ -189,14 +191,20 @@ namespace DataPlotter.DataPlotterUI
 
             Variable var = axis == "x" ? _data.Variables.Single(v => v.Name == _chartInfo.XVar) : _data.DepVariable as Variable;
 
+            axis1.Minimum = 1;
+            axis2.Minimum = 1;
+            axis1.Maximum = 10;
+            axis2.Maximum = 10;
+
             if (var.IsNum)
             {
+
                 float min = axis == "x" ? _chartInfo.XRange.min : _chartInfo.YRange.min;
                 float max = axis == "x" ? _chartInfo.XRange.max : _chartInfo.YRange.max;
                 bool isLog = axis == "x" ? _chartInfo.IsAxisLog.x : _chartInfo.IsAxisLog.y;
 
-                axis1.Minimum = min;
-                axis1.Maximum = max;
+                if (!(var.IsLog && min == 0)) axis1.Minimum = min;
+                if (!(var.IsLog && max == 0)) axis1.Maximum = max;
 
                 axis2.Enabled = AxisEnabled.True;
                 axis2.MajorGrid.LineDashStyle = ChartDashStyle.Dot;
@@ -210,11 +218,12 @@ namespace DataPlotter.DataPlotterUI
 
                 axis1.IsLogarithmic = isLog;
                 axis2.IsLogarithmic = isLog;
-                axis1.LogarithmBase = 2;
-                axis2.LogarithmBase = 2;
 
                 if (isLog)
                 {
+                    axis1.LogarithmBase = 2;
+                    axis2.LogarithmBase = 2;
+
                     List<float> majorTicks = axis == "x" ? _chartInfo.MajorTicks.x : _chartInfo.MajorTicks.y;
                     float minorTicksInterval = axis == "x" ? _chartInfo.MinorTicksInterval.x : _chartInfo.MinorTicksInterval.y;
 
@@ -225,16 +234,15 @@ namespace DataPlotter.DataPlotterUI
                         foreach (var tick in ticks.minor) axis2.CustomLabels.Add(tick);
                     }
                 }
-
-                axis1.LineWidth = 0;
-                axis1.MajorGrid.LineColor = Color.Gray;
-                string unit = var.Unit == string.Empty ? string.Empty : $" ({var.Unit})";
-                axis1.Title = var.Name + unit;
-                axis1.TitleFont = _font;
-                axis2.TitleFont = _font;
-                axis1.LabelStyle.Font = _font;
-                axis2.LabelStyle.Font = _font;
             }
+            axis1.LineWidth = 0;
+            axis1.MajorGrid.LineColor = Color.Gray;
+            string unit = var.Unit == string.Empty ? string.Empty : $" ({var.Unit})";
+            axis1.Title = var.Name + unit;
+            axis1.TitleFont = _font;
+            axis2.TitleFont = _font;
+            axis1.LabelStyle.Font = _font;
+            axis2.LabelStyle.Font = _font;
         }
 
         private (List<CustomLabel> major, List<CustomLabel> minor) GetLogLabels(int min, int max, List<float> majorTicks, float offset, float tickInterval)
@@ -311,6 +319,9 @@ namespace DataPlotter.DataPlotterUI
             newL.Docking = Docking.Top;
             newL.Font = _font;
             newL.TableStyle = LegendTableStyle.Tall;
+            newL.BorderWidth = 1;
+            newL.BorderDashStyle = ChartDashStyle.Solid;
+            newL.BorderColor = Color.Black;
             //chart.Legends.First().Position = new ElementPosition(0, 0, 100, 100);
         }
 

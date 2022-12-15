@@ -30,7 +30,6 @@ namespace DataPlotter.DataPlotterLibrary
         public static List<ChartInfo> LoadPresets()
         {
             List<ChartInfo> charts = new List<ChartInfo>();
-            Console.WriteLine();
             return charts;
         }
 
