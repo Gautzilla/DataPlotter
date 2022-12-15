@@ -70,12 +70,12 @@ namespace DataPlotter.DataPlotterLibrary
             int height = int.Parse(param[4].Split(' ').Last());
             _size = (width, height);
 
-            _majorTicks.x = param[5].Split(' ').Last().Split('&').Select(t => float.Parse(t)).ToList();
+            _majorTicks.x = param[5].Split(' ').Last().Length > 0 ? param[5].Split(' ').Last().Split('&').Select(t => float.Parse(t)).ToList() : new List<float>();
 
-            _minorTicksInterval.x = float.Parse(param[6].Split(' ').Last());
+            _minorTicksInterval.x = param[6].Split(' ').Last().Length > 0 ? float.Parse(param[6].Split(' ').Last()) : 1;
 
-            _majorTicks.y = param[7].Split(' ').Last().Split('&').Select(t => float.Parse(t)).ToList();
-            _minorTicksInterval.y = float.Parse(param[8].Split(' ').Last());
+            _majorTicks.y = param[7].Split(' ').Last().Length > 0 ? param[7].Split(' ').Last().Split('&').Select(t => float.Parse(t)).ToList() : new List<float>();
+            _minorTicksInterval.y = param[8].Split(' ').Last().Length > 0 ? float.Parse(param[8].Split(' ').Last()) : 1;
 
             _depVarName = param[9].Split(' ').Last();
 

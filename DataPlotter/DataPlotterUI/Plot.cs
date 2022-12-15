@@ -172,7 +172,7 @@ namespace DataPlotter.DataPlotterUI
         {
             AxisDisplay("x");
             AxisDisplay("y");
-            LegendDisplay();
+            if (_chartInfo.YVar != String.Empty) LegendDisplay();
         }
 
         private void AxisDisplay(string axis)
@@ -218,9 +218,12 @@ namespace DataPlotter.DataPlotterUI
                     List<float> majorTicks = axis == "x" ? _chartInfo.MajorTicks.x : _chartInfo.MajorTicks.y;
                     float minorTicksInterval = axis == "x" ? _chartInfo.MinorTicksInterval.x : _chartInfo.MinorTicksInterval.y;
 
-                    var ticks = GetLogLabels((int)min, (int)Math.Ceiling(max), majorTicks, labelOffset, minorTicksInterval);
-                    foreach (var tick in ticks.major) axis1.CustomLabels.Add(tick);
-                    foreach (var tick in ticks.minor) axis2.CustomLabels.Add(tick);
+                    if (majorTicks.Count > 0)
+                    {
+                        var ticks = GetLogLabels((int)min, (int)Math.Ceiling(max), majorTicks, labelOffset, minorTicksInterval);
+                        foreach (var tick in ticks.major) axis1.CustomLabels.Add(tick);
+                        foreach (var tick in ticks.minor) axis2.CustomLabels.Add(tick);
+                    }
                 }
 
                 axis1.LineWidth = 0;
@@ -314,6 +317,15 @@ namespace DataPlotter.DataPlotterUI
         private void Plot_FormClosing(object sender, FormClosingEventArgs e)
         {
             _home.Show();
+        }
+
+        private void chart_Click(object sender, EventArgs e)
+        {
+            string figureName = _chartInfo.DepVarName.RemoveWhiteSpaces() + "_";
+            figureName += _chartInfo.XVar.RemoveWhiteSpaces();
+            if (_chartInfo.YVar != string.Empty) figureName += "X" + _chartInfo.YVar.RemoveWhiteSpaces();
+            if (_chartInfo.YVar2 != string.Empty) figureName += "X" + _chartInfo.YVar2.RemoveWhiteSpaces() + $"({_chartInfo.YVar2Level.RemoveWhiteSpaces()})";
+            chart.SaveImage($@"C:\Users\User\Documents\DataPlotter\{figureName}.emf", ChartImageFormat.Emf);
         }
     }
 }

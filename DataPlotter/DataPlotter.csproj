@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="DataPlotterLibrary\ChartInfo.cs" />
     <Compile Include="DataPlotterLibrary\DataManager.cs" />
+    <Compile Include="DataPlotterLibrary\Extensions.cs" />
     <Compile Include="DataPlotterLibrary\PresetManager.cs" />
     <Compile Include="DataPlotterLibrary\Variable.cs" />
     <Compile Include="DataPlotterUI\Home.cs">

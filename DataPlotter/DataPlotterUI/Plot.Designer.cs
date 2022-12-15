@@ -50,6 +50,7 @@
             this.chart.Size = new System.Drawing.Size(300, 300);
             this.chart.TabIndex = 0;
             this.chart.Text = "chart";
+            this.chart.Click += new System.EventHandler(this.chart_Click);
             this.chart.Paint += new System.Windows.Forms.PaintEventHandler(this.Chart_Paint);
             // 
             // Plot

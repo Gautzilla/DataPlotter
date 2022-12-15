@@ -78,6 +78,10 @@ namespace DataPlotter
             TextBox_depVarName.Text = _dataManager.DepVariable.Name;
             CheckBox_isDepVarNum.Checked = _dataManager.DepVariable.IsNum;
             CheckBox_isYLog.Checked = _dataManager.DepVariable.IsLog;
+
+            _chartInfo.DepVarName = _dataManager.DepVariable.Name;
+            _chartInfo.IsDepVarNum = _dataManager.DepVariable.IsNum;
+            _chartInfo.IsDepVarLog = _dataManager.DepVariable.IsLog;
         }
 
         private void ListBox_xVar_SelectedIndexChanged(object sender, EventArgs e)
