@@ -18,13 +18,17 @@ namespace DataPlotter.DataPlotterUI
         private readonly DataManager _data;
         private readonly ChartInfo _chartInfo;
         private static List<List<(string x, float y)>> _meanLines;
+
+        private static readonly float _lineWidth = 2f;
         private static readonly Pen[] _pens =
         {
-            new Pen(Color.Black),
-            new Pen(Color.Black){DashPattern = new float[]{ 4f, 2f, 1f, 3f } },
-            new Pen(Color.Black){DashPattern = new float[]{ 1f, 1f, 1f, 3f } },
+            new Pen(Color.Black) { Width = _lineWidth },
+            new Pen(Color.Black){DashPattern = new float[]{ 1f, 2f } , Width = _lineWidth},
+            new Pen(Color.Black){DashPattern = new float[]{ 4f, 3f } , Width = _lineWidth},
 
         };
+
+
         private static readonly float _xOffsetRatio = 0.02f; // Offset between each line
         private static float _xOffset; // Offset between each line
         internal Plot(DataManager data, ChartInfo chartInfo, Home home)
@@ -97,6 +101,7 @@ namespace DataPlotter.DataPlotterUI
             chart.Series.Add($"{lineName} sd");
 
             chart.Series[lineIndex].ChartType = SeriesChartType.ErrorBar;
+            chart.Series[lineIndex].BorderWidth = (int)_lineWidth;
 
             int x = 0;
 
