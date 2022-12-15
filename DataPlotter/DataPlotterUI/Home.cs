@@ -63,6 +63,7 @@ namespace DataPlotter
             _dataManager = new DataManager(_dataFilePath, _infoFilePath);
 
             UpdateXvarListBox();
+            UpdateDependantVariableTextBox();
         }
 
         private void UpdateXvarListBox()
@@ -70,6 +71,13 @@ namespace DataPlotter
             _variableNames = _dataManager.Variables.Select(var => var.Name).ToArray();
 
             ListBox_xVar.Items.AddRange(_variableNames);
+        }
+
+        private void UpdateDependantVariableTextBox()
+        {
+            TextBox_depVarName.Text = _dataManager.DepVariable.Name;
+            CheckBox_isDepVarNum.Checked = _dataManager.DepVariable.IsNum;
+            CheckBox_isYLog.Checked = _dataManager.DepVariable.IsLog;
         }
 
         private void ListBox_xVar_SelectedIndexChanged(object sender, EventArgs e)
@@ -136,6 +144,7 @@ namespace DataPlotter
         private void TextBox_depVarName_Leave(object sender, EventArgs e)
         {
             _chartInfo.DepVarName = TextBox_depVarName.Text;
+            _dataManager.DepVariable.Name = _chartInfo.DepVarName;
         }
 
         private void TextBox_axisRange_Leave(object sender, EventArgs e)
@@ -274,6 +283,7 @@ namespace DataPlotter
             TextBox_yMax.Text = chartInfo.YRange.max.ToString();
             CheckBox_isXLog.Checked = chartInfo.IsAxisLog.x;
             CheckBox_isYLog.Checked = chartInfo.IsAxisLog.y;
+            CheckBox_isDepVarNum.Checked = chartInfo.IsDepVarNum;
 
             _chartInfo = chartInfo;
         }
@@ -299,6 +309,16 @@ namespace DataPlotter
         private void button1_Click(object sender, EventArgs e)
         {
             LoadChartPreset();
+        }
+
+        private void CheckBox_isDepVarNum_CheckedChanged(object sender, EventArgs e)
+        {
+            _chartInfo.IsDepVarNum = CheckBox_isDepVarNum.Checked;
+        }
+
+        private void Home_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

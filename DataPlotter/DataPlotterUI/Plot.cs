@@ -179,7 +179,7 @@ namespace DataPlotter.DataPlotterUI
             float labelOffset = 0.2f;
 
             Console.WriteLine(String.Join("\n", _data.Variables.Select(v => v.Name)));
-            Variable var = axis == "x" ? _data.Variables.Single(v => v.Name == _chartInfo.XVar) : _data.Variables.Single(v => v.Name == _chartInfo.DepVarName);
+            Variable var = axis == "x" ? _data.Variables.Single(v => v.Name == _chartInfo.XVar) : _data.DepVariable as Variable;
 
             if (var.IsNum)
             {

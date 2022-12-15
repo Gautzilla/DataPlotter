@@ -10,15 +10,21 @@ namespace DataPlotter.DataPlotterLibrary
 {
     internal class DataManager
     {
-        private static List<Variable> _variables;
+        private static List<IndependantVariable> _variables;
         private static string[] _variablesOrdering;
+        private static DependantVariable _dependantVariable;
 
-        public List<Variable> Variables
+        public List<IndependantVariable> Variables
         {
             get { return _variables; }
             private set { _variables = value; }
         }
 
+        public DependantVariable DepVariable 
+        { 
+            get => _dependantVariable; 
+            set => _dependantVariable = value; 
+        }
 
         private List<(List<string> var, List<float> val)> _data; // Stores data as a tuple: list of the levels of the variables as Item1 and list of subjects values as Item2
 
@@ -28,15 +34,27 @@ namespace DataPlotter.DataPlotterLibrary
         /// <param name="path">Absolute path of the .csv file</param>
         public DataManager(string dataFilePath, string infoFilePath)
         {
-            Variables = new List<Variable>();
+            Variables = new List<IndependantVariable>();
+            DepVariable = new DependantVariable("dependant variable", true);
 
+            ParseDependantVariable(infoFilePath);
             SortFactors(infoFilePath);
             SortData(dataFilePath);
         }
 
+        private void ParseDependantVariable(string path)
+        {
+            string[] fields = File.ReadAllLines(path).First().Split(';').Select(s => s.Trim()).ToArray();
+
+            _dependantVariable.Name = fields[0];
+            _dependantVariable.IsNum = fields[1] != "qualitative";
+            _dependantVariable.IsLog = fields[1] == "log";
+            _dependantVariable.Unit = fields.Length > 2 ? fields[2] : string.Empty;
+        }
+
         private void SortFactors(string path)
         {
-            var lines = File.ReadAllLines(path);
+            var lines = File.ReadAllLines(path).Skip(1);
             _variablesOrdering = lines.Select(l => l.Split(';').First().Trim()).ToArray();
 
             foreach (string line in lines)
@@ -46,10 +64,10 @@ namespace DataPlotter.DataPlotterLibrary
                 bool isNum = fields[1] != "qualitative";
                 bool isLog = fields[1] == "log";
                 string[] levels = fields[2].Split(',').Select(l => l.Trim()).ToArray();
-                string unit = isNum ? fields[3] : string.Empty;
+                string unit = fields.Length > 3 ? fields[3] : string.Empty;
 
-                if (!isNum) Variables.Add(new Variable(name, levels, isNum));
-                else Variables.Add(new Variable(name, levels, isNum, isLog, unit));
+                if (!isNum) Variables.Add(new IndependantVariable(name, levels, isNum));
+                else Variables.Add(new IndependantVariable(name, levels, isNum, isLog, unit));
             }
         }
 

@@ -81,6 +81,7 @@
             this.Label_chartName = new System.Windows.Forms.Label();
             this.Btn_plot = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.CheckBox_isDepVarNum = new System.Windows.Forms.CheckBox();
             this.GroupBox_Variables.SuspendLayout();
             this.GroupBox_filesManager.SuspendLayout();
             this.GroupBox_gridTicks.SuspendLayout();
@@ -271,6 +272,7 @@
             // TextBox_depVarName
             // 
             this.TextBox_depVarName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.TextBox_depVarName.Enabled = false;
             this.TextBox_depVarName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
             this.TextBox_depVarName.Location = new System.Drawing.Point(6, 26);
             this.TextBox_depVarName.Name = "TextBox_depVarName";
@@ -383,6 +385,7 @@
             // CheckBox_isYLog
             // 
             this.CheckBox_isYLog.AutoSize = true;
+            this.CheckBox_isYLog.Enabled = false;
             this.CheckBox_isYLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
             this.CheckBox_isYLog.Location = new System.Drawing.Point(249, 266);
             this.CheckBox_isYLog.Name = "CheckBox_isYLog";
@@ -606,6 +609,7 @@
             this.GroupBox_axesParameters.Controls.Add(this.Label_yMin);
             this.GroupBox_axesParameters.Controls.Add(this.CheckBox_isYLog);
             this.GroupBox_axesParameters.Controls.Add(this.Label_xMax);
+            this.GroupBox_axesParameters.Controls.Add(this.CheckBox_isDepVarNum);
             this.GroupBox_axesParameters.Controls.Add(this.CheckBox_isXLog);
             this.GroupBox_axesParameters.Controls.Add(this.Label_yMax);
             this.GroupBox_axesParameters.Controls.Add(this.TextBox_yMax);
@@ -680,6 +684,19 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // CheckBox_isDepVarNum
+            // 
+            this.CheckBox_isDepVarNum.AutoSize = true;
+            this.CheckBox_isDepVarNum.Enabled = false;
+            this.CheckBox_isDepVarNum.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.CheckBox_isDepVarNum.Location = new System.Drawing.Point(10, 78);
+            this.CheckBox_isDepVarNum.Name = "CheckBox_isDepVarNum";
+            this.CheckBox_isDepVarNum.Size = new System.Drawing.Size(273, 23);
+            this.CheckBox_isDepVarNum.TabIndex = 6;
+            this.CheckBox_isDepVarNum.Text = "Numerical dependant variable";
+            this.CheckBox_isDepVarNum.UseVisualStyleBackColor = true;
+            this.CheckBox_isDepVarNum.CheckedChanged += new System.EventHandler(this.CheckBox_isDepVarNum_CheckedChanged);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -697,6 +714,7 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Home";
             this.Text = "DataPlotter";
+            this.Load += new System.EventHandler(this.Home_Load);
             this.GroupBox_Variables.ResumeLayout(false);
             this.GroupBox_Variables.PerformLayout();
             this.GroupBox_filesManager.ResumeLayout(false);
@@ -765,6 +783,7 @@
         private System.Windows.Forms.Label Label_chartName;
         private System.Windows.Forms.Button Btn_plot;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox CheckBox_isDepVarNum;
     }
 }
 
