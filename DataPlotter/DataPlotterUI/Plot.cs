@@ -28,6 +28,8 @@ namespace DataPlotter.DataPlotterUI
 
         };
 
+        private static readonly Font _font = new Font("Tahoma", 12);
+
 
         private static readonly float _xOffsetRatio = 0.02f; // Offset between each line
         private static float _xOffset; // Offset between each line
@@ -170,6 +172,7 @@ namespace DataPlotter.DataPlotterUI
         {
             AxisDisplay("x");
             AxisDisplay("y");
+            LegendDisplay();
         }
 
         private void AxisDisplay(string axis)
@@ -224,6 +227,10 @@ namespace DataPlotter.DataPlotterUI
                 axis1.MajorGrid.LineColor = Color.Gray;
                 string unit = var.Unit == string.Empty ? string.Empty : $" ({var.Unit})";
                 axis1.Title = var.Name + unit;
+                axis1.TitleFont = _font;
+                axis2.TitleFont = _font;
+                axis1.LabelStyle.Font = _font;
+                axis2.LabelStyle.Font = _font;
             }
         }
 
@@ -255,6 +262,53 @@ namespace DataPlotter.DataPlotterUI
                 else minorCL.Add(cL);
             }
             return (majorCL, minorCL);
+        }
+
+        private void LegendDisplay()
+        {
+            // TODO: Add legend control in the UI
+
+            Legend newL = new Legend();
+            newL.Position = chart.Legends.First().Position;  // copy a few settings:
+            newL.Docking = chart.Legends.First().Docking;
+            newL.Alignment = chart.Legends.First().Alignment;
+
+
+            int iw = 32; int iw2 = iw / 2; int ih = 18; int ih2 = ih / 2;
+            int ew = 5;
+
+            chart.ApplyPaletteColors();
+            for (int line = 0; line < _meanLines.Count; line++)
+            {
+
+                Bitmap bmp = new Bitmap(iw, ih);
+                Graphics G = Graphics.FromImage(bmp);
+                Pen pen = _pens[line];
+                Pen solidPen = _pens.First();
+
+
+                G.DrawLine(pen, 0, ih2, iw, ih2);
+                G.DrawLine(solidPen, iw2, 1, iw2, ih);
+                G.DrawLine(solidPen, iw2-ew, 0, iw2+ew, 0);
+                G.DrawLine(solidPen, iw2-ew, ih-1, iw2+ew, ih-1);
+
+
+                // add a new NamesImage
+                string name = _data.Variables.Single(v => v.Name == _chartInfo.YVar).Levels[line];
+                NamedImage ni = new NamedImage(name, bmp);
+                chart.Images.Add(ni);
+                // create and add the custom legend item
+                LegendItem lit = new LegendItem(name, Color.Red, name);
+                newL.CustomItems.Add(lit);
+            }
+            chart.Legends.First().Enabled = false;
+            chart.Legends.Add(newL);
+            newL.IsDockedInsideChartArea = true;
+            newL.DockedToChartArea = chart.ChartAreas.First().Name;
+            newL.Docking = Docking.Top;
+            newL.Font = _font;
+            newL.TableStyle = LegendTableStyle.Tall;
+            //chart.Legends.First().Position = new ElementPosition(0, 0, 100, 100);
         }
 
         private void Plot_FormClosing(object sender, FormClosingEventArgs e)
