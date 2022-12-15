@@ -53,6 +53,8 @@ namespace DataPlotter.DataPlotterUI
         /// </summary>
         private void PlotChart()
         {
+            chart.Series.Clear();
+
             List<string> yVarLevels = _data.GetLevels(_chartInfo.YVar);
 
             for (int line = 0; line < yVarLevels.Count; line++)
@@ -90,9 +92,10 @@ namespace DataPlotter.DataPlotterUI
         {
             var sdLine = _data.Std(_chartInfo.XVar, _chartInfo.IsAxisLog.y, _chartInfo.YVar, _chartInfo.YVar2Level);
             chart.Series.Add($"{lineName} sd");
-            chart.Series[$"{lineName} sd"].ChartType = SeriesChartType.ErrorBar;
 
-            //chart.Series[$"{lineName} sd"].BorderWidth
+            chart.Series[lineIndex].ChartType = SeriesChartType.ErrorBar;
+
+            chart.Series[lineIndex].CustomProperties = "PixelPointWidth = 10";
             //LineLook($"{lineName} sd", Color.Black, ChartDashStyle.Solid, MarkerStyle.None, false);
 
             int x = 0;
