@@ -27,14 +27,14 @@ namespace DataPlotter.DataPlotterLibrary
                 File.Create(_filePath);
             }
         }
-        public static List<Chart> LoadPresets()
+        public static List<ChartInfo> LoadPresets()
         {
-            List<Chart> charts = new List<Chart>();
+            List<ChartInfo> charts = new List<ChartInfo>();
             Console.WriteLine();
             return charts;
         }
 
-        public static void UpdatePresets(Chart chart, string dataFile)
+        public static void UpdatePresets(ChartInfo chart, string dataFile)
         {
             string preset = CreatePreset(chart, dataFile);
             string chartId = string.Join("@", preset.Split("@".ToCharArray()).Take(2));
@@ -46,7 +46,7 @@ namespace DataPlotter.DataPlotterLibrary
             File.WriteAllLines(_filePath, presets);
         }
 
-        private static string CreatePreset(Chart chart, string dataFile)
+        private static string CreatePreset(ChartInfo chart, string dataFile)
         {
             string dF = "dataFile: " + dataFile;
             string vars = "variables: " + WriteVariables(chart);
@@ -67,22 +67,22 @@ namespace DataPlotter.DataPlotterLibrary
 
             return string.Join("@", new string[] { dF, vars, name, width, height, xMajorTicks, xMinTick, yMajorTicks, yMinTick, depVar, xMin, xMax, yMin, yMax, xLog, yLog});
         }
-        private static string WriteVariables(Chart chart) => String.Join("*", new string[] { chart.XVar, chart.YVar, chart.YVar2, chart.YVar2Level }).TrimEnd('*');
+        private static string WriteVariables(ChartInfo chart) => String.Join("*", new string[] { chart.XVar, chart.YVar, chart.YVar2, chart.YVar2Level }).TrimEnd('*');
 
-        public static bool DoesPresetExists(Chart chart, string dataFile)
+        public static bool DoesPresetExists(ChartInfo chart, string dataFile)
         {
             string chartId = GetChartId(chart, dataFile);
 
             return File.ReadAllLines(_filePath).Any(l => l.Contains(chartId));
         }
 
-        public static Chart LoadPreset(Chart chart, string dataFile)
+        public static ChartInfo LoadPreset(ChartInfo chart, string dataFile)
         {
             string chartId = GetChartId(chart, dataFile);
 
-            return new Chart(File.ReadAllLines(_filePath).First(l => l.Contains(chartId)));
+            return new ChartInfo(File.ReadAllLines(_filePath).First(l => l.Contains(chartId)));
         }
 
-        private static string GetChartId(Chart chart, string dataFile) => "dataFile: " + dataFile + "@" + "variables: " + WriteVariables(chart);
+        private static string GetChartId(ChartInfo chart, string dataFile) => "dataFile: " + dataFile + "@" + "variables: " + WriteVariables(chart);
     }
 }

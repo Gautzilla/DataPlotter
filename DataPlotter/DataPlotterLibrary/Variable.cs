@@ -8,56 +8,73 @@ namespace DataPlotter.DataPlotterLibrary
 {
     internal class Variable
     {
-        private string _name;
-        private string[] _levels;
-        private bool _isNum;
-        private bool _isLog;
-        private string _unit;
+        private string name;        
+        private bool isNum;
+        private bool isLog;
+        private string unit;
 
         public string Name
         {
-            get { return _name; }
-            private set { _name = value; }
-        }
-
-        public string[] Levels
-        {
-            get { return _levels; }
-            private set { _levels = value; }
+            get { return name; }
+            set { name = value; }
         }
 
         public bool IsNum
         {
-            get { return _isNum; }
-            private set { _isNum = value; }
+            get { return isNum; }
+            set { isNum = value; }
         }
 
         public bool IsLog
         {
-            get { return _isLog; }
-            private set { _isLog = value; }
+            get { return isLog; }
+            set { isLog = value; }
         }
 
         public string Unit
         {
-            get { return _unit; }
-            private set { _unit = value; }
+            get { return unit; }
+            set { unit = value; }
+        }
+    }
+
+    internal class IndependantVariable : Variable
+    {
+        private string[] levels;
+        public string[] Levels
+        {
+            get { return levels; }
+            private set { levels = value; }
         }
 
+        public IndependantVariable(string name, string[] levels, bool isNum)
+        {
+            Name = name;
+            IsNum = isNum;
+            Levels = levels;
+        }
 
-        public Variable(string name, string[] levels, bool isNum)
+        public IndependantVariable(string name, string[] levels, bool isNum, bool isLog, string unit)
         {
             Name = name;
             Levels = levels;
             IsNum = isNum;
-            IsLog = false;
-            Unit = string.Empty;
+            IsLog = isLog;
+            Unit = unit;
         }
+    }
 
-        public Variable(string name, string[] levels, bool isNum, bool isLog, string unit)
+    internal class DependantVariable : Variable
+    {
+        public DependantVariable(string name, bool isNum)
         {
             Name = name;
-            Levels = levels;
+            IsNum = isNum;
+        }
+
+        public DependantVariable(string name, bool isNum, bool isLog, string unit)
+        {
+            Name = name;
             IsNum = isNum;
             IsLog = isLog;
             Unit = unit;
