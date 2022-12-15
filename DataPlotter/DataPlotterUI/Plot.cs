@@ -102,6 +102,7 @@ namespace DataPlotter.DataPlotterUI
 
             chart.Series[lineIndex].ChartType = SeriesChartType.ErrorBar;
             chart.Series[lineIndex].BorderWidth = (int)_lineWidth;
+            chart.Series[lineIndex].IsVisibleInLegend = false;
 
             int x = 0;
 
