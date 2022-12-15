@@ -178,7 +178,6 @@ namespace DataPlotter.DataPlotterUI
             // Offset for labels fromPosition and toPosition
             float labelOffset = 0.2f;
 
-            Console.WriteLine(String.Join("\n", _data.Variables.Select(v => v.Name)));
             Variable var = axis == "x" ? _data.Variables.Single(v => v.Name == _chartInfo.XVar) : _data.DepVariable as Variable;
 
             if (var.IsNum)
@@ -214,6 +213,11 @@ namespace DataPlotter.DataPlotterUI
                     foreach (var tick in ticks.major) axis1.CustomLabels.Add(tick);
                     foreach (var tick in ticks.minor) axis2.CustomLabels.Add(tick);
                 }
+
+                axis1.LineWidth = 0;
+                axis1.MajorGrid.LineColor = Color.Gray;
+                string unit = var.Unit == string.Empty ? string.Empty : $" ({var.Unit})";
+                axis1.Title = var.Name + unit;
             }
         }
 
