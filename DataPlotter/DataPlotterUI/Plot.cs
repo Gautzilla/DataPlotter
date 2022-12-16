@@ -158,18 +158,13 @@ namespace DataPlotter.DataPlotterUI
                 {
                     List<(float x, float y)> points = _meanLines[line].Select(mean => (x, mean.y)).ToList();
                     x++;
-                    PaintLine(g, pen, points);
+                    List<Point> pointsList = points.Select(p => new Point((int)chart.ChartAreas[0].AxisX.ValueToPixelPosition(p.x), (int)chart.ChartAreas[0].AxisY.ValueToPixelPosition(p.y))).ToList();
+
+                    for (int p = 1; p < pointsList.Count; p++)
+                    {
+                        g.DrawLine(pen, pointsList[p - 1], pointsList[p]);
+                    }
                 }
-            }
-        }
-
-        private void PaintLine(Graphics g, Pen pen, List<(float x, float y)> points)
-        {
-            List<Point> pointsList = points.Select(p => new Point((int)chart.ChartAreas[0].AxisX.ValueToPixelPosition(p.x), (int)chart.ChartAreas[0].AxisY.ValueToPixelPosition(p.y))).ToList();
-
-            for (int p = 1; p < pointsList.Count; p++)
-            {
-                g.DrawLine(pen, pointsList[p - 1], pointsList[p]);
             }
         }
 
@@ -342,7 +337,7 @@ namespace DataPlotter.DataPlotterUI
             figureName += _chartInfo.XVar.RemoveWhiteSpaces();
             if (_chartInfo.YVar != string.Empty) figureName += "X" + _chartInfo.YVar.RemoveWhiteSpaces();
             if (_chartInfo.YVar2 != string.Empty) figureName += "X" + _chartInfo.YVar2.RemoveWhiteSpaces() + $"({_chartInfo.YVar2Level.RemoveWhiteSpaces()})";
-            chart.SaveImage($@"C:\Users\User\Documents\DataPlotter\{figureName}.emf", ChartImageFormat.Emf);
+            //chart.SaveImage($@"C:\Users\User\Documents\DataPlotter\{figureName}.emf", ChartImageFormat.Emf);
             
             using (Bitmap bmp = new Bitmap(chart.Size.Width, chart.Size.Height))
             {
