@@ -192,10 +192,10 @@ namespace DataPlotter.DataPlotterUI
 
             Variable var = axis == "x" ? _data.Variables.Single(v => v.Name == _chartInfo.XVar) : _data.DepVariable as Variable;
 
-            axis1.Minimum = 1;
-            axis2.Minimum = 1;
-            axis1.Maximum = 10;
-            axis2.Maximum = 10;
+            axis1.Minimum = -0.2;
+            axis2.Minimum = -0.2;
+            axis1.Maximum = 1.2;
+            axis2.Maximum = 1.2;
 
             if (var.IsNum)
             {
@@ -214,8 +214,8 @@ namespace DataPlotter.DataPlotterUI
                 axis2.LabelStyle.Enabled = false;
                 axis2.LineWidth = 0;
 
-                axis2.Minimum = cA.AxisX.Minimum;
-                axis2.Maximum = cA.AxisX.Maximum;
+                axis2.Minimum = axis1.Minimum;
+                axis2.Maximum = axis1.Maximum;
 
                 axis1.IsLogarithmic = isLog;
                 axis2.IsLogarithmic = isLog;
@@ -259,7 +259,8 @@ namespace DataPlotter.DataPlotterUI
             foreach (float tick in tickPositions)
             {
                 double linPos = Math.Log(tick, 2); // Log values on linear axis
-
+                //if (min > 0) linPos -= Math.Log(min, 2);
+                Console.WriteLine($"Range {min}-{max} ; Tick {tick} ; Linpos {linPos}");
                 CustomLabel cL = new CustomLabel();
 
                 cL.FromPosition = linPos - offset;
@@ -318,7 +319,7 @@ namespace DataPlotter.DataPlotterUI
             newL.IsDockedInsideChartArea = true;
             newL.DockedToChartArea = chart.ChartAreas.First().Name;
             // TODO: user-controlled docking position
-            newL.Docking = Docking.Top;
+            newL.Docking = Docking.Right;
             newL.Font = _font;
             newL.TableStyle = LegendTableStyle.Tall;
             newL.BorderWidth = 1;
