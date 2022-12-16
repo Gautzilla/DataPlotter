@@ -317,6 +317,7 @@ namespace DataPlotter.DataPlotterUI
             chart.Legends.Add(newL);
             newL.IsDockedInsideChartArea = true;
             newL.DockedToChartArea = chart.ChartAreas.First().Name;
+            // TODO: user-controlled docking position
             newL.Docking = Docking.Top;
             newL.Font = _font;
             newL.TableStyle = LegendTableStyle.Tall;

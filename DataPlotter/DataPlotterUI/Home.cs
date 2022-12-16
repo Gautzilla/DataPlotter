@@ -69,7 +69,7 @@ namespace DataPlotter
         private void UpdateXvarListBox()
         {
             _variableNames = _dataManager.Variables.Select(var => var.Name).ToArray();
-
+            ListBox_xVar.Items.Clear();
             ListBox_xVar.Items.AddRange(_variableNames);
         }
 
@@ -299,7 +299,6 @@ namespace DataPlotter
                 return;
             }
 
-            PresetManager.UpdatePresets(_chartInfo, _dataFilePath);
             Plot plotForm = new Plot(_dataManager, _chartInfo, this);
             plotForm.Show();
             this.Hide();
@@ -310,11 +309,6 @@ namespace DataPlotter
             return true;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            LoadChartPreset();
-        }
-
         private void CheckBox_isDepVarNum_CheckedChanged(object sender, EventArgs e)
         {
             _chartInfo.IsDepVarNum = CheckBox_isDepVarNum.Checked;
@@ -323,6 +317,16 @@ namespace DataPlotter
         private void Home_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void Btn_savePreset_Click(object sender, EventArgs e)
+        {
+            PresetManager.UpdatePresets(_chartInfo, _dataFilePath);
+        }
+
+        private void Btn_loadPreset_Click(object sender, EventArgs e)
+        {
+            LoadChartPreset();
         }
     }
 }

@@ -76,12 +76,13 @@
             this.GroupBox_filesManager = new System.Windows.Forms.GroupBox();
             this.GroupBox_gridTicks = new System.Windows.Forms.GroupBox();
             this.GroupBox_axesParameters = new System.Windows.Forms.GroupBox();
+            this.CheckBox_isDepVarNum = new System.Windows.Forms.CheckBox();
             this.GroupBox_chartParameters = new System.Windows.Forms.GroupBox();
             this.TextBox_chartName = new System.Windows.Forms.TextBox();
             this.Label_chartName = new System.Windows.Forms.Label();
             this.Btn_plot = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.CheckBox_isDepVarNum = new System.Windows.Forms.CheckBox();
+            this.Btn_loadPreset = new System.Windows.Forms.Button();
+            this.Btn_savePreset = new System.Windows.Forms.Button();
             this.GroupBox_Variables.SuspendLayout();
             this.GroupBox_filesManager.SuspendLayout();
             this.GroupBox_gridTicks.SuspendLayout();
@@ -624,6 +625,19 @@
             this.GroupBox_axesParameters.TabStop = false;
             this.GroupBox_axesParameters.Text = "Axes parameters";
             // 
+            // CheckBox_isDepVarNum
+            // 
+            this.CheckBox_isDepVarNum.AutoSize = true;
+            this.CheckBox_isDepVarNum.Enabled = false;
+            this.CheckBox_isDepVarNum.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.CheckBox_isDepVarNum.Location = new System.Drawing.Point(10, 78);
+            this.CheckBox_isDepVarNum.Name = "CheckBox_isDepVarNum";
+            this.CheckBox_isDepVarNum.Size = new System.Drawing.Size(273, 23);
+            this.CheckBox_isDepVarNum.TabIndex = 6;
+            this.CheckBox_isDepVarNum.Text = "Numerical dependant variable";
+            this.CheckBox_isDepVarNum.UseVisualStyleBackColor = true;
+            this.CheckBox_isDepVarNum.CheckedChanged += new System.EventHandler(this.CheckBox_isDepVarNum_CheckedChanged);
+            // 
             // GroupBox_chartParameters
             // 
             this.GroupBox_chartParameters.Controls.Add(this.TextBox_chartName);
@@ -672,30 +686,29 @@
             this.Btn_plot.UseVisualStyleBackColor = false;
             this.Btn_plot.Click += new System.EventHandler(this.Btn_plot_Click);
             // 
-            // button1
+            // Btn_loadPreset
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.button1.Location = new System.Drawing.Point(570, 44);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(160, 62);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "load";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Btn_loadPreset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.Btn_loadPreset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.Btn_loadPreset.Location = new System.Drawing.Point(583, 79);
+            this.Btn_loadPreset.Name = "Btn_loadPreset";
+            this.Btn_loadPreset.Size = new System.Drawing.Size(80, 47);
+            this.Btn_loadPreset.TabIndex = 2;
+            this.Btn_loadPreset.Text = "load";
+            this.Btn_loadPreset.UseVisualStyleBackColor = false;
+            this.Btn_loadPreset.Click += new System.EventHandler(this.Btn_loadPreset_Click);
             // 
-            // CheckBox_isDepVarNum
+            // Btn_savePreset
             // 
-            this.CheckBox_isDepVarNum.AutoSize = true;
-            this.CheckBox_isDepVarNum.Enabled = false;
-            this.CheckBox_isDepVarNum.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.CheckBox_isDepVarNum.Location = new System.Drawing.Point(10, 78);
-            this.CheckBox_isDepVarNum.Name = "CheckBox_isDepVarNum";
-            this.CheckBox_isDepVarNum.Size = new System.Drawing.Size(273, 23);
-            this.CheckBox_isDepVarNum.TabIndex = 6;
-            this.CheckBox_isDepVarNum.Text = "Numerical dependant variable";
-            this.CheckBox_isDepVarNum.UseVisualStyleBackColor = true;
-            this.CheckBox_isDepVarNum.CheckedChanged += new System.EventHandler(this.CheckBox_isDepVarNum_CheckedChanged);
+            this.Btn_savePreset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.Btn_savePreset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.Btn_savePreset.Location = new System.Drawing.Point(583, 30);
+            this.Btn_savePreset.Name = "Btn_savePreset";
+            this.Btn_savePreset.Size = new System.Drawing.Size(80, 47);
+            this.Btn_savePreset.TabIndex = 2;
+            this.Btn_savePreset.Text = "save";
+            this.Btn_savePreset.UseVisualStyleBackColor = false;
+            this.Btn_savePreset.Click += new System.EventHandler(this.Btn_savePreset_Click);
             // 
             // Home
             // 
@@ -703,7 +716,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(54)))), ((int)(((byte)(57)))));
             this.ClientSize = new System.Drawing.Size(1904, 1041);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Btn_savePreset);
+            this.Controls.Add(this.Btn_loadPreset);
             this.Controls.Add(this.Btn_plot);
             this.Controls.Add(this.GroupBox_chartParameters);
             this.Controls.Add(this.GroupBox_axesParameters);
@@ -782,8 +796,9 @@
         private System.Windows.Forms.TextBox TextBox_chartName;
         private System.Windows.Forms.Label Label_chartName;
         private System.Windows.Forms.Button Btn_plot;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Btn_loadPreset;
         private System.Windows.Forms.CheckBox CheckBox_isDepVarNum;
+        private System.Windows.Forms.Button Btn_savePreset;
     }
 }
 
