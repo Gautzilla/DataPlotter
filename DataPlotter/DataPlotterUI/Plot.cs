@@ -28,7 +28,8 @@ namespace DataPlotter.DataPlotterUI
 
         };
 
-        private static readonly Font _font = new Font("Tahoma", 12);
+        // TODO: User-defined font
+        private static readonly Font _font = new Font("Tahoma", 18);
 
 
         private static readonly float _xOffsetRatio = 0.02f; // Offset between each line
