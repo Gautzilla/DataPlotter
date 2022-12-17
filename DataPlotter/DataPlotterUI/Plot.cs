@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using DataPlotter.DataPlotterLibrary;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace DataPlotter.DataPlotterUI
 {
@@ -133,7 +135,11 @@ namespace DataPlotter.DataPlotterUI
 
         private void Chart_Paint(object sender, PaintEventArgs e)
         {
-            var g = e.Graphics;
+            DrawExtraGraphics(e.Graphics);
+        }
+
+        private void DrawExtraGraphics(Graphics g)
+        {
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             bool xIsNumerical = _meanLines.All(mL => mL.All(mean => float.TryParse(mean.x, out float numMean)));
 
@@ -147,7 +153,7 @@ namespace DataPlotter.DataPlotterUI
                 if (xIsNumerical)
                 {
                     List<(float x, float y)> points = _meanLines[line].Select(mean => (float.Parse(mean.x) * (1 + _xOffset), mean.y)).ToList();
-                    
+
                     List<Point> pointsList = points.Select(p => new Point((int)chart.ChartAreas[0].AxisX.ValueToPixelPosition(p.x), (int)chart.ChartAreas[0].AxisY.ValueToPixelPosition(p.y))).ToList();
 
                     for (int p = 1; p < pointsList.Count; p++)
@@ -340,12 +346,29 @@ namespace DataPlotter.DataPlotterUI
             figureName += _chartInfo.XVar.RemoveWhiteSpaces();
             if (_chartInfo.YVar != string.Empty) figureName += "X" + _chartInfo.YVar.RemoveWhiteSpaces();
             if (_chartInfo.YVar2 != string.Empty) figureName += "X" + _chartInfo.YVar2.RemoveWhiteSpaces() + $"({_chartInfo.YVar2Level.RemoveWhiteSpaces()})";
-            //chart.SaveImage($@"C:\Users\User\Documents\DataPlotter\{figureName}.emf", ChartImageFormat.Emf);
-            
-            using (Bitmap bmp = new Bitmap(chart.Size.Width, chart.Size.Height))
+
+            figureName = $@"C:\Users\Gauthier\Documents\DataPlotter\{figureName}.emf";
+            MemoryStream ms = new MemoryStream();
+            chart.SaveImage(ms, ImageFormat.Emf);
+            ms.Seek(0, SeekOrigin.Begin);
+            using (var mf0 = new Metafile(ms))
             {
-                chart.DrawToBitmap(bmp, new Rectangle(0, 0, chart.Size.Width, chart.Size.Height));
-                bmp.Save($@"C:\Users\User\Documents\DataPlotter\{figureName}.png", System.Drawing.Imaging.ImageFormat.Png);
+                // "this" can be the form, that will be sufficient
+                using (var gfx = this.CreateGraphics())
+                {
+                    // this creates an empty EMF file
+                    using (var mf = new Metafile(figureName, gfx.GetHdc()))
+                    {                        
+                        // gfx context for drawing in the file
+                        using (var igfx = Graphics.FromImage(mf))
+                        {
+                            // draw the chart without mean lines
+                            igfx.DrawImage(mf0, 0, 0);
+                            // draw the mean lines
+                            DrawExtraGraphics(igfx);
+                        }
+                    }
+                }
             }
         }
     }
