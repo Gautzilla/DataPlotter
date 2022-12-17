@@ -346,9 +346,8 @@ namespace DataPlotter.DataPlotterUI
             figureName += _chartInfo.XVar.RemoveWhiteSpaces();
             if (_chartInfo.YVar != string.Empty) figureName += "X" + _chartInfo.YVar.RemoveWhiteSpaces();
             if (_chartInfo.YVar2 != string.Empty) figureName += "X" + _chartInfo.YVar2.RemoveWhiteSpaces() + $"({_chartInfo.YVar2Level.RemoveWhiteSpaces()})";
-            //chart.SaveImage($@"C:\Users\User\Documents\DataPlotter\{figureName}.emf", ChartImageFormat.Emf);
-            figureName = $@"C:\Users\Gauthier\Documents\DataPlotter\{figureName}.emf";
 
+            figureName = $@"C:\Users\Gauthier\Documents\DataPlotter\{figureName}.emf";
             MemoryStream ms = new MemoryStream();
             chart.SaveImage(ms, ImageFormat.Emf);
             ms.Seek(0, SeekOrigin.Begin);
@@ -363,9 +362,9 @@ namespace DataPlotter.DataPlotterUI
                         // gfx context for drawing in the file
                         using (var igfx = Graphics.FromImage(mf))
                         {
-                            // draw the chart
+                            // draw the chart without mean lines
                             igfx.DrawImage(mf0, 0, 0);
-                            // draw the extra lines
+                            // draw the mean lines
                             DrawExtraGraphics(igfx);
                         }
                     }
