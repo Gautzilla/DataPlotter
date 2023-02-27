@@ -20,6 +20,7 @@ namespace DataPlotter.DataPlotterUI
         private readonly DataManager _data;
         private readonly ChartInfo _chartInfo;
         private static List<List<(string x, float y)>> _meanLines;
+        private static List<Func<double, double>> _regressionFunc;
 
         private static readonly float _lineWidth = 2f;
         private static readonly Pen[] _pens =
@@ -79,6 +80,8 @@ namespace DataPlotter.DataPlotterUI
 
                 // MEAN : are plotted in the PaintLine event handler
                 _meanLines = _data.MeanLine(_chartInfo.XVar, _chartInfo.IsAxisLog.y, _chartInfo.YVar, _chartInfo.YVar2Level);
+
+                if (_chartInfo.Regression) _regressionFunc = _data.Regression(_chartInfo.XVar, _chartInfo.IsAxisLog.y, _chartInfo.YVar, _chartInfo.YVar2Level);
             }
             ChartDisplay();
         }
@@ -154,11 +157,34 @@ namespace DataPlotter.DataPlotterUI
                 {
                     List<(float x, float y)> points = _meanLines[line].Select(mean => (float.Parse(mean.x) * (1 + _xOffset), mean.y)).ToList();
 
-                    List<Point> pointsList = points.Select(p => new Point((int)chart.ChartAreas[0].AxisX.ValueToPixelPosition(p.x), (int)chart.ChartAreas[0].AxisY.ValueToPixelPosition(p.y))).ToList();
+                    List<Point> meanPoints = points.Select(p => new Point((int)chart.ChartAreas[0].AxisX.ValueToPixelPosition(p.x), (int)chart.ChartAreas[0].AxisY.ValueToPixelPosition(p.y))).ToList();
 
-                    for (int p = 1; p < pointsList.Count; p++)
+                    List<Point> regressionPoints = new List<Point>();
+                    if (_chartInfo.Regression) regressionPoints = points.Select(p => new Point((int)chart.ChartAreas[0].AxisX.ValueToPixelPosition(p.x), (int)chart.ChartAreas[0].AxisY.ValueToPixelPosition(_regressionFunc[line](p.x)))).ToList();
+
+                    for (int p = 1; p < meanPoints.Count; p++)
                     {
-                        g.DrawLine(pen, pointsList[p - 1], pointsList[p]);
+
+                        if (_chartInfo.Regression)
+                        {
+                            g.DrawLine(pen, regressionPoints[p - 1], regressionPoints[p]);
+                            continue;
+                        }
+
+                        g.DrawLine(pen, meanPoints[p - 1], meanPoints[p]);
+                    }
+
+                    if (_chartInfo.Regression)
+                    {
+                        for (int p = 0; p < meanPoints.Count; p++)
+                        {
+                            int meanMarkerWidth = 6;
+
+                            Point a = new Point(meanPoints[p].X - meanMarkerWidth / 2, meanPoints[p].Y);
+                            Point b = new Point(meanPoints[p].X + meanMarkerWidth / 2, meanPoints[p].Y);
+
+                            g.DrawLine(_pens[0], a, b);
+                        }
                     }
                 }
                 else
@@ -267,7 +293,7 @@ namespace DataPlotter.DataPlotterUI
             {
                 double linPos = Math.Log(tick, 2); // Log values on linear axis
                 //if (min > 0) linPos -= Math.Log(min, 2);
-                Console.WriteLine($"Range {min}-{max} ; Tick {tick} ; Linpos {linPos}");
+
                 CustomLabel cL = new CustomLabel();
 
                 cL.FromPosition = linPos - offset;

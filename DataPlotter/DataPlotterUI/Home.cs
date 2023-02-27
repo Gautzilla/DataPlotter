@@ -328,5 +328,12 @@ namespace DataPlotter
         {
             LoadChartPreset();
         }
+
+        private void CheckBox_regression_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox regression = sender as CheckBox;
+
+            _chartInfo.Regression = regression.Checked;
+        }
     }
 }

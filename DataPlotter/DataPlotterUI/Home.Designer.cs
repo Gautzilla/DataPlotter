@@ -83,11 +83,14 @@
             this.Btn_plot = new System.Windows.Forms.Button();
             this.Btn_loadPreset = new System.Windows.Forms.Button();
             this.Btn_savePreset = new System.Windows.Forms.Button();
+            this.GroupBox_plotParameters = new System.Windows.Forms.GroupBox();
+            this.CheckBox_regression = new System.Windows.Forms.CheckBox();
             this.GroupBox_Variables.SuspendLayout();
             this.GroupBox_filesManager.SuspendLayout();
             this.GroupBox_gridTicks.SuspendLayout();
             this.GroupBox_axesParameters.SuspendLayout();
             this.GroupBox_chartParameters.SuspendLayout();
+            this.GroupBox_plotParameters.SuspendLayout();
             this.SuspendLayout();
             // 
             // label_xVar
@@ -647,7 +650,7 @@
             this.GroupBox_chartParameters.Controls.Add(this.Label_chartHeight);
             this.GroupBox_chartParameters.Controls.Add(this.TextBox_chartHeight);
             this.GroupBox_chartParameters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.GroupBox_chartParameters.Location = new System.Drawing.Point(736, 141);
+            this.GroupBox_chartParameters.Location = new System.Drawing.Point(736, 132);
             this.GroupBox_chartParameters.Name = "GroupBox_chartParameters";
             this.GroupBox_chartParameters.Size = new System.Drawing.Size(244, 150);
             this.GroupBox_chartParameters.TabIndex = 11;
@@ -710,12 +713,36 @@
             this.Btn_savePreset.UseVisualStyleBackColor = false;
             this.Btn_savePreset.Click += new System.EventHandler(this.Btn_savePreset_Click);
             // 
+            // GroupBox_plotParameters
+            // 
+            this.GroupBox_plotParameters.Controls.Add(this.CheckBox_regression);
+            this.GroupBox_plotParameters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.GroupBox_plotParameters.Location = new System.Drawing.Point(736, 291);
+            this.GroupBox_plotParameters.Name = "GroupBox_plotParameters";
+            this.GroupBox_plotParameters.Size = new System.Drawing.Size(244, 131);
+            this.GroupBox_plotParameters.TabIndex = 12;
+            this.GroupBox_plotParameters.TabStop = false;
+            this.GroupBox_plotParameters.Text = "Plot Parameters";
+            // 
+            // CheckBox_regression
+            // 
+            this.CheckBox_regression.AutoSize = true;
+            this.CheckBox_regression.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.CheckBox_regression.Location = new System.Drawing.Point(10, 35);
+            this.CheckBox_regression.Name = "CheckBox_regression";
+            this.CheckBox_regression.Size = new System.Drawing.Size(186, 23);
+            this.CheckBox_regression.TabIndex = 13;
+            this.CheckBox_regression.Text = "Plot regression line";
+            this.CheckBox_regression.UseVisualStyleBackColor = true;
+            this.CheckBox_regression.CheckedChanged += new System.EventHandler(this.CheckBox_regression_CheckedChanged);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(54)))), ((int)(((byte)(57)))));
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.GroupBox_plotParameters);
             this.Controls.Add(this.Btn_savePreset);
             this.Controls.Add(this.Btn_loadPreset);
             this.Controls.Add(this.Btn_plot);
@@ -739,6 +766,8 @@
             this.GroupBox_axesParameters.PerformLayout();
             this.GroupBox_chartParameters.ResumeLayout(false);
             this.GroupBox_chartParameters.PerformLayout();
+            this.GroupBox_plotParameters.ResumeLayout(false);
+            this.GroupBox_plotParameters.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -799,6 +828,8 @@
         private System.Windows.Forms.Button Btn_loadPreset;
         private System.Windows.Forms.CheckBox CheckBox_isDepVarNum;
         private System.Windows.Forms.Button Btn_savePreset;
+        private System.Windows.Forms.GroupBox GroupBox_plotParameters;
+        private System.Windows.Forms.CheckBox CheckBox_regression;
     }
 }
 
