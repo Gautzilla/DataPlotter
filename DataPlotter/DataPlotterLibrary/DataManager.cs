@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MathNet.Numerics;
 
 namespace DataPlotter.DataPlotterLibrary
 {
@@ -159,6 +160,20 @@ namespace DataPlotter.DataPlotterLibrary
             return (mean - standardError, mean + standardError);
         }
 
-        
+        public List<(double intercept, double slope)> Regression (string variableX, bool logY, string variableY, string variableY2)
+        {
+            if (!_variables.Single(v => v.Name == variableX).IsNum) throw new InvalidDataException("The X variable is qualitative: regression curves can't be computed.");
+
+            List<List<(string x, float y)>> meanLine = MeanLine(variableX, logY, variableY, variableY2);
+
+            List<(double intercept, double slope)> output = meanLine
+                .Select(ml => ml.Select(point => (double.Parse(point.x), (double)point.y)))
+                .Select(ml => Fit.Power(ml.Select(m => m.Item1).ToArray(), ml.Select(m => m.Item2).ToArray()))
+                .ToList();
+
+            Console.WriteLine(String.Join("\n", output.Select(line => $"L = {line.intercept} * r^{line.slope}")));
+
+            return output;
+        }
     }
 }

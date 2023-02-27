@@ -79,6 +79,8 @@ namespace DataPlotter.DataPlotterUI
 
                 // MEAN : are plotted in the PaintLine event handler
                 _meanLines = _data.MeanLine(_chartInfo.XVar, _chartInfo.IsAxisLog.y, _chartInfo.YVar, _chartInfo.YVar2Level);
+
+                if (_chartInfo.Regression) _data.Regression(_chartInfo.XVar, _chartInfo.IsAxisLog.y, _chartInfo.YVar, _chartInfo.YVar2Level);
             }
             ChartDisplay();
         }
