@@ -22,7 +22,7 @@ namespace DataPlotter.DataPlotterUI
         private static List<List<(string x, float y)>> _meanLines;
         private static List<Func<double, double>> _regressionFunc;
 
-        private static readonly float _lineWidth = 4f;
+        private static readonly float _lineWidth = 3f;
         private static readonly Pen[] _pens =
         {
             new Pen(Color.Black) { Width = _lineWidth },
@@ -178,12 +178,9 @@ namespace DataPlotter.DataPlotterUI
                     {
                         for (int p = 0; p < meanPoints.Count; p++)
                         {
-                            int meanMarkerWidth = 6;
+                            int meanMarkerSize = 6;
 
-                            Point a = new Point(meanPoints[p].X - meanMarkerWidth / 2, meanPoints[p].Y);
-                            Point b = new Point(meanPoints[p].X + meanMarkerWidth / 2, meanPoints[p].Y);
-
-                            g.DrawLine(_pens[0], a, b);
+                            g.DrawEllipse(_pens.First(), meanPoints[p].X - meanMarkerSize/2, meanPoints[p].Y - meanMarkerSize/2, meanMarkerSize, meanMarkerSize);
                         }
                     }
                 }
@@ -375,7 +372,7 @@ namespace DataPlotter.DataPlotterUI
             if (_chartInfo.YVar != string.Empty) figureName += "X" + _chartInfo.YVar.RemoveWhiteSpaces();
             if (_chartInfo.YVar2 != string.Empty) figureName += "X" + _chartInfo.YVar2.RemoveWhiteSpaces() + $"({_chartInfo.YVar2Level.RemoveWhiteSpaces()})";
 
-            figureName = $@"C:\Users\Gauthier\Documents\DataPlotter\{figureName}.emf";
+            figureName = $@"C:\Users\User\Documents\DataPlotter\{figureName}.emf";
             MemoryStream ms = new MemoryStream();
             chart.SaveImage(ms, ImageFormat.Emf);
             ms.Seek(0, SeekOrigin.Begin);
