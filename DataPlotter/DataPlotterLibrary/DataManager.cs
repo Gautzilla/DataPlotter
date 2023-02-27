@@ -123,7 +123,7 @@ namespace DataPlotter.DataPlotterLibrary
         /// <param name="variableY">The variable which levels are plotted as separate lines (null if simple effect).</param>
         /// <param name="variableX">The variable to be plotted on the x axis.</param>
         /// <param name="logY">True is the Y-axis is logarithmic, false if it's linear.</param>
-        /// <param name="restrictionLevels">Additional levels that have to be taken into account, for plotting higher-than-2-factors interactions.</param>
+        /// <param name="variableY2">Additional levels that have to be taken into account, for plotting higher-than-2-factors interactions.</param>
         /// <returns>A list of lines, which contains the coordinates of the mean points accross subjects for a given interaction.</returns>
         public List<List<(string x, float y)>> MeanLine(string variableX, bool logY, string variableY, string variableY2)
         {
@@ -160,18 +160,26 @@ namespace DataPlotter.DataPlotterLibrary
             return (mean - standardError, mean + standardError);
         }
 
-        public List<(double intercept, double slope)> Regression (string variableX, bool logY, string variableY, string variableY2)
+        /// <summary>
+        /// Computes the power fitting functions of the lines.
+        /// </summary>
+        /// <param name="variableY">The variable which levels are plotted as separate lines (null if simple effect).</param>
+        /// <param name="variableX">The variable to be plotted on the x axis.</param>
+        /// <param name="logY">True is the Y-axis is logarithmic, false if it's linear.</param>
+        /// <param name="variableY2">Additional levels that have to be taken into account, for plotting higher-than-2-factors interactions.</param>
+        /// <returns>A list of functions depicting the y=k*x^b power functions.</returns>
+        /// <exception cref="InvalidDataException"></exception>
+        public List<Func<double, double>> Regression (string variableX, bool logY, string variableY, string variableY2)
         {
             if (!_variables.Single(v => v.Name == variableX).IsNum) throw new InvalidDataException("The X variable is qualitative: regression curves can't be computed.");
 
             List<List<(string x, float y)>> meanLine = MeanLine(variableX, logY, variableY, variableY2);
 
-            List<(double intercept, double slope)> output = meanLine
-                .Select(ml => ml.Select(point => (double.Parse(point.x), (double)point.y)))
-                .Select(ml => Fit.Power(ml.Select(m => m.Item1).ToArray(), ml.Select(m => m.Item2).ToArray()))
-                .ToList();
 
-            Console.WriteLine(String.Join("\n", output.Select(line => $"L = {line.intercept} * r^{line.slope}")));
+            List<Func<double, double>> output = meanLine
+                .Select(ml => ml.Select(point => (double.Parse(point.x), (double)point.y)))
+                .Select(ml => Fit.PowerFunc(ml.Select(m => m.Item1).ToArray(), ml.Select(m => m.Item2).ToArray()))
+                .ToList();
 
             return output;
         }
