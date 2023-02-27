@@ -175,13 +175,16 @@ namespace DataPlotter.DataPlotterLibrary
 
             List<List<(string x, float y)>> meanLine = MeanLine(variableX, logY, variableY, variableY2);
 
-
-            List<Func<double, double>> output = meanLine
+            if (logY)
+                return meanLine
                 .Select(ml => ml.Select(point => (double.Parse(point.x), (double)point.y)))
                 .Select(ml => Fit.PowerFunc(ml.Select(m => m.Item1).ToArray(), ml.Select(m => m.Item2).ToArray()))
                 .ToList();
 
-            return output;
+            return meanLine
+                .Select(ml => ml.Select(point => (double.Parse(point.x), (double)point.y)))
+                .Select(ml => Fit.LineFunc(ml.Select(m => m.Item1).ToArray(), ml.Select(m => m.Item2).ToArray()))
+                .ToList();
         }
     }
 }
