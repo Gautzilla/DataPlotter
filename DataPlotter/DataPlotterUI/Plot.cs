@@ -22,7 +22,7 @@ namespace DataPlotter.DataPlotterUI
         private static List<List<(string x, float y)>> _meanLines;
         private static List<Func<double, double>> _regressionFunc;
 
-        private static readonly float _lineWidth = 2f;
+        private static readonly float _lineWidth = 4f;
         private static readonly Pen[] _pens =
         {
             new Pen(Color.Black) { Width = _lineWidth },
@@ -32,7 +32,7 @@ namespace DataPlotter.DataPlotterUI
         };
 
         // TODO: User-defined font
-        private static readonly Font _font = new Font("Tahoma", 18);
+        private static readonly Font _font = new Font("Tahoma", 24);
 
 
         private static readonly float _xOffsetRatio = 0.02f; // Offset between each line
@@ -319,9 +319,11 @@ namespace DataPlotter.DataPlotterUI
             newL.Docking = chart.Legends.First().Docking;
             newL.Alignment = chart.Legends.First().Alignment;
 
+            int scale = 2;
 
-            int iw = 32; int iw2 = iw / 2; int ih = 18; int ih2 = ih / 2;
-            int ew = 5;
+
+            int iw = 32 * scale; int iw2 = iw / 2; int ih = 18 * scale; int ih2 = ih / 2;
+            int ew = 5 * scale;
 
             chart.ApplyPaletteColors();
             for (int line = 0; line < _meanLines.Count; line++)
