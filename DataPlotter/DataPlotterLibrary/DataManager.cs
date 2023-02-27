@@ -158,5 +158,7 @@ namespace DataPlotter.DataPlotterLibrary
             if (logY) return ((float)Math.Pow(10, mean - standardError), (float)Math.Pow(10, mean + standardError));
             return (mean - standardError, mean + standardError);
         }
+
+        
     }
 }
