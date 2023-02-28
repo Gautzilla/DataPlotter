@@ -118,7 +118,7 @@ namespace DataPlotter.DataPlotterUI
                 if (int.TryParse(point.x, out int xVal))
                 {
                     chart.Series[$"{lineName} sd"].Points.AddXY(xVal * (1 + _xOffset), 0, point.y.l, point.y.h);
-                }
+                 }
                 else
                 {
                     chart.Series[$"{lineName} sd"].Points.AddXY(x + _xOffset, 0, point.y.l, point.y.h);
@@ -176,18 +176,18 @@ namespace DataPlotter.DataPlotterUI
                         g.DrawLine(pen, meanPoints[p - 1], meanPoints[p]);
                     }
 
-                    if (_chartInfo.Regression)
+                    for (int p = 0; p < meanPoints.Count; p++)
                     {
-                        for (int p = 0; p < meanPoints.Count; p++)
-                        {
-                            int meanMarkerSize = 6;
+                        int meanMarkerSize = 6;
 
-                            Pen markerPen = (Pen)_pens.First().Clone(); // Solid line pen
-                            markerPen.Color = _pens[line].Color;
+                        Pen markerPen = (Pen)_pens.First().Clone(); // Solid line pen
+                        markerPen.Color = _pens[line].Color;
 
-                            g.DrawEllipse(markerPen, meanPoints[p].X - meanMarkerSize/2, meanPoints[p].Y - meanMarkerSize/2, meanMarkerSize, meanMarkerSize);
-                        }
+                        Rectangle meanMarkerPosition = new Rectangle(meanPoints[p].X - meanMarkerSize / 2, meanPoints[p].Y - meanMarkerSize / 2, meanMarkerSize, meanMarkerSize);
+
+                        g.DrawEllipse(markerPen, meanMarkerPosition);
                     }
+
                 }
                 else
                 {
@@ -324,9 +324,10 @@ namespace DataPlotter.DataPlotterUI
             int scale = 2;
 
 
-            int iw = 32 * scale; int iw2 = iw / 2; int ih = 18 * scale; int ih2 = ih / 2;
+            int iw = 32 * scale - 5; int iw2 = iw / 2; int ih = 18 * scale - 5; int ih2 = ih / 2;
             int ew = 5 * scale;
             int markerSize = 3 * scale;
+            int offset = 2;
 
             chart.ApplyPaletteColors();
             for (int line = 0; line < _meanLines.Count; line++)
@@ -339,10 +340,10 @@ namespace DataPlotter.DataPlotterUI
                 solidPen.Color = _pens[line].Color;
 
 
-                G.DrawLine(pen, 0, ih2, iw, ih2);
-                G.DrawLine(solidPen, iw2, 1, iw2, ih);
-                G.DrawLine(solidPen, iw2-ew, 0, iw2+ew, 0);
-                G.DrawLine(solidPen, iw2-ew, ih-1, iw2+ew, ih-1);
+                G.DrawLine(pen, 0, ih2, iw, ih2); // Data line
+                G.DrawLine(solidPen, iw2, 1 + offset, iw2, ih - offset); // ErrorBar vertical line
+                G.DrawLine(solidPen, iw2-ew, 0 + offset, iw2+ew, 0 + offset); // ErrorBar bottom line
+                G.DrawLine(solidPen, iw2-ew, ih-1 - offset, iw2+ew, ih-1 - offset); // ErrorBar top line
 
                 G.DrawEllipse(solidPen, iw2 - markerSize / 2, ih2 - markerSize / 2, markerSize, markerSize);
 
@@ -360,7 +361,7 @@ namespace DataPlotter.DataPlotterUI
             newL.IsDockedInsideChartArea = true;
             newL.DockedToChartArea = chart.ChartAreas.First().Name;
             // TODO: user-controlled docking position
-            newL.Docking = Docking.Right;
+            newL.Docking = Docking.Left;
             newL.Font = _font;
             newL.TableStyle = LegendTableStyle.Tall;
             newL.BorderWidth = 1;
