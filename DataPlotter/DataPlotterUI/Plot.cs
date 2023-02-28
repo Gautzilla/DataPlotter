@@ -25,9 +25,9 @@ namespace DataPlotter.DataPlotterUI
         private static readonly float _lineWidth = 3f;
         private static readonly Pen[] _pens =
         {
-            new Pen(Color.Black) { Width = _lineWidth },
-            new Pen(Color.Black){DashPattern = new float[]{ 1f, 2f } , Width = _lineWidth},
-            new Pen(Color.Black){DashPattern = new float[]{ 4f, 3f } , Width = _lineWidth},
+            new Pen(Color.DarkSlateGray) { Width = _lineWidth },
+            new Pen(Color.Salmon){DashPattern = new float[]{ 1f, 2f } , Width = _lineWidth},
+            new Pen(Color.CadetBlue){DashPattern = new float[]{ 4f, 3f } , Width = _lineWidth},
 
         };
 
@@ -129,10 +129,12 @@ namespace DataPlotter.DataPlotterUI
 
         private void ErrorBarDisplay()
         {
+            int iD = 0;
             foreach (var series in chart.Series)
             {
-                series.Color = Color.Black;
+                series.Color = _pens[iD].Color;
                 series.CustomProperties = "PixelPointWidth = 10";
+                iD++;
             }
         }
 
@@ -180,7 +182,10 @@ namespace DataPlotter.DataPlotterUI
                         {
                             int meanMarkerSize = 6;
 
-                            g.DrawEllipse(_pens.First(), meanPoints[p].X - meanMarkerSize/2, meanPoints[p].Y - meanMarkerSize/2, meanMarkerSize, meanMarkerSize);
+                            Pen markerPen = (Pen)_pens.First().Clone(); // Solid line pen
+                            markerPen.Color = _pens[line].Color;
+
+                            g.DrawEllipse(markerPen, meanPoints[p].X - meanMarkerSize/2, meanPoints[p].Y - meanMarkerSize/2, meanMarkerSize, meanMarkerSize);
                         }
                     }
                 }
@@ -330,7 +335,8 @@ namespace DataPlotter.DataPlotterUI
                 Bitmap bmp = new Bitmap(iw, ih);
                 Graphics G = Graphics.FromImage(bmp);
                 Pen pen = _pens[line];
-                Pen solidPen = _pens.First();
+                Pen solidPen = (Pen)_pens.First().Clone();
+                solidPen.Color = _pens[line].Color;
 
 
                 G.DrawLine(pen, 0, ih2, iw, ih2);
