@@ -321,6 +321,7 @@ namespace DataPlotter.DataPlotterUI
 
             int iw = 32 * scale; int iw2 = iw / 2; int ih = 18 * scale; int ih2 = ih / 2;
             int ew = 5 * scale;
+            int markerSize = 3 * scale;
 
             chart.ApplyPaletteColors();
             for (int line = 0; line < _meanLines.Count; line++)
@@ -336,6 +337,8 @@ namespace DataPlotter.DataPlotterUI
                 G.DrawLine(solidPen, iw2, 1, iw2, ih);
                 G.DrawLine(solidPen, iw2-ew, 0, iw2+ew, 0);
                 G.DrawLine(solidPen, iw2-ew, ih-1, iw2+ew, ih-1);
+
+                G.DrawEllipse(solidPen, iw2 - markerSize / 2, ih2 - markerSize / 2, markerSize, markerSize);
 
 
                 // add a new NamesImage
