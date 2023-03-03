@@ -178,11 +178,11 @@ namespace DataPlotter.DataPlotterUI
                 if (_chartInfo.TripleInteractionSamePlot)
                 {
                     lineStyle %= _data.GetLevels(_chartInfo.YVar).Count;
-                    linesToOffset %= _data.GetLevels(_chartInfo.YVar).Count;
+                    linesToOffset /= _data.GetLevels(_chartInfo.YVar2).Count;
                 }
 
                 Pen pen = _pens[lineStyle];
-
+                
                 _xOffset = LinesOffset(linesToOffset, lineStyle, _xOffsetRatio);
                 float x = 0;
 
