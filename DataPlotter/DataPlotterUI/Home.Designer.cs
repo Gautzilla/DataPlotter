@@ -73,6 +73,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.TextBox_yMinorTicksInterval = new System.Windows.Forms.TextBox();
             this.GroupBox_Variables = new System.Windows.Forms.GroupBox();
+            this.CheckBox_TripleInteractionSamePlot = new System.Windows.Forms.CheckBox();
             this.GroupBox_filesManager = new System.Windows.Forms.GroupBox();
             this.GroupBox_gridTicks = new System.Windows.Forms.GroupBox();
             this.GroupBox_axesParameters = new System.Windows.Forms.GroupBox();
@@ -551,6 +552,7 @@
             // 
             // GroupBox_Variables
             // 
+            this.GroupBox_Variables.Controls.Add(this.CheckBox_TripleInteractionSamePlot);
             this.GroupBox_Variables.Controls.Add(this.ListBox_xVar);
             this.GroupBox_Variables.Controls.Add(this.label_xVar);
             this.GroupBox_Variables.Controls.Add(this.label_yVar);
@@ -566,6 +568,18 @@
             this.GroupBox_Variables.TabIndex = 7;
             this.GroupBox_Variables.TabStop = false;
             this.GroupBox_Variables.Text = "Variables to plot";
+            // 
+            // CheckBox_TripleInteractionSamePlot
+            // 
+            this.CheckBox_TripleInteractionSamePlot.AutoSize = true;
+            this.CheckBox_TripleInteractionSamePlot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.CheckBox_TripleInteractionSamePlot.Location = new System.Drawing.Point(478, 131);
+            this.CheckBox_TripleInteractionSamePlot.Name = "CheckBox_TripleInteractionSamePlot";
+            this.CheckBox_TripleInteractionSamePlot.Size = new System.Drawing.Size(215, 23);
+            this.CheckBox_TripleInteractionSamePlot.TabIndex = 14;
+            this.CheckBox_TripleInteractionSamePlot.Text = "Same plot for all levels";
+            this.CheckBox_TripleInteractionSamePlot.UseVisualStyleBackColor = true;
+            this.CheckBox_TripleInteractionSamePlot.CheckedChanged += new System.EventHandler(this.CheckBox_TripleInteractionSamePlot_CheckedChanged);
             // 
             // GroupBox_filesManager
             // 
@@ -830,6 +844,7 @@
         private System.Windows.Forms.Button Btn_savePreset;
         private System.Windows.Forms.GroupBox GroupBox_plotParameters;
         private System.Windows.Forms.CheckBox CheckBox_regression;
+        private System.Windows.Forms.CheckBox CheckBox_TripleInteractionSamePlot;
     }
 }
 

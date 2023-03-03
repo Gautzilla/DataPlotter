@@ -335,5 +335,17 @@ namespace DataPlotter
 
             _chartInfo.Regression = regression.Checked;
         }
+
+        private void CheckBox_TripleInteractionSamePlot_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkBox = sender as CheckBox;
+
+            _chartInfo.TripleInteractionSamePlot = checkBox.Checked;
+
+            if (checkBox.Checked) ListBox_yVar2Levels.Items.Clear();
+            else UpdateYvar2LevelsListBox();
+            
+
+        }
     }
 }

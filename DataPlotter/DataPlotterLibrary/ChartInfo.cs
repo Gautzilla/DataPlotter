@@ -37,9 +37,10 @@ namespace DataPlotter.DataPlotterLibrary
         private (bool x, bool y) _IsAxisLog;
         private (List<float> x, List<float> y) _majorTicks = (new List<float>(), new List<float>());
         private (float x, float y) _minorTicksInterval = (0f, 0f);
-        private bool _regression;       
+        private bool _regression;
+        private bool _tripleInteractionSamePlot;
 
-
+        
         public string Name { get => _name; set => _name = value; }
         public (int w, int h) Size { get => _size; set => _size = value; }
         public (float min, float max) XRange { get => _xRange; set => _xRange = value; }
@@ -48,7 +49,7 @@ namespace DataPlotter.DataPlotterLibrary
         public (List<float> x, List<float> y) MajorTicks { get => _majorTicks; set => _majorTicks = value; }
         public (float x, float y) MinorTicksInterval { get => _minorTicksInterval; set => _minorTicksInterval = value; }
         public bool Regression { get => _regression;  set => _regression = value;  }
-
+        public bool TripleInteractionSamePlot { get => _tripleInteractionSamePlot; set => _tripleInteractionSamePlot = value; }
         #endregion
 
         public ChartInfo()
