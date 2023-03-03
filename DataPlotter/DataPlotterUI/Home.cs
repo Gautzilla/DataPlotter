@@ -114,7 +114,7 @@ namespace DataPlotter
         private void ListBox_yVar2_SelectedIndexChanged(object sender, EventArgs e)
         {
             _chartInfo.YVar2 = ListBox_yVar2.SelectedIndex == 0 ? String.Empty : ListBox_yVar2.SelectedItem.ToString();
-            UpdateYvar2LevelsListBox();
+            if (!_chartInfo.TripleInteractionSamePlot) UpdateYvar2LevelsListBox();
         }
 
         private void UpdateYvar2LevelsListBox()
@@ -334,6 +334,22 @@ namespace DataPlotter
             CheckBox regression = sender as CheckBox;
 
             _chartInfo.Regression = regression.Checked;
+        }
+
+        private void CheckBox_TripleInteractionSamePlot_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkBox = sender as CheckBox;
+
+            _chartInfo.TripleInteractionSamePlot = checkBox.Checked;
+
+            if (checkBox.Checked)
+            {
+                ListBox_yVar2Levels.Items.Clear();
+                _chartInfo.YVar2Level = String.Empty;
+            }
+            else UpdateYvar2LevelsListBox();
+            
+
         }
     }
 }
