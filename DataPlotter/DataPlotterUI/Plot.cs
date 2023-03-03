@@ -363,9 +363,7 @@ namespace DataPlotter.DataPlotterUI
             chart.ApplyPaletteColors();
 
             int legendItems = _meanLines.Count;
-            if (_chartInfo.TripleInteractionSamePlot) legendItems %= _data.GetLevels(_chartInfo.YVar).Count;
-
-            Console.WriteLine(_meanLines.Count + " lines.");
+            if (_chartInfo.TripleInteractionSamePlot) legendItems /= _data.GetLevels(_chartInfo.YVar2).Count;
 
             for (int legendItem = 0; legendItem < legendItems; legendItem++)
             {
