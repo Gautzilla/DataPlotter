@@ -409,12 +409,21 @@ namespace DataPlotter.DataPlotterUI
             _home.Show();
         }
 
+        /// <summary>
+        /// Saves the plot as an emf file.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void chart_Click(object sender, EventArgs e)
         {
             string figureName = _chartInfo.DepVarName.RemoveWhiteSpaces() + "_";
             figureName += _chartInfo.XVar.RemoveWhiteSpaces();
             if (_chartInfo.YVar != string.Empty) figureName += "X" + _chartInfo.YVar.RemoveWhiteSpaces();
-            if (_chartInfo.YVar2 != string.Empty) figureName += "X" + _chartInfo.YVar2.RemoveWhiteSpaces() + $"({_chartInfo.YVar2Level.RemoveWhiteSpaces()})";
+            if (_chartInfo.YVar2 != string.Empty)
+            {
+                figureName += "X" + _chartInfo.YVar2.RemoveWhiteSpaces();
+                if (!_chartInfo.TripleInteractionSamePlot) figureName += $"({_chartInfo.YVar2Level.RemoveWhiteSpaces()})";
+            }
 
             figureName = $@"C:\Users\User\Documents\DataPlotter\{figureName}.emf";
             MemoryStream ms = new MemoryStream();

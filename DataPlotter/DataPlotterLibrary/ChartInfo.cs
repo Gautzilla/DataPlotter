@@ -80,7 +80,7 @@ namespace DataPlotter.DataPlotterLibrary
             _majorTicks.y = param[7].Split(' ').Last().Length > 0 ? param[7].Split(' ').Last().Split('&').Select(t => float.Parse(t)).ToList() : new List<float>();
             _minorTicksInterval.y = param[8].Split(' ').Last().Length > 0 ? float.Parse(param[8].Split(' ').Last()) : 1;
 
-            _depVarName = param[9].Split(' ').Last();
+            _depVarName = String.Join(" ", param[9].Split(' ').Skip(1));
 
             float xMin = float.Parse(param[10].Split(' ').Last());
             float xMax = float.Parse(param[11].Split(' ').Last());
