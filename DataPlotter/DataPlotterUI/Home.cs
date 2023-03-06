@@ -274,6 +274,8 @@ namespace DataPlotter
             TextBox_chartHeight.Text = chartInfo.Size.h.ToString();
 
             // Grid ticks
+            ListBox_xMajorTicks.Items.Clear();
+            ListBox_yMajorTicks.Items.Clear();
             ListBox_xMajorTicks.Items.AddRange(chartInfo.MajorTicks.x.Select(x => x.ToString()).ToArray());
             ListBox_yMajorTicks.Items.AddRange(chartInfo.MajorTicks.y.Select(x => x.ToString()).ToArray());
             TextBox_xMinorTicksInterval.Text = chartInfo.MinorTicksInterval.x.ToString();
