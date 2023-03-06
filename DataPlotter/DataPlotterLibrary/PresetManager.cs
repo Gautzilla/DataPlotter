@@ -63,8 +63,10 @@ namespace DataPlotter.DataPlotterLibrary
             string yMax = "yMax: " + chart.YRange.max;
             string xLog = "xLog; " + chart.IsAxisLog.x;
             string yLog = "yLog; " + chart.IsAxisLog.y;
+            string regressionLine = "regressionLine; " + chart.Regression;
+            string samePlotAllLevels = "samePlot; " + chart.TripleInteractionSamePlot;
 
-            return string.Join("@", new string[] { dF, vars, name, width, height, xMajorTicks, xMinTick, yMajorTicks, yMinTick, depVar, xMin, xMax, yMin, yMax, xLog, yLog});
+            return string.Join("@", new string[] { dF, vars, name, width, height, xMajorTicks, xMinTick, yMajorTicks, yMinTick, depVar, xMin, xMax, yMin, yMax, xLog, yLog, regressionLine, samePlotAllLevels});
         }
         private static string WriteVariables(ChartInfo chart) => String.Join("*", new string[] { chart.XVar, chart.YVar, chart.YVar2, chart.YVar2Level }).TrimEnd('*');
 

@@ -268,28 +268,36 @@ namespace DataPlotter
 
         private void LoadChartInfos(ChartInfo chartInfo)
         {
+            _chartInfo = chartInfo;
+            UpdateGUI();
+        }
+
+        private void UpdateGUI()
+        {
             // Parameters
-            TextBox_chartName.Text = chartInfo.Name;
-            TextBox_chartWidth.Text = chartInfo.Size.w.ToString();
-            TextBox_chartHeight.Text = chartInfo.Size.h.ToString();
+            TextBox_chartName.Text = _chartInfo.Name;
+            TextBox_chartWidth.Text = _chartInfo.Size.w.ToString();
+            TextBox_chartHeight.Text = _chartInfo.Size.h.ToString();
+            CheckBox_TripleInteractionSamePlot.Checked = _chartInfo.TripleInteractionSamePlot;
+            CheckBox_regression.Checked = _chartInfo.Regression;
 
             // Grid ticks
-            ListBox_xMajorTicks.Items.AddRange(chartInfo.MajorTicks.x.Select(x => x.ToString()).ToArray());
-            ListBox_yMajorTicks.Items.AddRange(chartInfo.MajorTicks.y.Select(x => x.ToString()).ToArray());
-            TextBox_xMinorTicksInterval.Text = chartInfo.MinorTicksInterval.x.ToString();
-            TextBox_yMinorTicksInterval.Text = chartInfo.MinorTicksInterval.y.ToString();
+            ListBox_xMajorTicks.Items.Clear();
+            ListBox_yMajorTicks.Items.Clear();
+            ListBox_xMajorTicks.Items.AddRange(_chartInfo.MajorTicks.x.Select(x => x.ToString()).ToArray());
+            ListBox_yMajorTicks.Items.AddRange(_chartInfo.MajorTicks.y.Select(x => x.ToString()).ToArray());
+            TextBox_xMinorTicksInterval.Text = _chartInfo.MinorTicksInterval.x.ToString();
+            TextBox_yMinorTicksInterval.Text = _chartInfo.MinorTicksInterval.y.ToString();
 
             // Axes parameters
-            TextBox_depVarName.Text = chartInfo.DepVarName;
-            TextBox_xMin.Text = chartInfo.XRange.min.ToString();
-            TextBox_xMax.Text = chartInfo.XRange.max.ToString();
-            TextBox_yMin.Text = chartInfo.YRange.min.ToString();
-            TextBox_yMax.Text = chartInfo.YRange.max.ToString();
-            CheckBox_isXLog.Checked = chartInfo.IsAxisLog.x;
-            CheckBox_isYLog.Checked = chartInfo.IsAxisLog.y;
-            CheckBox_isDepVarNum.Checked = chartInfo.IsDepVarNum;
-
-            _chartInfo = chartInfo;
+            TextBox_depVarName.Text = _chartInfo.DepVarName;
+            TextBox_xMin.Text = _chartInfo.XRange.min.ToString();
+            TextBox_xMax.Text = _chartInfo.XRange.max.ToString();
+            TextBox_yMin.Text = _chartInfo.YRange.min.ToString();
+            TextBox_yMax.Text = _chartInfo.YRange.max.ToString();
+            CheckBox_isXLog.Checked = _chartInfo.IsAxisLog.x;
+            CheckBox_isYLog.Checked = _chartInfo.IsAxisLog.y;
+            CheckBox_isDepVarNum.Checked = _chartInfo.IsDepVarNum;
         }
 
         private void Btn_plot_Click(object sender, EventArgs e)
