@@ -92,7 +92,10 @@ namespace DataPlotter.DataPlotterLibrary
 
             _IsAxisLog.x = param[14].Split(' ').Last() == "True";
             _IsAxisLog.y = param[15].Split(' ').Last() == "True";
-        }
-        
+
+            _regression = param[16].Split(' ').Last() == "True";
+
+            _tripleInteractionSamePlot = param[17].Split(' ').Last() == "True";
+        }        
     }
 }
