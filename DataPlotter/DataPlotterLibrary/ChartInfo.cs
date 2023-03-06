@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace DataPlotter.DataPlotterLibrary
 {
@@ -39,8 +40,10 @@ namespace DataPlotter.DataPlotterLibrary
         private (float x, float y) _minorTicksInterval = (0f, 0f);
         private bool _regression;
         private bool _tripleInteractionSamePlot;
+        private Docking _legendDocking;
 
-        
+
+
         public string Name { get => _name; set => _name = value; }
         public (int w, int h) Size { get => _size; set => _size = value; }
         public (float min, float max) XRange { get => _xRange; set => _xRange = value; }
@@ -50,6 +53,8 @@ namespace DataPlotter.DataPlotterLibrary
         public (float x, float y) MinorTicksInterval { get => _minorTicksInterval; set => _minorTicksInterval = value; }
         public bool Regression { get => _regression;  set => _regression = value;  }
         public bool TripleInteractionSamePlot { get => _tripleInteractionSamePlot; set => _tripleInteractionSamePlot = value; }
+        public Docking LegendDocking { get => _legendDocking; set => _legendDocking = value; }
+
         #endregion
 
         public ChartInfo()

@@ -395,7 +395,7 @@ namespace DataPlotter.DataPlotterUI
             newL.IsDockedInsideChartArea = true;
             newL.DockedToChartArea = chart.ChartAreas.First().Name;
             // TODO: user-controlled docking position
-            newL.Docking = Docking.Left;
+            newL.Docking = _chartInfo.LegendDocking;
             newL.Font = _font;
             newL.TableStyle = LegendTableStyle.Tall;
             newL.BorderWidth = 1;

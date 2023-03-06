@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataPlotter.DataPlotterLibrary;
 using DataPlotter.DataPlotterUI;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace DataPlotter
 {
@@ -359,5 +360,43 @@ namespace DataPlotter
             
 
         }
+
+        #region LegendButtons
+
+        private void Btn_legendTopLeft_Click(object sender, EventArgs e)
+        {
+            _chartInfo.LegendDocking = Docking.Left;
+            SetLegendButtonColors(sender as Button);
+        }
+
+        private void Btn_legendTopRight_Click(object sender, EventArgs e)
+        {
+            _chartInfo.LegendDocking = Docking.Right;
+            SetLegendButtonColors(sender as Button);
+        }
+
+        private void Btn_legendBottomLeft_Click(object sender, EventArgs e)
+        {
+            _chartInfo.LegendDocking = Docking.Bottom;
+            SetLegendButtonColors(sender as Button);
+        }
+
+        private void Btn_legendBottomRight_Click(object sender, EventArgs e)
+        {
+            _chartInfo.LegendDocking = Docking.Top;
+            SetLegendButtonColors(sender as Button);
+        }
+
+        private void SetLegendButtonColors(Button litButton)
+        {
+            Button[] legendButtons = { Btn_legendTopLeft, Btn_legendTopRight, Btn_legendBottomLeft, Btn_legendBottomRight };
+            
+            Color litColor = Color.FromArgb(162, 123, 92);
+            Color unlitColor = Color.FromArgb(63, 78, 79);
+
+            foreach (Button button in legendButtons) button.BackColor = button == litButton ? litColor : unlitColor;       
+        }
+
+        #endregion
     }
 }
