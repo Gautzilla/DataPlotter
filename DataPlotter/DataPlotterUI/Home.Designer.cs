@@ -505,6 +505,7 @@
             this.Btn_infoFilePath.TabIndex = 2;
             this.Btn_infoFilePath.Text = "Info File";
             this.Btn_infoFilePath.UseVisualStyleBackColor = false;
+            this.Btn_infoFilePath.EnabledChanged += new System.EventHandler(this.Btn_infoFilePath_EnabledChanged);
             this.Btn_infoFilePath.Click += new System.EventHandler(this.Btn_infoFilePath_Click);
             // 
             // TextBox_xMinorTicksInterval
