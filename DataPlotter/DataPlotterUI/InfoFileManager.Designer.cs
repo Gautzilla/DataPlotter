@@ -29,43 +29,73 @@
         private void InitializeComponent()
         {
             this.GroupBox_dependentVariable = new System.Windows.Forms.GroupBox();
+            this.TextBox_depVarUnit = new System.Windows.Forms.TextBox();
+            this.Label_depVarUnit = new System.Windows.Forms.Label();
             this.ComboBox_depVarType = new System.Windows.Forms.ComboBox();
             this.TextBox_depVarName = new System.Windows.Forms.TextBox();
             this.Label_depVarName = new System.Windows.Forms.Label();
             this.Label_depVarType = new System.Windows.Forms.Label();
             this.GroupBox_independentVariables = new System.Windows.Forms.GroupBox();
-            this.ListBox_indepVar = new System.Windows.Forms.ListBox();
-            this.Btn_addIndepVar = new System.Windows.Forms.Button();
-            this.Btn_removeIndepVar = new System.Windows.Forms.Button();
-            this.TextBox_indepVarName = new System.Windows.Forms.TextBox();
-            this.Label_indepVarName = new System.Windows.Forms.Label();
-            this.ComboBox_indepVarType = new System.Windows.Forms.ComboBox();
-            this.Label_indepVarType = new System.Windows.Forms.Label();
-            this.TextBox_indepVarUnit = new System.Windows.Forms.TextBox();
-            this.Label_indepVarUnit = new System.Windows.Forms.Label();
+            this.Label_indepVarLevels = new System.Windows.Forms.Label();
             this.Btn_addIndepVarLevel = new System.Windows.Forms.Button();
             this.Btn_removeIndepVarLevel = new System.Windows.Forms.Button();
             this.ListBox_indepVarLevels = new System.Windows.Forms.ListBox();
-            this.Label_indepVarLevels = new System.Windows.Forms.Label();
+            this.TextBox_indepVarUnit = new System.Windows.Forms.TextBox();
+            this.Label_indepVarUnit = new System.Windows.Forms.Label();
+            this.ComboBox_indepVarType = new System.Windows.Forms.ComboBox();
+            this.Label_indepVarType = new System.Windows.Forms.Label();
+            this.TextBox_indepVarName = new System.Windows.Forms.TextBox();
+            this.Label_indepVarName = new System.Windows.Forms.Label();
+            this.Btn_addIndepVar = new System.Windows.Forms.Button();
+            this.Btn_removeIndepVar = new System.Windows.Forms.Button();
+            this.ListBox_indepVar = new System.Windows.Forms.ListBox();
+            this.GroupBox_file = new System.Windows.Forms.GroupBox();
+            this.Btn_saveInfoFile = new System.Windows.Forms.Button();
+            this.Btn_loadInfoFile = new System.Windows.Forms.Button();
+            this.OpenFileDialog_infoFile = new System.Windows.Forms.OpenFileDialog();
             this.GroupBox_dependentVariable.SuspendLayout();
             this.GroupBox_independentVariables.SuspendLayout();
+            this.GroupBox_file.SuspendLayout();
             this.SuspendLayout();
             // 
             // GroupBox_dependentVariable
             // 
+            this.GroupBox_dependentVariable.Controls.Add(this.TextBox_depVarUnit);
+            this.GroupBox_dependentVariable.Controls.Add(this.Label_depVarUnit);
             this.GroupBox_dependentVariable.Controls.Add(this.ComboBox_depVarType);
             this.GroupBox_dependentVariable.Controls.Add(this.TextBox_depVarName);
             this.GroupBox_dependentVariable.Controls.Add(this.Label_depVarName);
             this.GroupBox_dependentVariable.Controls.Add(this.Label_depVarType);
             this.GroupBox_dependentVariable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.GroupBox_dependentVariable.Location = new System.Drawing.Point(14, 13);
+            this.GroupBox_dependentVariable.Location = new System.Drawing.Point(134, 13);
             this.GroupBox_dependentVariable.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.GroupBox_dependentVariable.Name = "GroupBox_dependentVariable";
             this.GroupBox_dependentVariable.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.GroupBox_dependentVariable.Size = new System.Drawing.Size(313, 119);
+            this.GroupBox_dependentVariable.Size = new System.Drawing.Size(456, 119);
             this.GroupBox_dependentVariable.TabIndex = 9;
             this.GroupBox_dependentVariable.TabStop = false;
             this.GroupBox_dependentVariable.Text = "Dependent Variable";
+            // 
+            // TextBox_depVarUnit
+            // 
+            this.TextBox_depVarUnit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.TextBox_depVarUnit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.TextBox_depVarUnit.Location = new System.Drawing.Point(244, 77);
+            this.TextBox_depVarUnit.Name = "TextBox_depVarUnit";
+            this.TextBox_depVarUnit.Size = new System.Drawing.Size(204, 27);
+            this.TextBox_depVarUnit.TabIndex = 13;
+            // 
+            // Label_depVarUnit
+            // 
+            this.Label_depVarUnit.AutoSize = true;
+            this.Label_depVarUnit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.Label_depVarUnit.Location = new System.Drawing.Point(193, 80);
+            this.Label_depVarUnit.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.Label_depVarUnit.Name = "Label_depVarUnit";
+            this.Label_depVarUnit.Size = new System.Drawing.Size(43, 19);
+            this.Label_depVarUnit.TabIndex = 12;
+            this.Label_depVarUnit.Text = "Unit";
+            this.Label_depVarUnit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ComboBox_depVarType
             // 
@@ -78,25 +108,25 @@
             "Linear",
             "Logarithmic",
             "Qualitative"});
-            this.ComboBox_depVarType.Location = new System.Drawing.Point(74, 80);
+            this.ComboBox_depVarType.Location = new System.Drawing.Point(74, 74);
             this.ComboBox_depVarType.Name = "ComboBox_depVarType";
-            this.ComboBox_depVarType.Size = new System.Drawing.Size(232, 27);
+            this.ComboBox_depVarType.Size = new System.Drawing.Size(98, 27);
             this.ComboBox_depVarType.TabIndex = 11;
             // 
             // TextBox_depVarName
             // 
             this.TextBox_depVarName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_depVarName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_depVarName.Location = new System.Drawing.Point(74, 39);
+            this.TextBox_depVarName.Location = new System.Drawing.Point(74, 41);
             this.TextBox_depVarName.Name = "TextBox_depVarName";
-            this.TextBox_depVarName.Size = new System.Drawing.Size(232, 27);
+            this.TextBox_depVarName.Size = new System.Drawing.Size(374, 27);
             this.TextBox_depVarName.TabIndex = 10;
             // 
             // Label_depVarName
             // 
             this.Label_depVarName.AutoSize = true;
             this.Label_depVarName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_depVarName.Location = new System.Drawing.Point(10, 42);
+            this.Label_depVarName.Location = new System.Drawing.Point(10, 44);
             this.Label_depVarName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.Label_depVarName.Name = "Label_depVarName";
             this.Label_depVarName.Size = new System.Drawing.Size(56, 19);
@@ -108,7 +138,7 @@
             // 
             this.Label_depVarType.AutoSize = true;
             this.Label_depVarType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_depVarType.Location = new System.Drawing.Point(10, 83);
+            this.Label_depVarType.Location = new System.Drawing.Point(10, 77);
             this.Label_depVarType.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.Label_depVarType.Name = "Label_depVarType";
             this.Label_depVarType.Size = new System.Drawing.Size(49, 19);
@@ -140,107 +170,16 @@
             this.GroupBox_independentVariables.TabStop = false;
             this.GroupBox_independentVariables.Text = "Independent Variables";
             // 
-            // ListBox_indepVar
+            // Label_indepVarLevels
             // 
-            this.ListBox_indepVar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
-            this.ListBox_indepVar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.ListBox_indepVar.FormattingEnabled = true;
-            this.ListBox_indepVar.ItemHeight = 19;
-            this.ListBox_indepVar.Location = new System.Drawing.Point(50, 46);
-            this.ListBox_indepVar.Name = "ListBox_indepVar";
-            this.ListBox_indepVar.Size = new System.Drawing.Size(186, 232);
-            this.ListBox_indepVar.TabIndex = 5;
-            // 
-            // Btn_addIndepVar
-            // 
-            this.Btn_addIndepVar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
-            this.Btn_addIndepVar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.Btn_addIndepVar.Location = new System.Drawing.Point(14, 46);
-            this.Btn_addIndepVar.Name = "Btn_addIndepVar";
-            this.Btn_addIndepVar.Size = new System.Drawing.Size(30, 30);
-            this.Btn_addIndepVar.TabIndex = 6;
-            this.Btn_addIndepVar.Text = "+";
-            this.Btn_addIndepVar.UseVisualStyleBackColor = false;
-            // 
-            // Btn_removeIndepVar
-            // 
-            this.Btn_removeIndepVar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
-            this.Btn_removeIndepVar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.Btn_removeIndepVar.Location = new System.Drawing.Point(14, 82);
-            this.Btn_removeIndepVar.Name = "Btn_removeIndepVar";
-            this.Btn_removeIndepVar.Size = new System.Drawing.Size(30, 30);
-            this.Btn_removeIndepVar.TabIndex = 7;
-            this.Btn_removeIndepVar.Text = "-";
-            this.Btn_removeIndepVar.UseVisualStyleBackColor = false;
-            // 
-            // TextBox_indepVarName
-            // 
-            this.TextBox_indepVarName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
-            this.TextBox_indepVarName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_indepVarName.Location = new System.Drawing.Point(317, 46);
-            this.TextBox_indepVarName.Name = "TextBox_indepVarName";
-            this.TextBox_indepVarName.Size = new System.Drawing.Size(251, 27);
-            this.TextBox_indepVarName.TabIndex = 13;
-            // 
-            // Label_indepVarName
-            // 
-            this.Label_indepVarName.AutoSize = true;
-            this.Label_indepVarName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_indepVarName.Location = new System.Drawing.Point(249, 49);
-            this.Label_indepVarName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.Label_indepVarName.Name = "Label_indepVarName";
-            this.Label_indepVarName.Size = new System.Drawing.Size(56, 19);
-            this.Label_indepVarName.TabIndex = 12;
-            this.Label_indepVarName.Text = "Name";
-            this.Label_indepVarName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ComboBox_indepVarType
-            // 
-            this.ComboBox_indepVarType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(54)))), ((int)(((byte)(57)))));
-            this.ComboBox_indepVarType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBox_indepVarType.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.ComboBox_indepVarType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.ComboBox_indepVarType.FormattingEnabled = true;
-            this.ComboBox_indepVarType.Items.AddRange(new object[] {
-            "Linear",
-            "Logarithmic",
-            "Qualitative"});
-            this.ComboBox_indepVarType.Location = new System.Drawing.Point(317, 85);
-            this.ComboBox_indepVarType.Name = "ComboBox_indepVarType";
-            this.ComboBox_indepVarType.Size = new System.Drawing.Size(251, 27);
-            this.ComboBox_indepVarType.TabIndex = 13;
-            // 
-            // Label_indepVarType
-            // 
-            this.Label_indepVarType.AutoSize = true;
-            this.Label_indepVarType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_indepVarType.Location = new System.Drawing.Point(249, 88);
-            this.Label_indepVarType.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.Label_indepVarType.Name = "Label_indepVarType";
-            this.Label_indepVarType.Size = new System.Drawing.Size(49, 19);
-            this.Label_indepVarType.TabIndex = 12;
-            this.Label_indepVarType.Text = "Type";
-            // 
-            // TextBox_indepVarUnit
-            // 
-            this.TextBox_indepVarUnit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
-            this.TextBox_indepVarUnit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_indepVarUnit.Location = new System.Drawing.Point(317, 251);
-            this.TextBox_indepVarUnit.Name = "TextBox_indepVarUnit";
-            this.TextBox_indepVarUnit.Size = new System.Drawing.Size(251, 27);
-            this.TextBox_indepVarUnit.TabIndex = 15;
-            // 
-            // Label_indepVarUnit
-            // 
-            this.Label_indepVarUnit.AutoSize = true;
-            this.Label_indepVarUnit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_indepVarUnit.Location = new System.Drawing.Point(249, 254);
-            this.Label_indepVarUnit.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.Label_indepVarUnit.Name = "Label_indepVarUnit";
-            this.Label_indepVarUnit.Size = new System.Drawing.Size(43, 19);
-            this.Label_indepVarUnit.TabIndex = 14;
-            this.Label_indepVarUnit.Text = "Unit";
-            this.Label_indepVarUnit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Label_indepVarLevels.AutoSize = true;
+            this.Label_indepVarLevels.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.Label_indepVarLevels.Location = new System.Drawing.Point(249, 132);
+            this.Label_indepVarLevels.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.Label_indepVarLevels.Name = "Label_indepVarLevels";
+            this.Label_indepVarLevels.Size = new System.Drawing.Size(60, 19);
+            this.Label_indepVarLevels.TabIndex = 19;
+            this.Label_indepVarLevels.Text = "Levels";
             // 
             // Btn_addIndepVarLevel
             // 
@@ -275,16 +214,148 @@
             this.ListBox_indepVarLevels.Size = new System.Drawing.Size(251, 99);
             this.ListBox_indepVarLevels.TabIndex = 16;
             // 
-            // Label_indepVarLevels
+            // TextBox_indepVarUnit
             // 
-            this.Label_indepVarLevels.AutoSize = true;
-            this.Label_indepVarLevels.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_indepVarLevels.Location = new System.Drawing.Point(249, 132);
-            this.Label_indepVarLevels.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.Label_indepVarLevels.Name = "Label_indepVarLevels";
-            this.Label_indepVarLevels.Size = new System.Drawing.Size(60, 19);
-            this.Label_indepVarLevels.TabIndex = 19;
-            this.Label_indepVarLevels.Text = "Levels";
+            this.TextBox_indepVarUnit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.TextBox_indepVarUnit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.TextBox_indepVarUnit.Location = new System.Drawing.Point(317, 251);
+            this.TextBox_indepVarUnit.Name = "TextBox_indepVarUnit";
+            this.TextBox_indepVarUnit.Size = new System.Drawing.Size(251, 27);
+            this.TextBox_indepVarUnit.TabIndex = 15;
+            // 
+            // Label_indepVarUnit
+            // 
+            this.Label_indepVarUnit.AutoSize = true;
+            this.Label_indepVarUnit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.Label_indepVarUnit.Location = new System.Drawing.Point(249, 254);
+            this.Label_indepVarUnit.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.Label_indepVarUnit.Name = "Label_indepVarUnit";
+            this.Label_indepVarUnit.Size = new System.Drawing.Size(43, 19);
+            this.Label_indepVarUnit.TabIndex = 14;
+            this.Label_indepVarUnit.Text = "Unit";
+            this.Label_indepVarUnit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ComboBox_indepVarType
+            // 
+            this.ComboBox_indepVarType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(54)))), ((int)(((byte)(57)))));
+            this.ComboBox_indepVarType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBox_indepVarType.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ComboBox_indepVarType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.ComboBox_indepVarType.FormattingEnabled = true;
+            this.ComboBox_indepVarType.Items.AddRange(new object[] {
+            "Linear",
+            "Logarithmic",
+            "Qualitative"});
+            this.ComboBox_indepVarType.Location = new System.Drawing.Point(317, 85);
+            this.ComboBox_indepVarType.Name = "ComboBox_indepVarType";
+            this.ComboBox_indepVarType.Size = new System.Drawing.Size(251, 27);
+            this.ComboBox_indepVarType.TabIndex = 13;
+            // 
+            // Label_indepVarType
+            // 
+            this.Label_indepVarType.AutoSize = true;
+            this.Label_indepVarType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.Label_indepVarType.Location = new System.Drawing.Point(249, 88);
+            this.Label_indepVarType.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.Label_indepVarType.Name = "Label_indepVarType";
+            this.Label_indepVarType.Size = new System.Drawing.Size(49, 19);
+            this.Label_indepVarType.TabIndex = 12;
+            this.Label_indepVarType.Text = "Type";
+            // 
+            // TextBox_indepVarName
+            // 
+            this.TextBox_indepVarName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.TextBox_indepVarName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.TextBox_indepVarName.Location = new System.Drawing.Point(317, 46);
+            this.TextBox_indepVarName.Name = "TextBox_indepVarName";
+            this.TextBox_indepVarName.Size = new System.Drawing.Size(251, 27);
+            this.TextBox_indepVarName.TabIndex = 13;
+            // 
+            // Label_indepVarName
+            // 
+            this.Label_indepVarName.AutoSize = true;
+            this.Label_indepVarName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.Label_indepVarName.Location = new System.Drawing.Point(249, 49);
+            this.Label_indepVarName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.Label_indepVarName.Name = "Label_indepVarName";
+            this.Label_indepVarName.Size = new System.Drawing.Size(56, 19);
+            this.Label_indepVarName.TabIndex = 12;
+            this.Label_indepVarName.Text = "Name";
+            this.Label_indepVarName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Btn_addIndepVar
+            // 
+            this.Btn_addIndepVar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.Btn_addIndepVar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.Btn_addIndepVar.Location = new System.Drawing.Point(14, 46);
+            this.Btn_addIndepVar.Name = "Btn_addIndepVar";
+            this.Btn_addIndepVar.Size = new System.Drawing.Size(30, 30);
+            this.Btn_addIndepVar.TabIndex = 6;
+            this.Btn_addIndepVar.Text = "+";
+            this.Btn_addIndepVar.UseVisualStyleBackColor = false;
+            // 
+            // Btn_removeIndepVar
+            // 
+            this.Btn_removeIndepVar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.Btn_removeIndepVar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.Btn_removeIndepVar.Location = new System.Drawing.Point(14, 82);
+            this.Btn_removeIndepVar.Name = "Btn_removeIndepVar";
+            this.Btn_removeIndepVar.Size = new System.Drawing.Size(30, 30);
+            this.Btn_removeIndepVar.TabIndex = 7;
+            this.Btn_removeIndepVar.Text = "-";
+            this.Btn_removeIndepVar.UseVisualStyleBackColor = false;
+            // 
+            // ListBox_indepVar
+            // 
+            this.ListBox_indepVar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.ListBox_indepVar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.ListBox_indepVar.FormattingEnabled = true;
+            this.ListBox_indepVar.ItemHeight = 19;
+            this.ListBox_indepVar.Location = new System.Drawing.Point(50, 46);
+            this.ListBox_indepVar.Name = "ListBox_indepVar";
+            this.ListBox_indepVar.Size = new System.Drawing.Size(186, 232);
+            this.ListBox_indepVar.TabIndex = 5;
+            // 
+            // GroupBox_file
+            // 
+            this.GroupBox_file.Controls.Add(this.Btn_saveInfoFile);
+            this.GroupBox_file.Controls.Add(this.Btn_loadInfoFile);
+            this.GroupBox_file.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.GroupBox_file.Location = new System.Drawing.Point(14, 13);
+            this.GroupBox_file.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.GroupBox_file.Name = "GroupBox_file";
+            this.GroupBox_file.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.GroupBox_file.Size = new System.Drawing.Size(110, 119);
+            this.GroupBox_file.TabIndex = 12;
+            this.GroupBox_file.TabStop = false;
+            this.GroupBox_file.Text = "File";
+            // 
+            // Btn_saveInfoFile
+            // 
+            this.Btn_saveInfoFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.Btn_saveInfoFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.Btn_saveInfoFile.Location = new System.Drawing.Point(8, 44);
+            this.Btn_saveInfoFile.Name = "Btn_saveInfoFile";
+            this.Btn_saveInfoFile.Size = new System.Drawing.Size(95, 30);
+            this.Btn_saveInfoFile.TabIndex = 4;
+            this.Btn_saveInfoFile.Text = "Save";
+            this.Btn_saveInfoFile.UseVisualStyleBackColor = false;
+            // 
+            // Btn_loadInfoFile
+            // 
+            this.Btn_loadInfoFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.Btn_loadInfoFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.Btn_loadInfoFile.Location = new System.Drawing.Point(8, 80);
+            this.Btn_loadInfoFile.Name = "Btn_loadInfoFile";
+            this.Btn_loadInfoFile.Size = new System.Drawing.Size(95, 30);
+            this.Btn_loadInfoFile.TabIndex = 3;
+            this.Btn_loadInfoFile.Text = "Load";
+            this.Btn_loadInfoFile.UseVisualStyleBackColor = false;
+            this.Btn_loadInfoFile.Click += new System.EventHandler(this.Btn_loadInfoFile_Click);
+            // 
+            // OpenFileDialog_infoFile
+            // 
+            this.OpenFileDialog_infoFile.FileName = "openFileDialog1";
             // 
             // InfoFileManager
             // 
@@ -292,6 +363,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(54)))), ((int)(((byte)(57)))));
             this.ClientSize = new System.Drawing.Size(614, 452);
+            this.Controls.Add(this.GroupBox_file);
             this.Controls.Add(this.GroupBox_independentVariables);
             this.Controls.Add(this.GroupBox_dependentVariable);
             this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
@@ -303,6 +375,7 @@
             this.GroupBox_dependentVariable.PerformLayout();
             this.GroupBox_independentVariables.ResumeLayout(false);
             this.GroupBox_independentVariables.PerformLayout();
+            this.GroupBox_file.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -328,5 +401,11 @@
         private System.Windows.Forms.ListBox ListBox_indepVarLevels;
         private System.Windows.Forms.TextBox TextBox_indepVarUnit;
         private System.Windows.Forms.Label Label_indepVarUnit;
+        private System.Windows.Forms.GroupBox GroupBox_file;
+        private System.Windows.Forms.Button Btn_saveInfoFile;
+        private System.Windows.Forms.Button Btn_loadInfoFile;
+        private System.Windows.Forms.OpenFileDialog OpenFileDialog_infoFile;
+        private System.Windows.Forms.TextBox TextBox_depVarUnit;
+        private System.Windows.Forms.Label Label_depVarUnit;
     }
 }

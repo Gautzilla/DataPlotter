@@ -72,6 +72,13 @@ namespace DataPlotter.DataPlotterLibrary
             IsNum = isNum;
         }
 
+        public DependantVariable(string name, bool isNum, string unit)
+        {
+            Name = name;
+            IsNum = isNum;
+            Unit = unit;
+        }
+
         public DependantVariable(string name, bool isNum, bool isLog, string unit)
         {
             Name = name;
