@@ -411,5 +411,12 @@ namespace DataPlotter
 
             btn.ForeColor = btn.Enabled ? enabledColor : unabledColor;
         }
+
+        private void Btn_manageInfoFile_Click(object sender, EventArgs e)
+        {
+            InfoFileManager infoFileManager = new InfoFileManager();
+
+            infoFileManager.Show();
+        }
     }
 }
