@@ -116,7 +116,7 @@
             // 
             this.Btn_dataFilePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.Btn_dataFilePath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.Btn_dataFilePath.Location = new System.Drawing.Point(130, 18);
+            this.Btn_dataFilePath.Location = new System.Drawing.Point(6, 26);
             this.Btn_dataFilePath.Name = "Btn_dataFilePath";
             this.Btn_dataFilePath.Size = new System.Drawing.Size(95, 30);
             this.Btn_dataFilePath.TabIndex = 2;
@@ -128,12 +128,13 @@
             // 
             this.label_dataPath.AutoSize = true;
             this.label_dataPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.label_dataPath.Location = new System.Drawing.Point(107, 51);
+            this.label_dataPath.Location = new System.Drawing.Point(107, 31);
             this.label_dataPath.Name = "label_dataPath";
             this.label_dataPath.Size = new System.Drawing.Size(133, 19);
             this.label_dataPath.TabIndex = 3;
             this.label_dataPath.Text = "No loaded data";
             this.label_dataPath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_dataPath.Click += new System.EventHandler(this.label_dataPath_Click);
             // 
             // Btn_addXMajorTick
             // 

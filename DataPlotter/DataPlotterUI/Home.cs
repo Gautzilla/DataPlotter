@@ -418,5 +418,10 @@ namespace DataPlotter
 
             infoFileManager.Show();
         }
+
+        private void label_dataPath_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
