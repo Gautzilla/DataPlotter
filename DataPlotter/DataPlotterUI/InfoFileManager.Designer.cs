@@ -315,6 +315,7 @@
             this.ListBox_indepVar.Name = "ListBox_indepVar";
             this.ListBox_indepVar.Size = new System.Drawing.Size(186, 232);
             this.ListBox_indepVar.TabIndex = 5;
+            this.ListBox_indepVar.SelectedIndexChanged += new System.EventHandler(this.ListBox_indepVar_SelectedIndexChanged);
             // 
             // GroupBox_file
             // 

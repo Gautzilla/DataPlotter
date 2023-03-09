@@ -96,5 +96,20 @@ namespace DataPlotter.DataPlotterUI
 
             ListBox_indepVar.Items.AddRange(independantVariables.Select(var => var.Name).ToArray());
         }
+
+        private void ListBox_indepVar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListBox listBox = sender as ListBox;
+            string selectedVarName = listBox.SelectedItem.ToString();
+
+            IndependantVariable independantVariable = independantVariables.Single(var => var.Name == selectedVarName);
+        
+            TextBox_indepVarName.Text = independantVariable.Name;
+            ComboBox_indepVarType.SelectedIndex = ComboBox_depVarType.Items.IndexOf(independantVariable.IsNum ? (independantVariable.IsLog ? "Logarithmic" : "Linear") : "Qualitative");
+            TextBox_indepVarUnit.Text = independantVariable.Unit;
+
+            ListBox_indepVarLevels.Items.Clear();
+            ListBox_indepVarLevels.Items.AddRange(independantVariable.Levels);
+        }
     }
 }

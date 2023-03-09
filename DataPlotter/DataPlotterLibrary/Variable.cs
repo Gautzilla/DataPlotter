@@ -13,6 +13,7 @@ namespace DataPlotter.DataPlotterLibrary
         private bool isLog;
         private string unit;
 
+
         public string Name
         {
             get { return name; }
