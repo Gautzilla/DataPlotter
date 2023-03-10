@@ -85,6 +85,7 @@
             this.TextBox_depVarUnit.Name = "TextBox_depVarUnit";
             this.TextBox_depVarUnit.Size = new System.Drawing.Size(204, 27);
             this.TextBox_depVarUnit.TabIndex = 13;
+            this.TextBox_depVarUnit.TextChanged += new System.EventHandler(this.TextBox_depVarUnit_TextChanged);
             // 
             // Label_depVarUnit
             // 
@@ -113,6 +114,7 @@
             this.ComboBox_depVarType.Name = "ComboBox_depVarType";
             this.ComboBox_depVarType.Size = new System.Drawing.Size(98, 27);
             this.ComboBox_depVarType.TabIndex = 11;
+            this.ComboBox_depVarType.SelectedIndexChanged += new System.EventHandler(this.ComboBox_depVarType_SelectedIndexChanged);
             // 
             // TextBox_depVarName
             // 
@@ -122,6 +124,7 @@
             this.TextBox_depVarName.Name = "TextBox_depVarName";
             this.TextBox_depVarName.Size = new System.Drawing.Size(374, 27);
             this.TextBox_depVarName.TabIndex = 10;
+            this.TextBox_depVarName.TextChanged += new System.EventHandler(this.TextBox_depVarName_TextChanged);
             // 
             // Label_depVarName
             // 
@@ -235,6 +238,7 @@
             this.TextBox_indepVarUnit.Name = "TextBox_indepVarUnit";
             this.TextBox_indepVarUnit.Size = new System.Drawing.Size(251, 27);
             this.TextBox_indepVarUnit.TabIndex = 15;
+            this.TextBox_indepVarUnit.TextChanged += new System.EventHandler(this.TextBox_indepVarUnit_TextChanged);
             // 
             // Label_indepVarUnit
             // 
