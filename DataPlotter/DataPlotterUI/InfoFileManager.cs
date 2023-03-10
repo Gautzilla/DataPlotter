@@ -141,6 +141,15 @@ namespace DataPlotter.DataPlotterUI
 
             if (newLevelName == string.Empty || ListBox_indepVarLevels.Items.Contains(newLevelName)) return;
 
+            if (independantVariables.Single(var => var.Name == ListBox_indepVar.SelectedItem.ToString()).IsNum)
+            {
+                if (!float.TryParse(newLevelName, out float level))
+                {
+                    MessageBox.Show("Quantitative variables must have numerical levels.");
+                    return;
+                }
+            }
+
             ListBox_indepVarLevels.Items.Add(newLevelName);
 
             TextBox_newLevelName.Clear();
