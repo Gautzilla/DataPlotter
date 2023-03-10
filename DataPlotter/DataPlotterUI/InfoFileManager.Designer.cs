@@ -36,6 +36,7 @@
             this.Label_depVarName = new System.Windows.Forms.Label();
             this.Label_depVarType = new System.Windows.Forms.Label();
             this.GroupBox_independentVariables = new System.Windows.Forms.GroupBox();
+            this.TextBox_newLevelName = new System.Windows.Forms.TextBox();
             this.Label_indepVarLevels = new System.Windows.Forms.Label();
             this.Btn_addIndepVarLevel = new System.Windows.Forms.Button();
             this.Btn_removeIndepVarLevel = new System.Windows.Forms.Button();
@@ -147,6 +148,7 @@
             // 
             // GroupBox_independentVariables
             // 
+            this.GroupBox_independentVariables.Controls.Add(this.TextBox_newLevelName);
             this.GroupBox_independentVariables.Controls.Add(this.Label_indepVarLevels);
             this.GroupBox_independentVariables.Controls.Add(this.Btn_addIndepVarLevel);
             this.GroupBox_independentVariables.Controls.Add(this.Btn_removeIndepVarLevel);
@@ -170,11 +172,20 @@
             this.GroupBox_independentVariables.TabStop = false;
             this.GroupBox_independentVariables.Text = "Independent Variables";
             // 
+            // TextBox_newLevelName
+            // 
+            this.TextBox_newLevelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.TextBox_newLevelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.TextBox_newLevelName.Location = new System.Drawing.Point(317, 113);
+            this.TextBox_newLevelName.Name = "TextBox_newLevelName";
+            this.TextBox_newLevelName.Size = new System.Drawing.Size(215, 27);
+            this.TextBox_newLevelName.TabIndex = 20;
+            // 
             // Label_indepVarLevels
             // 
             this.Label_indepVarLevels.AutoSize = true;
             this.Label_indepVarLevels.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_indepVarLevels.Location = new System.Drawing.Point(249, 132);
+            this.Label_indepVarLevels.Location = new System.Drawing.Point(249, 116);
             this.Label_indepVarLevels.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.Label_indepVarLevels.Name = "Label_indepVarLevels";
             this.Label_indepVarLevels.Size = new System.Drawing.Size(60, 19);
@@ -185,23 +196,25 @@
             // 
             this.Btn_addIndepVarLevel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.Btn_addIndepVarLevel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.Btn_addIndepVarLevel.Location = new System.Drawing.Point(281, 165);
+            this.Btn_addIndepVarLevel.Location = new System.Drawing.Point(538, 110);
             this.Btn_addIndepVarLevel.Name = "Btn_addIndepVarLevel";
             this.Btn_addIndepVarLevel.Size = new System.Drawing.Size(30, 30);
             this.Btn_addIndepVarLevel.TabIndex = 17;
             this.Btn_addIndepVarLevel.Text = "+";
             this.Btn_addIndepVarLevel.UseVisualStyleBackColor = false;
+            this.Btn_addIndepVarLevel.Click += new System.EventHandler(this.Btn_addIndepVarLevel_Click);
             // 
             // Btn_removeIndepVarLevel
             // 
             this.Btn_removeIndepVarLevel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.Btn_removeIndepVarLevel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.Btn_removeIndepVarLevel.Location = new System.Drawing.Point(281, 201);
+            this.Btn_removeIndepVarLevel.Location = new System.Drawing.Point(281, 215);
             this.Btn_removeIndepVarLevel.Name = "Btn_removeIndepVarLevel";
             this.Btn_removeIndepVarLevel.Size = new System.Drawing.Size(30, 30);
             this.Btn_removeIndepVarLevel.TabIndex = 18;
             this.Btn_removeIndepVarLevel.Text = "-";
             this.Btn_removeIndepVarLevel.UseVisualStyleBackColor = false;
+            this.Btn_removeIndepVarLevel.Click += new System.EventHandler(this.Btn_removeIndepVarLevel_Click);
             // 
             // ListBox_indepVarLevels
             // 
@@ -209,7 +222,7 @@
             this.ListBox_indepVarLevels.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
             this.ListBox_indepVarLevels.FormattingEnabled = true;
             this.ListBox_indepVarLevels.ItemHeight = 19;
-            this.ListBox_indepVarLevels.Location = new System.Drawing.Point(317, 132);
+            this.ListBox_indepVarLevels.Location = new System.Drawing.Point(317, 146);
             this.ListBox_indepVarLevels.Name = "ListBox_indepVarLevels";
             this.ListBox_indepVarLevels.Size = new System.Drawing.Size(251, 99);
             this.ListBox_indepVarLevels.TabIndex = 16;
@@ -246,7 +259,7 @@
             "Linear",
             "Logarithmic",
             "Qualitative"});
-            this.ComboBox_indepVarType.Location = new System.Drawing.Point(317, 85);
+            this.ComboBox_indepVarType.Location = new System.Drawing.Point(317, 66);
             this.ComboBox_indepVarType.Name = "ComboBox_indepVarType";
             this.ComboBox_indepVarType.Size = new System.Drawing.Size(251, 27);
             this.ComboBox_indepVarType.TabIndex = 13;
@@ -255,7 +268,7 @@
             // 
             this.Label_indepVarType.AutoSize = true;
             this.Label_indepVarType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_indepVarType.Location = new System.Drawing.Point(249, 88);
+            this.Label_indepVarType.Location = new System.Drawing.Point(249, 69);
             this.Label_indepVarType.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.Label_indepVarType.Name = "Label_indepVarType";
             this.Label_indepVarType.Size = new System.Drawing.Size(49, 19);
@@ -266,16 +279,18 @@
             // 
             this.TextBox_indepVarName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_indepVarName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_indepVarName.Location = new System.Drawing.Point(317, 46);
+            this.TextBox_indepVarName.Location = new System.Drawing.Point(317, 27);
             this.TextBox_indepVarName.Name = "TextBox_indepVarName";
             this.TextBox_indepVarName.Size = new System.Drawing.Size(251, 27);
             this.TextBox_indepVarName.TabIndex = 13;
+            this.TextBox_indepVarName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBox_indepVarName_KeyUp);
+            this.TextBox_indepVarName.Leave += new System.EventHandler(this.TextBox_indepVarName_Leave);
             // 
             // Label_indepVarName
             // 
             this.Label_indepVarName.AutoSize = true;
             this.Label_indepVarName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_indepVarName.Location = new System.Drawing.Point(249, 49);
+            this.Label_indepVarName.Location = new System.Drawing.Point(249, 30);
             this.Label_indepVarName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.Label_indepVarName.Name = "Label_indepVarName";
             this.Label_indepVarName.Size = new System.Drawing.Size(56, 19);
@@ -287,23 +302,25 @@
             // 
             this.Btn_addIndepVar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.Btn_addIndepVar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.Btn_addIndepVar.Location = new System.Drawing.Point(14, 46);
+            this.Btn_addIndepVar.Location = new System.Drawing.Point(10, 27);
             this.Btn_addIndepVar.Name = "Btn_addIndepVar";
             this.Btn_addIndepVar.Size = new System.Drawing.Size(30, 30);
             this.Btn_addIndepVar.TabIndex = 6;
             this.Btn_addIndepVar.Text = "+";
             this.Btn_addIndepVar.UseVisualStyleBackColor = false;
+            this.Btn_addIndepVar.Click += new System.EventHandler(this.Btn_addIndepVar_Click);
             // 
             // Btn_removeIndepVar
             // 
             this.Btn_removeIndepVar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.Btn_removeIndepVar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.Btn_removeIndepVar.Location = new System.Drawing.Point(14, 82);
+            this.Btn_removeIndepVar.Location = new System.Drawing.Point(10, 63);
             this.Btn_removeIndepVar.Name = "Btn_removeIndepVar";
             this.Btn_removeIndepVar.Size = new System.Drawing.Size(30, 30);
             this.Btn_removeIndepVar.TabIndex = 7;
             this.Btn_removeIndepVar.Text = "-";
             this.Btn_removeIndepVar.UseVisualStyleBackColor = false;
+            this.Btn_removeIndepVar.Click += new System.EventHandler(this.Btn_removeIndepVar_Click);
             // 
             // ListBox_indepVar
             // 
@@ -311,9 +328,9 @@
             this.ListBox_indepVar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
             this.ListBox_indepVar.FormattingEnabled = true;
             this.ListBox_indepVar.ItemHeight = 19;
-            this.ListBox_indepVar.Location = new System.Drawing.Point(50, 46);
+            this.ListBox_indepVar.Location = new System.Drawing.Point(46, 27);
             this.ListBox_indepVar.Name = "ListBox_indepVar";
-            this.ListBox_indepVar.Size = new System.Drawing.Size(186, 232);
+            this.ListBox_indepVar.Size = new System.Drawing.Size(186, 251);
             this.ListBox_indepVar.TabIndex = 5;
             this.ListBox_indepVar.SelectedIndexChanged += new System.EventHandler(this.ListBox_indepVar_SelectedIndexChanged);
             // 
@@ -408,5 +425,6 @@
         private System.Windows.Forms.OpenFileDialog OpenFileDialog_infoFile;
         private System.Windows.Forms.TextBox TextBox_depVarUnit;
         private System.Windows.Forms.Label Label_depVarUnit;
+        private System.Windows.Forms.TextBox TextBox_newLevelName;
     }
 }

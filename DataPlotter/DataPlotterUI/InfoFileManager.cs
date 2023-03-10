@@ -94,12 +94,15 @@ namespace DataPlotter.DataPlotterUI
             ComboBox_depVarType.SelectedIndex = ComboBox_depVarType.Items.IndexOf(dependantVariable.IsNum ? (dependantVariable.IsLog ? "Logarithmic" : "Linear") : "Qualitative");
             TextBox_depVarUnit.Text = dependantVariable.Unit;
 
+            ListBox_indepVar.Items.Clear();
             ListBox_indepVar.Items.AddRange(independantVariables.Select(var => var.Name).ToArray());
         }
 
         private void ListBox_indepVar_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListBox listBox = sender as ListBox;
+            if (listBox.SelectedIndex == -1) return;
+
             string selectedVarName = listBox.SelectedItem.ToString();
 
             IndependantVariable independantVariable = independantVariables.Single(var => var.Name == selectedVarName);
@@ -110,6 +113,73 @@ namespace DataPlotter.DataPlotterUI
 
             ListBox_indepVarLevels.Items.Clear();
             ListBox_indepVarLevels.Items.AddRange(independantVariable.Levels);
+        }
+
+        private void RemoveSelected (ListBox listBox)
+        {
+            if (listBox.SelectedIndex == -1) return;
+
+            int itemToRemove = listBox.SelectedIndex;
+            listBox.SelectionMode = SelectionMode.None;
+            listBox.Items.RemoveAt(itemToRemove);
+            listBox.SelectionMode = SelectionMode.One;
+        }
+
+        private void Btn_removeIndepVar_Click(object sender, EventArgs e)
+        {
+            RemoveSelected(ListBox_indepVar);
+        }
+
+        private void Btn_removeIndepVarLevel_Click(object sender, EventArgs e)
+        {
+            RemoveSelected(ListBox_indepVarLevels);
+        }
+
+        private void Btn_addIndepVarLevel_Click(object sender, EventArgs e)
+        {
+            string newLevelName = TextBox_newLevelName.Text;
+
+            if (newLevelName == string.Empty || ListBox_indepVarLevels.Items.Contains(newLevelName)) return;
+
+            ListBox_indepVarLevels.Items.Add(newLevelName);
+
+            TextBox_newLevelName.Clear();
+        }
+
+        private void Btn_addIndepVar_Click(object sender, EventArgs e)
+        {
+            string newIndepVar = "New Variable";
+
+            if (ListBox_indepVar.Items.Contains(newIndepVar)) return;
+
+            ListBox_indepVar.Items.Add(newIndepVar);
+        }
+
+        private void TextBox_indepVarName_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode !=  Keys.Enter) return;
+
+            SetIndepVarName();
+        }
+
+        private void TextBox_indepVarName_Leave(object sender, EventArgs e)
+        {
+            SetIndepVarName();
+        }
+
+        private void SetIndepVarName()
+        {
+            int varToRename = ListBox_indepVar.SelectedIndex;
+
+            if (varToRename == -1) return;
+
+            string oldName = ListBox_indepVar.Items[varToRename].ToString();
+            string newName = TextBox_indepVarName.Text;
+
+            if (newName == string.Empty) return;
+
+            independantVariables.Single(var => var.Name == oldName).Name = newName;
+            RefreshInfo();
         }
     }
 }
