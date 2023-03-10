@@ -51,8 +51,8 @@ namespace DataPlotter.DataPlotterUI
 
         private void Btn_loadInfoFile_Click(object sender, EventArgs e)
         {
-            OpenFileDialog_infoFile.ShowDialog();
-
+            if (OpenFileDialog_infoFile.ShowDialog() != DialogResult.OK) return;
+            
             string fileName = OpenFileDialog_infoFile.FileName;
             LoadInfo(fileName);
         }
