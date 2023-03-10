@@ -37,6 +37,9 @@ namespace DataPlotter.DataPlotterUI
         public InfoFileManager()
         {
             InitializeComponent();
+
+            DependantVariable = new DependantVariable(string.Empty, false);
+            independantVariables = new List<IndependantVariable>();
         }
 
         private void Btn_loadInfoFile_Click(object sender, EventArgs e)
@@ -108,17 +111,32 @@ namespace DataPlotter.DataPlotterUI
 
             ListBox_indepVar.Items.Clear();
             ListBox_indepVar.Items.AddRange(independantVariables.Select(var => var.Name).ToArray());
+
+            ListBox_indepVar.SelectedIndex = -1;
+            RefreshIndepVarParameters();
         }
 
         private void ListBox_indepVar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListBox listBox = sender as ListBox;
-            if (listBox.SelectedIndex == -1) return;
+            RefreshIndepVarParameters();
+        }
 
-            string selectedVarName = listBox.SelectedItem.ToString();
+        private void RefreshIndepVarParameters()
+        {
+            Console.WriteLine("Changed to: " + ListBox_indepVar.SelectedIndex);
+            if (ListBox_indepVar.SelectedIndex == -1)
+            {
+                TextBox_indepVarName.Clear();
+                ComboBox_indepVarType.SelectedIndex = -1;
+                ListBox_indepVarLevels.Items.Clear();
+                TextBox_indepVarUnit.Clear();
+                return;
+            }
+
+            string selectedVarName = ListBox_indepVar.SelectedItem.ToString();
 
             IndependantVariable independantVariable = independantVariables.Single(var => var.Name == selectedVarName);
-        
+
             TextBox_indepVarName.Text = independantVariable.Name;
             ComboBox_indepVarType.SelectedIndex = ComboBox_depVarType.Items.IndexOf(independantVariable.IsNum ? (independantVariable.IsLog ? "Logarithmic" : "Linear") : "Qualitative");
             TextBox_indepVarUnit.Text = independantVariable.Unit;
@@ -127,33 +145,31 @@ namespace DataPlotter.DataPlotterUI
             ListBox_indepVarLevels.Items.AddRange(independantVariable.Levels);
         }
 
-        private void RemoveSelected (ListBox listBox)
-        {
-            if (listBox.SelectedIndex == -1) return;
-
-            int itemToRemove = listBox.SelectedIndex;
-            listBox.SelectionMode = SelectionMode.None;
-            listBox.Items.RemoveAt(itemToRemove);
-            listBox.SelectionMode = SelectionMode.One;
-        }
-
         private void Btn_removeIndepVar_Click(object sender, EventArgs e)
         {
-            RemoveSelected(ListBox_indepVar);
+            IndependantVariable indepVar = independantVariables.Single(var => var.Name == ListBox_indepVar.SelectedItem.ToString());
+
+            independantVariables.Remove(indepVar);
+            RefreshInfo();
         }
 
         private void Btn_removeIndepVarLevel_Click(object sender, EventArgs e)
         {
-            RemoveSelected(ListBox_indepVarLevels);
+            IndependantVariable indepVar = independantVariables.Single(var => var.Name == ListBox_indepVar.SelectedItem.ToString());
+            string levelToRemove = ListBox_indepVarLevels.SelectedItem.ToString();
+            indepVar.RemoveLevel(levelToRemove);
+
+            RefreshIndepVarParameters();
         }
 
         private void Btn_addIndepVarLevel_Click(object sender, EventArgs e)
         {
+            IndependantVariable indepVar = independantVariables.Single(var => var.Name == ListBox_indepVar.SelectedItem.ToString());
             string newLevelName = TextBox_newLevelName.Text;
 
-            if (newLevelName == string.Empty || ListBox_indepVarLevels.Items.Contains(newLevelName)) return;
+            if (newLevelName == string.Empty || indepVar.Levels.Any(level => level == newLevelName)) return;
 
-            if (independantVariables.Single(var => var.Name == ListBox_indepVar.SelectedItem.ToString()).IsNum)
+            if (indepVar.IsNum)
             {
                 if (!float.TryParse(newLevelName, out float level))
                 {
@@ -162,16 +178,17 @@ namespace DataPlotter.DataPlotterUI
                 }
             }
 
-            ListBox_indepVarLevels.Items.Add(newLevelName);
+            indepVar.AddLevel(newLevelName);
 
             TextBox_newLevelName.Clear();
+            RefreshIndepVarParameters();
         }
 
         private void Btn_addIndepVar_Click(object sender, EventArgs e)
         {
             string newIndepVar = "New Variable";
 
-            if (independantVariables.Any(var => var.Name == newIndepVar)) return;
+            if (independantVariables.Count > 0 && independantVariables.Any(var => var.Name == newIndepVar)) return;
 
             independantVariables.Add(new IndependantVariable(newIndepVar, new string[] { }, false));
             RefreshInfo();
@@ -208,18 +225,14 @@ namespace DataPlotter.DataPlotterUI
 
         private void ComboBox_indepVarType_SelectedValueChanged(object sender, EventArgs e)
         {
-            ComboBox comboBox = sender as ComboBox;
+            if (ListBox_indepVar.SelectedIndex == -1) return;
 
-            string indepVarType = comboBox.Text;
-
-            string[] indepVarLevels = ListBox_indepVarLevels.Items.OfType<String>().ToArray();
-
-            if (indepVarType != "Qualitative" && indepVarLevels.Any(level => !float.TryParse(level, out float fLevel))) MessageBox.Show("WARNING: some levels are not numerical.");
-            
             IndependantVariable indepVar = independantVariables.Single(var => var.Name == ListBox_indepVar.SelectedItem.ToString());
-            
-            indepVar.IsLog = indepVarType == "Logarithmic";
-            indepVar.IsNum = indepVarType != "Qualitative";
+
+            indepVar.IsLog = (sender as ComboBox).Text == "Logarithmic";
+            indepVar.IsNum = (sender as ComboBox).Text != "Qualitative";
+
+            if (indepVar.IsNum && indepVar.Levels.Any(level => !float.TryParse(level, out float fLevel))) MessageBox.Show("WARNING: some levels are not numerical.");   
         }
     }
 }

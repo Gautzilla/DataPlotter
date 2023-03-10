@@ -78,6 +78,16 @@ namespace DataPlotter.DataPlotterLibrary
             string[] parameters = new string[] { Name, type, String.Join(", ", Levels) , Unit }.Where(s => s != string.Empty).ToArray();
             return String.Join(" ; ", parameters);
         }
+
+        public void AddLevel(string level)
+        {
+            levels = levels.Append(level).ToArray();
+        }
+
+        public void RemoveLevel(string level)
+        {
+            levels = levels.Where(l => l != level).ToArray();
+        }
     }
 
     internal class DependantVariable : Variable
