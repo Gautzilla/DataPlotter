@@ -359,6 +359,7 @@
             this.Btn_saveInfoFile.TabIndex = 4;
             this.Btn_saveInfoFile.Text = "Save";
             this.Btn_saveInfoFile.UseVisualStyleBackColor = false;
+            this.Btn_saveInfoFile.Click += new System.EventHandler(this.Btn_saveInfoFile_Click);
             // 
             // Btn_loadInfoFile
             // 

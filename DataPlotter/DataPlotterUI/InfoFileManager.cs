@@ -49,6 +49,17 @@ namespace DataPlotter.DataPlotterUI
             RefreshInfo();
         }
 
+        private void Btn_saveInfoFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog_infoFile.ShowDialog();
+
+            string fileName = OpenFileDialog_infoFile.FileName;
+
+            string[] fileContent = new string[] { dependantVariable.WriteParameters() }.Concat(independantVariables.Select(var => var.WriteParameters()).ToArray()).ToArray();
+
+            File.WriteAllLines(fileName, fileContent);
+        }
+
         private void LoadInfo(string fileName)
         {
             string[] input = File.ReadAllLines(fileName);

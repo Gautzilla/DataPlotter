@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace DataPlotter.DataPlotterLibrary
 {
@@ -37,6 +38,13 @@ namespace DataPlotter.DataPlotterLibrary
             get { return unit; }
             set { unit = value; }
         }
+
+        public virtual string WriteParameters()
+        {
+            string type = IsNum ? (IsLog ? "log" : "lin") : "qualitative";
+            string[] parameters = new string[] { Name, type, Unit }.Where(s => s != string.Empty).ToArray();
+            return String.Join(" ; ", parameters);
+        }
     }
 
     internal class IndependantVariable : Variable
@@ -62,6 +70,13 @@ namespace DataPlotter.DataPlotterLibrary
             IsNum = isNum;
             IsLog = isLog;
             Unit = unit;
+        }
+
+        public override string WriteParameters()
+        {
+            string type = IsNum ? (IsLog ? "log" : "lin") : "qualitative";
+            string[] parameters = new string[] { Name, type, String.Join(", ", Levels) , Unit }.Where(s => s != string.Empty).ToArray();
+            return String.Join(" ; ", parameters);
         }
     }
 
