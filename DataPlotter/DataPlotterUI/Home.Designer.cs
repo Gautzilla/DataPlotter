@@ -92,6 +92,7 @@
             this.Btn_savePreset = new System.Windows.Forms.Button();
             this.GroupBox_plotParameters = new System.Windows.Forms.GroupBox();
             this.CheckBox_regression = new System.Windows.Forms.CheckBox();
+            this.Btn_manageInfoFile = new System.Windows.Forms.Button();
             this.GroupBox_Variables.SuspendLayout();
             this.GroupBox_filesManager.SuspendLayout();
             this.GroupBox_gridTicks.SuspendLayout();
@@ -127,11 +128,13 @@
             // 
             this.label_dataPath.AutoSize = true;
             this.label_dataPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.label_dataPath.Location = new System.Drawing.Point(107, 32);
+            this.label_dataPath.Location = new System.Drawing.Point(107, 31);
             this.label_dataPath.Name = "label_dataPath";
             this.label_dataPath.Size = new System.Drawing.Size(133, 19);
             this.label_dataPath.TabIndex = 3;
             this.label_dataPath.Text = "No loaded data";
+            this.label_dataPath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_dataPath.Click += new System.EventHandler(this.label_dataPath_Click);
             // 
             // Btn_addXMajorTick
             // 
@@ -505,6 +508,7 @@
             this.Btn_infoFilePath.TabIndex = 2;
             this.Btn_infoFilePath.Text = "Info File";
             this.Btn_infoFilePath.UseVisualStyleBackColor = false;
+            this.Btn_infoFilePath.EnabledChanged += new System.EventHandler(this.Btn_infoFilePath_EnabledChanged);
             this.Btn_infoFilePath.Click += new System.EventHandler(this.Btn_infoFilePath_Click);
             // 
             // TextBox_xMinorTicksInterval
@@ -590,6 +594,7 @@
             // 
             // GroupBox_filesManager
             // 
+            this.GroupBox_filesManager.Controls.Add(this.Btn_manageInfoFile);
             this.GroupBox_filesManager.Controls.Add(this.Btn_dataFilePath);
             this.GroupBox_filesManager.Controls.Add(this.Btn_infoFilePath);
             this.GroupBox_filesManager.Controls.Add(this.label_dataPath);
@@ -597,7 +602,7 @@
             this.GroupBox_filesManager.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
             this.GroupBox_filesManager.Location = new System.Drawing.Point(12, 12);
             this.GroupBox_filesManager.Name = "GroupBox_filesManager";
-            this.GroupBox_filesManager.Size = new System.Drawing.Size(243, 114);
+            this.GroupBox_filesManager.Size = new System.Drawing.Size(386, 114);
             this.GroupBox_filesManager.TabIndex = 8;
             this.GroupBox_filesManager.TabStop = false;
             this.GroupBox_filesManager.Text = "Files manager";
@@ -836,6 +841,18 @@
             this.CheckBox_regression.UseVisualStyleBackColor = true;
             this.CheckBox_regression.CheckedChanged += new System.EventHandler(this.CheckBox_regression_CheckedChanged);
             // 
+            // Btn_manageInfoFile
+            // 
+            this.Btn_manageInfoFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.Btn_manageInfoFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.Btn_manageInfoFile.Location = new System.Drawing.Point(253, 76);
+            this.Btn_manageInfoFile.Name = "Btn_manageInfoFile";
+            this.Btn_manageInfoFile.Size = new System.Drawing.Size(125, 30);
+            this.Btn_manageInfoFile.TabIndex = 4;
+            this.Btn_manageInfoFile.Text = "Manage Info";
+            this.Btn_manageInfoFile.UseVisualStyleBackColor = false;
+            this.Btn_manageInfoFile.Click += new System.EventHandler(this.Btn_manageInfoFile_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -938,6 +955,7 @@
         private System.Windows.Forms.Button Btn_legendTopRight;
         private System.Windows.Forms.Button Btn_legendBottomLeft;
         private System.Windows.Forms.Button Btn_legendBottomRight;
+        private System.Windows.Forms.Button Btn_manageInfoFile;
     }
 }
 

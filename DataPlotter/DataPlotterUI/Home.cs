@@ -38,6 +38,8 @@ namespace DataPlotter
 
             _chartInfo = new ChartInfo();
             _chartInfo.IsAxisLog = (CheckBox_isXLog.Checked, CheckBox_isYLog.Checked);
+
+            Btn_infoFilePath.Enabled = false;
         }
 
         private void Btn_dataFilePath_Click(object sender, EventArgs e)
@@ -46,6 +48,7 @@ namespace DataPlotter
             _dataFilePath = openFileDialog1.FileName;
             string dataFileName = _dataFilePath.Split('\\').Last();
             label_dataPath.Text = dataFileName;
+            Btn_infoFilePath.Enabled = true;
         }
 
         private void Btn_infoFilePath_Click(object sender, EventArgs e)
@@ -398,5 +401,27 @@ namespace DataPlotter
         }
 
         #endregion
+
+        private void Btn_infoFilePath_EnabledChanged(object sender, EventArgs e)
+        {
+            Color enabledColor = Color.FromArgb(162, 123, 92);
+            Color unabledColor = Color.FromArgb(63, 78, 79);
+
+            Button btn = sender as Button;
+
+            btn.ForeColor = btn.Enabled ? enabledColor : unabledColor;
+        }
+
+        private void Btn_manageInfoFile_Click(object sender, EventArgs e)
+        {
+            InfoFileManager infoFileManager = new InfoFileManager();
+
+            infoFileManager.Show();
+        }
+
+        private void label_dataPath_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
