@@ -206,6 +206,8 @@ namespace DataPlotter.DataPlotterUI
 
             independantVariables.Add(new IndependantVariable(newIndepVar, new string[] { }, false));
             RefreshInfo();
+
+            ListBox_indepVar.SelectedItem = newIndepVar;
         }
 
         private void TextBox_indepVarName_KeyUp(object sender, KeyEventArgs e)
