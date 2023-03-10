@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing.Drawing2D;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace DataPlotter.DataPlotterUI
 {
@@ -159,9 +160,10 @@ namespace DataPlotter.DataPlotterUI
         {
             string newIndepVar = "New Variable";
 
-            if (ListBox_indepVar.Items.Contains(newIndepVar)) return;
+            if (independantVariables.Any(var => var.Name == newIndepVar)) return;
 
-            ListBox_indepVar.Items.Add(newIndepVar);
+            independantVariables.Add(new IndependantVariable(newIndepVar, new string[] { }, false));
+            RefreshInfo();
         }
 
         private void TextBox_indepVarName_KeyUp(object sender, KeyEventArgs e)
@@ -189,6 +191,24 @@ namespace DataPlotter.DataPlotterUI
 
             independantVariables.Single(var => var.Name == oldName).Name = newName;
             RefreshInfo();
+
+            ListBox_indepVar.SelectedIndex = ListBox_indepVar.Items.IndexOf(newName);
+        }
+
+        private void ComboBox_indepVarType_SelectedValueChanged(object sender, EventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+
+            string indepVarType = comboBox.Text;
+
+            string[] indepVarLevels = ListBox_indepVarLevels.Items.OfType<String>().ToArray();
+
+            if (indepVarType != "Qualitative" && indepVarLevels.Any(level => !float.TryParse(level, out float fLevel))) MessageBox.Show("WARNING: some levels are not numerical.");
+            
+            IndependantVariable indepVar = independantVariables.Single(var => var.Name == ListBox_indepVar.SelectedItem.ToString());
+            
+            indepVar.IsLog = indepVarType == "Logarithmic";
+            indepVar.IsNum = indepVarType != "Qualitative";
         }
     }
 }

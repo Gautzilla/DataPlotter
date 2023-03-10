@@ -263,6 +263,7 @@
             this.ComboBox_indepVarType.Name = "ComboBox_indepVarType";
             this.ComboBox_indepVarType.Size = new System.Drawing.Size(251, 27);
             this.ComboBox_indepVarType.TabIndex = 13;
+            this.ComboBox_indepVarType.SelectedValueChanged += new System.EventHandler(this.ComboBox_indepVarType_SelectedValueChanged);
             // 
             // Label_indepVarType
             // 
