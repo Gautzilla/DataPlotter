@@ -59,13 +59,21 @@ namespace DataPlotter.DataPlotterUI
 
         private void Btn_saveInfoFile_Click(object sender, EventArgs e)
         {
-            OpenFileDialog_infoFile.ShowDialog();
+            SaveFileDialog saveFile = new SaveFileDialog
+            {
+                FileName = "infoFile.txt",
+                DefaultExt = "txt"
+            };
 
-            string fileName = OpenFileDialog_infoFile.FileName;
+            if (saveFile.ShowDialog() != DialogResult.OK) return;
+
+            string fileName = saveFile.FileName;
 
             string[] fileContent = new string[] { dependantVariable.WriteParameters() }.Concat(independantVariables.Select(var => var.WriteParameters()).ToArray()).ToArray();
 
             File.WriteAllLines(fileName, fileContent);
+
+            MessageBox.Show($"File {fileName.Split('\\').Last()} written succesfully.");
         }
 
         private void LoadInfo(string fileName)
