@@ -42,14 +42,19 @@ namespace DataPlotter.DataPlotterUI
             independantVariables = new List<IndependantVariable>();
         }
 
+        public InfoFileManager(string infoFilePath)
+        {
+            InitializeComponent();
+
+            LoadInfo(infoFilePath);
+        }
+
         private void Btn_loadInfoFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog_infoFile.ShowDialog();
 
             string fileName = OpenFileDialog_infoFile.FileName;
             LoadInfo(fileName);
-
-            RefreshInfo();
         }
 
         private void Btn_saveInfoFile_Click(object sender, EventArgs e)
@@ -69,6 +74,8 @@ namespace DataPlotter.DataPlotterUI
 
             dependantVariable = ParseDependantVariable(input.First());
             independantVariables = input.Skip(1).Select(line => ParseIndependantVariable(line)).ToList();
+
+            RefreshInfo();
         }
 
         private DependantVariable ParseDependantVariable(string line)

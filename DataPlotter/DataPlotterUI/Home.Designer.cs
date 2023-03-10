@@ -134,7 +134,6 @@
             this.label_dataPath.TabIndex = 3;
             this.label_dataPath.Text = "No loaded data";
             this.label_dataPath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label_dataPath.Click += new System.EventHandler(this.label_dataPath_Click);
             // 
             // Btn_addXMajorTick
             // 

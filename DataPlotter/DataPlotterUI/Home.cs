@@ -414,14 +414,9 @@ namespace DataPlotter
 
         private void Btn_manageInfoFile_Click(object sender, EventArgs e)
         {
-            InfoFileManager infoFileManager = new InfoFileManager();
+            InfoFileManager infoFileManager = _infoFilePath == string.Empty ? new InfoFileManager() : new InfoFileManager(_infoFilePath);
 
             infoFileManager.Show();
-        }
-
-        private void label_dataPath_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
