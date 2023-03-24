@@ -418,5 +418,25 @@ namespace DataPlotter
 
             infoFileManager.Show();
         }
+
+        private void Btn_gatherData_Click(object sender, EventArgs e)
+        {
+            if (_infoFilePath == string.Empty)
+            {
+                MessageBox.Show("Please load an info file first.");
+                return;
+            }
+
+            FolderBrowserDialog folder = new FolderBrowserDialog();
+            DialogResult dialogResult = folder.ShowDialog();
+
+            if (dialogResult != DialogResult.OK)
+            {
+                Console.WriteLine("Please select a valid folder.");
+                return;
+            }
+
+
+        }
     }
 }

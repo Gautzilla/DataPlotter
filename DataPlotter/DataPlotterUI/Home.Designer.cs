@@ -876,6 +876,7 @@
             this.Btn_gatherData.TabIndex = 3;
             this.Btn_gatherData.Text = "Gather Data";
             this.Btn_gatherData.UseVisualStyleBackColor = false;
+            this.Btn_gatherData.Click += new System.EventHandler(this.Btn_gatherData_Click);
             // 
             // Home
             // 
