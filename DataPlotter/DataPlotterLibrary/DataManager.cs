@@ -32,7 +32,8 @@ namespace DataPlotter.DataPlotterLibrary
         /// <summary>
         /// Parse a .csv file.
         /// </summary>
-        /// <param name="path">Absolute path of the .csv file</param>
+        /// <param name="dataFilePath">Absolute path of the .csv dataFile path</param>
+        /// <param name="infoFilePath">Absolute path of the .txt infoFile path</param>
         public DataManager(string dataFilePath, string infoFilePath)
         {
             Variables = new List<IndependantVariable>();
@@ -41,6 +42,22 @@ namespace DataPlotter.DataPlotterLibrary
             ParseDependantVariable(infoFilePath);
             SortFactors(infoFilePath);
             SortData(dataFilePath);
+        }
+
+        /// <summary>
+        /// Parse all files containing the participants' results and combine them in a dataFile.
+        /// </summary>
+        /// <param name="resultsFolderPath">Absolute path of the folder containing the raw result files</param>
+        /// <param name="infoFilePath">Absolute path of the .txt infoFile path</param>
+        public DataManager(string resultsFolderPath, string infoFilePath, string dataFileName)
+        {
+            Variables = new List<IndependantVariable>();
+            DepVariable = new DependantVariable("dependant variable", true);
+
+            ParseDependantVariable(infoFilePath);
+            SortFactors(infoFilePath);
+            GatherData(resultsFolderPath);
+            WriteDataFile(dataFileName);
         }
 
         private void ParseDependantVariable(string path)
@@ -70,6 +87,16 @@ namespace DataPlotter.DataPlotterLibrary
                 if (!isNum) Variables.Add(new IndependantVariable(name, levels, isNum));
                 else Variables.Add(new IndependantVariable(name, levels, isNum, isLog, unit));
             }
+        }
+
+        private void GatherData(string path)
+        {
+
+        }
+
+        private void WriteDataFile(string fileName)
+        {
+
         }
 
         private void SortData(string path)
