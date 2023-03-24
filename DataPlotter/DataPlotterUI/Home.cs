@@ -429,6 +429,7 @@ namespace DataPlotter
 
             FolderBrowserDialog folder = new FolderBrowserDialog();
             DialogResult dialogResult = folder.ShowDialog();
+            string folderName = folder.SelectedPath;
 
             if (dialogResult != DialogResult.OK)
             {
@@ -436,7 +437,9 @@ namespace DataPlotter
                 return;
             }
 
+            string fileName = folderName + @"\resultats.txt";
 
+            _dataManager = new DataManager(folderName, _infoFilePath, fileName);
         }
     }
 }

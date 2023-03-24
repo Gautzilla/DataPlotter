@@ -91,7 +91,13 @@ namespace DataPlotter.DataPlotterLibrary
 
         private void GatherData(string path)
         {
+            _data = new List<(List<string> var, List<float> val)>();
 
+            foreach (string file in Directory.EnumerateFiles(path))
+            {
+                if (file.EndsWith(".gitignore")) continue;
+                // TODO: Add values to _data
+            }
         }
 
         private void WriteDataFile(string fileName)
