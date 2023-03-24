@@ -38,8 +38,6 @@ namespace DataPlotter
 
             _chartInfo = new ChartInfo();
             _chartInfo.IsAxisLog = (CheckBox_isXLog.Checked, CheckBox_isYLog.Checked);
-
-            Btn_infoFilePath.Enabled = false;
         }
 
         private void Btn_dataFilePath_Click(object sender, EventArgs e)
@@ -48,21 +46,23 @@ namespace DataPlotter
             _dataFilePath = openFileDialog1.FileName;
             string dataFileName = _dataFilePath.Split('\\').Last();
             label_dataPath.Text = dataFileName;
-            Btn_infoFilePath.Enabled = true;
+
+            if (_infoFilePath != string.Empty) GetDataInfo();
         }
 
         private void Btn_infoFilePath_Click(object sender, EventArgs e)
         {
-            if (_dataFilePath == string.Empty)
-            {
-                MessageBox.Show("Please load a data file first.");
-                return;
-            }
-
             openFileDialog2.ShowDialog();
             _infoFilePath = openFileDialog2.FileName;
             string infoFileName = _infoFilePath.Split('\\').Last();
             label_infoPath.Text = infoFileName;
+
+            if (_dataFilePath != string.Empty) GetDataInfo();
+        }
+
+        private void GetDataInfo()
+        {
+            // TODO: Check if dataFile and infoFile match
 
             _dataManager = new DataManager(_dataFilePath, _infoFilePath);
 
