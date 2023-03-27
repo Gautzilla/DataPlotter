@@ -437,7 +437,7 @@ namespace DataPlotter
                 return;
             }
 
-            string fileName = folderName + @"\resultats.txt";
+            string fileName = folderName + @"\resultats.csv";
 
             _dataManager = new DataManager(folderName, _infoFilePath, fileName);
         }

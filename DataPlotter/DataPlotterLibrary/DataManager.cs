@@ -103,7 +103,7 @@ namespace DataPlotter.DataPlotterLibrary
 
         private void ExtractData(string[] file)
         {
-            file = file.Select(line => line.TrimEnd(';')).ToArray();
+            file = file.Where(line => line != string.Empty).Select(line => line.TrimEnd(';')).ToArray();
 
             foreach (string line in file)
             {
@@ -117,8 +117,35 @@ namespace DataPlotter.DataPlotterLibrary
 
         private void WriteDataFile(string fileName)
         {
-            string content = String.Join("\r\n", _data.Select(d => String.Join(" ", d.var) + " -- " + String.Join(" ", d.val)));
-            File.WriteAllText(fileName, content);
+            int varCombinations = _variables.Select(v => v.Levels.Length).Aggregate((a, b) => a * b);
+
+            float[,] results = new float[varCombinations,_data.Max(d => d.val.Count)];
+
+            for (int varComb = 0; varComb < varCombinations; varComb++)
+            {
+                List<string> variableLevels = _variablesOrdering
+                    .Select(v => _variables.FirstOrDefault(var => var.Name == v).Levels[varComb / LevelsAfter(v) % _variables.FirstOrDefault(var => var.Name == v).Levels.Length])
+                    .ToList();
+
+                for (int participant = 0; participant < results.GetLength(1); participant++)
+                {
+                    results[varComb, participant] = _data.Single(d => variableLevels.All(level => d.var.Contains(level))).val[participant];
+                }
+            }
+
+            float[][] jaggedResults = new float[results.GetLength(1)][];
+
+            for (int participant = 0; participant < jaggedResults.Length; participant++)
+            {
+                jaggedResults[participant] = new float[results.GetLength(0)];
+                for (int varComb = 0; varComb < results.GetLength(0); varComb++)
+                {
+                    Console.WriteLine($"varComb {varComb} ; participant {participant}");
+                    jaggedResults[participant][varComb] = results[varComb, participant];
+                }
+            }
+
+            File.WriteAllText(fileName, String.Join("\r\n", jaggedResults.Select(jR => String.Join(",", jR))));
         }
 
         private void SortData(string path)
