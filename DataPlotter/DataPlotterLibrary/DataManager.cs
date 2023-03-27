@@ -96,13 +96,29 @@ namespace DataPlotter.DataPlotterLibrary
             foreach (string file in Directory.EnumerateFiles(path))
             {
                 if (file.EndsWith(".gitignore")) continue;
-                // TODO: Add values to _data
+
+                ExtractData(File.ReadAllLines(file));
+            }
+        }
+
+        private void ExtractData(string[] file)
+        {
+            file = file.Select(line => line.TrimEnd(';')).ToArray();
+
+            foreach (string line in file)
+            {
+                List<string> var = line.Split(',')[1].Split(' ').Where(level => _variables.Any(variable => variable.Levels.Contains(level))).ToList();
+                float val = line.Split(',').Last().Trim().Split(' ').Select(v => float.Parse(v)).Average();
+
+                if (_data.Any(v => Enumerable.SequenceEqual(v.var, var))) _data.Single(v => Enumerable.SequenceEqual(v.var, var)).val.Add(val);
+                else _data.Add((var, new List<float>() { val }));
             }
         }
 
         private void WriteDataFile(string fileName)
         {
-
+            string content = String.Join("\r\n", _data.Select(d => String.Join(" ", d.var) + " -- " + String.Join(" ", d.val)));
+            File.WriteAllText(fileName, content);
         }
 
         private void SortData(string path)

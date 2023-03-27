@@ -433,7 +433,7 @@ namespace DataPlotter
 
             if (dialogResult != DialogResult.OK)
             {
-                Console.WriteLine("Please select a valid folder.");
+                MessageBox.Show("Please select a valid folder.");
                 return;
             }
 
