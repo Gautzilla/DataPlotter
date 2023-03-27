@@ -108,7 +108,7 @@ namespace DataPlotter.DataPlotterLibrary
             foreach (string line in file)
             {
                 List<string> var = line.Split(',')[1].Split(' ').Where(level => _variables.Any(variable => variable.Levels.Contains(level))).ToList();
-                float val = line.Split(',').Last().Trim().Split(' ').Select(v => float.Parse(v)).Average();
+                float val = line.Split(',').Last().Trim().Split(' ').Select(v => v == string.Empty? 0 : float.Parse(v)).Average();
 
                 if (_data.Any(v => Enumerable.SequenceEqual(v.var, var))) _data.Single(v => Enumerable.SequenceEqual(v.var, var)).val.Add(val);
                 else _data.Add((var, new List<float>() { val }));
@@ -140,7 +140,6 @@ namespace DataPlotter.DataPlotterLibrary
                 jaggedResults[participant] = new float[results.GetLength(0)];
                 for (int varComb = 0; varComb < results.GetLength(0); varComb++)
                 {
-                    Console.WriteLine($"varComb {varComb} ; participant {participant}");
                     jaggedResults[participant][varComb] = results[varComb, participant];
                 }
             }
