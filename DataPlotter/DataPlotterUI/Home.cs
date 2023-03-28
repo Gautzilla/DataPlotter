@@ -137,10 +137,7 @@ namespace DataPlotter
         {
             TextBox textBox = sender as TextBox;
 
-            if (int.TryParse(textBox.Text, out int chartSize))
-            {
-            }
-            else
+            if (!int.TryParse(textBox.Text, out int chartSize))
             {
                 textBox.Text = String.Empty;
             }
