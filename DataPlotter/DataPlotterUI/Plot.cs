@@ -118,7 +118,7 @@ namespace DataPlotter.DataPlotterUI
                 case 1: ratio *= 0; break;
                 case 2: ratio *= (currentLine == 0 ? -1 : 1); break;
                 default: ratio *= (currentLine - 1); break;
-            }
+            }  
 
             return ratio;
         }
@@ -138,7 +138,8 @@ namespace DataPlotter.DataPlotterUI
             {
                 if (int.TryParse(point.x, out int xVal))
                 {
-                    chart.Series[$"{lineName} sd"].Points.AddXY(xVal * (1 + _xOffset), 0, point.y.l, point.y.h);
+                    float xPos = _chartInfo.IsAxisLog.x ? (xVal * (1 + _xOffset)) : (xVal + _xOffset);
+                    chart.Series[$"{lineName} sd"].Points.AddXY(xPos, 0, point.y.l, point.y.h);
                  }
                 else
                 {
