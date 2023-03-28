@@ -223,13 +223,17 @@ namespace DataPlotter.DataPlotterUI
                 }
                 else
                 {
-                    List<(float x, float y)> points = _meanLines[line].Select(mean => (x, mean.y)).ToList();
-                    x++;
+                    int meanMarkerSize = 6;
+                    Pen markerPen = (Pen)_pens.First().Clone(); // Solid line pen
+                    markerPen.Color = _pens[lineStyle].Color;
+
+                    List<(float x, float y)> points = _meanLines[line].Select(mean => (++x + _xOffset, mean.y)).ToList();
                     List<Point> pointsList = points.Select(p => new Point((int)chart.ChartAreas[0].AxisX.ValueToPixelPosition(p.x), (int)chart.ChartAreas[0].AxisY.ValueToPixelPosition(p.y))).ToList();
 
-                    for (int p = 1; p < pointsList.Count; p++)
+                    for (int p = 0; p < points.Count; p++)
                     {
-                        g.DrawLine(pen, pointsList[p - 1], pointsList[p]);
+                        Rectangle meanMarkerPosition = new Rectangle(pointsList[p].X - meanMarkerSize / 2, pointsList[p].Y - meanMarkerSize / 2, meanMarkerSize, meanMarkerSize);
+                        g.DrawEllipse(markerPen, meanMarkerPosition);
                     }
                 }
             }
