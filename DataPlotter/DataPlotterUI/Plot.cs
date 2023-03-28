@@ -143,8 +143,8 @@ namespace DataPlotter.DataPlotterUI
                  }
                 else
                 {
-                    chart.Series[$"{lineName} sd"].Points.AddXY(x + _xOffset, 0, point.y.l, point.y.h);
                     x++;
+                    chart.Series[$"{lineName} sd"].Points.AddXY(x + _xOffset, 0, point.y.l, point.y.h);
                 }
             }
         }
