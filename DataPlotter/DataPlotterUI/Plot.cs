@@ -259,10 +259,13 @@ namespace DataPlotter.DataPlotterUI
 
             Variable var = axis == "x" ? _data.Variables.Single(v => v.Name == _chartInfo.XVar) : _data.DepVariable as Variable;
 
-            axis1.Minimum = -0.2;
-            axis2.Minimum = -0.2;
-            axis1.Maximum = 1.2;
-            axis2.Maximum = 1.2;
+            float dynamic = axis == "x" ? _data.GetLevels(var.Name).Count : 1;
+
+            float axisMargin = 0.2f * dynamic;
+            axis1.Minimum = 1 - axisMargin;
+            axis2.Minimum = axis1.Minimum;
+            axis1.Maximum = dynamic + axisMargin;
+            axis2.Maximum = axis1.Maximum;
 
             if (var.IsNum)
             {
@@ -298,11 +301,16 @@ namespace DataPlotter.DataPlotterUI
 
                 if (majorTicks.Count > 0)
                 {
-                    var ticks = GetLabels((int)min, (int)Math.Ceiling(max), majorTicks, labelOffset, minorTicksInterval, isLog);
+                    var ticks = GetNumLabels((int)min, (int)Math.Ceiling(max), majorTicks, labelOffset, minorTicksInterval, isLog);
                     foreach (var tick in ticks.major) axis1.CustomLabels.Add(tick);
                     foreach (var tick in ticks.minor) axis2.CustomLabels.Add(tick);
                 }
             }
+            else
+            {
+                foreach (var tick in GetQualitativeLabels(var, labelOffset)) axis1.CustomLabels.Add(tick);
+            }
+
             axis1.LineWidth = 0;
             axis1.MajorGrid.LineColor = Color.Gray;
             string unit = var.Unit == string.Empty ? string.Empty : $" ({var.Unit})";
@@ -313,7 +321,7 @@ namespace DataPlotter.DataPlotterUI
             axis2.LabelStyle.Font = _font;
         }
 
-        private (List<CustomLabel> major, List<CustomLabel> minor) GetLabels(int min, int max, List<float> majorTicks, float offset, float tickInterval, bool logAxis)
+        private (List<CustomLabel> major, List<CustomLabel> minor) GetNumLabels(int min, int max, List<float> majorTicks, float offset, float tickInterval, bool logAxis)
         {
             List<CustomLabel> majorCL = new List<CustomLabel>();
             List<CustomLabel> minorCL = new List<CustomLabel>();
@@ -343,32 +351,26 @@ namespace DataPlotter.DataPlotterUI
             return (majorCL, minorCL);
         }
 
-        private (List<CustomLabel> major, List<CustomLabel> minor) GetLinLabels(int min, int max, List<float> majorTicks, float offset, float tickInterval)
+        private List<CustomLabel> GetQualitativeLabels(Variable var, float offset)
         {
-            List<CustomLabel> majorCL = new List<CustomLabel>();
-            List<CustomLabel> minorCL = new List<CustomLabel>();
+            List<CustomLabel> ticks = new List<CustomLabel>();
+            string[] labels = _data.GetLevels(var.Name).ToArray();
 
-            // TODO: float major ticks
-            int[] majorTicksInt = majorTicks.Select(f => (int)f).ToArray();
-
-            float[] tickPositions = Enumerable.Range(min, (int)((max - min) / tickInterval) + 1).Select((i, x) => min + x * tickInterval).ToArray();
-
-            foreach (float tick in tickPositions)
+            foreach (int tick in Enumerable.Range(1, labels.Length))
             {
                 CustomLabel cL = new CustomLabel();
 
                 cL.FromPosition = tick - offset;
                 cL.ToPosition = tick + offset;
 
-                cL.Text = tick.ToString();
+                cL.Text = labels[tick-1];
 
                 cL.LabelMark = LabelMarkStyle.Box;
                 cL.GridTicks = GridTickTypes.Gridline;
 
-                if (majorTicksInt.Any(t => Math.Abs(t - tick) < 0.00001f)) majorCL.Add(cL);
-                else minorCL.Add(cL);
+                ticks.Add(cL);
             }
-            return (majorCL, minorCL);
+            return ticks;
         }
 
         private void LegendDisplay()
