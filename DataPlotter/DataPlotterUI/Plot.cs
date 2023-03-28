@@ -26,14 +26,14 @@ namespace DataPlotter.DataPlotterUI
         private static readonly float _lineWidth = 3f;
         private static readonly Pen[] _pens =
         {
-            new Pen(Color.DarkSlateGray) { Width = _lineWidth },
-            new Pen(Color.Salmon){DashPattern = new float[]{ 1f, 2f } , Width = _lineWidth},
+            new Pen(Color.FromArgb(63, 78, 79)) { Width = _lineWidth },
+            new Pen(Color.FromArgb(162, 123, 92)){DashPattern = new float[]{ 1f, 2f } , Width = _lineWidth},
             new Pen(Color.CadetBlue){DashPattern = new float[]{ 4f, 3f } , Width = _lineWidth},
 
         };
 
         // TODO: User-defined font
-        private static readonly Font _font = new Font("Tahoma", 24);
+        private static readonly Font _font = new Font("Consolas", 24);
 
 
         private static readonly float _xOffsetRatio = 0.02f; // Offset between each line
