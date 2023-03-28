@@ -75,6 +75,7 @@
             this.CheckBox_TripleInteractionSamePlot = new System.Windows.Forms.CheckBox();
             this.Label_yVar2 = new System.Windows.Forms.Label();
             this.GroupBox_filesManager = new System.Windows.Forms.GroupBox();
+            this.Btn_manageInfoFile = new System.Windows.Forms.Button();
             this.GroupBox_gridTicks = new System.Windows.Forms.GroupBox();
             this.GroupBox_axesParameters = new System.Windows.Forms.GroupBox();
             this.CheckBox_isDepVarNum = new System.Windows.Forms.CheckBox();
@@ -92,7 +93,8 @@
             this.Btn_savePreset = new System.Windows.Forms.Button();
             this.GroupBox_plotParameters = new System.Windows.Forms.GroupBox();
             this.CheckBox_regression = new System.Windows.Forms.CheckBox();
-            this.Btn_manageInfoFile = new System.Windows.Forms.Button();
+            this.GroupBox_dataManager = new System.Windows.Forms.GroupBox();
+            this.Btn_gatherData = new System.Windows.Forms.Button();
             this.GroupBox_Variables.SuspendLayout();
             this.GroupBox_filesManager.SuspendLayout();
             this.GroupBox_gridTicks.SuspendLayout();
@@ -100,6 +102,7 @@
             this.GroupBox_chartParameters.SuspendLayout();
             this.Table_legendAnchor.SuspendLayout();
             this.GroupBox_plotParameters.SuspendLayout();
+            this.GroupBox_dataManager.SuspendLayout();
             this.SuspendLayout();
             // 
             // label_xVar
@@ -606,6 +609,18 @@
             this.GroupBox_filesManager.TabStop = false;
             this.GroupBox_filesManager.Text = "Files manager";
             // 
+            // Btn_manageInfoFile
+            // 
+            this.Btn_manageInfoFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.Btn_manageInfoFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.Btn_manageInfoFile.Location = new System.Drawing.Point(253, 76);
+            this.Btn_manageInfoFile.Name = "Btn_manageInfoFile";
+            this.Btn_manageInfoFile.Size = new System.Drawing.Size(125, 30);
+            this.Btn_manageInfoFile.TabIndex = 4;
+            this.Btn_manageInfoFile.Text = "Manage Info";
+            this.Btn_manageInfoFile.UseVisualStyleBackColor = false;
+            this.Btn_manageInfoFile.Click += new System.EventHandler(this.Btn_manageInfoFile_Click);
+            // 
             // GroupBox_gridTicks
             // 
             this.GroupBox_gridTicks.Controls.Add(this.TextBox_xMajorTick);
@@ -785,7 +800,7 @@
             // 
             this.Btn_plot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.Btn_plot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.Btn_plot.Location = new System.Drawing.Point(404, 44);
+            this.Btn_plot.Location = new System.Drawing.Point(721, 44);
             this.Btn_plot.Name = "Btn_plot";
             this.Btn_plot.Size = new System.Drawing.Size(160, 62);
             this.Btn_plot.TabIndex = 2;
@@ -797,7 +812,7 @@
             // 
             this.Btn_loadPreset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.Btn_loadPreset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.Btn_loadPreset.Location = new System.Drawing.Point(583, 79);
+            this.Btn_loadPreset.Location = new System.Drawing.Point(900, 79);
             this.Btn_loadPreset.Name = "Btn_loadPreset";
             this.Btn_loadPreset.Size = new System.Drawing.Size(80, 47);
             this.Btn_loadPreset.TabIndex = 2;
@@ -809,7 +824,7 @@
             // 
             this.Btn_savePreset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.Btn_savePreset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.Btn_savePreset.Location = new System.Drawing.Point(583, 30);
+            this.Btn_savePreset.Location = new System.Drawing.Point(900, 30);
             this.Btn_savePreset.Name = "Btn_savePreset";
             this.Btn_savePreset.Size = new System.Drawing.Size(80, 47);
             this.Btn_savePreset.TabIndex = 2;
@@ -840,17 +855,28 @@
             this.CheckBox_regression.UseVisualStyleBackColor = true;
             this.CheckBox_regression.CheckedChanged += new System.EventHandler(this.CheckBox_regression_CheckedChanged);
             // 
-            // Btn_manageInfoFile
+            // GroupBox_dataManager
             // 
-            this.Btn_manageInfoFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
-            this.Btn_manageInfoFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.Btn_manageInfoFile.Location = new System.Drawing.Point(253, 76);
-            this.Btn_manageInfoFile.Name = "Btn_manageInfoFile";
-            this.Btn_manageInfoFile.Size = new System.Drawing.Size(125, 30);
-            this.Btn_manageInfoFile.TabIndex = 4;
-            this.Btn_manageInfoFile.Text = "Manage Info";
-            this.Btn_manageInfoFile.UseVisualStyleBackColor = false;
-            this.Btn_manageInfoFile.Click += new System.EventHandler(this.Btn_manageInfoFile_Click);
+            this.GroupBox_dataManager.Controls.Add(this.Btn_gatherData);
+            this.GroupBox_dataManager.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.GroupBox_dataManager.Location = new System.Drawing.Point(404, 12);
+            this.GroupBox_dataManager.Name = "GroupBox_dataManager";
+            this.GroupBox_dataManager.Size = new System.Drawing.Size(265, 114);
+            this.GroupBox_dataManager.TabIndex = 13;
+            this.GroupBox_dataManager.TabStop = false;
+            this.GroupBox_dataManager.Text = "Data && Results manager";
+            // 
+            // Btn_gatherData
+            // 
+            this.Btn_gatherData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.Btn_gatherData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.Btn_gatherData.Location = new System.Drawing.Point(6, 26);
+            this.Btn_gatherData.Name = "Btn_gatherData";
+            this.Btn_gatherData.Size = new System.Drawing.Size(128, 30);
+            this.Btn_gatherData.TabIndex = 3;
+            this.Btn_gatherData.Text = "Gather Data";
+            this.Btn_gatherData.UseVisualStyleBackColor = false;
+            this.Btn_gatherData.Click += new System.EventHandler(this.Btn_gatherData_Click);
             // 
             // Home
             // 
@@ -858,6 +884,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(54)))), ((int)(((byte)(57)))));
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.GroupBox_dataManager);
             this.Controls.Add(this.GroupBox_plotParameters);
             this.Controls.Add(this.Btn_savePreset);
             this.Controls.Add(this.Btn_loadPreset);
@@ -885,6 +912,7 @@
             this.Table_legendAnchor.ResumeLayout(false);
             this.GroupBox_plotParameters.ResumeLayout(false);
             this.GroupBox_plotParameters.PerformLayout();
+            this.GroupBox_dataManager.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -955,6 +983,8 @@
         private System.Windows.Forms.Button Btn_legendBottomLeft;
         private System.Windows.Forms.Button Btn_legendBottomRight;
         private System.Windows.Forms.Button Btn_manageInfoFile;
+        private System.Windows.Forms.GroupBox GroupBox_dataManager;
+        private System.Windows.Forms.Button Btn_gatherData;
     }
 }
 

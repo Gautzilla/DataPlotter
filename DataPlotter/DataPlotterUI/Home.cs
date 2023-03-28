@@ -418,5 +418,28 @@ namespace DataPlotter
 
             infoFileManager.Show();
         }
+
+        private void Btn_gatherData_Click(object sender, EventArgs e)
+        {
+            if (_infoFilePath == string.Empty)
+            {
+                MessageBox.Show("Please load an info file first.");
+                return;
+            }
+
+            FolderBrowserDialog folder = new FolderBrowserDialog();
+            DialogResult dialogResult = folder.ShowDialog();
+            string folderName = folder.SelectedPath;
+
+            if (dialogResult != DialogResult.OK)
+            {
+                MessageBox.Show("Please select a valid folder.");
+                return;
+            }
+
+            string fileName = folderName + @"\resultats.csv";
+
+            _dataManager = new DataManager(folderName, _infoFilePath, fileName);
+        }
     }
 }
