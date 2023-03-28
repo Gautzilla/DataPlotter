@@ -112,7 +112,6 @@ namespace DataPlotter.DataPlotterUI
         /// </summary>
         private float LinesOffset(int numberOfLines, int currentLine, float ratio)
         {
-            // TODO: LinesOffset for linear xAxis
             switch (numberOfLines)
             {
                 case 1: ratio *= 0; break;
@@ -189,7 +188,7 @@ namespace DataPlotter.DataPlotterUI
 
                 if (xIsNumerical)
                 {
-                    List<(float x, float y)> points = _meanLines[line].Select(mean => (float.Parse(mean.x) * (1 + _xOffset), mean.y)).ToList();
+                    List<(float x, float y)> points = _meanLines[line].Select(mean => (_chartInfo.IsAxisLog.x ? (float.Parse(mean.x) * (1 + _xOffset)) : (float.Parse(mean.x) + _xOffset), mean.y)).ToList();
 
                     List<Point> meanPoints = points.Select(p => new Point((int)chart.ChartAreas[0].AxisX.ValueToPixelPosition(p.x), (int)chart.ChartAreas[0].AxisY.ValueToPixelPosition(p.y))).ToList();
 
