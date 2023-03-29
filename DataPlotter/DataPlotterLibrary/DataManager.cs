@@ -113,7 +113,7 @@ namespace DataPlotter.DataPlotterLibrary
             {
                 List<string> var = line.Split(',')[1].Split(' ').Where(level => _variables.Any(variable => variable.Levels.Contains(level))).ToList();
                 // TODO: Add option to skip data points (e.g. adaptive curve) or to treat each datapoint differently
-                float val = line.Split(',').Last().Trim().Split(' ').Select(v => v == string.Empty? 0 : float.Parse(v)).Average();
+                float val = line.Split(',').Last().Trim().Split(' ').Select(v => v == string.Empty? 1f/3 : float.Parse(v)).Average();
 
                 if (_data.Any(v => Enumerable.SequenceEqual(v.var, var))) _data.Single(v => Enumerable.SequenceEqual(v.var, var)).val.Add(val);
                 else _data.Add((var, new List<float>() { val }));
