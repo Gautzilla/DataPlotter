@@ -259,7 +259,7 @@ namespace DataPlotter.DataPlotterUI
             axis2.MajorTickMark.Enabled = false;
 
             // Offset for labels fromPosition and toPosition
-            float labelOffset = 0.2f;
+            float labelOffset = 0.3f;
 
             Variable var = axis == "x" ? _data.Variables.Single(v => v.Name == _chartInfo.XVar) : _data.DepVariable as Variable;
 
