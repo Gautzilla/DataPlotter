@@ -49,14 +49,14 @@ namespace DataPlotter.DataPlotterLibrary
         /// </summary>
         /// <param name="resultsFolderPath">Absolute path of the folder containing the raw result files</param>
         /// <param name="infoFilePath">Absolute path of the .txt infoFile path</param>
-        public DataManager(string resultsFolderPath, string infoFilePath, string dataFileName)
+        public DataManager(string resultsFolderPath, string infoFilePath, string dataFileName, int valuesToSkip)
         {
             Variables = new List<IndependantVariable>();
             DepVariable = new DependantVariable("dependant variable", true);
 
             ParseDependantVariable(infoFilePath);
             SortFactors(infoFilePath);
-            GatherData(resultsFolderPath);
+            GatherData(resultsFolderPath, valuesToSkip);
             WriteDataFile(dataFileName);
         }
 
@@ -89,7 +89,7 @@ namespace DataPlotter.DataPlotterLibrary
             }
         }
 
-        private void GatherData(string path)
+        private void GatherData(string path, int valuesToSkip)
         {
             _data = new List<(List<string> var, List<float> val)>();
 
@@ -97,7 +97,7 @@ namespace DataPlotter.DataPlotterLibrary
             {
                 if (file.EndsWith(".gitignore")) continue;
 
-                ExtractData(File.ReadAllLines(file));
+                ExtractData(File.ReadAllLines(file), valuesToSkip);
             }
         }
 
@@ -105,7 +105,7 @@ namespace DataPlotter.DataPlotterLibrary
         /// Extract the data corresponding to each variable combination (each line).
         /// </summary>
         /// <param name="file">File containing a participant's results.</param>
-        private void ExtractData(string[] file)
+        private void ExtractData(string[] file, int valuesToSkip)
         {
             file = file.Where(line => line != string.Empty).Select(line => line.TrimEnd(';')).ToArray();
 
@@ -113,7 +113,7 @@ namespace DataPlotter.DataPlotterLibrary
             {
                 List<string> var = line.Split(',')[1].Split(' ').Where(level => _variables.Any(variable => variable.Levels.Contains(level))).ToList();
                 // TODO: Add option to skip data points (e.g. adaptive curve) or to treat each datapoint differently
-                float val = line.Split(',').Last().Trim().Split(' ').Select(v => v == string.Empty? 1f/3 : float.Parse(v)).Average();
+                float val = line.Split(',').Last().Trim().Split(' ').Skip(valuesToSkip).Select(v => v == string.Empty? 1f/3 : float.Parse(v)).Average();
 
                 if (_data.Any(v => Enumerable.SequenceEqual(v.var, var))) _data.Single(v => Enumerable.SequenceEqual(v.var, var)).val.Add(val);
                 else _data.Add((var, new List<float>() { val }));
