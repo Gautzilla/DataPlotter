@@ -94,6 +94,10 @@
             this.GroupBox_plotParameters = new System.Windows.Forms.GroupBox();
             this.CheckBox_regression = new System.Windows.Forms.CheckBox();
             this.GroupBox_dataManager = new System.Windows.Forms.GroupBox();
+            this.Btn_decreaseValuesToSkip = new System.Windows.Forms.Button();
+            this.btn_increaseValuesToSkip = new System.Windows.Forms.Button();
+            this.TextBox_valuesToSkip = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.Btn_gatherData = new System.Windows.Forms.Button();
             this.GroupBox_Variables.SuspendLayout();
             this.GroupBox_filesManager.SuspendLayout();
@@ -857,14 +861,62 @@
             // 
             // GroupBox_dataManager
             // 
+            this.GroupBox_dataManager.Controls.Add(this.Btn_decreaseValuesToSkip);
+            this.GroupBox_dataManager.Controls.Add(this.btn_increaseValuesToSkip);
+            this.GroupBox_dataManager.Controls.Add(this.TextBox_valuesToSkip);
+            this.GroupBox_dataManager.Controls.Add(this.label2);
             this.GroupBox_dataManager.Controls.Add(this.Btn_gatherData);
             this.GroupBox_dataManager.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
             this.GroupBox_dataManager.Location = new System.Drawing.Point(404, 12);
             this.GroupBox_dataManager.Name = "GroupBox_dataManager";
-            this.GroupBox_dataManager.Size = new System.Drawing.Size(265, 114);
+            this.GroupBox_dataManager.Size = new System.Drawing.Size(277, 114);
             this.GroupBox_dataManager.TabIndex = 13;
             this.GroupBox_dataManager.TabStop = false;
             this.GroupBox_dataManager.Text = "Data && Results manager";
+            // 
+            // Btn_decreaseValuesToSkip
+            // 
+            this.Btn_decreaseValuesToSkip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.Btn_decreaseValuesToSkip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.Btn_decreaseValuesToSkip.Location = new System.Drawing.Point(207, 61);
+            this.Btn_decreaseValuesToSkip.Name = "Btn_decreaseValuesToSkip";
+            this.Btn_decreaseValuesToSkip.Size = new System.Drawing.Size(30, 30);
+            this.Btn_decreaseValuesToSkip.TabIndex = 8;
+            this.Btn_decreaseValuesToSkip.Text = "-";
+            this.Btn_decreaseValuesToSkip.UseVisualStyleBackColor = false;
+            this.Btn_decreaseValuesToSkip.Click += new System.EventHandler(this.btn_decreaseValuesToSkip_Click);
+            // 
+            // btn_increaseValuesToSkip
+            // 
+            this.btn_increaseValuesToSkip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.btn_increaseValuesToSkip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.btn_increaseValuesToSkip.Location = new System.Drawing.Point(235, 61);
+            this.btn_increaseValuesToSkip.Name = "btn_increaseValuesToSkip";
+            this.btn_increaseValuesToSkip.Size = new System.Drawing.Size(30, 30);
+            this.btn_increaseValuesToSkip.TabIndex = 7;
+            this.btn_increaseValuesToSkip.Text = "+";
+            this.btn_increaseValuesToSkip.UseVisualStyleBackColor = false;
+            this.btn_increaseValuesToSkip.Click += new System.EventHandler(this.btn_increaseValuesToSkip_Click);
+            // 
+            // TextBox_valuesToSkip
+            // 
+            this.TextBox_valuesToSkip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.TextBox_valuesToSkip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.TextBox_valuesToSkip.Location = new System.Drawing.Point(148, 64);
+            this.TextBox_valuesToSkip.Name = "TextBox_valuesToSkip";
+            this.TextBox_valuesToSkip.Size = new System.Drawing.Size(53, 27);
+            this.TextBox_valuesToSkip.TabIndex = 6;
+            this.TextBox_valuesToSkip.Leave += new System.EventHandler(this.TextBox_valuesToSkip_Leave);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.label2.Location = new System.Drawing.Point(6, 67);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(145, 19);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Skip first values:";
             // 
             // Btn_gatherData
             // 
@@ -913,6 +965,7 @@
             this.GroupBox_plotParameters.ResumeLayout(false);
             this.GroupBox_plotParameters.PerformLayout();
             this.GroupBox_dataManager.ResumeLayout(false);
+            this.GroupBox_dataManager.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -985,6 +1038,10 @@
         private System.Windows.Forms.Button Btn_manageInfoFile;
         private System.Windows.Forms.GroupBox GroupBox_dataManager;
         private System.Windows.Forms.Button Btn_gatherData;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button Btn_decreaseValuesToSkip;
+        private System.Windows.Forms.Button btn_increaseValuesToSkip;
+        private System.Windows.Forms.TextBox TextBox_valuesToSkip;
     }
 }
 

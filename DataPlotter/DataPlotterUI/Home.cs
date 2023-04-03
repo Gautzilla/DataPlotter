@@ -27,6 +27,8 @@ namespace DataPlotter
         private DataManager _dataManager;
         private string[] _variableNames;
 
+        private int _valuesToSkip = 0;
+
         #endregion
 
         public Home()
@@ -436,7 +438,37 @@ namespace DataPlotter
 
             string fileName = folderName + @"\resultats.csv";
 
-            _dataManager = new DataManager(folderName, _infoFilePath, fileName);
+            _dataManager = new DataManager(folderName, _infoFilePath, fileName, _valuesToSkip);
+        }
+
+        private void btn_decreaseValuesToSkip_Click(object sender, EventArgs e)
+        {
+            if (_valuesToSkip == 0) return;
+            _valuesToSkip--;
+            RefreshValuesToSkip();
+        }
+
+        private void btn_increaseValuesToSkip_Click(object sender, EventArgs e)
+        {
+            _valuesToSkip++;
+            RefreshValuesToSkip();
+        }
+
+        private void RefreshValuesToSkip()
+        {
+            TextBox_valuesToSkip.Text = _valuesToSkip.ToString();
+        }
+
+        private void TextBox_valuesToSkip_Leave(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            if (int.TryParse(textBox.Text, out int valuesToSkip))
+            {
+                _valuesToSkip = valuesToSkip;
+            }
+
+            RefreshValuesToSkip();
         }
     }
 }
