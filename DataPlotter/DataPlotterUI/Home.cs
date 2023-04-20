@@ -309,14 +309,14 @@ namespace DataPlotter
 
         private void Btn_savePreset_Click(object sender, EventArgs e)
         {
-            ChartInfo copy = DeepCopier.DeepCopy<ChartInfo>(_chartInfo);
+            ChartInfo copy = DeepCopier.DeepCopy(_chartInfo);
             copy.SetID(_dataFilePath);
             PresetManager.WritePreset(copy);
         }
 
         private void Btn_loadPreset_Click(object sender, EventArgs e)
         {
-            ChartInfo copy = DeepCopier.DeepCopy<ChartInfo>(_chartInfo);
+            ChartInfo copy = DeepCopier.DeepCopy(_chartInfo);
             copy.SetID(_dataFilePath);
             LoadChartInfos(PresetManager.LoadPreset(copy));
         }

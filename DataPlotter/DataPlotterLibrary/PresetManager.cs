@@ -16,7 +16,7 @@ namespace DataPlotter.DataPlotterLibrary
 
         static PresetManager()
         {
-            _serializer = new JsonSerializer();
+            _serializer = new JsonSerializer() { Formatting = Formatting.Indented };
             CreatePresetsFile();
             ImportPresets();
         }
@@ -43,16 +43,15 @@ namespace DataPlotter.DataPlotterLibrary
 
         public static void WritePreset(ChartInfo chartInfo)
         {
-            Console.WriteLine($"Before writing: {_presets.Count}");
+            Console.WriteLine(chartInfo.ID);
             _presets.RemoveAll(cI => cI.ID == chartInfo.ID);
-            Console.WriteLine($"After removing current preset: {_presets.Count}");
             _presets.Add(chartInfo);
-            Console.WriteLine($"After adding current preset: {_presets.Count}");
             ExportPresets();
         }
 
         public static ChartInfo LoadPreset(ChartInfo chartInfo)
         {
+            Console.WriteLine(chartInfo.ID);
             return _presets.SingleOrDefault(cI => cI.ID == chartInfo.ID) ?? chartInfo;
         }
 
@@ -70,11 +69,7 @@ namespace DataPlotter.DataPlotterLibrary
             using (var streamWriter = new StreamWriter(_presetsFilePath))
             using (var jsonWriter = new JsonTextWriter(streamWriter))
             {
-                foreach (var preset in _presets)
-                {
-                    _serializer.Serialize(jsonWriter, preset);
-                    jsonWriter.WriteWhitespace(Environment.NewLine);
-                }
+                _serializer.Serialize(jsonWriter, _presets);
             }
         }
     }
