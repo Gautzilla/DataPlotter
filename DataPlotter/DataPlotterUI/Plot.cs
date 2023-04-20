@@ -11,6 +11,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using DataPlotter.DataPlotterLibrary;
 using System.IO;
 using System.Drawing.Imaging;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace DataPlotter.DataPlotterUI
 {
@@ -20,18 +21,19 @@ namespace DataPlotter.DataPlotterUI
         private readonly DataManager _data;
         private readonly ChartInfo _chartInfo;
         private static List<List<(string x, float y)>> _meanLines;
+        private static List<Func<double, double>> _regressionFunc;
 
-        private static readonly float _lineWidth = 2f;
+        private static readonly float _lineWidth = 3f;
         private static readonly Pen[] _pens =
         {
-            new Pen(Color.Black) { Width = _lineWidth },
-            new Pen(Color.Black){DashPattern = new float[]{ 1f, 2f } , Width = _lineWidth},
-            new Pen(Color.Black){DashPattern = new float[]{ 4f, 3f } , Width = _lineWidth},
+            new Pen(Color.FromArgb(63, 78, 79)) { Width = _lineWidth },
+            new Pen(Color.FromArgb(162, 123, 92)){DashPattern = new float[]{ 1f, 2f } , Width = _lineWidth},
+            new Pen(Color.CadetBlue){DashPattern = new float[]{ 4f, 3f } , Width = _lineWidth},
 
         };
 
         // TODO: User-defined font
-        private static readonly Font _font = new Font("Tahoma", 18);
+        private static readonly Font _font = new Font("Consolas", 24);
 
 
         private static readonly float _xOffsetRatio = 0.02f; // Offset between each line
@@ -42,6 +44,9 @@ namespace DataPlotter.DataPlotterUI
             _data = data;
             _chartInfo = chartInfo;
             _home = home;
+
+            _meanLines = new List<List<(string x, float y)>>();
+            _regressionFunc = new List<Func<double, double>>();
         }
 
         private void Plot_Load(object sender, EventArgs e)
@@ -63,14 +68,33 @@ namespace DataPlotter.DataPlotterUI
         private void PlotChart()
         {
             chart.Series.Clear();
+            List<string> yVar2Levels = _data.GetLevels(_chartInfo.YVar2);
 
+            if (_chartInfo.TripleInteractionSamePlot)
+            {
+                for (int yVar2Level = 0; yVar2Level < yVar2Levels.Count(); yVar2Level++)
+                {
+                    _chartInfo.YVar2Level = yVar2Levels[yVar2Level];
+                    PlotLines(yVar2Level * _data.GetLevels(_chartInfo.YVar).Count);
+                }
+            }
+            else PlotLines(0);
+
+            ChartDisplay();
+        }
+
+        private void PlotLines(int firstLineIndex)
+        {
             List<string> yVarLevels = _data.GetLevels(_chartInfo.YVar);
 
-            for (int line = 0; line < yVarLevels.Count; line++)
+            for (int line = firstLineIndex; line < firstLineIndex + yVarLevels.Count; line++)
             {
-                _xOffset = LinesOffset(yVarLevels.Count, line, _xOffsetRatio);
+                int lineStyle = line % _data.GetLevels(_chartInfo.YVar).Count;
 
-                string lineName = yVarLevels[line] ?? _chartInfo.XVar;
+                _xOffset = LinesOffset(yVarLevels.Count, lineStyle, _xOffsetRatio);
+
+                string lineName = yVarLevels[lineStyle] ?? _chartInfo.XVar;
+                if (_chartInfo.TripleInteractionSamePlot) lineName += _chartInfo.YVar2Level;
 
 
                 // CONFIDENCE INTERVAL
@@ -78,9 +102,10 @@ namespace DataPlotter.DataPlotterUI
                 ErrorBarDisplay();
 
                 // MEAN : are plotted in the PaintLine event handler
-                _meanLines = _data.MeanLine(_chartInfo.XVar, _chartInfo.IsAxisLog.y, _chartInfo.YVar, _chartInfo.YVar2Level);
+                _meanLines = _meanLines.Append(_data.MeanLine(_chartInfo.XVar, _chartInfo.IsAxisLog.y, _chartInfo.YVar, _chartInfo.YVar2Level)[lineStyle]).ToList();
+
+                if (_chartInfo.Regression) _regressionFunc = _regressionFunc.Append(_data.Regression(_chartInfo.XVar, _chartInfo.IsAxisLog.y, _chartInfo.YVar, _chartInfo.YVar2Level)[lineStyle]).ToList();
             }
-            ChartDisplay();
         }
 
         /// <summary>
@@ -88,13 +113,12 @@ namespace DataPlotter.DataPlotterUI
         /// </summary>
         private float LinesOffset(int numberOfLines, int currentLine, float ratio)
         {
-            // TODO: LinesOffset for linear xAxis
             switch (numberOfLines)
             {
                 case 1: ratio *= 0; break;
                 case 2: ratio *= (currentLine == 0 ? -1 : 1); break;
                 default: ratio *= (currentLine - 1); break;
-            }
+            }  
 
             return ratio;
         }
@@ -110,26 +134,30 @@ namespace DataPlotter.DataPlotterUI
 
             int x = 0;
 
-            foreach (var point in sdLine[lineIndex])
+            foreach (var point in sdLine[lineIndex % _data.GetLevels(_chartInfo.YVar).Count])
             {
                 if (int.TryParse(point.x, out int xVal))
                 {
-                    chart.Series[$"{lineName} sd"].Points.AddXY(xVal * (1 + _xOffset), 0, point.y.l, point.y.h);
-                }
+                    float xPos = _chartInfo.IsAxisLog.x ? (xVal * (1 + _xOffset)) : (xVal + _xOffset);
+                    chart.Series[$"{lineName} sd"].Points.AddXY(xPos, 0, point.y.l, point.y.h);
+                 }
                 else
                 {
-                    chart.Series[$"{lineName} sd"].Points.AddXY(x + _xOffset, 0, point.y.l, point.y.h);
                     x++;
+                    chart.Series[$"{lineName} sd"].Points.AddXY(x + _xOffset, 0, point.y.l, point.y.h);
                 }
             }
         }
 
         private void ErrorBarDisplay()
         {
+            int iD = 0;
             foreach (var series in chart.Series)
             {
-                series.Color = Color.Black;
+                series.Color = _pens[iD].Color;
                 series.CustomProperties = "PixelPointWidth = 10";
+                iD++;
+                if (_chartInfo.TripleInteractionSamePlot) iD %= _data.GetLevels(_chartInfo.YVar).Count;
             }
         }
 
@@ -145,31 +173,67 @@ namespace DataPlotter.DataPlotterUI
 
             for (int line = 0; line < _meanLines.Count; line++)
             {
-                Pen pen = _pens[line];
 
-                _xOffset = LinesOffset(_meanLines.Count, line, _xOffsetRatio);
+                int lineStyle = line;
+                int linesToOffset = _meanLines.Count;
+                if (_chartInfo.TripleInteractionSamePlot)
+                {
+                    lineStyle %= _data.GetLevels(_chartInfo.YVar).Count;
+                    linesToOffset /= _data.GetLevels(_chartInfo.YVar2).Count;
+                }
+
+                Pen pen = _pens[lineStyle];
+                
+                _xOffset = LinesOffset(linesToOffset, lineStyle, _xOffsetRatio);
                 float x = 0;
 
                 if (xIsNumerical)
                 {
-                    List<(float x, float y)> points = _meanLines[line].Select(mean => (float.Parse(mean.x) * (1 + _xOffset), mean.y)).ToList();
+                    List<(float x, float y)> points = _meanLines[line].Select(mean => (_chartInfo.IsAxisLog.x ? (float.Parse(mean.x) * (1 + _xOffset)) : (float.Parse(mean.x) + _xOffset), mean.y)).ToList();
 
-                    List<Point> pointsList = points.Select(p => new Point((int)chart.ChartAreas[0].AxisX.ValueToPixelPosition(p.x), (int)chart.ChartAreas[0].AxisY.ValueToPixelPosition(p.y))).ToList();
+                    List<Point> meanPoints = points.Select(p => new Point((int)chart.ChartAreas[0].AxisX.ValueToPixelPosition(p.x), (int)chart.ChartAreas[0].AxisY.ValueToPixelPosition(p.y))).ToList();
 
-                    for (int p = 1; p < pointsList.Count; p++)
+                    List<Point> regressionPoints = new List<Point>();
+                    if (_chartInfo.Regression) regressionPoints = points.Select(p => new Point((int)chart.ChartAreas[0].AxisX.ValueToPixelPosition(p.x), (int)chart.ChartAreas[0].AxisY.ValueToPixelPosition(_regressionFunc[line](p.x)))).ToList();
+
+                    for (int p = 1; p < meanPoints.Count; p++)
                     {
-                        g.DrawLine(pen, pointsList[p - 1], pointsList[p]);
+
+                        if (_chartInfo.Regression)
+                        {
+                            g.DrawLine(pen, regressionPoints[p - 1], regressionPoints[p]);
+                            continue;
+                        }
+
+                        g.DrawLine(pen, meanPoints[p - 1], meanPoints[p]);
                     }
+
+                    for (int p = 0; p < meanPoints.Count; p++)
+                    {
+                        int meanMarkerSize = 6;
+
+                        Pen markerPen = (Pen)_pens.First().Clone(); // Solid line pen
+                        markerPen.Color = _pens[lineStyle].Color;
+
+                        Rectangle meanMarkerPosition = new Rectangle(meanPoints[p].X - meanMarkerSize / 2, meanPoints[p].Y - meanMarkerSize / 2, meanMarkerSize, meanMarkerSize);
+
+                        g.DrawEllipse(markerPen, meanMarkerPosition);
+                    }
+
                 }
                 else
                 {
-                    List<(float x, float y)> points = _meanLines[line].Select(mean => (x, mean.y)).ToList();
-                    x++;
+                    int meanMarkerSize = 6;
+                    Pen markerPen = (Pen)_pens.First().Clone(); // Solid line pen
+                    markerPen.Color = _pens[lineStyle].Color;
+
+                    List<(float x, float y)> points = _meanLines[line].Select(mean => (++x + _xOffset, mean.y)).ToList();
                     List<Point> pointsList = points.Select(p => new Point((int)chart.ChartAreas[0].AxisX.ValueToPixelPosition(p.x), (int)chart.ChartAreas[0].AxisY.ValueToPixelPosition(p.y))).ToList();
 
-                    for (int p = 1; p < pointsList.Count; p++)
+                    for (int p = 0; p < points.Count; p++)
                     {
-                        g.DrawLine(pen, pointsList[p - 1], pointsList[p]);
+                        Rectangle meanMarkerPosition = new Rectangle(pointsList[p].X - meanMarkerSize / 2, pointsList[p].Y - meanMarkerSize / 2, meanMarkerSize, meanMarkerSize);
+                        g.DrawEllipse(markerPen, meanMarkerPosition);
                     }
                 }
             }
@@ -195,14 +259,17 @@ namespace DataPlotter.DataPlotterUI
             axis2.MajorTickMark.Enabled = false;
 
             // Offset for labels fromPosition and toPosition
-            float labelOffset = 0.2f;
+            float labelOffset = 0.3f;
 
             Variable var = axis == "x" ? _data.Variables.Single(v => v.Name == _chartInfo.XVar) : _data.DepVariable as Variable;
 
-            axis1.Minimum = -0.2;
-            axis2.Minimum = -0.2;
-            axis1.Maximum = 1.2;
-            axis2.Maximum = 1.2;
+            float dynamic = axis == "x" ? _data.GetLevels(var.Name).Count : 1;
+
+            float axisMargin = 0.2f * dynamic;
+            axis1.Minimum = 1 - axisMargin;
+            axis2.Minimum = axis1.Minimum;
+            axis1.Maximum = dynamic + axisMargin;
+            axis2.Maximum = axis1.Maximum;
 
             if (var.IsNum)
             {
@@ -227,22 +294,27 @@ namespace DataPlotter.DataPlotterUI
                 axis1.IsLogarithmic = isLog;
                 axis2.IsLogarithmic = isLog;
 
+                List<float> majorTicks = axis == "x" ? _chartInfo.MajorTicks.x : _chartInfo.MajorTicks.y;
+                float minorTicksInterval = axis == "x" ? _chartInfo.MinorTicksInterval.x : _chartInfo.MinorTicksInterval.y;
+
                 if (isLog)
                 {
                     axis1.LogarithmBase = 2;
                     axis2.LogarithmBase = 2;
+                }
 
-                    List<float> majorTicks = axis == "x" ? _chartInfo.MajorTicks.x : _chartInfo.MajorTicks.y;
-                    float minorTicksInterval = axis == "x" ? _chartInfo.MinorTicksInterval.x : _chartInfo.MinorTicksInterval.y;
-
-                    if (majorTicks.Count > 0)
-                    {
-                        var ticks = GetLogLabels((int)min, (int)Math.Ceiling(max), majorTicks, labelOffset, minorTicksInterval);
-                        foreach (var tick in ticks.major) axis1.CustomLabels.Add(tick);
-                        foreach (var tick in ticks.minor) axis2.CustomLabels.Add(tick);
-                    }
+                if (majorTicks.Count > 0)
+                {
+                    var ticks = GetNumLabels((int)min, (int)Math.Ceiling(max), majorTicks, labelOffset, minorTicksInterval, isLog);
+                    foreach (var tick in ticks.major) axis1.CustomLabels.Add(tick);
+                    foreach (var tick in ticks.minor) axis2.CustomLabels.Add(tick);
                 }
             }
+            else
+            {
+                foreach (var tick in GetQualitativeLabels(var, labelOffset)) axis1.CustomLabels.Add(tick);
+            }
+
             axis1.LineWidth = 0;
             axis1.MajorGrid.LineColor = Color.Gray;
             string unit = var.Unit == string.Empty ? string.Empty : $" ({var.Unit})";
@@ -253,7 +325,7 @@ namespace DataPlotter.DataPlotterUI
             axis2.LabelStyle.Font = _font;
         }
 
-        private (List<CustomLabel> major, List<CustomLabel> minor) GetLogLabels(int min, int max, List<float> majorTicks, float offset, float tickInterval)
+        private (List<CustomLabel> major, List<CustomLabel> minor) GetNumLabels(int min, int max, List<float> majorTicks, float offset, float tickInterval, bool logAxis)
         {
             List<CustomLabel> majorCL = new List<CustomLabel>();
             List<CustomLabel> minorCL = new List<CustomLabel>();
@@ -265,9 +337,8 @@ namespace DataPlotter.DataPlotterUI
 
             foreach (float tick in tickPositions)
             {
-                double linPos = Math.Log(tick, 2); // Log values on linear axis
-                //if (min > 0) linPos -= Math.Log(min, 2);
-                Console.WriteLine($"Range {min}-{max} ; Tick {tick} ; Linpos {linPos}");
+                double linPos = logAxis ? Math.Log(tick, 2) : tick; // Log values on linear axis
+
                 CustomLabel cL = new CustomLabel();
 
                 cL.FromPosition = linPos - offset;
@@ -284,6 +355,28 @@ namespace DataPlotter.DataPlotterUI
             return (majorCL, minorCL);
         }
 
+        private List<CustomLabel> GetQualitativeLabels(Variable var, float offset)
+        {
+            List<CustomLabel> ticks = new List<CustomLabel>();
+            string[] labels = _data.GetLevels(var.Name).ToArray();
+
+            foreach (int tick in Enumerable.Range(1, labels.Length))
+            {
+                CustomLabel cL = new CustomLabel();
+
+                cL.FromPosition = tick - offset;
+                cL.ToPosition = tick + offset;
+
+                cL.Text = labels[tick-1];
+
+                cL.LabelMark = LabelMarkStyle.Box;
+                cL.GridTicks = GridTickTypes.Gridline;
+
+                ticks.Add(cL);
+            }
+            return ticks;
+        }
+
         private void LegendDisplay()
         {
             // TODO: Add legend control in the UI
@@ -293,28 +386,38 @@ namespace DataPlotter.DataPlotterUI
             newL.Docking = chart.Legends.First().Docking;
             newL.Alignment = chart.Legends.First().Alignment;
 
+            int scale = 2;
 
-            int iw = 32; int iw2 = iw / 2; int ih = 18; int ih2 = ih / 2;
-            int ew = 5;
+
+            int iw = 32 * scale - 5; int iw2 = iw / 2; int ih = 18 * scale - 5; int ih2 = ih / 2;
+            int ew = 5 * scale;
+            int markerSize = 3 * scale;
+            int offset = 2;
 
             chart.ApplyPaletteColors();
-            for (int line = 0; line < _meanLines.Count; line++)
-            {
 
+            int legendItems = _meanLines.Count;
+            if (_chartInfo.TripleInteractionSamePlot) legendItems /= _data.GetLevels(_chartInfo.YVar2).Count;
+
+            for (int legendItem = 0; legendItem < legendItems; legendItem++)
+            {
                 Bitmap bmp = new Bitmap(iw, ih);
                 Graphics G = Graphics.FromImage(bmp);
-                Pen pen = _pens[line];
-                Pen solidPen = _pens.First();
+                Pen pen = _pens[legendItem];
+                Pen solidPen = (Pen)_pens.First().Clone();
+                solidPen.Color = _pens[legendItem].Color;
 
 
-                G.DrawLine(pen, 0, ih2, iw, ih2);
-                G.DrawLine(solidPen, iw2, 1, iw2, ih);
-                G.DrawLine(solidPen, iw2-ew, 0, iw2+ew, 0);
-                G.DrawLine(solidPen, iw2-ew, ih-1, iw2+ew, ih-1);
+                G.DrawLine(pen, 0, ih2, iw, ih2); // Data line
+                G.DrawLine(solidPen, iw2, 1 + offset, iw2, ih - offset); // ErrorBar vertical line
+                G.DrawLine(solidPen, iw2-ew, 0 + offset, iw2+ew, 0 + offset); // ErrorBar bottom line
+                G.DrawLine(solidPen, iw2-ew, ih-1 - offset, iw2+ew, ih-1 - offset); // ErrorBar top line
+
+                G.DrawEllipse(solidPen, iw2 - markerSize / 2, ih2 - markerSize / 2, markerSize, markerSize);
 
 
                 // add a new NamesImage
-                string name = _data.Variables.Single(v => v.Name == _chartInfo.YVar).Levels[line];
+                string name = _data.Variables.Single(v => v.Name == _chartInfo.YVar).Levels[legendItem];
                 NamedImage ni = new NamedImage(name, bmp);
                 chart.Images.Add(ni);
                 // create and add the custom legend item
@@ -326,7 +429,7 @@ namespace DataPlotter.DataPlotterUI
             newL.IsDockedInsideChartArea = true;
             newL.DockedToChartArea = chart.ChartAreas.First().Name;
             // TODO: user-controlled docking position
-            newL.Docking = Docking.Right;
+            newL.Docking = _chartInfo.LegendDocking;
             newL.Font = _font;
             newL.TableStyle = LegendTableStyle.Tall;
             newL.BorderWidth = 1;
@@ -340,14 +443,23 @@ namespace DataPlotter.DataPlotterUI
             _home.Show();
         }
 
+        /// <summary>
+        /// Saves the plot as an emf file.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void chart_Click(object sender, EventArgs e)
         {
             string figureName = _chartInfo.DepVarName.RemoveWhiteSpaces() + "_";
             figureName += _chartInfo.XVar.RemoveWhiteSpaces();
             if (_chartInfo.YVar != string.Empty) figureName += "X" + _chartInfo.YVar.RemoveWhiteSpaces();
-            if (_chartInfo.YVar2 != string.Empty) figureName += "X" + _chartInfo.YVar2.RemoveWhiteSpaces() + $"({_chartInfo.YVar2Level.RemoveWhiteSpaces()})";
+            if (_chartInfo.YVar2 != string.Empty)
+            {
+                figureName += "X" + _chartInfo.YVar2.RemoveWhiteSpaces();
+                if (!_chartInfo.TripleInteractionSamePlot) figureName += $"({_chartInfo.YVar2Level.RemoveWhiteSpaces()})";
+            }
 
-            figureName = $@"C:\Users\Gauthier\Documents\DataPlotter\{figureName}.emf";
+            figureName = $@"C:\Users\User\Documents\DataPlotter\{figureName}.emf";
             MemoryStream ms = new MemoryStream();
             chart.SaveImage(ms, ImageFormat.Emf);
             ms.Seek(0, SeekOrigin.Begin);

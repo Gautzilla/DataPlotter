@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataPlotter.DataPlotterLibrary;
 using DataPlotter.DataPlotterUI;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace DataPlotter
 {
@@ -24,6 +25,8 @@ namespace DataPlotter
         private string _infoFilePath = string.Empty;
         private DataManager _dataManager;
         private string[] _variableNames;
+
+        private int _valuesToSkip = 0;
 
         #endregion
 
@@ -42,20 +45,23 @@ namespace DataPlotter
             _dataFilePath = openFileDialog1.FileName;
             string dataFileName = _dataFilePath.Split('\\').Last();
             label_dataPath.Text = dataFileName;
+
+            if (_infoFilePath != string.Empty) GetDataInfo();
         }
 
         private void Btn_infoFilePath_Click(object sender, EventArgs e)
         {
-            if (_dataFilePath == string.Empty)
-            {
-                MessageBox.Show("Please load a data file first.");
-                return;
-            }
-
             openFileDialog2.ShowDialog();
             _infoFilePath = openFileDialog2.FileName;
             string infoFileName = _infoFilePath.Split('\\').Last();
             label_infoPath.Text = infoFileName;
+
+            if (_dataFilePath != string.Empty) GetDataInfo();
+        }
+
+        private void GetDataInfo()
+        {
+            // TODO: Check if dataFile and infoFile match
 
             _dataManager = new DataManager(_dataFilePath, _infoFilePath);
 
@@ -111,7 +117,7 @@ namespace DataPlotter
         private void ListBox_yVar2_SelectedIndexChanged(object sender, EventArgs e)
         {
             _chartInfo.YVar2 = ListBox_yVar2.SelectedIndex == 0 ? String.Empty : ListBox_yVar2.SelectedItem.ToString();
-            UpdateYvar2LevelsListBox();
+            if (!_chartInfo.TripleInteractionSamePlot) UpdateYvar2LevelsListBox();
         }
 
         private void UpdateYvar2LevelsListBox()
@@ -130,10 +136,7 @@ namespace DataPlotter
         {
             TextBox textBox = sender as TextBox;
 
-            if (int.TryParse(textBox.Text, out int chartSize))
-            {
-            }
-            else
+            if (!int.TryParse(textBox.Text, out int chartSize))
             {
                 textBox.Text = String.Empty;
             }
@@ -256,28 +259,36 @@ namespace DataPlotter
 
         private void LoadChartInfos(ChartInfo chartInfo)
         {
+            _chartInfo = chartInfo;
+            UpdateGUI();
+        }
+
+        private void UpdateGUI()
+        {
             // Parameters
-            TextBox_chartName.Text = chartInfo.Name;
-            TextBox_chartWidth.Text = chartInfo.Size.w.ToString();
-            TextBox_chartHeight.Text = chartInfo.Size.h.ToString();
+            TextBox_chartName.Text = _chartInfo.Name;
+            TextBox_chartWidth.Text = _chartInfo.Size.w.ToString();
+            TextBox_chartHeight.Text = _chartInfo.Size.h.ToString();
+            CheckBox_TripleInteractionSamePlot.Checked = _chartInfo.TripleInteractionSamePlot;
+            CheckBox_regression.Checked = _chartInfo.Regression;
 
             // Grid ticks
-            ListBox_xMajorTicks.Items.AddRange(chartInfo.MajorTicks.x.Select(x => x.ToString()).ToArray());
-            ListBox_yMajorTicks.Items.AddRange(chartInfo.MajorTicks.y.Select(x => x.ToString()).ToArray());
-            TextBox_xMinorTicksInterval.Text = chartInfo.MinorTicksInterval.x.ToString();
-            TextBox_yMinorTicksInterval.Text = chartInfo.MinorTicksInterval.y.ToString();
+            ListBox_xMajorTicks.Items.Clear();
+            ListBox_yMajorTicks.Items.Clear();
+            ListBox_xMajorTicks.Items.AddRange(_chartInfo.MajorTicks.x.Select(x => x.ToString()).ToArray());
+            ListBox_yMajorTicks.Items.AddRange(_chartInfo.MajorTicks.y.Select(x => x.ToString()).ToArray());
+            TextBox_xMinorTicksInterval.Text = _chartInfo.MinorTicksInterval.x.ToString();
+            TextBox_yMinorTicksInterval.Text = _chartInfo.MinorTicksInterval.y.ToString();
 
             // Axes parameters
-            TextBox_depVarName.Text = chartInfo.DepVarName;
-            TextBox_xMin.Text = chartInfo.XRange.min.ToString();
-            TextBox_xMax.Text = chartInfo.XRange.max.ToString();
-            TextBox_yMin.Text = chartInfo.YRange.min.ToString();
-            TextBox_yMax.Text = chartInfo.YRange.max.ToString();
-            CheckBox_isXLog.Checked = chartInfo.IsAxisLog.x;
-            CheckBox_isYLog.Checked = chartInfo.IsAxisLog.y;
-            CheckBox_isDepVarNum.Checked = chartInfo.IsDepVarNum;
-
-            _chartInfo = chartInfo;
+            TextBox_depVarName.Text = _chartInfo.DepVarName;
+            TextBox_xMin.Text = _chartInfo.XRange.min.ToString();
+            TextBox_xMax.Text = _chartInfo.XRange.max.ToString();
+            TextBox_yMin.Text = _chartInfo.YRange.min.ToString();
+            TextBox_yMax.Text = _chartInfo.YRange.max.ToString();
+            CheckBox_isXLog.Checked = _chartInfo.IsAxisLog.x;
+            CheckBox_isYLog.Checked = _chartInfo.IsAxisLog.y;
+            CheckBox_isDepVarNum.Checked = _chartInfo.IsDepVarNum;
         }
 
         private void Btn_plot_Click(object sender, EventArgs e)
@@ -319,6 +330,137 @@ namespace DataPlotter
             ChartInfo copy = DeepCopier.DeepCopy(_chartInfo);
             copy.SetID(_dataFilePath);
             LoadChartInfos(PresetManager.LoadPreset(copy));
+        }
+
+        private void CheckBox_regression_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox regression = sender as CheckBox;
+
+            _chartInfo.Regression = regression.Checked;
+        }
+
+        private void CheckBox_TripleInteractionSamePlot_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkBox = sender as CheckBox;
+
+            _chartInfo.TripleInteractionSamePlot = checkBox.Checked;
+
+            if (checkBox.Checked)
+            {
+                ListBox_yVar2Levels.Items.Clear();
+                _chartInfo.YVar2Level = String.Empty;
+            }
+            else UpdateYvar2LevelsListBox();
+            
+
+        }
+
+        #region LegendButtons
+
+        private void Btn_legendTopLeft_Click(object sender, EventArgs e)
+        {
+            _chartInfo.LegendDocking = Docking.Left;
+            SetLegendButtonColors(sender as Button);
+        }
+
+        private void Btn_legendTopRight_Click(object sender, EventArgs e)
+        {
+            _chartInfo.LegendDocking = Docking.Right;
+            SetLegendButtonColors(sender as Button);
+        }
+
+        private void Btn_legendBottomLeft_Click(object sender, EventArgs e)
+        {
+            _chartInfo.LegendDocking = Docking.Bottom;
+            SetLegendButtonColors(sender as Button);
+        }
+
+        private void Btn_legendBottomRight_Click(object sender, EventArgs e)
+        {
+            _chartInfo.LegendDocking = Docking.Top;
+            SetLegendButtonColors(sender as Button);
+        }
+
+        private void SetLegendButtonColors(Button litButton)
+        {
+            Button[] legendButtons = { Btn_legendTopLeft, Btn_legendTopRight, Btn_legendBottomLeft, Btn_legendBottomRight };
+            
+            Color litColor = Color.FromArgb(162, 123, 92);
+            Color unlitColor = Color.FromArgb(63, 78, 79);
+
+            foreach (Button button in legendButtons) button.BackColor = button == litButton ? litColor : unlitColor;       
+        }
+
+        #endregion
+
+        private void Btn_infoFilePath_EnabledChanged(object sender, EventArgs e)
+        {
+            Color enabledColor = Color.FromArgb(162, 123, 92);
+            Color unabledColor = Color.FromArgb(63, 78, 79);
+
+            Button btn = sender as Button;
+
+            btn.ForeColor = btn.Enabled ? enabledColor : unabledColor;
+        }
+
+        private void Btn_manageInfoFile_Click(object sender, EventArgs e)
+        {
+            InfoFileManager infoFileManager = _infoFilePath == string.Empty ? new InfoFileManager() : new InfoFileManager(_infoFilePath);
+
+            infoFileManager.Show();
+        }
+
+        private void Btn_gatherData_Click(object sender, EventArgs e)
+        {
+            if (_infoFilePath == string.Empty)
+            {
+                MessageBox.Show("Please load an info file first.");
+                return;
+            }
+
+            FolderBrowserDialog folder = new FolderBrowserDialog();
+            DialogResult dialogResult = folder.ShowDialog();
+            string folderName = folder.SelectedPath;
+
+            if (dialogResult != DialogResult.OK)
+            {
+                MessageBox.Show("Please select a valid folder.");
+                return;
+            }
+
+            string fileName = folderName + @"\resultats.csv";
+
+            _dataManager = new DataManager(folderName, _infoFilePath, fileName, _valuesToSkip);
+        }
+
+        private void btn_decreaseValuesToSkip_Click(object sender, EventArgs e)
+        {
+            if (_valuesToSkip == 0) return;
+            _valuesToSkip--;
+            RefreshValuesToSkip();
+        }
+
+        private void btn_increaseValuesToSkip_Click(object sender, EventArgs e)
+        {
+            _valuesToSkip++;
+            RefreshValuesToSkip();
+        }
+
+        private void RefreshValuesToSkip()
+        {
+            TextBox_valuesToSkip.Text = _valuesToSkip.ToString();
+        }
+
+        private void TextBox_valuesToSkip_Leave(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            if (int.TryParse(textBox.Text, out int valuesToSkip))
+            {
+                _valuesToSkip = valuesToSkip;
+            }
+
+            RefreshValuesToSkip();
         }
     }
 }

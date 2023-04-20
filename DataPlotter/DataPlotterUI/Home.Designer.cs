@@ -36,7 +36,6 @@
             this.ListBox_xVar = new System.Windows.Forms.ListBox();
             this.label_yVar = new System.Windows.Forms.Label();
             this.ListBox_yVar = new System.Windows.Forms.ListBox();
-            this.Label_yVar2 = new System.Windows.Forms.Label();
             this.ListBox_yVar2 = new System.Windows.Forms.ListBox();
             this.Label_yVar2Levels = new System.Windows.Forms.Label();
             this.ListBox_yVar2Levels = new System.Windows.Forms.ListBox();
@@ -73,21 +72,41 @@
             this.label1 = new System.Windows.Forms.Label();
             this.TextBox_yMinorTicksInterval = new System.Windows.Forms.TextBox();
             this.GroupBox_Variables = new System.Windows.Forms.GroupBox();
+            this.CheckBox_TripleInteractionSamePlot = new System.Windows.Forms.CheckBox();
+            this.Label_yVar2 = new System.Windows.Forms.Label();
             this.GroupBox_filesManager = new System.Windows.Forms.GroupBox();
+            this.Btn_manageInfoFile = new System.Windows.Forms.Button();
             this.GroupBox_gridTicks = new System.Windows.Forms.GroupBox();
             this.GroupBox_axesParameters = new System.Windows.Forms.GroupBox();
             this.CheckBox_isDepVarNum = new System.Windows.Forms.CheckBox();
             this.GroupBox_chartParameters = new System.Windows.Forms.GroupBox();
+            this.Label_legendAnchor = new System.Windows.Forms.Label();
+            this.Table_legendAnchor = new System.Windows.Forms.TableLayoutPanel();
+            this.Btn_legendTopLeft = new System.Windows.Forms.Button();
+            this.Btn_legendTopRight = new System.Windows.Forms.Button();
+            this.Btn_legendBottomLeft = new System.Windows.Forms.Button();
+            this.Btn_legendBottomRight = new System.Windows.Forms.Button();
             this.TextBox_chartName = new System.Windows.Forms.TextBox();
             this.Label_chartName = new System.Windows.Forms.Label();
             this.Btn_plot = new System.Windows.Forms.Button();
             this.Btn_loadPreset = new System.Windows.Forms.Button();
             this.Btn_savePreset = new System.Windows.Forms.Button();
+            this.GroupBox_plotParameters = new System.Windows.Forms.GroupBox();
+            this.CheckBox_regression = new System.Windows.Forms.CheckBox();
+            this.GroupBox_dataManager = new System.Windows.Forms.GroupBox();
+            this.Btn_decreaseValuesToSkip = new System.Windows.Forms.Button();
+            this.btn_increaseValuesToSkip = new System.Windows.Forms.Button();
+            this.TextBox_valuesToSkip = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.Btn_gatherData = new System.Windows.Forms.Button();
             this.GroupBox_Variables.SuspendLayout();
             this.GroupBox_filesManager.SuspendLayout();
             this.GroupBox_gridTicks.SuspendLayout();
             this.GroupBox_axesParameters.SuspendLayout();
             this.GroupBox_chartParameters.SuspendLayout();
+            this.Table_legendAnchor.SuspendLayout();
+            this.GroupBox_plotParameters.SuspendLayout();
+            this.GroupBox_dataManager.SuspendLayout();
             this.SuspendLayout();
             // 
             // label_xVar
@@ -116,11 +135,12 @@
             // 
             this.label_dataPath.AutoSize = true;
             this.label_dataPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.label_dataPath.Location = new System.Drawing.Point(107, 32);
+            this.label_dataPath.Location = new System.Drawing.Point(107, 31);
             this.label_dataPath.Name = "label_dataPath";
             this.label_dataPath.Size = new System.Drawing.Size(133, 19);
             this.label_dataPath.TabIndex = 3;
             this.label_dataPath.Text = "No loaded data";
+            this.label_dataPath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Btn_addXMajorTick
             // 
@@ -178,16 +198,6 @@
             this.ListBox_yVar.TabIndex = 4;
             this.ListBox_yVar.SelectedIndexChanged += new System.EventHandler(this.ListBox_yVar_SelectedIndexChanged);
             // 
-            // Label_yVar2
-            // 
-            this.Label_yVar2.AutoSize = true;
-            this.Label_yVar2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_yVar2.Location = new System.Drawing.Point(474, 109);
-            this.Label_yVar2.Name = "Label_yVar2";
-            this.Label_yVar2.Size = new System.Drawing.Size(164, 19);
-            this.Label_yVar2.TabIndex = 1;
-            this.Label_yVar2.Text = "2nd y-axis variable";
-            // 
             // ListBox_yVar2
             // 
             this.ListBox_yVar2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
@@ -234,7 +244,7 @@
             // 
             this.TextBox_chartWidth.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_chartWidth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_chartWidth.Location = new System.Drawing.Point(6, 92);
+            this.TextBox_chartWidth.Location = new System.Drawing.Point(6, 79);
             this.TextBox_chartWidth.Name = "TextBox_chartWidth";
             this.TextBox_chartWidth.Size = new System.Drawing.Size(111, 27);
             this.TextBox_chartWidth.TabIndex = 5;
@@ -244,7 +254,7 @@
             // 
             this.TextBox_chartHeight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.TextBox_chartHeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.TextBox_chartHeight.Location = new System.Drawing.Point(123, 92);
+            this.TextBox_chartHeight.Location = new System.Drawing.Point(123, 79);
             this.TextBox_chartHeight.Name = "TextBox_chartHeight";
             this.TextBox_chartHeight.Size = new System.Drawing.Size(111, 27);
             this.TextBox_chartHeight.TabIndex = 5;
@@ -254,7 +264,7 @@
             // 
             this.Label_chartWidth.AutoSize = true;
             this.Label_chartWidth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_chartWidth.Location = new System.Drawing.Point(6, 122);
+            this.Label_chartWidth.Location = new System.Drawing.Point(6, 109);
             this.Label_chartWidth.Name = "Label_chartWidth";
             this.Label_chartWidth.Size = new System.Drawing.Size(105, 19);
             this.Label_chartWidth.TabIndex = 1;
@@ -264,7 +274,7 @@
             // 
             this.Label_chartHeight.AutoSize = true;
             this.Label_chartHeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.Label_chartHeight.Location = new System.Drawing.Point(123, 122);
+            this.Label_chartHeight.Location = new System.Drawing.Point(123, 109);
             this.Label_chartHeight.Name = "Label_chartHeight";
             this.Label_chartHeight.Size = new System.Drawing.Size(111, 19);
             this.Label_chartHeight.TabIndex = 1;
@@ -504,6 +514,7 @@
             this.Btn_infoFilePath.TabIndex = 2;
             this.Btn_infoFilePath.Text = "Info File";
             this.Btn_infoFilePath.UseVisualStyleBackColor = false;
+            this.Btn_infoFilePath.EnabledChanged += new System.EventHandler(this.Btn_infoFilePath_EnabledChanged);
             this.Btn_infoFilePath.Click += new System.EventHandler(this.Btn_infoFilePath_Click);
             // 
             // TextBox_xMinorTicksInterval
@@ -548,6 +559,7 @@
             // 
             // GroupBox_Variables
             // 
+            this.GroupBox_Variables.Controls.Add(this.CheckBox_TripleInteractionSamePlot);
             this.GroupBox_Variables.Controls.Add(this.ListBox_xVar);
             this.GroupBox_Variables.Controls.Add(this.label_xVar);
             this.GroupBox_Variables.Controls.Add(this.label_yVar);
@@ -564,8 +576,31 @@
             this.GroupBox_Variables.TabStop = false;
             this.GroupBox_Variables.Text = "Variables to plot";
             // 
+            // CheckBox_TripleInteractionSamePlot
+            // 
+            this.CheckBox_TripleInteractionSamePlot.AutoSize = true;
+            this.CheckBox_TripleInteractionSamePlot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.CheckBox_TripleInteractionSamePlot.Location = new System.Drawing.Point(478, 131);
+            this.CheckBox_TripleInteractionSamePlot.Name = "CheckBox_TripleInteractionSamePlot";
+            this.CheckBox_TripleInteractionSamePlot.Size = new System.Drawing.Size(215, 23);
+            this.CheckBox_TripleInteractionSamePlot.TabIndex = 14;
+            this.CheckBox_TripleInteractionSamePlot.Text = "Same plot for all levels";
+            this.CheckBox_TripleInteractionSamePlot.UseVisualStyleBackColor = true;
+            this.CheckBox_TripleInteractionSamePlot.CheckedChanged += new System.EventHandler(this.CheckBox_TripleInteractionSamePlot_CheckedChanged);
+            // 
+            // Label_yVar2
+            // 
+            this.Label_yVar2.AutoSize = true;
+            this.Label_yVar2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.Label_yVar2.Location = new System.Drawing.Point(474, 109);
+            this.Label_yVar2.Name = "Label_yVar2";
+            this.Label_yVar2.Size = new System.Drawing.Size(164, 19);
+            this.Label_yVar2.TabIndex = 1;
+            this.Label_yVar2.Text = "2nd y-axis variable";
+            // 
             // GroupBox_filesManager
             // 
+            this.GroupBox_filesManager.Controls.Add(this.Btn_manageInfoFile);
             this.GroupBox_filesManager.Controls.Add(this.Btn_dataFilePath);
             this.GroupBox_filesManager.Controls.Add(this.Btn_infoFilePath);
             this.GroupBox_filesManager.Controls.Add(this.label_dataPath);
@@ -573,10 +608,22 @@
             this.GroupBox_filesManager.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
             this.GroupBox_filesManager.Location = new System.Drawing.Point(12, 12);
             this.GroupBox_filesManager.Name = "GroupBox_filesManager";
-            this.GroupBox_filesManager.Size = new System.Drawing.Size(243, 114);
+            this.GroupBox_filesManager.Size = new System.Drawing.Size(386, 114);
             this.GroupBox_filesManager.TabIndex = 8;
             this.GroupBox_filesManager.TabStop = false;
             this.GroupBox_filesManager.Text = "Files manager";
+            // 
+            // Btn_manageInfoFile
+            // 
+            this.Btn_manageInfoFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.Btn_manageInfoFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.Btn_manageInfoFile.Location = new System.Drawing.Point(253, 76);
+            this.Btn_manageInfoFile.Name = "Btn_manageInfoFile";
+            this.Btn_manageInfoFile.Size = new System.Drawing.Size(125, 30);
+            this.Btn_manageInfoFile.TabIndex = 4;
+            this.Btn_manageInfoFile.Text = "Manage Info";
+            this.Btn_manageInfoFile.UseVisualStyleBackColor = false;
+            this.Btn_manageInfoFile.Click += new System.EventHandler(this.Btn_manageInfoFile_Click);
             // 
             // GroupBox_gridTicks
             // 
@@ -640,6 +687,8 @@
             // 
             // GroupBox_chartParameters
             // 
+            this.GroupBox_chartParameters.Controls.Add(this.Label_legendAnchor);
+            this.GroupBox_chartParameters.Controls.Add(this.Table_legendAnchor);
             this.GroupBox_chartParameters.Controls.Add(this.TextBox_chartName);
             this.GroupBox_chartParameters.Controls.Add(this.Label_chartName);
             this.GroupBox_chartParameters.Controls.Add(this.TextBox_chartWidth);
@@ -647,12 +696,89 @@
             this.GroupBox_chartParameters.Controls.Add(this.Label_chartHeight);
             this.GroupBox_chartParameters.Controls.Add(this.TextBox_chartHeight);
             this.GroupBox_chartParameters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
-            this.GroupBox_chartParameters.Location = new System.Drawing.Point(736, 141);
+            this.GroupBox_chartParameters.Location = new System.Drawing.Point(736, 132);
             this.GroupBox_chartParameters.Name = "GroupBox_chartParameters";
-            this.GroupBox_chartParameters.Size = new System.Drawing.Size(244, 150);
+            this.GroupBox_chartParameters.Size = new System.Drawing.Size(244, 229);
             this.GroupBox_chartParameters.TabIndex = 11;
             this.GroupBox_chartParameters.TabStop = false;
             this.GroupBox_chartParameters.Text = "Chart parameters";
+            // 
+            // Label_legendAnchor
+            // 
+            this.Label_legendAnchor.AutoSize = true;
+            this.Label_legendAnchor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.Label_legendAnchor.Location = new System.Drawing.Point(6, 175);
+            this.Label_legendAnchor.Name = "Label_legendAnchor";
+            this.Label_legendAnchor.Size = new System.Drawing.Size(128, 19);
+            this.Label_legendAnchor.TabIndex = 15;
+            this.Label_legendAnchor.Text = "Legend anchor";
+            this.Label_legendAnchor.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // Table_legendAnchor
+            // 
+            this.Table_legendAnchor.ColumnCount = 2;
+            this.Table_legendAnchor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.Table_legendAnchor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.Table_legendAnchor.Controls.Add(this.Btn_legendTopLeft, 0, 0);
+            this.Table_legendAnchor.Controls.Add(this.Btn_legendTopRight, 1, 0);
+            this.Table_legendAnchor.Controls.Add(this.Btn_legendBottomLeft, 0, 1);
+            this.Table_legendAnchor.Controls.Add(this.Btn_legendBottomRight, 1, 1);
+            this.Table_legendAnchor.Location = new System.Drawing.Point(140, 175);
+            this.Table_legendAnchor.Name = "Table_legendAnchor";
+            this.Table_legendAnchor.RowCount = 2;
+            this.Table_legendAnchor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.Table_legendAnchor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.Table_legendAnchor.Size = new System.Drawing.Size(56, 48);
+            this.Table_legendAnchor.TabIndex = 15;
+            // 
+            // Btn_legendTopLeft
+            // 
+            this.Btn_legendTopLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.Btn_legendTopLeft.FlatAppearance.BorderSize = 0;
+            this.Btn_legendTopLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn_legendTopLeft.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.Btn_legendTopLeft.Location = new System.Drawing.Point(3, 3);
+            this.Btn_legendTopLeft.Name = "Btn_legendTopLeft";
+            this.Btn_legendTopLeft.Size = new System.Drawing.Size(22, 18);
+            this.Btn_legendTopLeft.TabIndex = 0;
+            this.Btn_legendTopLeft.UseVisualStyleBackColor = false;
+            this.Btn_legendTopLeft.Click += new System.EventHandler(this.Btn_legendTopLeft_Click);
+            // 
+            // Btn_legendTopRight
+            // 
+            this.Btn_legendTopRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.Btn_legendTopRight.FlatAppearance.BorderSize = 0;
+            this.Btn_legendTopRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn_legendTopRight.Location = new System.Drawing.Point(31, 3);
+            this.Btn_legendTopRight.Name = "Btn_legendTopRight";
+            this.Btn_legendTopRight.Size = new System.Drawing.Size(22, 18);
+            this.Btn_legendTopRight.TabIndex = 1;
+            this.Btn_legendTopRight.UseVisualStyleBackColor = false;
+            this.Btn_legendTopRight.Click += new System.EventHandler(this.Btn_legendTopRight_Click);
+            // 
+            // Btn_legendBottomLeft
+            // 
+            this.Btn_legendBottomLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.Btn_legendBottomLeft.FlatAppearance.BorderSize = 0;
+            this.Btn_legendBottomLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn_legendBottomLeft.Location = new System.Drawing.Point(3, 27);
+            this.Btn_legendBottomLeft.Name = "Btn_legendBottomLeft";
+            this.Btn_legendBottomLeft.Size = new System.Drawing.Size(22, 18);
+            this.Btn_legendBottomLeft.TabIndex = 2;
+            this.Btn_legendBottomLeft.UseVisualStyleBackColor = false;
+            this.Btn_legendBottomLeft.Click += new System.EventHandler(this.Btn_legendBottomLeft_Click);
+            // 
+            // Btn_legendBottomRight
+            // 
+            this.Btn_legendBottomRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.Btn_legendBottomRight.FlatAppearance.BorderSize = 0;
+            this.Btn_legendBottomRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn_legendBottomRight.Location = new System.Drawing.Point(31, 27);
+            this.Btn_legendBottomRight.Name = "Btn_legendBottomRight";
+            this.Btn_legendBottomRight.Size = new System.Drawing.Size(22, 18);
+            this.Btn_legendBottomRight.TabIndex = 3;
+            this.Btn_legendBottomRight.UseVisualStyleBackColor = false;
+            this.Btn_legendBottomRight.Click += new System.EventHandler(this.Btn_legendBottomRight_Click);
             // 
             // TextBox_chartName
             // 
@@ -678,7 +804,7 @@
             // 
             this.Btn_plot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.Btn_plot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.Btn_plot.Location = new System.Drawing.Point(404, 44);
+            this.Btn_plot.Location = new System.Drawing.Point(721, 44);
             this.Btn_plot.Name = "Btn_plot";
             this.Btn_plot.Size = new System.Drawing.Size(160, 62);
             this.Btn_plot.TabIndex = 2;
@@ -690,7 +816,7 @@
             // 
             this.Btn_loadPreset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.Btn_loadPreset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.Btn_loadPreset.Location = new System.Drawing.Point(583, 79);
+            this.Btn_loadPreset.Location = new System.Drawing.Point(900, 79);
             this.Btn_loadPreset.Name = "Btn_loadPreset";
             this.Btn_loadPreset.Size = new System.Drawing.Size(80, 47);
             this.Btn_loadPreset.TabIndex = 2;
@@ -702,7 +828,7 @@
             // 
             this.Btn_savePreset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
             this.Btn_savePreset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
-            this.Btn_savePreset.Location = new System.Drawing.Point(583, 30);
+            this.Btn_savePreset.Location = new System.Drawing.Point(900, 30);
             this.Btn_savePreset.Name = "Btn_savePreset";
             this.Btn_savePreset.Size = new System.Drawing.Size(80, 47);
             this.Btn_savePreset.TabIndex = 2;
@@ -710,12 +836,108 @@
             this.Btn_savePreset.UseVisualStyleBackColor = false;
             this.Btn_savePreset.Click += new System.EventHandler(this.Btn_savePreset_Click);
             // 
+            // GroupBox_plotParameters
+            // 
+            this.GroupBox_plotParameters.Controls.Add(this.CheckBox_regression);
+            this.GroupBox_plotParameters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.GroupBox_plotParameters.Location = new System.Drawing.Point(736, 367);
+            this.GroupBox_plotParameters.Name = "GroupBox_plotParameters";
+            this.GroupBox_plotParameters.Size = new System.Drawing.Size(244, 55);
+            this.GroupBox_plotParameters.TabIndex = 12;
+            this.GroupBox_plotParameters.TabStop = false;
+            this.GroupBox_plotParameters.Text = "Plot Parameters";
+            // 
+            // CheckBox_regression
+            // 
+            this.CheckBox_regression.AutoSize = true;
+            this.CheckBox_regression.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.CheckBox_regression.Location = new System.Drawing.Point(10, 26);
+            this.CheckBox_regression.Name = "CheckBox_regression";
+            this.CheckBox_regression.Size = new System.Drawing.Size(186, 23);
+            this.CheckBox_regression.TabIndex = 13;
+            this.CheckBox_regression.Text = "Plot regression line";
+            this.CheckBox_regression.UseVisualStyleBackColor = true;
+            this.CheckBox_regression.CheckedChanged += new System.EventHandler(this.CheckBox_regression_CheckedChanged);
+            // 
+            // GroupBox_dataManager
+            // 
+            this.GroupBox_dataManager.Controls.Add(this.Btn_decreaseValuesToSkip);
+            this.GroupBox_dataManager.Controls.Add(this.btn_increaseValuesToSkip);
+            this.GroupBox_dataManager.Controls.Add(this.TextBox_valuesToSkip);
+            this.GroupBox_dataManager.Controls.Add(this.label2);
+            this.GroupBox_dataManager.Controls.Add(this.Btn_gatherData);
+            this.GroupBox_dataManager.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.GroupBox_dataManager.Location = new System.Drawing.Point(404, 12);
+            this.GroupBox_dataManager.Name = "GroupBox_dataManager";
+            this.GroupBox_dataManager.Size = new System.Drawing.Size(277, 114);
+            this.GroupBox_dataManager.TabIndex = 13;
+            this.GroupBox_dataManager.TabStop = false;
+            this.GroupBox_dataManager.Text = "Data && Results manager";
+            // 
+            // Btn_decreaseValuesToSkip
+            // 
+            this.Btn_decreaseValuesToSkip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.Btn_decreaseValuesToSkip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.Btn_decreaseValuesToSkip.Location = new System.Drawing.Point(207, 61);
+            this.Btn_decreaseValuesToSkip.Name = "Btn_decreaseValuesToSkip";
+            this.Btn_decreaseValuesToSkip.Size = new System.Drawing.Size(30, 30);
+            this.Btn_decreaseValuesToSkip.TabIndex = 8;
+            this.Btn_decreaseValuesToSkip.Text = "-";
+            this.Btn_decreaseValuesToSkip.UseVisualStyleBackColor = false;
+            this.Btn_decreaseValuesToSkip.Click += new System.EventHandler(this.btn_decreaseValuesToSkip_Click);
+            // 
+            // btn_increaseValuesToSkip
+            // 
+            this.btn_increaseValuesToSkip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.btn_increaseValuesToSkip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.btn_increaseValuesToSkip.Location = new System.Drawing.Point(235, 61);
+            this.btn_increaseValuesToSkip.Name = "btn_increaseValuesToSkip";
+            this.btn_increaseValuesToSkip.Size = new System.Drawing.Size(30, 30);
+            this.btn_increaseValuesToSkip.TabIndex = 7;
+            this.btn_increaseValuesToSkip.Text = "+";
+            this.btn_increaseValuesToSkip.UseVisualStyleBackColor = false;
+            this.btn_increaseValuesToSkip.Click += new System.EventHandler(this.btn_increaseValuesToSkip_Click);
+            // 
+            // TextBox_valuesToSkip
+            // 
+            this.TextBox_valuesToSkip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.TextBox_valuesToSkip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.TextBox_valuesToSkip.Location = new System.Drawing.Point(148, 64);
+            this.TextBox_valuesToSkip.Name = "TextBox_valuesToSkip";
+            this.TextBox_valuesToSkip.Size = new System.Drawing.Size(53, 27);
+            this.TextBox_valuesToSkip.TabIndex = 6;
+            this.TextBox_valuesToSkip.Leave += new System.EventHandler(this.TextBox_valuesToSkip_Leave);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(215)))), ((int)(((byte)(201)))));
+            this.label2.Location = new System.Drawing.Point(6, 67);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(145, 19);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Skip first values:";
+            // 
+            // Btn_gatherData
+            // 
+            this.Btn_gatherData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
+            this.Btn_gatherData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(123)))), ((int)(((byte)(92)))));
+            this.Btn_gatherData.Location = new System.Drawing.Point(6, 26);
+            this.Btn_gatherData.Name = "Btn_gatherData";
+            this.Btn_gatherData.Size = new System.Drawing.Size(128, 30);
+            this.Btn_gatherData.TabIndex = 3;
+            this.Btn_gatherData.Text = "Gather Data";
+            this.Btn_gatherData.UseVisualStyleBackColor = false;
+            this.Btn_gatherData.Click += new System.EventHandler(this.Btn_gatherData_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(54)))), ((int)(((byte)(57)))));
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.GroupBox_dataManager);
+            this.Controls.Add(this.GroupBox_plotParameters);
             this.Controls.Add(this.Btn_savePreset);
             this.Controls.Add(this.Btn_loadPreset);
             this.Controls.Add(this.Btn_plot);
@@ -739,6 +961,11 @@
             this.GroupBox_axesParameters.PerformLayout();
             this.GroupBox_chartParameters.ResumeLayout(false);
             this.GroupBox_chartParameters.PerformLayout();
+            this.Table_legendAnchor.ResumeLayout(false);
+            this.GroupBox_plotParameters.ResumeLayout(false);
+            this.GroupBox_plotParameters.PerformLayout();
+            this.GroupBox_dataManager.ResumeLayout(false);
+            this.GroupBox_dataManager.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -752,7 +979,6 @@
         private System.Windows.Forms.ListBox ListBox_xVar;
         private System.Windows.Forms.Label label_yVar;
         private System.Windows.Forms.ListBox ListBox_yVar;
-        private System.Windows.Forms.Label Label_yVar2;
         private System.Windows.Forms.ListBox ListBox_yVar2;
         private System.Windows.Forms.Label Label_yVar2Levels;
         private System.Windows.Forms.ListBox ListBox_yVar2Levels;
@@ -799,6 +1025,23 @@
         private System.Windows.Forms.Button Btn_loadPreset;
         private System.Windows.Forms.CheckBox CheckBox_isDepVarNum;
         private System.Windows.Forms.Button Btn_savePreset;
+        private System.Windows.Forms.GroupBox GroupBox_plotParameters;
+        private System.Windows.Forms.CheckBox CheckBox_regression;
+        private System.Windows.Forms.CheckBox CheckBox_TripleInteractionSamePlot;
+        private System.Windows.Forms.Label Label_yVar2;
+        private System.Windows.Forms.Label Label_legendAnchor;
+        private System.Windows.Forms.TableLayoutPanel Table_legendAnchor;
+        private System.Windows.Forms.Button Btn_legendTopLeft;
+        private System.Windows.Forms.Button Btn_legendTopRight;
+        private System.Windows.Forms.Button Btn_legendBottomLeft;
+        private System.Windows.Forms.Button Btn_legendBottomRight;
+        private System.Windows.Forms.Button Btn_manageInfoFile;
+        private System.Windows.Forms.GroupBox GroupBox_dataManager;
+        private System.Windows.Forms.Button Btn_gatherData;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button Btn_decreaseValuesToSkip;
+        private System.Windows.Forms.Button btn_increaseValuesToSkip;
+        private System.Windows.Forms.TextBox TextBox_valuesToSkip;
     }
 }
 

@@ -36,8 +36,12 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="MathNet.Numerics, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.5.0.0\lib\net48\MathNet.Numerics.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -62,6 +66,12 @@
     <Compile Include="DataPlotterUI\Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataPlotterUI\InfoFileManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataPlotterUI\InfoFileManager.Designer.cs">
+      <DependentUpon>InfoFileManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataPlotterUI\Plot.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +82,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DataPlotterUI\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataPlotterUI\InfoFileManager.resx">
+      <DependentUpon>InfoFileManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DataPlotterUI\Plot.resx">
       <DependentUpon>Plot.cs</DependentUpon>
