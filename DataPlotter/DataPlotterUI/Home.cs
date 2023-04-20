@@ -90,6 +90,7 @@ namespace DataPlotter
         private void ListBox_xVar_SelectedIndexChanged(object sender, EventArgs e)
         {
             _chartInfo.XVar = ListBox_xVar.SelectedItem.ToString();
+            UpdateYvariables(0);
             UpdateYvar1ListBox();
         }
 
@@ -103,6 +104,7 @@ namespace DataPlotter
         private void ListBox_yVar_SelectedIndexChanged(object sender, EventArgs e)
         {
             _chartInfo.YVar = ListBox_yVar.SelectedIndex == 0 ? String.Empty : ListBox_yVar.SelectedItem.ToString();
+            UpdateYvariables(1);
             UpdateYvar2ListBox();
         }
         
@@ -116,7 +118,14 @@ namespace DataPlotter
 
         private void ListBox_yVar2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _chartInfo.YVar2 = ListBox_yVar2.SelectedIndex == 0 ? String.Empty : ListBox_yVar2.SelectedItem.ToString();
+            if (ListBox_yVar2.SelectedIndex == 0)
+            {
+                _chartInfo.YVar2 = String.Empty;
+                ClearYVar2Levels();
+            }
+            else _chartInfo.YVar2 = ListBox_yVar2.SelectedItem.ToString();
+
+            UpdateYvariables(2);
             if (!_chartInfo.TripleInteractionSamePlot) UpdateYvar2LevelsListBox();
         }
 
@@ -130,6 +139,17 @@ namespace DataPlotter
         private void ListBox_yVar2Levels_SelectedIndexChanged(object sender, EventArgs e)
         {
             _chartInfo.YVar2Level = ListBox_yVar2Levels.SelectedItem.ToString();
+        }
+
+        private void UpdateYvariables(int layers)
+        {
+            ListBox[] yVariablesListboxes = new ListBox[] { ListBox_yVar, ListBox_yVar2, ListBox_yVar2Levels  };
+            
+            for (int layer = yVariablesListboxes.Length - 1; layer >= layers; layer--)
+            {
+                if (yVariablesListboxes[layer].Items.Count == 0) continue;
+                yVariablesListboxes[layer].SetSelected(0, true);
+            }
         }
 
         private void TextBox_chartSize_Leave(object sender, EventArgs e)
@@ -345,14 +365,14 @@ namespace DataPlotter
 
             _chartInfo.TripleInteractionSamePlot = checkBox.Checked;
 
-            if (checkBox.Checked)
-            {
-                ListBox_yVar2Levels.Items.Clear();
-                _chartInfo.YVar2Level = String.Empty;
-            }
+            if (checkBox.Checked) ClearYVar2Levels();
             else UpdateYvar2LevelsListBox();
-            
-
+        }
+        
+        private void ClearYVar2Levels()
+        {
+            ListBox_yVar2Levels.Items.Clear();
+            _chartInfo.YVar2Level = String.Empty;
         }
 
         #region LegendButtons
