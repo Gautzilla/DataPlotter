@@ -3,87 +3,74 @@ using System.IO;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace DataPlotter.DataPlotterLibrary
 {
     internal static class PresetManager
     {
-        private static readonly string _documentsPath;
-        private static readonly string _filePath;
+        private static List<ChartInfo> _presets;
+        private static JsonSerializer _serializer;
+
+        private static string _presetsFilePath;
+
         static PresetManager()
         {
-            _documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            _filePath = _documentsPath + @"\DataPlotter\presets.txt";
+            _serializer = new JsonSerializer() { Formatting = Formatting.Indented };
+            CreatePresetsFile();
+            ImportPresets();
+        }
 
-            if (File.Exists(_filePath))
+        private static void CreatePresetsFile()
+        {
+            string _documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            _presetsFilePath = _documentsPath + @"\DataPlotter\presets.json";
+
+            if (File.Exists(_presetsFilePath))
             {
 
             }
             else
             {
                 Directory.CreateDirectory(_documentsPath + @"\DataPlotter");
-                File.Create(_filePath);
+                using (FileStream fs = File.Create(_presetsFilePath))
+                {
+
+                }
             }
         }
-        public static List<ChartInfo> LoadPresets()
+        
+
+        public static void WritePreset(ChartInfo chartInfo)
         {
-            List<ChartInfo> charts = new List<ChartInfo>();
-            return charts;
+            Console.WriteLine(chartInfo.ID);
+            _presets.RemoveAll(cI => cI.ID == chartInfo.ID);
+            _presets.Add(chartInfo);
+            ExportPresets();
         }
 
-        public static void UpdatePresets(ChartInfo chart, string dataFile)
+        public static ChartInfo LoadPreset(ChartInfo chartInfo)
         {
-            string preset = CreatePreset(chart, dataFile);
-            string chartId = string.Join("@", preset.Split("@".ToCharArray()).Take(2));
-
-            List<string> presets = File.ReadAllLines(_filePath).ToList();
-            presets.RemoveAll(p => p.Contains(chartId));
-            presets.Add(preset);
-
-            File.WriteAllLines(_filePath, presets);
+            Console.WriteLine(chartInfo.ID);
+            return _presets.SingleOrDefault(cI => cI.ID == chartInfo.ID) ?? chartInfo;
         }
 
-        private static string CreatePreset(ChartInfo chart, string dataFile)
+        private static void ImportPresets()
         {
-            string dF = "dataFile: " + dataFile;
-            string vars = "variables: " + WriteVariables(chart);
-            string name = "name: " + chart.Name;
-            string width = "width: " + chart.Size.w;
-            string height = "height: " + chart.Size.h;
-            string xMajorTicks = "xMajorTicks: " + string.Join("&", chart.MajorTicks.x);
-            string xMinTick = "xMinTick: " + chart.MinorTicksInterval.x;
-            string yMajorTicks = "yMajorTicks: " + string.Join("&", chart.MajorTicks.y);
-            string yMinTick = "yMinTick: " + chart.MinorTicksInterval.y;
-            string depVar = "depVar: " + chart.DepVarName;
-            string xMin = "xMin: " + chart.XRange.min;
-            string xMax = "xMax: " + chart.XRange.max;
-            string yMin = "yMin: " + chart.YRange.min;
-            string yMax = "yMax: " + chart.YRange.max;
-            string xLog = "xLog; " + chart.IsAxisLog.x;
-            string yLog = "yLog; " + chart.IsAxisLog.y;
-            string regressionLine = "regressionLine; " + chart.Regression;
-            string samePlotAllLevels = "samePlot; " + chart.TripleInteractionSamePlot;
-
-            return string.Join("@", new string[] { dF, vars, name, width, height, xMajorTicks, xMinTick, yMajorTicks, yMinTick, depVar, xMin, xMax, yMin, yMax, xLog, yLog, regressionLine, samePlotAllLevels});
-        }
-        private static string WriteVariables(ChartInfo chart) => String.Join("*", new string[] { chart.XVar, chart.YVar, chart.YVar2, chart.YVar2Level }).TrimEnd('*');
-
-        public static bool DoesPresetExists(ChartInfo chart, string dataFile)
-        {
-            string chartId = GetChartId(chart, dataFile);
-
-            return File.ReadAllLines(_filePath).Any(l => l.Contains(chartId));
+            using (var streamReader = new StreamReader(_presetsFilePath))
+            using (var jsonReader = new JsonTextReader(streamReader))
+            {
+                _presets = _serializer.Deserialize<List<ChartInfo>>(jsonReader) ?? new List<ChartInfo>();
+            }
         }
 
-        public static ChartInfo LoadPreset(ChartInfo chart, string dataFile)
+        private static void ExportPresets()
         {
-            string chartId = GetChartId(chart, dataFile);
-
-            return new ChartInfo(File.ReadAllLines(_filePath).First(l => l.Contains(chartId)));
+            using (var streamWriter = new StreamWriter(_presetsFilePath))
+            using (var jsonWriter = new JsonTextWriter(streamWriter))
+            {
+                _serializer.Serialize(jsonWriter, _presets);
+            }
         }
-
-        private static string GetChartId(ChartInfo chart, string dataFile) => "dataFile: " + dataFile + "@" + "variables: " + WriteVariables(chart);
     }
 }

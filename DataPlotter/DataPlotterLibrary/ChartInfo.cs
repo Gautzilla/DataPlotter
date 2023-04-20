@@ -9,6 +9,14 @@ namespace DataPlotter.DataPlotterLibrary
 {
     internal class ChartInfo
     {
+        private string iD;
+        
+        public string ID
+        {
+            get { return iD; }
+            set { iD = value; }
+        }
+
         #region Variables Settings
 
         private string _xVar = string.Empty;
@@ -57,50 +65,15 @@ namespace DataPlotter.DataPlotterLibrary
 
         #endregion
 
+        
         public ChartInfo()
         {
-
+            ID = "default";
         }
 
-        public ChartInfo(string preset)
+        public void SetID (string dataFilePath)
         {
-            string[] param = preset.Split('@').ToArray();
-
-            string[] variables = param.Single(s => s.StartsWith("variables:")).Remove(0, "variables: ".Length).Split('*');
-            _xVar = variables[0];
-            _yVar = variables.Length > 1 ? variables[1] : string.Empty;
-            _yVar2 = variables.Length > 2 ? variables[2] : string.Empty;
-            _yVar2Level = variables.Length > 3 ? variables[3] : string.Empty;
-
-            _name = param[2].Split(' ').Last();
-
-            int width = int.Parse(param[3].Split(' ').Last());
-            int height = int.Parse(param[4].Split(' ').Last());
-            _size = (width, height);
-
-            _majorTicks.x = param[5].Split(' ').Last().Length > 0 ? param[5].Split(' ').Last().Split('&').Select(t => float.Parse(t)).ToList() : new List<float>();
-
-            _minorTicksInterval.x = param[6].Split(' ').Last().Length > 0 ? float.Parse(param[6].Split(' ').Last()) : 1;
-
-            _majorTicks.y = param[7].Split(' ').Last().Length > 0 ? param[7].Split(' ').Last().Split('&').Select(t => float.Parse(t)).ToList() : new List<float>();
-            _minorTicksInterval.y = param[8].Split(' ').Last().Length > 0 ? float.Parse(param[8].Split(' ').Last()) : 1;
-
-            _depVarName = String.Join(" ", param[9].Split(' ').Skip(1));
-
-            float xMin = float.Parse(param[10].Split(' ').Last());
-            float xMax = float.Parse(param[11].Split(' ').Last());
-            _xRange = (xMin, xMax);
-
-            float yMin = float.Parse(param[12].Split(' ').Last());
-            float yMax = float.Parse(param[13].Split(' ').Last());
-            _yRange = (yMin, yMax);
-
-            _IsAxisLog.x = param[14].Split(' ').Last() == "True";
-            _IsAxisLog.y = param[15].Split(' ').Last() == "True";
-
-            _regression = param[16].Split(' ').Last() == "True";
-
-            _tripleInteractionSamePlot = param[17].Split(' ').Last() == "True";
-        }        
+            ID = dataFilePath + "_" + String.Join("_", new string[] { XVar, YVar, YVar2, YVar2Level }).TrimEnd('_');
+        }
     }
 }

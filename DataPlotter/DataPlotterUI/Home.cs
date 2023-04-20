@@ -18,7 +18,6 @@ namespace DataPlotter
     public partial class Home : Form
     {
         private ChartInfo _chartInfo;
-        private static List<ChartInfo> _savedCharts;
 
         #region Data Settings
 
@@ -35,8 +34,6 @@ namespace DataPlotter
         {
             InitializeComponent();
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-
-            _savedCharts = PresetManager.LoadPresets();
 
             _chartInfo = new ChartInfo();
             _chartInfo.IsAxisLog = (CheckBox_isXLog.Checked, CheckBox_isYLog.Checked);
@@ -260,15 +257,6 @@ namespace DataPlotter
             _chartInfo.Name = TextBox_chartName.Text;
         }
 
-        private void LoadChartPreset()
-        {
-            if (PresetManager.DoesPresetExists(_chartInfo, _dataFilePath))
-            {
-                _chartInfo = PresetManager.LoadPreset(_chartInfo, _dataFilePath);
-                LoadChartInfos(_chartInfo);
-            }
-        }
-
         private void LoadChartInfos(ChartInfo chartInfo)
         {
             _chartInfo = chartInfo;
@@ -332,12 +320,16 @@ namespace DataPlotter
 
         private void Btn_savePreset_Click(object sender, EventArgs e)
         {
-            PresetManager.UpdatePresets(_chartInfo, _dataFilePath);
+            ChartInfo copy = DeepCopier.DeepCopy(_chartInfo);
+            copy.SetID(_dataFilePath);
+            PresetManager.WritePreset(copy);
         }
 
         private void Btn_loadPreset_Click(object sender, EventArgs e)
         {
-            LoadChartPreset();
+            ChartInfo copy = DeepCopier.DeepCopy(_chartInfo);
+            copy.SetID(_dataFilePath);
+            LoadChartInfos(PresetManager.LoadPreset(copy));
         }
 
         private void CheckBox_regression_CheckedChanged(object sender, EventArgs e)
