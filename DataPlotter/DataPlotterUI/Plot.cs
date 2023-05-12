@@ -317,7 +317,7 @@ namespace DataPlotter.DataPlotterUI
 
             axis1.LineWidth = 0;
             axis1.MajorGrid.LineColor = Color.Gray;
-            string unit = var.Unit == string.Empty ? string.Empty : $" ({var.Unit})";
+            string unit = string.IsNullOrEmpty(var.Unit) ? string.Empty : $" ({var.Unit})";
             axis1.Title = var.Name + unit;
             axis1.TitleFont = _font;
             axis2.TitleFont = _font;
