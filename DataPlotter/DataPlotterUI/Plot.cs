@@ -17,7 +17,7 @@ namespace DataPlotter.DataPlotterUI
 {
     public partial class Plot : Form
     {
-        private readonly Home _home;
+        private readonly Home_Old _home;
         private readonly DataManager _data;
         private readonly ChartInfo _chartInfo;
         private static List<List<(string x, float y)>> _meanLines;
@@ -38,7 +38,7 @@ namespace DataPlotter.DataPlotterUI
 
         private static readonly float _xOffsetRatio = 0.02f; // Offset between each line
         private static float _xOffset; // Offset between each line
-        internal Plot(DataManager data, ChartInfo chartInfo, Home home)
+        internal Plot(DataManager data, ChartInfo chartInfo, Home_Old home)
         {
             InitializeComponent();
             _data = data;

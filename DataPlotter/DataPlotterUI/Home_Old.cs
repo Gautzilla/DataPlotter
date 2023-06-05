@@ -15,7 +15,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace DataPlotter
 {
-    public partial class Home : Form
+    public partial class Home_Old : Form
     {
         private ChartInfo _chartInfo;
 
@@ -30,7 +30,7 @@ namespace DataPlotter
 
         #endregion
 
-        public Home()
+        public Home_Old()
         {
             InitializeComponent();
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;

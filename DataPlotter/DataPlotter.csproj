@@ -60,11 +60,11 @@
     <Compile Include="DataPlotterLibrary\Extensions.cs" />
     <Compile Include="DataPlotterLibrary\PresetManager.cs" />
     <Compile Include="DataPlotterLibrary\Variable.cs" />
-    <Compile Include="DataPlotterUI\Home.cs">
+    <Compile Include="DataPlotterUI\Home_Old.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DataPlotterUI\Home.Designer.cs">
-      <DependentUpon>Home.cs</DependentUpon>
+    <Compile Include="DataPlotterUI\Home_Old.Designer.cs">
+      <DependentUpon>Home_Old.cs</DependentUpon>
     </Compile>
     <Compile Include="DataPlotterUI\InfoFileManager.cs">
       <SubType>Form</SubType>
@@ -78,16 +78,25 @@
     <Compile Include="DataPlotterUI\Plot.Designer.cs">
       <DependentUpon>Plot.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="DataPlotterUI\Home.resx">
-      <DependentUpon>Home.cs</DependentUpon>
+    <EmbeddedResource Include="DataPlotterUI\Home_Old.resx">
+      <DependentUpon>Home_Old.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DataPlotterUI\InfoFileManager.resx">
       <DependentUpon>InfoFileManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DataPlotterUI\Plot.resx">
       <DependentUpon>Plot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
