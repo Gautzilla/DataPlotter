@@ -78,11 +78,35 @@
     <Compile Include="DataPlotterUI\Plot.Designer.cs">
       <DependentUpon>Plot.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Chart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Chart.Designer.cs">
+      <DependentUpon>Chart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Data.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Data.Designer.cs">
+      <DependentUpon>Data.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Home.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Set.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Set.Designer.cs">
+      <DependentUpon>Set.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Variables.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Variables.Designer.cs">
+      <DependentUpon>Variables.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DataPlotterUI\Plot.resx">
       <DependentUpon>Plot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Data.resx">
+      <DependentUpon>Data.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
