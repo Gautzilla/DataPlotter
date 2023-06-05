@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataPlotter.DataPlotterLibrary;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,20 +14,33 @@ namespace DataPlotter.Forms
     public partial class Home : Form
     {
         private Button currentButton;
+        private Form currentForm;
         private Color activeButtonColor = Color.FromArgb(246, 186, 111);
         private Color unactiveButtonColor = Color.FromArgb(245, 239, 231);
+
+        private ChartInfo _chartInfo;
         
         public Home()
         {
             InitializeComponent();
+            _chartInfo = new ChartInfo();
         }
 
         private void ChangeActiveForm(Form newForm, object buttonSender)
         {
             SetCurrentButton(buttonSender);
 
-            labelActiveForm.Text = newForm.Text.ToUpper();
-            newForm.Dock = DockStyle.Fill;
+            if (currentForm != null) currentForm.Close();
+
+            currentForm = newForm;
+
+            labelActiveForm.Text = currentForm.Text.ToUpper();
+            currentForm.TopLevel = false;
+            currentForm.Dock = DockStyle.Fill;
+            currentForm.FormBorderStyle = FormBorderStyle.None;
+            panelDockingForm.Controls.Add(currentForm);
+            currentForm.BringToFront();
+            currentForm.Show();
         }
 
         private void SetCurrentButton(object buttonSender)

@@ -38,6 +38,7 @@
             this.labelLogo = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelActiveForm = new System.Windows.Forms.Label();
+            this.panelDockingForm = new System.Windows.Forms.Panel();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -55,7 +56,7 @@
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(170, 450);
+            this.panelMenu.Size = new System.Drawing.Size(170, 397);
             this.panelMenu.TabIndex = 0;
             // 
             // buttonPlot
@@ -65,7 +66,7 @@
             this.buttonPlot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPlot.Font = new System.Drawing.Font("Consolas", 14F, System.Drawing.FontStyle.Bold);
             this.buttonPlot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(239)))), ((int)(((byte)(231)))));
-            this.buttonPlot.Location = new System.Drawing.Point(0, 400);
+            this.buttonPlot.Location = new System.Drawing.Point(0, 347);
             this.buttonPlot.Name = "buttonPlot";
             this.buttonPlot.Size = new System.Drawing.Size(170, 50);
             this.buttonPlot.TabIndex = 5;
@@ -169,7 +170,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(170, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(630, 80);
+            this.panel1.Size = new System.Drawing.Size(774, 80);
             this.panel1.TabIndex = 1;
             // 
             // labelActiveForm
@@ -179,18 +180,28 @@
             this.labelActiveForm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(239)))), ((int)(((byte)(231)))));
             this.labelActiveForm.Location = new System.Drawing.Point(0, 0);
             this.labelActiveForm.Name = "labelActiveForm";
-            this.labelActiveForm.Size = new System.Drawing.Size(630, 80);
+            this.labelActiveForm.Size = new System.Drawing.Size(774, 80);
             this.labelActiveForm.TabIndex = 0;
             this.labelActiveForm.Text = "SET";
             this.labelActiveForm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panelDockingForm
+            // 
+            this.panelDockingForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDockingForm.Location = new System.Drawing.Point(170, 80);
+            this.panelDockingForm.Name = "panelDockingForm";
+            this.panelDockingForm.Size = new System.Drawing.Size(774, 317);
+            this.panelDockingForm.TabIndex = 2;
             // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(944, 397);
+            this.Controls.Add(this.panelDockingForm);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelMenu);
+            this.MinimumSize = new System.Drawing.Size(170, 170);
             this.Name = "Home";
             this.Text = "Home";
             this.panelMenu.ResumeLayout(false);
@@ -212,5 +223,6 @@
         private System.Windows.Forms.Label labelLogo;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label labelActiveForm;
+        private System.Windows.Forms.Panel panelDockingForm;
     }
 }
