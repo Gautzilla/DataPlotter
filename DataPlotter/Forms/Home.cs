@@ -27,7 +27,7 @@ namespace DataPlotter.Forms
             chartInfo = new ChartInfo();
         }
 
-        private void ChangeActiveForm(Form newForm, object buttonSender)
+        public void ChangeActiveForm(Form newForm, object buttonSender)
         {
             SetCurrentButton(buttonSender);
 
@@ -46,6 +46,8 @@ namespace DataPlotter.Forms
 
         private void SetCurrentButton(object buttonSender)
         {
+            if (!((Button)buttonSender).Parent.Equals(panelMenu)) return;
+
             if (currentButton != null)
             {
                 currentButton.ForeColor = unactiveButtonColor;

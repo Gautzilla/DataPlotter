@@ -102,6 +102,12 @@
     <Compile Include="Forms\Set.Designer.cs">
       <DependentUpon>Set.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SetLoading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SetLoading.Designer.cs">
+      <DependentUpon>SetLoading.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Variables.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Set.resx">
       <DependentUpon>Set.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SetLoading.resx">
+      <DependentUpon>SetLoading.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

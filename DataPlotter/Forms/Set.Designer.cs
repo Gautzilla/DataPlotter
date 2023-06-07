@@ -36,21 +36,21 @@
             this.checkBoxDataFileLoaded = new System.Windows.Forms.CheckBox();
             this.buttonRecallPreset = new System.Windows.Forms.Button();
             this.panelFilesGlobal = new System.Windows.Forms.Panel();
+            this.buttonGatherData = new System.Windows.Forms.Button();
             this.panelFiles = new System.Windows.Forms.Panel();
-            this.panelInfofile = new System.Windows.Forms.Panel();
             this.panelDataFile = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panelInfofile = new System.Windows.Forms.Panel();
             this.panelInfoFileButtons = new System.Windows.Forms.Panel();
             this.buttonEditInfoFile = new System.Windows.Forms.Button();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.buttonGatherData = new System.Windows.Forms.Button();
             this.openFileDialogInfoFile = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialogDataFile = new System.Windows.Forms.OpenFileDialog();
             this.panelFilesGlobal.SuspendLayout();
             this.panelFiles.SuspendLayout();
-            this.panelInfofile.SuspendLayout();
             this.panelDataFile.SuspendLayout();
-            this.panelInfoFileButtons.SuspendLayout();
             this.panel8.SuspendLayout();
+            this.panelInfofile.SuspendLayout();
+            this.panelInfoFileButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelVariablesInfoFile
@@ -61,7 +61,7 @@
             this.labelVariablesInfoFile.Location = new System.Drawing.Point(0, 0);
             this.labelVariablesInfoFile.Name = "labelVariablesInfoFile";
             this.labelVariablesInfoFile.Padding = new System.Windows.Forms.Padding(10);
-            this.labelVariablesInfoFile.Size = new System.Drawing.Size(118, 90);
+            this.labelVariablesInfoFile.Size = new System.Drawing.Size(118, 84);
             this.labelVariablesInfoFile.TabIndex = 0;
             this.labelVariablesInfoFile.Text = "Variables info file";
             this.labelVariablesInfoFile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -75,7 +75,7 @@
             this.buttonBrowseInfofile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(239)))), ((int)(((byte)(231)))));
             this.buttonBrowseInfofile.Location = new System.Drawing.Point(0, 0);
             this.buttonBrowseInfofile.Name = "buttonBrowseInfofile";
-            this.buttonBrowseInfofile.Size = new System.Drawing.Size(107, 47);
+            this.buttonBrowseInfofile.Size = new System.Drawing.Size(107, 41);
             this.buttonBrowseInfofile.TabIndex = 1;
             this.buttonBrowseInfofile.Text = "Browse";
             this.buttonBrowseInfofile.UseVisualStyleBackColor = true;
@@ -92,7 +92,7 @@
             this.checkBoxInfoFileLoaded.Location = new System.Drawing.Point(225, 0);
             this.checkBoxInfoFileLoaded.Name = "checkBoxInfoFileLoaded";
             this.checkBoxInfoFileLoaded.Padding = new System.Windows.Forms.Padding(10);
-            this.checkBoxInfoFileLoaded.Size = new System.Drawing.Size(53, 90);
+            this.checkBoxInfoFileLoaded.Size = new System.Drawing.Size(53, 84);
             this.checkBoxInfoFileLoaded.TabIndex = 2;
             this.checkBoxInfoFileLoaded.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBoxInfoFileLoaded.UseVisualStyleBackColor = true;
@@ -105,7 +105,7 @@
             this.labelDataFile.Location = new System.Drawing.Point(0, 0);
             this.labelDataFile.Name = "labelDataFile";
             this.labelDataFile.Padding = new System.Windows.Forms.Padding(10);
-            this.labelDataFile.Size = new System.Drawing.Size(118, 77);
+            this.labelDataFile.Size = new System.Drawing.Size(118, 83);
             this.labelDataFile.TabIndex = 0;
             this.labelDataFile.Text = "Data File";
             this.labelDataFile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -119,7 +119,7 @@
             this.buttonBrowseDatafile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(239)))), ((int)(((byte)(231)))));
             this.buttonBrowseDatafile.Location = new System.Drawing.Point(0, 0);
             this.buttonBrowseDatafile.Name = "buttonBrowseDatafile";
-            this.buttonBrowseDatafile.Size = new System.Drawing.Size(107, 77);
+            this.buttonBrowseDatafile.Size = new System.Drawing.Size(107, 83);
             this.buttonBrowseDatafile.TabIndex = 1;
             this.buttonBrowseDatafile.Text = "Browse";
             this.buttonBrowseDatafile.UseVisualStyleBackColor = true;
@@ -137,7 +137,7 @@
             this.checkBoxDataFileLoaded.Location = new System.Drawing.Point(225, 0);
             this.checkBoxDataFileLoaded.Name = "checkBoxDataFileLoaded";
             this.checkBoxDataFileLoaded.Padding = new System.Windows.Forms.Padding(10);
-            this.checkBoxDataFileLoaded.Size = new System.Drawing.Size(53, 77);
+            this.checkBoxDataFileLoaded.Size = new System.Drawing.Size(53, 83);
             this.checkBoxDataFileLoaded.TabIndex = 2;
             this.checkBoxDataFileLoaded.UseVisualStyleBackColor = true;
             // 
@@ -152,8 +152,9 @@
             this.buttonRecallPreset.Name = "buttonRecallPreset";
             this.buttonRecallPreset.Size = new System.Drawing.Size(766, 57);
             this.buttonRecallPreset.TabIndex = 2;
-            this.buttonRecallPreset.Text = "Recall Existing Set";
+            this.buttonRecallPreset.Text = "Load Existing Set";
             this.buttonRecallPreset.UseVisualStyleBackColor = true;
+            this.buttonRecallPreset.Click += new System.EventHandler(this.buttonRecallPreset_Click);
             // 
             // panelFilesGlobal
             // 
@@ -164,72 +165,6 @@
             this.panelFilesGlobal.Name = "panelFilesGlobal";
             this.panelFilesGlobal.Size = new System.Drawing.Size(766, 167);
             this.panelFilesGlobal.TabIndex = 4;
-            // 
-            // panelFiles
-            // 
-            this.panelFiles.Controls.Add(this.panelDataFile);
-            this.panelFiles.Controls.Add(this.panelInfofile);
-            this.panelFiles.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelFiles.Location = new System.Drawing.Point(0, 0);
-            this.panelFiles.Name = "panelFiles";
-            this.panelFiles.Size = new System.Drawing.Size(278, 167);
-            this.panelFiles.TabIndex = 0;
-            // 
-            // panelInfofile
-            // 
-            this.panelInfofile.Controls.Add(this.checkBoxInfoFileLoaded);
-            this.panelInfofile.Controls.Add(this.panelInfoFileButtons);
-            this.panelInfofile.Controls.Add(this.labelVariablesInfoFile);
-            this.panelInfofile.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelInfofile.Location = new System.Drawing.Point(0, 0);
-            this.panelInfofile.Name = "panelInfofile";
-            this.panelInfofile.Size = new System.Drawing.Size(278, 90);
-            this.panelInfofile.TabIndex = 3;
-            // 
-            // panelDataFile
-            // 
-            this.panelDataFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(63)))), ((int)(((byte)(60)))));
-            this.panelDataFile.Controls.Add(this.checkBoxDataFileLoaded);
-            this.panelDataFile.Controls.Add(this.panel8);
-            this.panelDataFile.Controls.Add(this.labelDataFile);
-            this.panelDataFile.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDataFile.Location = new System.Drawing.Point(0, 90);
-            this.panelDataFile.Name = "panelDataFile";
-            this.panelDataFile.Size = new System.Drawing.Size(278, 77);
-            this.panelDataFile.TabIndex = 4;
-            // 
-            // panelInfoFileButtons
-            // 
-            this.panelInfoFileButtons.Controls.Add(this.buttonEditInfoFile);
-            this.panelInfoFileButtons.Controls.Add(this.buttonBrowseInfofile);
-            this.panelInfoFileButtons.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelInfoFileButtons.Location = new System.Drawing.Point(118, 0);
-            this.panelInfoFileButtons.Name = "panelInfoFileButtons";
-            this.panelInfoFileButtons.Size = new System.Drawing.Size(107, 90);
-            this.panelInfoFileButtons.TabIndex = 1;
-            // 
-            // buttonEditInfoFile
-            // 
-            this.buttonEditInfoFile.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonEditInfoFile.FlatAppearance.BorderSize = 0;
-            this.buttonEditInfoFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonEditInfoFile.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
-            this.buttonEditInfoFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(239)))), ((int)(((byte)(231)))));
-            this.buttonEditInfoFile.Location = new System.Drawing.Point(0, 47);
-            this.buttonEditInfoFile.Name = "buttonEditInfoFile";
-            this.buttonEditInfoFile.Size = new System.Drawing.Size(107, 43);
-            this.buttonEditInfoFile.TabIndex = 2;
-            this.buttonEditInfoFile.Text = "Edit";
-            this.buttonEditInfoFile.UseVisualStyleBackColor = true;
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.buttonBrowseDatafile);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel8.Location = new System.Drawing.Point(118, 0);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(107, 77);
-            this.panel8.TabIndex = 1;
             // 
             // buttonGatherData
             // 
@@ -245,6 +180,72 @@
             this.buttonGatherData.Text = "Gather Data";
             this.buttonGatherData.UseVisualStyleBackColor = true;
             this.buttonGatherData.Click += new System.EventHandler(this.buttonGatherData_Click);
+            // 
+            // panelFiles
+            // 
+            this.panelFiles.Controls.Add(this.panelDataFile);
+            this.panelFiles.Controls.Add(this.panelInfofile);
+            this.panelFiles.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelFiles.Location = new System.Drawing.Point(0, 0);
+            this.panelFiles.Name = "panelFiles";
+            this.panelFiles.Size = new System.Drawing.Size(278, 167);
+            this.panelFiles.TabIndex = 0;
+            // 
+            // panelDataFile
+            // 
+            this.panelDataFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(63)))), ((int)(((byte)(60)))));
+            this.panelDataFile.Controls.Add(this.checkBoxDataFileLoaded);
+            this.panelDataFile.Controls.Add(this.panel8);
+            this.panelDataFile.Controls.Add(this.labelDataFile);
+            this.panelDataFile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDataFile.Location = new System.Drawing.Point(0, 84);
+            this.panelDataFile.Name = "panelDataFile";
+            this.panelDataFile.Size = new System.Drawing.Size(278, 83);
+            this.panelDataFile.TabIndex = 4;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.buttonBrowseDatafile);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel8.Location = new System.Drawing.Point(118, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(107, 83);
+            this.panel8.TabIndex = 1;
+            // 
+            // panelInfofile
+            // 
+            this.panelInfofile.Controls.Add(this.checkBoxInfoFileLoaded);
+            this.panelInfofile.Controls.Add(this.panelInfoFileButtons);
+            this.panelInfofile.Controls.Add(this.labelVariablesInfoFile);
+            this.panelInfofile.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelInfofile.Location = new System.Drawing.Point(0, 0);
+            this.panelInfofile.Name = "panelInfofile";
+            this.panelInfofile.Size = new System.Drawing.Size(278, 84);
+            this.panelInfofile.TabIndex = 3;
+            // 
+            // panelInfoFileButtons
+            // 
+            this.panelInfoFileButtons.Controls.Add(this.buttonEditInfoFile);
+            this.panelInfoFileButtons.Controls.Add(this.buttonBrowseInfofile);
+            this.panelInfoFileButtons.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelInfoFileButtons.Location = new System.Drawing.Point(118, 0);
+            this.panelInfoFileButtons.Name = "panelInfoFileButtons";
+            this.panelInfoFileButtons.Size = new System.Drawing.Size(107, 84);
+            this.panelInfoFileButtons.TabIndex = 1;
+            // 
+            // buttonEditInfoFile
+            // 
+            this.buttonEditInfoFile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonEditInfoFile.FlatAppearance.BorderSize = 0;
+            this.buttonEditInfoFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonEditInfoFile.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonEditInfoFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(239)))), ((int)(((byte)(231)))));
+            this.buttonEditInfoFile.Location = new System.Drawing.Point(0, 41);
+            this.buttonEditInfoFile.Name = "buttonEditInfoFile";
+            this.buttonEditInfoFile.Size = new System.Drawing.Size(107, 43);
+            this.buttonEditInfoFile.TabIndex = 2;
+            this.buttonEditInfoFile.Text = "Edit";
+            this.buttonEditInfoFile.UseVisualStyleBackColor = true;
             // 
             // openFileDialogInfoFile
             // 
@@ -268,11 +269,11 @@
             this.Text = "Set";
             this.panelFilesGlobal.ResumeLayout(false);
             this.panelFiles.ResumeLayout(false);
-            this.panelInfofile.ResumeLayout(false);
             this.panelDataFile.ResumeLayout(false);
             this.panelDataFile.PerformLayout();
-            this.panelInfoFileButtons.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
+            this.panelInfofile.ResumeLayout(false);
+            this.panelInfoFileButtons.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

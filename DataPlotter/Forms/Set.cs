@@ -73,5 +73,10 @@ namespace DataPlotter.Forms
 
             MessageBox.Show("The data were succesfully gathered.");
         }
+
+        private void buttonRecallPreset_Click(object sender, EventArgs e)
+        {
+            _home.ChangeActiveForm(new SetLoading(_home), sender);
+        }
     }
 }
