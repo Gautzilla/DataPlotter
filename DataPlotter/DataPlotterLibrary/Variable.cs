@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace DataPlotter.DataPlotterLibrary
 {
-    internal class Variable
+    public class Variable
     {
         private string name;        
         private bool isNum;
@@ -47,7 +47,7 @@ namespace DataPlotter.DataPlotterLibrary
         }
     }
 
-    internal class IndependantVariable : Variable
+    public class IndependantVariable : Variable
     {
         private string[] levels;
         public string[] Levels
@@ -90,7 +90,7 @@ namespace DataPlotter.DataPlotterLibrary
         }
     }
 
-    internal class DependantVariable : Variable
+    public class DependantVariable : Variable
     {
         public DependantVariable(string name, bool isNum)
         {

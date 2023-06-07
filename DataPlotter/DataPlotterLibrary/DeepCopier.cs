@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace DataPlotter.DataPlotterLibrary
 {
-    internal static class DeepCopier
+    public static class DeepCopier
     {
         public static T DeepCopy<T>(T blueprint)
         {

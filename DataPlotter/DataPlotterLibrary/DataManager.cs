@@ -9,7 +9,7 @@ using MathNet.Numerics;
 
 namespace DataPlotter.DataPlotterLibrary
 {
-    internal class DataManager
+    public class DataManager
     {
         private static List<IndependantVariable> _variables;
         private static string[] _variablesOrdering;

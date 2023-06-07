@@ -43,6 +43,8 @@
             this.buttonEditInfoFile = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.buttonGatherData = new System.Windows.Forms.Button();
+            this.openFileDialogInfoFile = new System.Windows.Forms.OpenFileDialog();
+            this.openFileDialogDataFile = new System.Windows.Forms.OpenFileDialog();
             this.panelFilesGlobal.SuspendLayout();
             this.panelFiles.SuspendLayout();
             this.panelInfofile.SuspendLayout();
@@ -77,9 +79,11 @@
             this.buttonBrowseInfofile.TabIndex = 1;
             this.buttonBrowseInfofile.Text = "Browse";
             this.buttonBrowseInfofile.UseVisualStyleBackColor = true;
+            this.buttonBrowseInfofile.Click += new System.EventHandler(this.buttonBrowseInfofile_Click);
             // 
             // checkBoxInfoFileLoaded
             // 
+            this.checkBoxInfoFileLoaded.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBoxInfoFileLoaded.Dock = System.Windows.Forms.DockStyle.Fill;
             this.checkBoxInfoFileLoaded.Enabled = false;
             this.checkBoxInfoFileLoaded.FlatAppearance.BorderSize = 0;
@@ -119,10 +123,12 @@
             this.buttonBrowseDatafile.TabIndex = 1;
             this.buttonBrowseDatafile.Text = "Browse";
             this.buttonBrowseDatafile.UseVisualStyleBackColor = true;
+            this.buttonBrowseDatafile.Click += new System.EventHandler(this.buttonBrowseDatafile_Click);
             // 
             // checkBoxDataFileLoaded
             // 
             this.checkBoxDataFileLoaded.AutoSize = true;
+            this.checkBoxDataFileLoaded.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBoxDataFileLoaded.Dock = System.Windows.Forms.DockStyle.Fill;
             this.checkBoxDataFileLoaded.Enabled = false;
             this.checkBoxDataFileLoaded.FlatAppearance.BorderSize = 0;
@@ -238,6 +244,17 @@
             this.buttonGatherData.TabIndex = 2;
             this.buttonGatherData.Text = "Gather Data";
             this.buttonGatherData.UseVisualStyleBackColor = true;
+            this.buttonGatherData.Click += new System.EventHandler(this.buttonGatherData_Click);
+            // 
+            // openFileDialogInfoFile
+            // 
+            this.openFileDialogInfoFile.FileName = "info file";
+            this.openFileDialogInfoFile.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            // 
+            // openFileDialogDataFile
+            // 
+            this.openFileDialogDataFile.FileName = "Data file";
+            this.openFileDialogDataFile.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
             // 
             // Set
             // 
@@ -277,5 +294,7 @@
         private System.Windows.Forms.Panel panelInfoFileButtons;
         private System.Windows.Forms.Button buttonEditInfoFile;
         private System.Windows.Forms.Button buttonGatherData;
+        private System.Windows.Forms.OpenFileDialog openFileDialogInfoFile;
+        private System.Windows.Forms.OpenFileDialog openFileDialogDataFile;
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataPlotter.DataPlotterLibrary
 {
-    internal static class Extensions
+    public static class Extensions
     {
         public static string RemoveWhiteSpaces(this string s) => String.Join("", s.Where(c => c != ' '));
     }

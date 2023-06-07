@@ -7,7 +7,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace DataPlotter.DataPlotterLibrary
 {
-    internal class ChartInfo
+    public class ChartInfo
     {
         private string iD;
         

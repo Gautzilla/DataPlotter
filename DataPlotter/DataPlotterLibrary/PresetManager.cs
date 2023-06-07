@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace DataPlotter.DataPlotterLibrary
 {
-    internal static class PresetManager
+    public static class PresetManager
     {
         private static List<ChartInfo> _presets;
         private static JsonSerializer _serializer;
