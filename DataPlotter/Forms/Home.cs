@@ -23,7 +23,7 @@ namespace DataPlotter.Forms
         public ChartInfo ChartInfo
         {
             get { return chartInfo; }
-            set { chartInfo = value; }
+            set { chartInfo = value; GatherData(); }
         }
 
 
@@ -84,6 +84,23 @@ namespace DataPlotter.Forms
         private void buttonChart_Click(object sender, EventArgs e)
         {
             ChangeActiveForm(new Chart(), sender);
+        }
+
+        public void GatherData()
+        {
+            if (ChartInfo.InfoFilePath == string.Empty || ChartInfo.DataFilePath == string.Empty) return;
+
+            try
+            {
+                dataManager = new DataManager(ChartInfo.DataFilePath, ChartInfo.InfoFilePath);
+            }
+            catch
+            {
+                MessageBox.Show("The specified data do not match the specified info file.");
+                return;
+            }
+
+            MessageBox.Show("The data were succesfully gathered.");
         }
     }
 }

@@ -55,19 +55,7 @@ namespace DataPlotter.Forms
 
         private void buttonGatherData_Click(object sender, EventArgs e)
         {
-            if (_home.ChartInfo.InfoFilePath == string.Empty || _home.ChartInfo.DataFilePath == string.Empty) return;
-
-            try
-            {
-                _home.dataManager = new DataManager(_home.ChartInfo.DataFilePath, _home.ChartInfo.InfoFilePath);
-            }
-            catch
-            {
-                MessageBox.Show("The specified data do not match the specified info file.");
-                return;
-            }
-
-            MessageBox.Show("The data were succesfully gathered.");
+            _home.GatherData();
         }
 
         private void buttonRecallPreset_Click(object sender, EventArgs e)
