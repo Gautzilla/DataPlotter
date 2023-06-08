@@ -116,6 +116,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\VariableSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\VariableSelector.Designer.cs">
+      <DependentUpon>VariableSelector.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="DataPlotterUI\Home_Old.resx">
       <DependentUpon>Home_Old.cs</DependentUpon>
     </EmbeddedResource>
@@ -137,6 +143,9 @@
     <EmbeddedResource Include="Forms\SetLoading.resx">
       <DependentUpon>SetLoading.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Variables.resx">
+      <DependentUpon>Variables.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -146,6 +155,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserControls\VariableSelector.resx">
+      <DependentUpon>VariableSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

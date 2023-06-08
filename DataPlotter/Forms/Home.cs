@@ -78,7 +78,7 @@ namespace DataPlotter.Forms
 
         private void buttonVariables_Click(object sender, EventArgs e)
         {
-            ChangeActiveForm(new Variables(), sender);
+            ChangeActiveForm(new Variables(this), sender);
         }
 
         private void buttonChart_Click(object sender, EventArgs e)
