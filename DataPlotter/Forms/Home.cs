@@ -18,7 +18,15 @@ namespace DataPlotter.Forms
         private Color activeButtonColor = Color.FromArgb(246, 186, 111);
         private Color unactiveButtonColor = Color.FromArgb(245, 239, 231);
 
-        public ChartInfo chartInfo;
+        private ChartInfo chartInfo;
+
+        public ChartInfo ChartInfo
+        {
+            get { return chartInfo; }
+            set { chartInfo = value; }
+        }
+
+
         public DataManager dataManager;
         
         public Home()
