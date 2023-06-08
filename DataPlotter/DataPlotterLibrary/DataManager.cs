@@ -38,6 +38,7 @@ namespace DataPlotter.DataPlotterLibrary
         {
             Variables = new List<IndependantVariable>();
             DepVariable = new DependantVariable("dependant variable", true);
+
             ParseDependantVariable(infoFilePath);
             SortFactors(infoFilePath);
             SortData(dataFilePath);

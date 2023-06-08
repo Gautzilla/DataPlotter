@@ -17,22 +17,6 @@ namespace DataPlotter.DataPlotterLibrary
             set { iD = value; }
         }
 
-        private string _infoFilePath;
-
-        public string InfoFilePath
-        {
-            get { return _infoFilePath; }
-            set { _infoFilePath = value; }
-        }
-
-        private string _dataFilePath;
-
-        public string DataFilePath
-        {
-            get { return _dataFilePath; }
-            set { _dataFilePath = value; }
-        }
-
         #region Variables Settings
 
         private string _xVar = string.Empty;
@@ -42,7 +26,6 @@ namespace DataPlotter.DataPlotterLibrary
         private string _depVarName = string.Empty;
         private bool _isDepVarNum = true;
         private bool _isDepVarLog = true;
-
 
         public bool IsDepVarNum { get => _isDepVarNum; set => _isDepVarNum = value; }
         public bool IsDepVarLog { get => _isDepVarLog; set => _isDepVarLog = value; }
@@ -86,13 +69,11 @@ namespace DataPlotter.DataPlotterLibrary
         public ChartInfo()
         {
             ID = "default";
-            InfoFilePath = string.Empty;
-            DataFilePath = string.Empty;
         }
 
-        public void SetID ()
+        public void SetID (string dataFilePath)
         {
-            ID = DataFilePath + "_" + String.Join("_", new string[] { XVar, YVar, YVar2, YVar2Level }).TrimEnd('_');
+            ID = dataFilePath + "_" + String.Join("_", new string[] { XVar, YVar, YVar2, YVar2Level }).TrimEnd('_');
         }
     }
 }

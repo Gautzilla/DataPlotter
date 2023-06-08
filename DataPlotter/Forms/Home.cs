@@ -33,7 +33,6 @@ namespace DataPlotter.Forms
         {
             InitializeComponent();
             chartInfo = new ChartInfo();
-            ChangeActiveForm(new Set(this), buttonSet);
         }
 
         public void ChangeActiveForm(Form newForm, object buttonSender)

@@ -14,52 +14,56 @@ namespace DataPlotter.Forms
 {
     public partial class Set : Form
     {
+        private string _infoFilePath;
+        private string _dataFilePath;
+
         private Home _home;
 
+        private (bool infoFile, bool dataFile) _isFilepathSpecified = (false, false);
         public Set(Home home)
         {
             InitializeComponent();
-            _home = home;
             RefreshControls();
+            _home = home;
         }
 
         private void RefreshControls()
         {
-            checkBoxDataFileLoaded.Checked = _home.ChartInfo.DataFilePath != string.Empty;
-            checkBoxInfoFileLoaded.Checked = _home.ChartInfo.InfoFilePath != string.Empty;
+            checkBoxDataFileLoaded.Checked = _isFilepathSpecified.dataFile;
+            checkBoxInfoFileLoaded.Checked = _isFilepathSpecified.infoFile;
 
-            buttonGatherData.Enabled = checkBoxDataFileLoaded.Checked && checkBoxInfoFileLoaded.Checked;
+            buttonGatherData.Enabled = _isFilepathSpecified.dataFile && _isFilepathSpecified.infoFile;
         }
 
         private void buttonBrowseInfofile_Click(object sender, EventArgs e)
         {
-            _home.ChartInfo.InfoFilePath = BrowseFile(openFileDialogInfoFile);
+            (_infoFilePath, _isFilepathSpecified.infoFile) = BrowseFile(openFileDialogInfoFile);
             RefreshControls();
         }
 
         private void buttonBrowseDatafile_Click(object sender, EventArgs e)
         {
-            _home.ChartInfo.DataFilePath  = BrowseFile(openFileDialogDataFile);
+            (_dataFilePath, _isFilepathSpecified.dataFile)  = BrowseFile(openFileDialogDataFile);
             RefreshControls();
         }
 
-        private string BrowseFile(OpenFileDialog openFileDialog)
+        private (string, bool) BrowseFile(OpenFileDialog openFileDialog)
         {
             openFileDialog.ShowDialog();
             string filePath = openFileDialog.FileName;
 
-            if (!File.Exists(filePath)) return string.Empty;
+            if (!File.Exists(filePath)) return (string.Empty, false);
 
-            return filePath;
+            return (filePath, true);
         }
 
         private void buttonGatherData_Click(object sender, EventArgs e)
         {
-            if (_home.ChartInfo.InfoFilePath == string.Empty || _home.ChartInfo.DataFilePath == string.Empty) return;
+            if (!(_isFilepathSpecified.infoFile && _isFilepathSpecified.dataFile)) return;
 
             try
             {
-                _home.dataManager = new DataManager(_home.ChartInfo.DataFilePath, _home.ChartInfo.InfoFilePath);
+                _home.dataManager = new DataManager(_dataFilePath, _infoFilePath);
             }
             catch
             {
