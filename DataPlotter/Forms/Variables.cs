@@ -13,9 +13,11 @@ namespace DataPlotter.Forms
 {
     public partial class Variables : Form
     {
-        public Variables()
+        private Home _home;
+        public Variables(Home home)
         {
             InitializeComponent();
+            _home = home;
             variableSelectorYVar.VariableType = "Y-axis variable";
         }
     }

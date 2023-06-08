@@ -80,7 +80,7 @@ namespace DataPlotter.DataPlotterLibrary
                 string name = fields[0];
                 bool isNum = fields[1] != "qualitative";
                 bool isLog = fields[1] == "log";
-                string[] levels = fields[2].Split(',').Select(l => l.Trim()).ToArray();
+                string[] levels = fields[2].Split(',').Select(l => name + "_" + l.Trim()).ToArray();
                 string unit = fields.Length > 3 ? fields[3] : string.Empty;
 
                 if (!isNum) Variables.Add(new IndependantVariable(name, levels, isNum));
