@@ -35,10 +35,11 @@
             this.buttonData = new System.Windows.Forms.Button();
             this.buttonSet = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
-            this.labelLogo = new System.Windows.Forms.Label();
+            this.labelLogoData = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelActiveForm = new System.Windows.Forms.Label();
             this.panelDockingForm = new System.Windows.Forms.Panel();
+            this.labelLogoPlotter = new System.Windows.Forms.Label();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -144,7 +145,8 @@
             // panelLogo
             // 
             this.panelLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(91)))), ((int)(((byte)(119)))));
-            this.panelLogo.Controls.Add(this.labelLogo);
+            this.panelLogo.Controls.Add(this.labelLogoPlotter);
+            this.panelLogo.Controls.Add(this.labelLogoData);
             this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelLogo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(239)))), ((int)(((byte)(231)))));
             this.panelLogo.Location = new System.Drawing.Point(0, 0);
@@ -152,16 +154,18 @@
             this.panelLogo.Size = new System.Drawing.Size(170, 80);
             this.panelLogo.TabIndex = 0;
             // 
-            // labelLogo
+            // labelLogoData
             // 
-            this.labelLogo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelLogo.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
-            this.labelLogo.Location = new System.Drawing.Point(0, 0);
-            this.labelLogo.Name = "labelLogo";
-            this.labelLogo.Size = new System.Drawing.Size(170, 80);
-            this.labelLogo.TabIndex = 0;
-            this.labelLogo.Text = "DataPlotter";
-            this.labelLogo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelLogoData.Dock = System.Windows.Forms.DockStyle.Left;
+            this.labelLogoData.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
+            this.labelLogoData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(92)))), ((int)(((byte)(71)))));
+            this.labelLogoData.Location = new System.Drawing.Point(0, 0);
+            this.labelLogoData.Margin = new System.Windows.Forms.Padding(0);
+            this.labelLogoData.Name = "labelLogoData";
+            this.labelLogoData.Size = new System.Drawing.Size(73, 80);
+            this.labelLogoData.TabIndex = 0;
+            this.labelLogoData.Text = "Data";
+            this.labelLogoData.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panel1
             // 
@@ -193,6 +197,17 @@
             this.panelDockingForm.Size = new System.Drawing.Size(774, 317);
             this.panelDockingForm.TabIndex = 2;
             // 
+            // labelLogoPlotter
+            // 
+            this.labelLogoPlotter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelLogoPlotter.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
+            this.labelLogoPlotter.Location = new System.Drawing.Point(73, 0);
+            this.labelLogoPlotter.Name = "labelLogoPlotter";
+            this.labelLogoPlotter.Size = new System.Drawing.Size(97, 80);
+            this.labelLogoPlotter.TabIndex = 1;
+            this.labelLogoPlotter.Text = "Plotter";
+            this.labelLogoPlotter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -220,9 +235,10 @@
         private System.Windows.Forms.Button buttonData;
         private System.Windows.Forms.Button buttonSet;
         private System.Windows.Forms.Panel panelLogo;
-        private System.Windows.Forms.Label labelLogo;
+        private System.Windows.Forms.Label labelLogoData;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label labelActiveForm;
         private System.Windows.Forms.Panel panelDockingForm;
+        private System.Windows.Forms.Label labelLogoPlotter;
     }
 }

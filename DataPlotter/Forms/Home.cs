@@ -101,6 +101,7 @@ namespace DataPlotter.Forms
             }
 
             MessageBox.Show("The data were succesfully gathered.");
+            labelLogoData.ForeColor = Color.FromArgb(74, 169, 108);
         }
     }
 }
