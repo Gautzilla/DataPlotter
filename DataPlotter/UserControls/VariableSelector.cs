@@ -36,6 +36,15 @@ namespace DataPlotter.UserControls
             listBoxVariables.Items.Add(variable);            
         }
 
+        public void Clear()
+        {
+            listBoxVariables.Items.Clear();
+            listBoxLevels.Items.Clear();
+
+            if (NextVariableSelector == null) return;
+            NextVariableSelector.Clear();
+        }
+
         private void listBoxVariables_SelectedIndexChanged(object sender, EventArgs e)
         {
             IndependantVariable selectedVariable = listBoxVariables.SelectedItem as IndependantVariable;
@@ -56,6 +65,8 @@ namespace DataPlotter.UserControls
             for (int i = 0; i < listBoxLevels.Items.Count; i++) listBoxLevels.SetSelected(i, true);
 
             if (NextVariableSelector == null) return;
+
+            NextVariableSelector.Clear();
 
             foreach (IndependantVariable variable in listBoxVariables.Items)
             {

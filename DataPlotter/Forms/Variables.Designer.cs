@@ -28,41 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.variableSelectorXVar = new DataPlotter.UserControls.VariableSelector();
             this.variableSelectorYVar = new DataPlotter.UserControls.VariableSelector();
+            this.variableSelectorXVar = new DataPlotter.UserControls.VariableSelector();
             this.SuspendLayout();
-            // 
-            // variableSelectorXVar
-            // 
-            this.variableSelectorXVar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
-            this.variableSelectorXVar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.variableSelectorXVar.Location = new System.Drawing.Point(0, 0);
-            this.variableSelectorXVar.Name = "variableSelectorXVar";
-            this.variableSelectorXVar.NextVariableSelector = null;
-            this.variableSelectorXVar.Size = new System.Drawing.Size(800, 200);
-            this.variableSelectorXVar.TabIndex = 0;
-            this.variableSelectorXVar.VariableType = "X-axis variable";
             // 
             // variableSelectorYVar
             // 
             this.variableSelectorYVar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
             this.variableSelectorYVar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.variableSelectorYVar.Location = new System.Drawing.Point(0, 200);
+            this.variableSelectorYVar.Location = new System.Drawing.Point(20, 220);
             this.variableSelectorYVar.Name = "variableSelectorYVar";
             this.variableSelectorYVar.NextVariableSelector = null;
-            this.variableSelectorYVar.Size = new System.Drawing.Size(800, 200);
+            this.variableSelectorYVar.Size = new System.Drawing.Size(760, 200);
             this.variableSelectorYVar.TabIndex = 1;
             this.variableSelectorYVar.VariableType = "X-axis variable";
+            // 
+            // variableSelectorXVar
+            // 
+            this.variableSelectorXVar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
+            this.variableSelectorXVar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.variableSelectorXVar.Location = new System.Drawing.Point(20, 20);
+            this.variableSelectorXVar.Name = "variableSelectorXVar";
+            this.variableSelectorXVar.NextVariableSelector = null;
+            this.variableSelectorXVar.Size = new System.Drawing.Size(760, 200);
+            this.variableSelectorXVar.TabIndex = 0;
+            this.variableSelectorXVar.VariableType = "X-axis variable";
             // 
             // Variables
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 570);
             this.Controls.Add(this.variableSelectorYVar);
             this.Controls.Add(this.variableSelectorXVar);
             this.Name = "Variables";
+            this.Padding = new System.Windows.Forms.Padding(20);
             this.Text = "Variables";
             this.ResumeLayout(false);
 
