@@ -28,6 +28,7 @@ namespace DataPlotter.UserControls
         public Forms.Home Home { get; set; }
 
         private bool _isYVar;
+        public int YVarIndex { get; set; }
 
         private IndependantVariable _selectedVariable;
 
@@ -65,7 +66,7 @@ namespace DataPlotter.UserControls
             if (_isYVar)
             {
                 if (_selectedVariable != null) Home.ChartInfo.LevelsToPlot.RemoveAll(tuple => tuple.variable == _selectedVariable); // selected before it changed
-                // if (!Home.ChartInfo.LevelsToPlot.Any(tuple => tuple.variable == selectedVariable)) Home.ChartInfo.LevelsToPlot.Add((selectedVariable, new List<string>()));
+                //if (!Home.ChartInfo.LevelsToPlot.Any(tuple => tuple.variable == selectedVariable)) Home.ChartInfo.LevelsToPlot.Add((selectedVariable, new List<string>()));
             }
 
             _selectedVariable = selectedVariable;
@@ -106,7 +107,7 @@ namespace DataPlotter.UserControls
             }
 
             Home.ChartInfo.LevelsToPlot.RemoveAll(tuple => tuple.variable == _selectedVariable);
-            Home.ChartInfo.LevelsToPlot.Add((_selectedVariable, selectedLevels));
+            Home.ChartInfo.LevelsToPlot.Add((YVarIndex, _selectedVariable, selectedLevels));
         }
     }
 }

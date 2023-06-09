@@ -106,9 +106,9 @@ namespace DataPlotter.Forms
 
         private void buttonPlot_Click(object sender, EventArgs e)
         {
-            foreach (var line in ChartInfo.LevelsToPlot)
+            foreach (var line in ChartInfo.LevelsToPlot.OrderBy(tuple => tuple.YVarIndex))
             {
-                Console.WriteLine(line.variable.Name + " : " + String.Join(" & ", line.levels));
+                Console.WriteLine(line.YVarIndex + " - " + line.variable.Name + " : " + String.Join(" & ", line.levels));
             }
 
             ChartInfo copy = DeepCopier.DeepCopy(ChartInfo);

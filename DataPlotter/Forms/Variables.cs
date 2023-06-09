@@ -23,6 +23,7 @@ namespace DataPlotter.Forms
             variableSelectorYVar.VariableType = "Y-axis variable";
             variableSelectorXVar.Home = _home;
             variableSelectorYVar.Home = _home;
+            variableSelectorYVar.YVarIndex = 0;
             _variableSelectors = new List<VariableSelector>() { variableSelectorXVar, variableSelectorYVar };
             AddVariableSelectors();
             LinkVariableSelectors();
@@ -40,7 +41,9 @@ namespace DataPlotter.Forms
                     VariableType = $"Y-axis variable #{i + 2}",
                     Size = new Size(400, 200),
                     Dock = DockStyle.Top,
-                    Home = _home
+                    Home = _home,
+                    YVarIndex = i + 1
+                    
                 };
                 this.Controls.Add(newVS);
                 _variableSelectors.Add(newVS);
@@ -67,6 +70,10 @@ namespace DataPlotter.Forms
             {
                 variableSelectorXVar.AddVariable(var);
             }
+
+            if (_home.ChartInfo == null) return;
+
+
         }
     }
 }
