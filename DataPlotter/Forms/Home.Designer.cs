@@ -35,11 +35,11 @@
             this.buttonData = new System.Windows.Forms.Button();
             this.buttonSet = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
+            this.labelLogoPlotter = new System.Windows.Forms.Label();
             this.labelLogoData = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelActiveForm = new System.Windows.Forms.Label();
             this.panelDockingForm = new System.Windows.Forms.Panel();
-            this.labelLogoPlotter = new System.Windows.Forms.Label();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -73,6 +73,7 @@
             this.buttonPlot.TabIndex = 5;
             this.buttonPlot.Text = "Plot";
             this.buttonPlot.UseVisualStyleBackColor = true;
+            this.buttonPlot.Click += new System.EventHandler(this.buttonPlot_Click);
             // 
             // buttonChart
             // 
@@ -154,6 +155,17 @@
             this.panelLogo.Size = new System.Drawing.Size(170, 80);
             this.panelLogo.TabIndex = 0;
             // 
+            // labelLogoPlotter
+            // 
+            this.labelLogoPlotter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelLogoPlotter.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
+            this.labelLogoPlotter.Location = new System.Drawing.Point(73, 0);
+            this.labelLogoPlotter.Name = "labelLogoPlotter";
+            this.labelLogoPlotter.Size = new System.Drawing.Size(97, 80);
+            this.labelLogoPlotter.TabIndex = 1;
+            this.labelLogoPlotter.Text = "Plotter";
+            this.labelLogoPlotter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // labelLogoData
             // 
             this.labelLogoData.Dock = System.Windows.Forms.DockStyle.Left;
@@ -196,17 +208,6 @@
             this.panelDockingForm.Name = "panelDockingForm";
             this.panelDockingForm.Size = new System.Drawing.Size(774, 317);
             this.panelDockingForm.TabIndex = 2;
-            // 
-            // labelLogoPlotter
-            // 
-            this.labelLogoPlotter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelLogoPlotter.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
-            this.labelLogoPlotter.Location = new System.Drawing.Point(73, 0);
-            this.labelLogoPlotter.Name = "labelLogoPlotter";
-            this.labelLogoPlotter.Size = new System.Drawing.Size(97, 80);
-            this.labelLogoPlotter.TabIndex = 1;
-            this.labelLogoPlotter.Text = "Plotter";
-            this.labelLogoPlotter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Home
             // 

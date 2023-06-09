@@ -103,5 +103,14 @@ namespace DataPlotter.Forms
             MessageBox.Show("The data were succesfully gathered.");
             labelLogoData.ForeColor = Color.FromArgb(74, 169, 108);
         }
+
+        private void buttonPlot_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(ChartInfo.LevelsToPlot.Count);
+            foreach (var line in ChartInfo.LevelsToPlot)
+            {
+                Console.WriteLine(line.Key.Name + " : " + String.Join(" & ", line.Value));
+            }
+        }
     }
 }

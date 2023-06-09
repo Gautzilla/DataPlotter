@@ -75,6 +75,7 @@
             this.listBoxLevels.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBoxLevels.Size = new System.Drawing.Size(324, 189);
             this.listBoxLevels.TabIndex = 2;
+            this.listBoxLevels.SelectedIndexChanged += new System.EventHandler(this.listBoxLevels_SelectedIndexChanged);
             // 
             // VariableSelector
             // 

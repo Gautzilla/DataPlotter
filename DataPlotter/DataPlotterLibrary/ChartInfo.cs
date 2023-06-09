@@ -43,6 +43,15 @@ namespace DataPlotter.DataPlotterLibrary
         private bool _isDepVarNum = true;
         private bool _isDepVarLog = true;
 
+        private Dictionary<IndependantVariable, List<string>> _levelsToPlot;
+
+        public Dictionary<IndependantVariable, List<string>> LevelsToPlot
+        {
+            get { return _levelsToPlot; }
+            set { _levelsToPlot = value; }
+        }
+
+
 
         public bool IsDepVarNum { get => _isDepVarNum; set => _isDepVarNum = value; }
         public bool IsDepVarLog { get => _isDepVarLog; set => _isDepVarLog = value; }
@@ -88,6 +97,7 @@ namespace DataPlotter.DataPlotterLibrary
             ID = "default";
             InfoFilePath = string.Empty;
             DataFilePath = string.Empty;
+            LevelsToPlot = new Dictionary<IndependantVariable, List<string>>();
         }
 
         public void SetID ()
