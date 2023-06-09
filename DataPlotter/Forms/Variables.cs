@@ -1,4 +1,5 @@
-﻿using DataPlotter.UserControls;
+﻿using DataPlotter.DataPlotterLibrary;
+using DataPlotter.UserControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +20,18 @@ namespace DataPlotter.Forms
             InitializeComponent();
             _home = home;
             variableSelectorYVar.VariableType = "Y-axis variable";
+
+            PopulateListBoxes();
+        }
+
+        private void PopulateListBoxes()
+        {
+            if (_home.dataManager == null) return;
+
+            foreach (IndependantVariable var in _home.dataManager.Variables)
+            {
+                variableSelectorXVar.AddVariable(var);
+            }
         }
     }
 }

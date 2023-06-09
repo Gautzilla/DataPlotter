@@ -30,7 +30,7 @@
         {
             this.labelVariableType = new System.Windows.Forms.Label();
             this.listBoxVariables = new System.Windows.Forms.ListBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxLevels = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // labelVariableType
@@ -56,34 +56,36 @@
             this.listBoxVariables.ItemHeight = 19;
             this.listBoxVariables.Location = new System.Drawing.Point(0, 31);
             this.listBoxVariables.Name = "listBoxVariables";
-            this.listBoxVariables.Size = new System.Drawing.Size(331, 86);
+            this.listBoxVariables.Size = new System.Drawing.Size(331, 189);
+            this.listBoxVariables.Sorted = true;
             this.listBoxVariables.TabIndex = 1;
+            this.listBoxVariables.SelectedIndexChanged += new System.EventHandler(this.listBoxVariables_SelectedIndexChanged);
             // 
-            // listBox1
+            // listBoxLevels
             // 
-            this.listBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
-            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(239)))), ((int)(((byte)(231)))));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 19;
-            this.listBox1.Location = new System.Drawing.Point(331, 31);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBox1.Size = new System.Drawing.Size(324, 86);
-            this.listBox1.TabIndex = 2;
+            this.listBoxLevels.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
+            this.listBoxLevels.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBoxLevels.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxLevels.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxLevels.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(239)))), ((int)(((byte)(231)))));
+            this.listBoxLevels.FormattingEnabled = true;
+            this.listBoxLevels.ItemHeight = 19;
+            this.listBoxLevels.Location = new System.Drawing.Point(331, 31);
+            this.listBoxLevels.Name = "listBoxLevels";
+            this.listBoxLevels.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.listBoxLevels.Size = new System.Drawing.Size(324, 189);
+            this.listBoxLevels.TabIndex = 2;
             // 
             // VariableSelector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBoxLevels);
             this.Controls.Add(this.listBoxVariables);
             this.Controls.Add(this.labelVariableType);
             this.Name = "VariableSelector";
-            this.Size = new System.Drawing.Size(655, 117);
+            this.Size = new System.Drawing.Size(655, 220);
             this.ResumeLayout(false);
 
         }
@@ -92,6 +94,6 @@
 
         private System.Windows.Forms.Label labelVariableType;
         private System.Windows.Forms.ListBox listBoxVariables;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxLevels;
     }
 }
