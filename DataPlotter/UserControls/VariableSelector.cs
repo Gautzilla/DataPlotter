@@ -41,7 +41,7 @@ namespace DataPlotter.UserControls
 
         public void AddVariable(IndependantVariable variable)
         {
-            listBoxVariables.Items.Add(variable);            
+            listBoxVariables.Items.Add(variable);     
         }
 
         public void Clear()
@@ -53,6 +53,18 @@ namespace DataPlotter.UserControls
 
             if (NextVariableSelector == null) return;
             NextVariableSelector.Clear();
+        }
+
+        public void SetSelectedItems(IndependantVariable variable, List<string> levels)
+        {
+            variable = listBoxVariables.Items.OfType<IndependantVariable>().Single(var => var.Name == variable.Name);
+            int variableIndex = listBoxVariables.Items.IndexOf(variable);
+            listBoxVariables.SetSelected(variableIndex, true);
+
+            for (int i = 0; i < listBoxLevels.Items.Count; i++)
+            {
+                listBoxLevels.SetSelected(i, levels.Contains(listBoxLevels.Items[i]));
+            }
         }
 
         private void listBoxVariables_SelectedIndexChanged(object sender, EventArgs e)

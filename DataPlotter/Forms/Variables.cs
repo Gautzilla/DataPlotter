@@ -23,6 +23,7 @@ namespace DataPlotter.Forms
             variableSelectorYVar.VariableType = "Y-axis variable";
             variableSelectorXVar.Home = _home;
             variableSelectorYVar.Home = _home;
+            variableSelectorXVar.YVarIndex = -1;
             variableSelectorYVar.YVarIndex = 0;
             _variableSelectors = new List<VariableSelector>() { variableSelectorXVar, variableSelectorYVar };
             AddVariableSelectors();
@@ -73,7 +74,18 @@ namespace DataPlotter.Forms
 
             if (_home.ChartInfo == null) return;
 
+            // TODO: Change the way ChartInfo stores XVar by using the class instead of the sole name as a string (caution: references cause issues!!)
+            IndependantVariable XVar = _home.dataManager.Variables.Single(v => v.Name == _home.ChartInfo.XVar);
+            _variableSelectors[0].SetSelectedItems(XVar, XVar.Levels.ToList());
 
+            // TODO: find a more elegant solution here!
+            (IndependantVariable variable, List<string> levels)[] levelToPlot = _home.ChartInfo.LevelsToPlot.OrderBy(tuple => tuple.YVarIndex).Select(tuple => (tuple.variable, tuple.levels)).ToArray();
+            _home.ChartInfo.LevelsToPlot = new List<(int YVarIndex, IndependantVariable variable, List<string> levels)>();
+
+            for (int i = 1; i <= levelToPlot.Length; i++)
+            {
+                _variableSelectors[i].SetSelectedItems(levelToPlot[i-1].variable, levelToPlot[i-1].levels);
+            }
         }
     }
 }

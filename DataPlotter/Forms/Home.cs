@@ -110,10 +110,6 @@ namespace DataPlotter.Forms
             {
                 Console.WriteLine(line.YVarIndex + " - " + line.variable.Name + " : " + String.Join(" & ", line.levels));
             }
-
-            ChartInfo copy = DeepCopier.DeepCopy(ChartInfo);
-            copy.SetID();
-            PresetManager.WritePreset(copy);
         }
     }
 }
