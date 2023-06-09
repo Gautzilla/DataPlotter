@@ -106,11 +106,14 @@ namespace DataPlotter.Forms
 
         private void buttonPlot_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(ChartInfo.LevelsToPlot.Count);
             foreach (var line in ChartInfo.LevelsToPlot)
             {
-                Console.WriteLine(line.Key.Name + " : " + String.Join(" & ", line.Value));
+                Console.WriteLine(line.variable.Name + " : " + String.Join(" & ", line.levels));
             }
+
+            ChartInfo copy = DeepCopier.DeepCopy(ChartInfo);
+            copy.SetID();
+            PresetManager.WritePreset(copy);
         }
     }
 }

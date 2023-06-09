@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -54,6 +55,12 @@ namespace DataPlotter.DataPlotterLibrary
         {
             get { return levels; }
             private set { levels = value; }
+        }
+
+        [JsonConstructor]
+        public IndependantVariable()
+        {
+            
         }
 
         public IndependantVariable(string name, string[] levels, bool isNum)

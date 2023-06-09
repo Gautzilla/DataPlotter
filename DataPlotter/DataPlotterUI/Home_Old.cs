@@ -338,7 +338,7 @@ namespace DataPlotter
 
         }
 
-        private void Btn_savePreset_Click(object sender, EventArgs e)
+        public void Btn_savePreset_Click(object sender, EventArgs e)
         {
             ChartInfo copy = DeepCopier.DeepCopy(_chartInfo);
             copy.SetID();

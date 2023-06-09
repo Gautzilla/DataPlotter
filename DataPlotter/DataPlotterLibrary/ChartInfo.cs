@@ -43,9 +43,10 @@ namespace DataPlotter.DataPlotterLibrary
         private bool _isDepVarNum = true;
         private bool _isDepVarLog = true;
 
-        private Dictionary<IndependantVariable, List<string>> _levelsToPlot;
+        // List of tuples because the JSON serializer can't serialize Dictionary keys without parsing them to a string
+        private List<(IndependantVariable variable, List<string> levels )> _levelsToPlot;
 
-        public Dictionary<IndependantVariable, List<string>> LevelsToPlot
+        public List<(IndependantVariable variable, List<string> levels)> LevelsToPlot
         {
             get { return _levelsToPlot; }
             set { _levelsToPlot = value; }
@@ -97,7 +98,7 @@ namespace DataPlotter.DataPlotterLibrary
             ID = "default";
             InfoFilePath = string.Empty;
             DataFilePath = string.Empty;
-            LevelsToPlot = new Dictionary<IndependantVariable, List<string>>();
+            LevelsToPlot = new List<(IndependantVariable variable, List<string> levels)>();
         }
 
         public void SetID ()

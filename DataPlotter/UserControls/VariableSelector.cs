@@ -45,7 +45,7 @@ namespace DataPlotter.UserControls
 
         public void Clear()
         {
-            if (listBoxVariables.SelectedItems.Count > 0) Home.ChartInfo.LevelsToPlot.Remove((IndependantVariable)listBoxVariables.SelectedItem);
+            if (listBoxVariables.SelectedItems.Count > 0) Home.ChartInfo.LevelsToPlot.RemoveAll(tuple => tuple.variable == (IndependantVariable)listBoxVariables.SelectedItem);
 
             listBoxVariables.Items.Clear();
             listBoxLevels.Items.Clear();
@@ -64,8 +64,8 @@ namespace DataPlotter.UserControls
 
             if (_isYVar)
             {
-                if (_selectedVariable != null) Home.ChartInfo.LevelsToPlot.Remove(_selectedVariable); // selected before it changed
-                if (!Home.ChartInfo.LevelsToPlot.ContainsKey(selectedVariable)) Home.ChartInfo.LevelsToPlot.Add(selectedVariable, new List<string>());
+                if (_selectedVariable != null) Home.ChartInfo.LevelsToPlot.RemoveAll(tuple => tuple.variable == _selectedVariable); // selected before it changed
+                // if (!Home.ChartInfo.LevelsToPlot.Any(tuple => tuple.variable == selectedVariable)) Home.ChartInfo.LevelsToPlot.Add((selectedVariable, new List<string>()));
             }
 
             _selectedVariable = selectedVariable;
@@ -104,8 +104,9 @@ namespace DataPlotter.UserControls
             {
                 selectedLevels.Add(level.ToString());
             }
-            
-            Home.ChartInfo.LevelsToPlot[(IndependantVariable)listBoxVariables.SelectedItem] = new List<string>(selectedLevels);
+
+            Home.ChartInfo.LevelsToPlot.RemoveAll(tuple => tuple.variable == _selectedVariable);
+            Home.ChartInfo.LevelsToPlot.Add((_selectedVariable, selectedLevels));
         }
     }
 }
