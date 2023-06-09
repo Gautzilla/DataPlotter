@@ -48,8 +48,10 @@ namespace DataPlotter.UserControls
         private void listBoxVariables_SelectedIndexChanged(object sender, EventArgs e)
         {
             IndependantVariable selectedVariable = listBoxVariables.SelectedItem as IndependantVariable;
-
             listBoxLevels.Items.Clear();
+
+            if (listBoxVariables.SelectedIndex == -1) return;
+
             string[] levelsCleanName = selectedVariable.Levels.Select(l => l.Remove(0, selectedVariable.Name.Length + 1)).ToArray();
 
             if (levelsCleanName.All(l => int.TryParse(l, out int n)))
