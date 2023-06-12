@@ -318,9 +318,9 @@ namespace DataPlotter
                 return;
             }
 
-            Plot plotForm = new Plot(_dataManager, _chartInfo, this);
-            plotForm.Show();
-            this.Hide();
+            //Plot plotForm = new Plot(_dataManager, _chartInfo, this);
+            //plotForm.Show();
+            //this.Hide();
         }
 
         private bool ValidInputs(ChartInfo chart)

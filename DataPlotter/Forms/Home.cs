@@ -1,4 +1,5 @@
 ﻿using DataPlotter.DataPlotterLibrary;
+using DataPlotter.DataPlotterUI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -106,9 +107,14 @@ namespace DataPlotter.Forms
 
         private void buttonPlot_Click(object sender, EventArgs e)
         {
-            foreach (var line in ChartInfo.LevelsToPlot.OrderBy(tuple => tuple.YVarIndex))
+            try
             {
-                Console.WriteLine(line.YVarIndex + " - " + line.variable.Name + " : " + String.Join(" & ", line.levels));
+                Plot plotForm = new Plot(this);
+                plotForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured.");
             }
         }
     }

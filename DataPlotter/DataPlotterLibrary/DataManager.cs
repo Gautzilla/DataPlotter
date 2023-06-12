@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MathNet.Numerics;
+using System.Reflection;
 
 namespace DataPlotter.DataPlotterLibrary
 {
@@ -184,7 +185,10 @@ namespace DataPlotter.DataPlotterLibrary
         /// </summary>
         /// <param name="levels">The varaibles' levels at which the values are needed.</param>
         /// <returns>The raw data (a list of same size as the subjects sample) matching the specified variable levels</returns>
-        private List<float> GetData(List<string> levels) => _data.Where(dat => levels.Where(l => l != null).All(v => dat.var.Contains(v))).SelectMany(d => d.val).ToList();
+        private List<float> GetData(List<string> levels)
+        {
+            return _data.Where(dat => levels.Where(l => l != null).All(v => dat.var.Contains(v))).SelectMany(d => d.val).ToList();
+        }
 
         /// <summary>
         /// Returns the levels of a given variable.
@@ -204,10 +208,36 @@ namespace DataPlotter.DataPlotterLibrary
         /// <param name="logY">True is the Y-axis is logarithmic, false if it's linear.</param>
         /// <param name="variableY2">Additional levels that have to be taken into account, for plotting higher-than-2-factors interactions.</param>
         /// <returns>A list of lines, which contains the coordinates of the mean points accross subjects for a given interaction.</returns>
-        public List<List<(string x, float y)>> MeanLine(string variableX, bool logY, string variableY, string variableY2)
+        public List<(List<string> name, List<(string x, float y)>)> MeanLine(IndependantVariable XVar, bool logY, List<(int YVarIndex, IndependantVariable variable, List<string> levels)> levelsToPlot)
         {
-            if (logY) return GetLevels(variableY).Select(level => GetLevels(variableX).Select(x => (x, (float)Math.Pow(10, GetData(new List<string>() { x, level }.Concat(variableY2 == string.Empty ? new List<string>() : new List<string>() { variableY2 }).ToList()).Select(y => (float)Math.Log10(y)).Average()))).ToList()).ToList();
-            return GetLevels(variableY).Select(level => GetLevels(variableX).Select(x => (x, GetData(new List<string>() { x, level }.Concat(variableY2 == string.Empty ? new List<string>() : new List<string>() { variableY2 }).ToList()).Average())).ToList()).ToList();
+            if (logY) return LevelsCombination(levelsToPlot, new List<List<string>>(), 0).Select(line => (line, XVar.Levels.Select(x => (x, (float)Math.Pow(10, GetData(line.Prepend(x).ToList()).Select(y => (float)Math.Log10(y)).Average()))).ToList())).ToList();
+            return LevelsCombination(levelsToPlot, new List<List<string>>(), 0).Select(line => (line, XVar.Levels.Select(x => (x, GetData(line.Prepend(x).ToList()).Average())).ToList())).ToList();
+        }
+
+        /// <summary>
+        /// Recursively concatenantes the levels of the Y-variables to be plotted.
+        /// </summary>
+        /// <param name="levelsToPlot">The selected levels of the variables that have to be plotted on the Y-axis.</param>
+        /// <param name="currentOutput">Running concatenation of the levels, which is passed to the next variables.</param>
+        /// <param name="yVarIndex">Index of the Y-variable.</param>
+        /// <returns>A list of string corresponding to the combination of levels for each line that has to be plotted.</returns>
+        private List<List<string>> LevelsCombination(List<(int YVarIndex, IndependantVariable variable, List<string> levels)> levelsToPlot, List<List<string>> currentOutput, int yVarIndex)
+        {
+            List<List<string>> output = new List<List<string>>();
+
+            (int YVarIndex, IndependantVariable variable, List<string> levels) currentVariable = levelsToPlot.Single(tuple => tuple.YVarIndex == yVarIndex);
+
+            if (currentOutput.Count == 0) output.AddRange(currentVariable.levels.Select(str => new List<string>() { str }));
+            else
+            {
+                for (int o = 0; o < currentOutput.Count; o++)
+                {
+                    output.AddRange(currentVariable.levels.Select(str => new List<string>(currentOutput[o]) { str }));
+                }
+            }
+
+            if (yVarIndex == levelsToPlot.Count - 1) return output;
+            else return LevelsCombination(levelsToPlot, output, yVarIndex + 1);
         }
 
         /// <summary>
@@ -217,9 +247,9 @@ namespace DataPlotter.DataPlotterLibrary
         /// <param name="variableX">The variable to be plotted on the x axis.</param>
         ///  <param name="restrictionLevels">Additional levels that have to be taken into account, for plotting higher-than-2-factors interactions.</param>
         /// <returns>A list of lists of error bars, which contains the coordinates of the low and high point of the intervals.</returns>
-        public List<List<(string x, (float l, float h) y)>> Std(string variableX, bool logY, string variableY = null, string variableY2 = null)
+        public List<List<(string x, (float l, float h) y)>> Std(IndependantVariable XVar, bool logY, List<(int YVarIndex, IndependantVariable variable, List<string> levels)> levelsToPlot)
         {
-            return GetLevels(variableY).Select(level => GetLevels(variableX).Select(x => (x, ConfidenceInterval(GetData(new List<string>() { x, level }.Concat(variableY2 == string.Empty ? new List<string>() : new List<string>() { variableY2 }).ToList()), logY))).ToList()).ToList();
+            return LevelsCombination(levelsToPlot, new List<List<string>>(), 0).Select(levels => XVar.Levels.Select(x => (x, ConfidenceInterval(GetData(levels.Prepend(x).ToList()), logY))).ToList()).ToList();
         }
 
         /// <summary>
@@ -248,20 +278,20 @@ namespace DataPlotter.DataPlotterLibrary
         /// <param name="variableY2">Additional levels that have to be taken into account, for plotting higher-than-2-factors interactions.</param>
         /// <returns>A list of functions depicting the y=k*x^b power functions.</returns>
         /// <exception cref="InvalidDataException"></exception>
-        public List<Func<double, double>> Regression (string variableX, bool logY, string variableY, string variableY2)
+        public List<Func<double, double>> Regression (IndependantVariable XVar, bool logY, List<(int YVarIndex, IndependantVariable variable, List<string> levels)> levelsToPlot)
         {
-            if (!_variables.Single(v => v.Name == variableX).IsNum) throw new InvalidDataException("The X variable is qualitative: regression curves can't be computed.");
+            if (!XVar.IsNum) throw new InvalidDataException("The X variable is qualitative: regression curves can't be computed.");
 
-            List<List<(string x, float y)>> meanLine = MeanLine(variableX, logY, variableY, variableY2);
+            List<(List<string> name,List<(string x, float y)> values)> meanLine = MeanLine(XVar, logY, levelsToPlot);
 
             if (logY)
                 return meanLine
-                .Select(ml => ml.Select(point => (double.Parse(point.x), (double)point.y)))
+                .Select(ml => ml.values.Select(point => (double.Parse(point.x), (double)point.y)))
                 .Select(ml => Fit.PowerFunc(ml.Select(m => m.Item1).ToArray(), ml.Select(m => m.Item2).ToArray()))
                 .ToList();
 
             return meanLine
-                .Select(ml => ml.Select(point => (double.Parse(point.x), (double)point.y)))
+                .Select(ml => ml.values.Select(point => (double.Parse(point.x), (double)point.y)))
                 .Select(ml => Fit.LineFunc(ml.Select(m => m.Item1).ToArray(), ml.Select(m => m.Item2).ToArray()))
                 .ToList();
         }

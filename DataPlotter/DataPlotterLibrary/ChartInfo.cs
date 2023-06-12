@@ -43,6 +43,15 @@ namespace DataPlotter.DataPlotterLibrary
         private bool _isDepVarNum = true;
         private bool _isDepVarLog = true;
 
+        private IndependantVariable _xVariable;
+
+        public IndependantVariable XVariable
+        {
+            get { return _xVariable; }
+            set { _xVariable = value; }
+        }
+
+
         // List of tuples because the JSON serializer can't serialize Dictionary keys without parsing them to a string
         private List<(int YVarIndex, IndependantVariable variable, List<string> levels )> _levelsToPlot;
 

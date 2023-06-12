@@ -109,7 +109,11 @@ namespace DataPlotter.UserControls
 
         private void listBoxLevels_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!_isYVar) return;
+            if (!_isYVar)
+            {
+                Home.ChartInfo.XVariable = _selectedVariable;
+                return;
+            }
 
             List<string> selectedLevels = new List<string>();
 
@@ -119,7 +123,7 @@ namespace DataPlotter.UserControls
             }
 
             Home.ChartInfo.LevelsToPlot.RemoveAll(tuple => tuple.variable == _selectedVariable);
-            Home.ChartInfo.LevelsToPlot.Add((YVarIndex, _selectedVariable, selectedLevels));
+            Home.ChartInfo.LevelsToPlot.Add((YVarIndex, _selectedVariable, selectedLevels.Select(level => $"{_selectedVariable.Name}_{level}").ToList()));
         }
     }
 }
