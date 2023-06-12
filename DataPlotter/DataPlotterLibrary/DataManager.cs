@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MathNet.Numerics;
 using System.Reflection;
+using DataPlotter.Forms;
 
 namespace DataPlotter.DataPlotterLibrary
 {
@@ -210,8 +211,9 @@ namespace DataPlotter.DataPlotterLibrary
         /// <returns>A list of lines, which contains the coordinates of the mean points accross subjects for a given interaction.</returns>
         public List<(List<string> name, List<(string x, float y)>)> MeanLine(IndependantVariable XVar, bool logY, List<(int YVarIndex, IndependantVariable variable, List<string> levels)> levelsToPlot)
         {
-            if (logY) return LevelsCombination(levelsToPlot, new List<List<string>>(), 0).Select(line => (line, XVar.Levels.Select(x => (x, (float)Math.Pow(10, GetData(line.Prepend(x).ToList()).Select(y => (float)Math.Log10(y)).Average()))).ToList())).ToList();
-            return LevelsCombination(levelsToPlot, new List<List<string>>(), 0).Select(line => (line, XVar.Levels.Select(x => (x, GetData(line.Prepend(x).ToList()).Average())).ToList())).ToList();
+            if (levelsToPlot.Count == 0) return new List<(List<string>, List<(string, float)>)>() { (new List<string>() { XVar.Name }, XVar.Levels.Select(x => (XVar.CleanLevel(x), GetData(new List<string>() { x }).Average())).ToList()) };
+            if (logY) return LevelsCombination(levelsToPlot, new List<List<string>>(), 0).Select(line => (line, XVar.Levels.Select(x => (XVar.CleanLevel(x), (float)Math.Pow(10, GetData(line.Prepend(x).ToList()).Select(y => (float)Math.Log10(y)).Average()))).ToList())).ToList();
+            return LevelsCombination(levelsToPlot, new List<List<string>>(), 0).Select(line => (line, XVar.Levels.Select(x => (XVar.CleanLevel(x), GetData(line.Prepend(x).ToList()).Average())).ToList())).ToList();
         }
 
         /// <summary>
@@ -249,7 +251,8 @@ namespace DataPlotter.DataPlotterLibrary
         /// <returns>A list of lists of error bars, which contains the coordinates of the low and high point of the intervals.</returns>
         public List<List<(string x, (float l, float h) y)>> Std(IndependantVariable XVar, bool logY, List<(int YVarIndex, IndependantVariable variable, List<string> levels)> levelsToPlot)
         {
-            return LevelsCombination(levelsToPlot, new List<List<string>>(), 0).Select(levels => XVar.Levels.Select(x => (x, ConfidenceInterval(GetData(levels.Prepend(x).ToList()), logY))).ToList()).ToList();
+            if (levelsToPlot.Count == 0) return new List<List<(string, (float, float))>>() { XVar.Levels.Select(x => (XVar.CleanLevel(x), ConfidenceInterval(GetData( new List<string>() { x }), _dependantVariable.IsLog))).ToList() };
+            return LevelsCombination(levelsToPlot, new List<List<string>>(), 0).Select(levels => XVar.Levels.Select(x => (XVar.CleanLevel(x), ConfidenceInterval(GetData(levels.Prepend(x).ToList()), logY))).ToList()).ToList();
         }
 
         /// <summary>

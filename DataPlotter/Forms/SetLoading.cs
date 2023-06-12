@@ -59,9 +59,7 @@ namespace DataPlotter.Forms
             listViewChartInfos.View = View.Details;
             listViewChartInfos.Columns.Add("Data file");
             listViewChartInfos.Columns.Add("Name");
-            listViewChartInfos.Columns.Add("X var");
-            listViewChartInfos.Columns.Add("Y Var");
-            listViewChartInfos.Columns.Add("Y Var2");
+            listViewChartInfos.Columns.Add("Dependant variable");
 
             foreach (var chartInfo in _sets)
             {
@@ -79,9 +77,7 @@ namespace DataPlotter.Forms
             ListViewItem item = new ListViewItem();
             item.Text = Regex.Match(chartInfo.ID, @"[^\\]*\.csv").Value;
             item.SubItems.Add(chartInfo.Name);
-            item.SubItems.Add(chartInfo.XVar);
-            item.SubItems.Add(chartInfo.YVar);
-            item.SubItems.Add(chartInfo.YVar2);
+            item.SubItems.Add(chartInfo.DepVarName);
             item.Tag = chartInfo;
 
             return item;

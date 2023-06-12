@@ -89,7 +89,7 @@ namespace DataPlotter.DataPlotterUI
 
         private void PlotLines()
         {
-            IndependantVariable mainYVar = _levelsToPlot.Single(tuple => tuple.YVarIndex == 0).variable;
+            IndependantVariable mainYVar = _levelsToPlot.Count > 0 ? _levelsToPlot.Single(tuple => tuple.YVarIndex == 0).variable : _chartInfo.XVariable;
 
             for (int line = 0; line < _meanLines.Count; line++)
             {
@@ -155,7 +155,7 @@ namespace DataPlotter.DataPlotterUI
                 series.Color = _pens[iD].Color;
                 series.CustomProperties = "PixelPointWidth = 10";
                 iD++;
-                iD %= _levelsToPlot.Count(level => level.YVarIndex == 0);
+                iD %= _levelsToPlot.Count() > 0 ? _levelsToPlot.Count(level => level.YVarIndex == 0) : chart.Series.Count() ;
             }
         }
 
@@ -173,7 +173,7 @@ namespace DataPlotter.DataPlotterUI
             {
 
                 int lineStyle = line;
-                int linesToOffset = _levelsToPlot.Single(tuple => tuple.YVarIndex == 0).levels.Count();
+                int linesToOffset = _levelsToPlot.Count() > 0 ? _levelsToPlot.Single(tuple => tuple.YVarIndex == 0).levels.Count() : 1;
 
                 Pen pen = _pens[lineStyle % _pens.Length];
                 
@@ -236,7 +236,7 @@ namespace DataPlotter.DataPlotterUI
         {
             AxisDisplay("x");
             AxisDisplay("y");
-            if (_chartInfo.YVar != String.Empty) LegendDisplay();
+            if (_levelsToPlot.Count > 0) LegendDisplay();
             chart.ChartAreas.First().BorderWidth = 2;
             chart.ChartAreas.First().BorderColor = Color.Black;
             chart.ChartAreas.First().BorderDashStyle = ChartDashStyle.Solid;
@@ -254,7 +254,7 @@ namespace DataPlotter.DataPlotterUI
             // Offset for labels fromPosition and toPosition
             float labelOffset = 0.3f;
 
-            Variable var = axis == "x" ? _data.Variables.Single(v => v.Name == _chartInfo.XVar) : _data.DepVariable as Variable;
+            Variable var = axis == "x" ? _chartInfo.XVariable : _data.DepVariable as Variable;
 
             float dynamic = axis == "x" ? _data.GetLevels(var.Name).Count : 1;
 
@@ -443,13 +443,12 @@ namespace DataPlotter.DataPlotterUI
         private void chart_Click(object sender, EventArgs e)
         {
             string figureName = _chartInfo.DepVarName.RemoveWhiteSpaces() + "_";
-            figureName += _chartInfo.XVar.RemoveWhiteSpaces();
-            if (_chartInfo.YVar != string.Empty) figureName += "X" + _chartInfo.YVar.RemoveWhiteSpaces();
-            if (_chartInfo.YVar2 != string.Empty)
+            figureName += _chartInfo.XVariable.Name.RemoveWhiteSpaces();
+
+            if (_chartInfo.LevelsToPlot.Count > 0)
             {
-                figureName += "X" + _chartInfo.YVar2.RemoveWhiteSpaces();
-                if (!_chartInfo.TripleInteractionSamePlot) figureName += $"({_chartInfo.YVar2Level.RemoveWhiteSpaces()})";
-            }
+                figureName += "x" + _chartInfo.LevelsToPlot.Select(tuple => String.Join("x", tuple.levels));
+            }            
 
             figureName = $@"C:\Users\User\Documents\DataPlotter\{figureName}.emf";
             MemoryStream ms = new MemoryStream();

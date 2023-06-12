@@ -112,7 +112,7 @@ namespace DataPlotter.Forms
                 Plot plotForm = new Plot(this);
                 plotForm.Show();
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("An error occured.");
             }

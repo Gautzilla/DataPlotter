@@ -51,11 +51,16 @@ namespace DataPlotter.DataPlotterLibrary
     public class IndependantVariable : Variable
     {
         private string[] levels;
+
+        /// <summary>
+        /// Levels formatted as "variableName_levelName"
+        /// </summary>
         public string[] Levels
         {
             get { return levels; }
             private set { levels = value; }
         }
+
 
         [JsonConstructor]
         public IndependantVariable()
@@ -95,6 +100,13 @@ namespace DataPlotter.DataPlotterLibrary
         {
             levels = levels.Where(l => l != level).ToArray();
         }
+
+        /// <summary>
+        /// Return the level formatted as "levelName" instead of "variableName_levelName"
+        /// </summary>
+        /// <param name="level"></param>
+        /// <returns></returns>
+        public string CleanLevel(string level) => level.Remove(0, Name.Length + 1);
     }
 
     public class DependantVariable : Variable

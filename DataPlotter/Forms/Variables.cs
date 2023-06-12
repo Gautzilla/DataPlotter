@@ -74,8 +74,8 @@ namespace DataPlotter.Forms
 
             if (_home.ChartInfo == null) return;
 
-            // TODO: Change the way ChartInfo stores XVar by using the class instead of the sole name as a string (caution: references cause issues!!)
-            IndependantVariable XVar = _home.dataManager.Variables.Single(v => v.Name == _home.ChartInfo.XVar);
+            // TODO: There might be a cleaner way to retrieve the variables linked in the dataManager from the ChartInfo serializer
+            IndependantVariable XVar = _home.dataManager.Variables.Single(v => v.Name == _home.ChartInfo.XVariable.Name);
             _variableSelectors[0].SetSelectedItems(XVar, XVar.Levels.ToList());
 
             // TODO: find a more elegant solution here!

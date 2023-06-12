@@ -35,10 +35,6 @@ namespace DataPlotter.DataPlotterLibrary
 
         #region Variables Settings
 
-        private string _xVar = string.Empty;
-        private string _yVar = string.Empty;
-        private string _yVar2 = string.Empty;
-        private string _yVar2Level = string.Empty;
         private string _depVarName = string.Empty;
         private bool _isDepVarNum = true;
         private bool _isDepVarLog = true;
@@ -66,10 +62,6 @@ namespace DataPlotter.DataPlotterLibrary
         public bool IsDepVarNum { get => _isDepVarNum; set => _isDepVarNum = value; }
         public bool IsDepVarLog { get => _isDepVarLog; set => _isDepVarLog = value; }
         public string DepVarName { get => _depVarName; set => _depVarName = value; }
-        public string XVar { get => _xVar; set => _xVar = value; }
-        public string YVar { get => _yVar; set => _yVar = value; }
-        public string YVar2 { get => _yVar2; set => _yVar2 = value; }
-        public string YVar2Level { get => _yVar2Level; set => _yVar2Level = value; }
 
         #endregion
 
@@ -112,7 +104,7 @@ namespace DataPlotter.DataPlotterLibrary
 
         public void SetID ()
         {
-            ID = DataFilePath + "_" + String.Join("_", new string[] { XVar, YVar, YVar2, YVar2Level }).TrimEnd('_');
+            ID = DataFilePath + "_" + XVariable.Name + "_" + String.Join("_", LevelsToPlot.Select(tuple => tuple.variable.Name));
         }
     }
 }
