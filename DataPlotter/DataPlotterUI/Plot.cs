@@ -352,8 +352,10 @@ namespace DataPlotter.DataPlotterUI
 
         private List<CustomLabel> GetQualitativeLabels(Variable var, float offset)
         {
+            IndependantVariable indepVar = (IndependantVariable)var;
+
             List<CustomLabel> ticks = new List<CustomLabel>();
-            string[] labels = _data.GetLevels(var.Name).ToArray();
+            string[] labels = indepVar.Levels.Select(level => indepVar.CleanLevel(level)).ToArray();
 
             foreach (int tick in Enumerable.Range(1, labels.Length))
             {
