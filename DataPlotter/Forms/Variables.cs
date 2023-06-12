@@ -76,7 +76,7 @@ namespace DataPlotter.Forms
 
             // TODO: There might be a cleaner way to retrieve the variables linked in the dataManager from the ChartInfo serializer
             IndependantVariable XVar = _home.dataManager.Variables.Single(v => v.Name == _home.ChartInfo.XVariable.Name);
-            _variableSelectors[0].SetSelectedItems(XVar, XVar.Levels.ToList());
+            _variableSelectors[0].SetSelectedItems(XVar, XVar.Levels.Select(level => XVar.CleanLevel(level)).ToList());
 
             // TODO: find a more elegant solution here!
             (IndependantVariable variable, List<string> levels)[] levelToPlot = _home.ChartInfo.LevelsToPlot.OrderBy(tuple => tuple.YVarIndex).Select(tuple => (tuple.variable, tuple.levels)).ToArray();

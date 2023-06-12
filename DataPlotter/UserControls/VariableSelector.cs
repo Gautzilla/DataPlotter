@@ -63,7 +63,7 @@ namespace DataPlotter.UserControls
 
             for (int i = 0; i < listBoxLevels.Items.Count; i++)
             {
-                listBoxLevels.SetSelected(i, levels.Contains(listBoxLevels.Items[i]));
+                listBoxLevels.SetSelected(i, levels.Contains(listBoxLevels.Items[i].ToString()));
             }
         }
 
