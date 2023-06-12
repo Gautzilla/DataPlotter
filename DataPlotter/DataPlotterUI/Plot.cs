@@ -155,7 +155,7 @@ namespace DataPlotter.DataPlotterUI
                 series.Color = _pens[iD].Color;
                 series.CustomProperties = "PixelPointWidth = 10";
                 iD++;
-                iD %= _levelsToPlot.Count() > 0 ? _levelsToPlot.Count(level => level.YVarIndex == 0) : chart.Series.Count() ;
+                if (_levelsToPlot.Count() > 0) iD %= _levelsToPlot.Single(tuple => tuple.YVarIndex == 0).levels.Count();
             }
         }
 
