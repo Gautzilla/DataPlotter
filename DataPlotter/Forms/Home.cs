@@ -107,6 +107,7 @@ namespace DataPlotter.Forms
 
         private void buttonPlot_Click(object sender, EventArgs e)
         {
+            Console.WriteLine($"levels to plot: \r\n{String.Join("\r\n", ChartInfo.LevelsToPlot.Select(tuple => $"{tuple.variable.Name} ({String.Join(" x ", tuple.levels.Select(l => tuple.variable.CleanLevel(l)))})"))}");
             try
             {
                 Plot plotForm = new Plot(this);

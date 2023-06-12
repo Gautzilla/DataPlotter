@@ -81,11 +81,11 @@ namespace DataPlotter.UserControls
                 //if (!Home.ChartInfo.LevelsToPlot.Any(tuple => tuple.variable == selectedVariable)) Home.ChartInfo.LevelsToPlot.Add((selectedVariable, new List<string>()));
             }
 
-            _selectedVariable = selectedVariable;
-
             listBoxLevels.Items.Clear();
 
-            string[] levelsCleanName = selectedVariable.Levels.Select(l => l.Remove(0, selectedVariable.Name.Length + 1)).ToArray();
+            _selectedVariable = selectedVariable;
+
+            string[] levelsCleanName = _selectedVariable.Levels.Select(l => _selectedVariable.CleanLevel(l)).ToArray();
 
             if (levelsCleanName.All(l => int.TryParse(l, out int n)))
             {
@@ -109,17 +109,17 @@ namespace DataPlotter.UserControls
 
         private void listBoxLevels_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!_isYVar)
-            {
-                Home.ChartInfo.XVariable = _selectedVariable;
-                return;
-            }
-
             List<string> selectedLevels = new List<string>();
 
             foreach (var level in listBoxLevels.SelectedItems)
             {
                 selectedLevels.Add(level.ToString());
+            }
+
+            if (!_isYVar)
+            {
+                Home.ChartInfo.XVariable = _selectedVariable;
+                return;
             }
 
             Home.ChartInfo.LevelsToPlot.RemoveAll(tuple => tuple.variable == _selectedVariable);

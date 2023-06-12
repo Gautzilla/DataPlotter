@@ -173,6 +173,8 @@ namespace DataPlotter.DataPlotterUI
             {
 
                 int lineStyle = line;
+                if (_levelsToPlot.Count() > 0) lineStyle %= _levelsToPlot.Single(tuple => tuple.YVarIndex == 0).levels.Count();
+
                 int linesToOffset = _levelsToPlot.Count() > 0 ? _levelsToPlot.Single(tuple => tuple.YVarIndex == 0).levels.Count() : 1;
 
                 Pen pen = _pens[lineStyle % _pens.Length];
@@ -389,7 +391,10 @@ namespace DataPlotter.DataPlotterUI
 
             chart.ApplyPaletteColors();
 
-            int legendItems = _levelsToPlot.Single(level => level.YVarIndex == 0).levels.Count();
+            // Either the only Yvar for simple effects or the 2nd Yvar for interactions.
+            var tupleToBeDisplayedInLegend = _levelsToPlot.Single(level => level.YVarIndex == (_levelsToPlot.Count() > 1 ? 1 : 0));
+
+            int legendItems = tupleToBeDisplayedInLegend.levels.Count();
 
             for (int legendItem = 0; legendItem < legendItems; legendItem++)
             {
@@ -409,7 +414,7 @@ namespace DataPlotter.DataPlotterUI
 
 
                 // add a new NamesImage
-                string name = String.Join("x", _meanLines[legendItem].name);
+                string name = tupleToBeDisplayedInLegend.variable.CleanLevel(tupleToBeDisplayedInLegend.levels[legendItem]);
                 NamedImage ni = new NamedImage(name, bmp);
                 chart.Images.Add(ni);
                 // create and add the custom legend item
