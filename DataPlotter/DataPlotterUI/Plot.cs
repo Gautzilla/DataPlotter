@@ -394,7 +394,7 @@ namespace DataPlotter.DataPlotterUI
             chart.ApplyPaletteColors();
 
             // Either the only Yvar for simple effects or the 2nd Yvar for interactions.
-            var tupleToBeDisplayedInLegend = _levelsToPlot.Single(level => level.YVarIndex == (_levelsToPlot.Count() > 1 ? 1 : 0));
+            var tupleToBeDisplayedInLegend = _levelsToPlot.Single(level => level.YVarIndex == (_levelsToPlot.Count() > 1 && _levelsToPlot.Single(level2 => level2.YVarIndex == 1).levels.Count > 1 ? 1 : 0));
 
             int legendItems = tupleToBeDisplayedInLegend.levels.Count();
 
