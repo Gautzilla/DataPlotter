@@ -44,6 +44,7 @@
             this.tableLayoutPanelTicks = new System.Windows.Forms.TableLayoutPanel();
             this.gridTickSelectorXAxisTicks = new DataPlotter.UserControls.GridTickSelector();
             this.gridTickSelectorYAxisTicks = new DataPlotter.UserControls.GridTickSelector();
+            this.legendDisplay = new DataPlotter.UserControls.LegendDisplay();
             this.panelChartName.SuspendLayout();
             this.tableLayoutPanelChartName.SuspendLayout();
             this.tableLayoutPanelChartGlobals.SuspendLayout();
@@ -223,6 +224,7 @@
             this.tableLayoutPanelAxes.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanelAxes.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanelAxes.Controls.Add(this.tableLayoutPanelTicks, 0, 0);
+            this.tableLayoutPanelAxes.Controls.Add(this.legendDisplay, 1, 0);
             this.tableLayoutPanelAxes.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanelAxes.Location = new System.Drawing.Point(0, 58);
             this.tableLayoutPanelAxes.Name = "tableLayoutPanelAxes";
@@ -269,6 +271,15 @@
             this.gridTickSelectorYAxisTicks.TabIndex = 1;
             this.gridTickSelectorYAxisTicks.Ticks = null;
             // 
+            // legendDisplay
+            // 
+            this.legendDisplay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
+            this.legendDisplay.Home = null;
+            this.legendDisplay.Location = new System.Drawing.Point(403, 3);
+            this.legendDisplay.Name = "legendDisplay";
+            this.legendDisplay.Size = new System.Drawing.Size(107, 146);
+            this.legendDisplay.TabIndex = 1;
+            // 
             // Chart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -312,5 +323,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelTicks;
         private UserControls.GridTickSelector gridTickSelectorXAxisTicks;
         private UserControls.GridTickSelector gridTickSelectorYAxisTicks;
+        private UserControls.LegendDisplay legendDisplay;
     }
 }

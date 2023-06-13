@@ -52,8 +52,6 @@ namespace DataPlotter.UserControls
         {
             listBoxTicks.DataSource = null;
             listBoxTicks.DataSource = _ticks.OrderBy(t => t).ToList();
-            Console.WriteLine(String.Join(" - ", Home.ChartInfo.MajorTicks.x));
-            Console.WriteLine(String.Join(" - ", Ticks));
         }
 
         private void buttonAddTick_Click(object sender, EventArgs e)

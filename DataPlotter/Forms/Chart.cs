@@ -22,6 +22,8 @@ namespace DataPlotter.Forms
             _home = home;
 
             InitializeGridTicks();
+
+            legendDisplay.Home = _home;
             
             RefreshDisplay();
         }
