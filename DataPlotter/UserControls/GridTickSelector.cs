@@ -51,8 +51,9 @@ namespace DataPlotter.UserControls
         private void RefreshListBox()
         {
             listBoxTicks.DataSource = null;
-            Ticks = Ticks.OrderBy(tick => tick).ToList();
-            listBoxTicks.DataSource = Ticks;
+            listBoxTicks.DataSource = _ticks.OrderBy(t => t).ToList();
+            Console.WriteLine(String.Join(" - ", Home.ChartInfo.MajorTicks.x));
+            Console.WriteLine(String.Join(" - ", Ticks));
         }
 
         private void buttonAddTick_Click(object sender, EventArgs e)
@@ -89,6 +90,27 @@ namespace DataPlotter.UserControls
             if (e.KeyCode == Keys.Back || e.KeyCode == Keys.Delete || e.KeyCode == Keys.Subtract)
             {
                 buttonRemoveTick_Click(sender, e);
+            }
+        }
+
+        public void SetMinorTick(float tickInterval)
+        {
+            textBoxMinorTicks.Text = tickInterval.ToString();
+        }
+
+        private void textBoxMinorTicks_TextChanged(object sender, EventArgs e)
+        {
+            if (float.TryParse(textBoxMinorTicks.Text, out float minorTicks))
+            {
+                // Not that elegant
+                if (Text.Contains("Y-axis"))
+                {
+                    Home.ChartInfo.MinorTicksInterval = (Home.ChartInfo.MinorTicksInterval.x, minorTicks);
+                }
+                if (Text.Contains("X-axis"))
+                {
+                    Home.ChartInfo.MinorTicksInterval = (minorTicks, Home.ChartInfo.MinorTicksInterval.y);
+                }
             }
         }
     }

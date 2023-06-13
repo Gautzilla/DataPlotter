@@ -35,6 +35,8 @@ namespace DataPlotter.Forms
             if (_home.ChartInfo == null) return;
             gridTickSelectorXAxisTicks.Ticks = _home.ChartInfo.MajorTicks.x;
             gridTickSelectorYAxisTicks.Ticks = _home.ChartInfo.MajorTicks.y;
+            gridTickSelectorXAxisTicks.SetMinorTick(_home.ChartInfo.MinorTicksInterval.x);
+            gridTickSelectorYAxisTicks.SetMinorTick(_home.ChartInfo.MinorTicksInterval.y);
         }
 
         private void RefreshDisplay()
