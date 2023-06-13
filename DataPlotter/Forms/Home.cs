@@ -76,7 +76,7 @@ namespace DataPlotter.Forms
         {
             MessageBox.Show("Not implemented yet.");
             return;
-            ChangeActiveForm(new Data(), sender);
+            //ChangeActiveForm(new Data(), sender);
         }
 
         private void buttonVariables_Click(object sender, EventArgs e)
@@ -86,7 +86,7 @@ namespace DataPlotter.Forms
 
         private void buttonChart_Click(object sender, EventArgs e)
         {
-            ChangeActiveForm(new Chart(), sender);
+            ChangeActiveForm(new Chart(this), sender);
         }
 
         public void GatherData()

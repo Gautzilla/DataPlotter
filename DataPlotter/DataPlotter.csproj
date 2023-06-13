@@ -122,6 +122,9 @@
     <EmbeddedResource Include="DataPlotterUI\Plot.resx">
       <DependentUpon>Plot.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Chart.resx">
+      <DependentUpon>Chart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Data.resx">
       <DependentUpon>Data.cs</DependentUpon>
     </EmbeddedResource>

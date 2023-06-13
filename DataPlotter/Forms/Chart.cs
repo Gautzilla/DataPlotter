@@ -12,9 +12,26 @@ namespace DataPlotter.Forms
 {
     public partial class Chart : Form
     {
-        public Chart()
+        private Home _home;
+        public Chart(Home home)
         {
             InitializeComponent();
+            _home = home;
+            RefreshDisplay();
+        }
+
+        private void RefreshDisplay()
+        {
+            if (_home.ChartInfo == null) return;
+
+            textBoxChartName.Text = _home.ChartInfo.Name;
+        }
+
+        private void textBoxChartName_TextChanged(object sender, EventArgs e)
+        {
+            if (_home.ChartInfo == null) return;
+
+            _home.ChartInfo.Name = textBoxChartName.Text;
         }
     }
 }
