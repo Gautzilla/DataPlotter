@@ -74,6 +74,8 @@ namespace DataPlotter.Forms
 
         private void buttonData_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Not implemented yet.");
+            return;
             ChangeActiveForm(new Data(), sender);
         }
 
