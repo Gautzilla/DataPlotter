@@ -48,6 +48,8 @@ namespace DataPlotter.Forms
             textBoxChartName.Text = _home.ChartInfo.Name;
             textBoxChartWidth.Text = _home.ChartInfo.Size.w.ToString();
             textBoxChartHeight.Text = _home.ChartInfo.Size.h.ToString();
+
+            textBoxDependantVariableName.Text = _home.ChartInfo.DepVarName;
         }
 
         private void textBoxChartName_TextChanged(object sender, EventArgs e)
@@ -75,6 +77,11 @@ namespace DataPlotter.Forms
                 _home.ChartInfo.Size = (_home.ChartInfo.Size.w, height);
             }
             else textBox.Text = string.Empty;
+        }
+
+        private void textBoxDependantVariableName_TextChanged(object sender, EventArgs e)
+        {
+            _home.ChartInfo.DepVarName = textBoxDependantVariableName.Text;
         }
     }
 }
