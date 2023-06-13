@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DataPlotter.UserControls;
 
 namespace DataPlotter.Forms
 {
@@ -17,8 +18,23 @@ namespace DataPlotter.Forms
         public Chart(Home home)
         {
             InitializeComponent();
+
             _home = home;
+
+            InitializeGridTicks();
+            
             RefreshDisplay();
+        }
+
+        private void InitializeGridTicks()
+        {
+            gridTickSelectorXAxisTicks.Home = _home;
+            gridTickSelectorYAxisTicks.Home = _home;
+            gridTickSelectorYAxisTicks.Text = "Y-axis ticks";
+
+            if (_home.ChartInfo == null) return;
+            gridTickSelectorXAxisTicks.Ticks = _home.ChartInfo.MajorTicks.x;
+            gridTickSelectorYAxisTicks.Ticks = _home.ChartInfo.MajorTicks.y;
         }
 
         private void RefreshDisplay()
