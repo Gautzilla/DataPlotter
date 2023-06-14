@@ -39,6 +39,8 @@ namespace DataPlotter.Forms
             gridTickSelectorYAxisTicks.Ticks = _home.ChartInfo.MajorTicks.y;
             gridTickSelectorXAxisTicks.SetMinorTick(_home.ChartInfo.MinorTicksInterval.x);
             gridTickSelectorYAxisTicks.SetMinorTick(_home.ChartInfo.MinorTicksInterval.y);
+
+            checkBoxRegression.Checked = _home.ChartInfo.Regression;
         }
 
         private void RefreshDisplay()
@@ -81,7 +83,16 @@ namespace DataPlotter.Forms
 
         private void textBoxDependantVariableName_TextChanged(object sender, EventArgs e)
         {
-            _home.ChartInfo.DepVarName = textBoxDependantVariableName.Text;
+            if (_home.ChartInfo == null) return;
+
+            _home.dataManager.DepVariable.Name = textBoxDependantVariableName.Text;
+        }
+
+        private void checkBoxRegression_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_home.ChartInfo == null) return;
+
+            _home.ChartInfo.Regression = checkBoxRegression.Checked;
         }
     }
 }
