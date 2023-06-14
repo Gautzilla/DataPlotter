@@ -119,6 +119,8 @@ namespace DataPlotter.Forms
         {
             if (listViewChartInfos.SelectedItems == null) return;
 
+            if (MessageBox.Show("Delete this set?", "WARNING", MessageBoxButtons.OKCancel) == DialogResult.Cancel) return;
+
             ListViewItem selected = listViewChartInfos.SelectedItems[0];
             ChartInfo selectedChartInfo = selected.Tag as ChartInfo;
 
