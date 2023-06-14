@@ -72,19 +72,20 @@ namespace DataPlotter.Forms
                 variableSelectorXVar.AddVariable(var);
             }
 
-            if (_home.ChartInfo == null) return;
+            if (_home.ChartInfo.XVariable == null) return;
 
             // TODO: There might be a cleaner way to retrieve the variables linked in the dataManager from the ChartInfo serializer
-            IndependantVariable XVar = _home.dataManager.Variables.Single(v => v.Name == _home.ChartInfo.XVariable.Name);
+            IndependantVariable XVar = _home.ChartInfo.XVariable;
             _variableSelectors[0].SetSelectedItems(XVar, XVar.Levels.Select(level => XVar.CleanLevel(level)).ToList());
 
             // TODO: find a more elegant solution here!
-            (IndependantVariable variable, List<string> levels)[] levelToPlot = _home.ChartInfo.LevelsToPlot.OrderBy(tuple => tuple.YVarIndex).Select(tuple => (tuple.variable, tuple.levels)).ToArray();
+            (IndependantVariable variable, List<string> levels)[] levelsToPlot = _home.ChartInfo.LevelsToPlot.OrderBy(tuple => tuple.YVarIndex).Select(tuple => (tuple.variable, tuple.levels.Select(level => tuple.variable.CleanLevel(level)).ToList())).ToArray();
             _home.ChartInfo.LevelsToPlot = new List<(int YVarIndex, IndependantVariable variable, List<string> levels)>();
 
-            for (int i = 1; i <= levelToPlot.Length; i++)
+            for (int i = 1; i <= levelsToPlot.Length; i++)
             {
-                _variableSelectors[i].SetSelectedItems(levelToPlot[i-1].variable, levelToPlot[i-1].levels);
+                Console.WriteLine($"Attempt to select {levelsToPlot[i - 1].variable.Name} levels {String.Join(" - ", levelsToPlot[i - 1].levels)}");
+                _variableSelectors[i].SetSelectedItems(levelsToPlot[i-1].variable, levelsToPlot[i-1].levels);
             }
         }
     }

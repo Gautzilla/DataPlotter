@@ -108,7 +108,9 @@ namespace DataPlotter.Forms
 
             try
             {
-                dataManager = new DataManager(ChartInfo.DataFilePath, ChartInfo.InfoFilePath);
+                dataManager = new DataManager(ChartInfo);
+
+                if (ChartInfo.XVariable != null) ChartInfo.XVariable = dataManager.Variables.FirstOrDefault(var => var.Name == ChartInfo.XVariable.Name);
             }
             catch
             {
@@ -143,9 +145,8 @@ namespace DataPlotter.Forms
                 return;
             }
 
-            ChartInfo copy = DeepCopier.DeepCopy(ChartInfo);
-            copy.SetID();
-            PresetManager.WritePreset(copy);
+            SetLoading setLoading = new SetLoading(this);
+            setLoading.WriteSet(chartInfo);
         }
     }
 }

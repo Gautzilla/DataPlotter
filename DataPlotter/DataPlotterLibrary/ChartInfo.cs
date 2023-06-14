@@ -35,10 +35,6 @@ namespace DataPlotter.DataPlotterLibrary
 
         #region Variables Settings
 
-        private string _depVarName = string.Empty;
-        private bool _isDepVarNum = true;
-        private bool _isDepVarLog = true;
-
         private IndependantVariable _xVariable;
 
         public IndependantVariable XVariable
@@ -46,6 +42,15 @@ namespace DataPlotter.DataPlotterLibrary
             get { return _xVariable; }
             set { _xVariable = value; }
         }
+
+        private DependantVariable dependantVariable;
+
+        public DependantVariable DependantVariable
+        {
+            get { return dependantVariable; }
+            set { dependantVariable = value; }
+        }
+
 
 
         // List of tuples because the JSON serializer can't serialize Dictionary keys without parsing them to a string
@@ -56,12 +61,6 @@ namespace DataPlotter.DataPlotterLibrary
             get { return _levelsToPlot; }
             set { _levelsToPlot = value; }
         }
-
-
-
-        public bool IsDepVarNum { get => _isDepVarNum; set => _isDepVarNum = value; }
-        public bool IsDepVarLog { get => _isDepVarLog; set => _isDepVarLog = value; }
-        public string DepVarName { get => _depVarName; set => _depVarName = value; }
 
         #endregion
 
@@ -100,11 +99,7 @@ namespace DataPlotter.DataPlotterLibrary
             InfoFilePath = string.Empty;
             DataFilePath = string.Empty;
             LevelsToPlot = new List<(int YVarIndex, IndependantVariable variable, List<string> levels)>();
-        }
-
-        public void SetID ()
-        {
-            ID = DataFilePath + "_" + XVariable.Name + "_" + String.Join("_", LevelsToPlot.Select(tuple => tuple.variable.Name));
+            DependantVariable = new DependantVariable("default", true);
         }
     }
 }

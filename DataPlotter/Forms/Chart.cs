@@ -65,7 +65,7 @@ namespace DataPlotter.Forms
             textBoxChartWidth.Text = _home.ChartInfo.Size.w.ToString();
             textBoxChartHeight.Text = _home.ChartInfo.Size.h.ToString();
 
-            textBoxDependantVariableName.Text = _home.ChartInfo.DepVarName;
+            textBoxDependantVariableName.Text = _home.ChartInfo.DependantVariable.Name;
 
             legendDisplay.RefreshButtonsColor();
         }

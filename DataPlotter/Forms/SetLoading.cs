@@ -28,7 +28,7 @@ namespace DataPlotter.Forms
             InitializeComponent();
             _home = home;
             _sets = new List<ChartInfo>();
-            _serializer = new JsonSerializer();
+            _serializer = new JsonSerializer() { Formatting = Formatting.Indented };
             CreateSetsFile();
             GatherSavedSets();
             CreateList();
@@ -61,6 +61,13 @@ namespace DataPlotter.Forms
             listViewChartInfos.Columns.Add("Name");
             listViewChartInfos.Columns.Add("Dependant variable");
 
+            RefreshListItems();
+        }
+
+        private void RefreshListItems()
+        {
+            listViewChartInfos.Items.Clear();
+
             foreach (var chartInfo in _sets)
             {
                 listViewChartInfos.Items.Add(CreateListItem(chartInfo));
@@ -75,12 +82,28 @@ namespace DataPlotter.Forms
         private ListViewItem CreateListItem(ChartInfo chartInfo)
         {
             ListViewItem item = new ListViewItem();
-            item.Text = Regex.Match(chartInfo.ID, @"[^\\]*\.csv").Value;
+            item.Text = Regex.Match(chartInfo.DataFilePath, @"[^\\]*\.csv").Value;
             item.SubItems.Add(chartInfo.Name);
-            item.SubItems.Add(chartInfo.DepVarName);
+            item.SubItems.Add(chartInfo.DependantVariable.Name);
             item.Tag = chartInfo;
 
             return item;
+        }
+
+        public void WriteSet(ChartInfo chartInfo)
+        {
+            _sets.RemoveAll(cI => cI.Name == chartInfo.Name);
+            _sets.Add(chartInfo);
+            ExportPresets();
+        }
+
+        private void ExportPresets()
+        {
+            using (var streamWriter = new StreamWriter(_setsFilePath))
+            using (var jsonWriter = new JsonTextWriter(streamWriter))
+            {
+                _serializer.Serialize(jsonWriter, _sets);
+            }
         }
 
         private void buttonLoadPreset_Click(object sender, EventArgs e)
@@ -90,6 +113,18 @@ namespace DataPlotter.Forms
             _home.ChartInfo = (ChartInfo)listViewChartInfos.SelectedItems[0].Tag;
 
             MessageBox.Show("The selected data set was successfully loaded.");
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            if (listViewChartInfos.SelectedItems == null) return;
+
+            ListViewItem selected = listViewChartInfos.SelectedItems[0];
+            ChartInfo selectedChartInfo = selected.Tag as ChartInfo;
+
+            _sets.Remove(selectedChartInfo);
+            ExportPresets();
+            RefreshListItems();
         }
     }
 }

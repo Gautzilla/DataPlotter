@@ -73,7 +73,7 @@
             this.textBoxMax.Name = "textBoxMax";
             this.textBoxMax.Size = new System.Drawing.Size(112, 19);
             this.textBoxMax.TabIndex = 2;
-            this.textBoxMax.TextChanged += new System.EventHandler(this.textBoxMax_TextChanged);
+            this.textBoxMax.Leave += new System.EventHandler(this.textBoxMax_Leave);
             // 
             // labelMin
             // 
@@ -98,7 +98,7 @@
             this.textBoxMin.Name = "textBoxMin";
             this.textBoxMin.Size = new System.Drawing.Size(112, 19);
             this.textBoxMin.TabIndex = 0;
-            this.textBoxMin.TextChanged += new System.EventHandler(this.textBoxMin_TextChanged);
+            this.textBoxMin.Leave += new System.EventHandler(this.textBoxMin_Leave);
             // 
             // labelMax
             // 

@@ -36,13 +36,14 @@ namespace DataPlotter.DataPlotterLibrary
         /// </summary>
         /// <param name="dataFilePath">Absolute path of the .csv dataFile path</param>
         /// <param name="infoFilePath">Absolute path of the .txt infoFile path</param>
-        public DataManager(string dataFilePath, string infoFilePath)
+        public DataManager(ChartInfo chartInfo)
         {
             Variables = new List<IndependantVariable>();
             DepVariable = new DependantVariable("dependant variable", true);
-            ParseDependantVariable(infoFilePath);
-            SortFactors(infoFilePath);
-            SortData(dataFilePath);
+            ParseDependantVariable(chartInfo.InfoFilePath);
+            SortFactors(chartInfo.InfoFilePath);
+            SortData(chartInfo.DataFilePath);
+            chartInfo.DependantVariable = DepVariable;
         }
 
         /// <summary>
@@ -50,25 +51,28 @@ namespace DataPlotter.DataPlotterLibrary
         /// </summary>
         /// <param name="resultsFolderPath">Absolute path of the folder containing the raw result files</param>
         /// <param name="infoFilePath">Absolute path of the .txt infoFile path</param>
-        public DataManager(string resultsFolderPath, string infoFilePath, string dataFileName, int valuesToSkip)
+        public DataManager(string resultsFolderPath, ChartInfo chartInfo, string dataFileName, int valuesToSkip)
         {
             Variables = new List<IndependantVariable>();
             DepVariable = new DependantVariable("dependant variable", true);
 
-            ParseDependantVariable(infoFilePath);
-            SortFactors(infoFilePath);
+            ParseDependantVariable(chartInfo.InfoFilePath);
+            SortFactors(chartInfo.InfoFilePath);
             GatherData(resultsFolderPath, valuesToSkip);
             WriteDataFile(dataFileName);
+            chartInfo.DependantVariable = DepVariable;
         }
 
         private void ParseDependantVariable(string path)
         {
             string[] fields = File.ReadAllLines(path).First().Split(';').Select(s => s.Trim()).ToArray();
 
-            _dependantVariable.Name = fields[0];
-            _dependantVariable.IsNum = fields[1] != "qualitative";
-            _dependantVariable.IsLog = fields[1] == "log";
-            _dependantVariable.Unit = fields.Length > 2 ? fields[2] : string.Empty;
+            string name = fields[0];
+            bool isNum = fields[1] != "qualitative";
+            bool isLog = fields[1] == "log";
+            string unit = fields.Length > 2 ? fields[2] : string.Empty;
+
+            DepVariable = new DependantVariable(name, isNum, isLog, unit);
         }
 
         private void SortFactors(string path)

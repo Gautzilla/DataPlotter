@@ -449,7 +449,7 @@ namespace DataPlotter.DataPlotterUI
         /// <param name="e"></param>
         private void chart_Click(object sender, EventArgs e)
         {
-            string figureName = _chartInfo.DepVarName.RemoveWhiteSpaces() + "_";
+            string figureName = _chartInfo.DependantVariable.Name.RemoveWhiteSpaces() + "_";
             figureName += _chartInfo.XVariable.Name.RemoveWhiteSpaces();
 
             if (_chartInfo.LevelsToPlot.Count > 0)

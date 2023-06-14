@@ -30,6 +30,7 @@
         {
             this.buttonLoadPreset = new System.Windows.Forms.Button();
             this.listViewChartInfos = new System.Windows.Forms.ListView();
+            this.buttonDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonLoadPreset
@@ -64,12 +65,28 @@
             this.listViewChartInfos.TabIndex = 4;
             this.listViewChartInfos.UseCompatibleStateImageBehavior = false;
             // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.buttonDelete.FlatAppearance.BorderSize = 0;
+            this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDelete.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(239)))), ((int)(((byte)(231)))));
+            this.buttonDelete.Location = new System.Drawing.Point(0, 336);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(800, 57);
+            this.buttonDelete.TabIndex = 5;
+            this.buttonDelete.Text = "Delete";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            // 
             // SetLoading
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.listViewChartInfos);
             this.Controls.Add(this.buttonLoadPreset);
             this.Name = "SetLoading";
@@ -81,5 +98,6 @@
         #endregion
         private System.Windows.Forms.Button buttonLoadPreset;
         private System.Windows.Forms.ListView listViewChartInfos;
+        private System.Windows.Forms.Button buttonDelete;
     }
 }

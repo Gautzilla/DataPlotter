@@ -53,7 +53,7 @@ namespace DataPlotter.UserControls
             checkBoxLogarithmic.Checked = _isXAxis ? _home.ChartInfo.XVariable.IsLog : _home.dataManager.DepVariable.IsLog;
         }
 
-        private void textBoxMin_TextChanged(object sender, EventArgs e)
+        private void textBoxMin_Leave(object sender, EventArgs e)
         {
             if (Home.ChartInfo == null) return;
 
@@ -66,7 +66,7 @@ namespace DataPlotter.UserControls
             RefreshDisplay();
         }
 
-        private void textBoxMax_TextChanged(object sender, EventArgs e)
+        private void textBoxMax_Leave(object sender, EventArgs e)
         {
             if (Home.ChartInfo == null) return;
 
