@@ -41,19 +41,19 @@
             this.tableLayoutPanelChartWidth = new System.Windows.Forms.TableLayoutPanel();
             this.textBoxChartWidth = new System.Windows.Forms.TextBox();
             this.panelTicks = new System.Windows.Forms.Panel();
+            this.gridTickSelectorYAxisTicks = new DataPlotter.UserControls.GridTickSelector();
+            this.gridTickSelectorXAxisTicks = new DataPlotter.UserControls.GridTickSelector();
             this.panelLegend = new System.Windows.Forms.Panel();
+            this.legendDisplay = new DataPlotter.UserControls.LegendDisplay();
             this.panelDependantVariable = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.textBoxDependantVariableName = new System.Windows.Forms.TextBox();
             this.labelDependantVariableName = new System.Windows.Forms.Label();
             this.panelRegression = new System.Windows.Forms.Panel();
             this.checkBoxRegression = new System.Windows.Forms.CheckBox();
-            this.legendDisplay = new DataPlotter.UserControls.LegendDisplay();
-            this.gridTickSelectorYAxisTicks = new DataPlotter.UserControls.GridTickSelector();
-            this.gridTickSelectorXAxisTicks = new DataPlotter.UserControls.GridTickSelector();
             this.panelAxisRanges = new System.Windows.Forms.Panel();
-            this.axisRangeX = new DataPlotter.UserControls.AxisRange();
             this.axisRangeY = new DataPlotter.UserControls.AxisRange();
+            this.axisRangeX = new DataPlotter.UserControls.AxisRange();
             this.panelChartName.SuspendLayout();
             this.tableLayoutPanelChartName.SuspendLayout();
             this.tableLayoutPanelChartGlobals.SuspendLayout();
@@ -130,7 +130,7 @@
             this.tableLayoutPanelChartGlobals.Name = "tableLayoutPanelChartGlobals";
             this.tableLayoutPanelChartGlobals.RowCount = 1;
             this.tableLayoutPanelChartGlobals.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelChartGlobals.Size = new System.Drawing.Size(892, 58);
+            this.tableLayoutPanelChartGlobals.Size = new System.Drawing.Size(1024, 58);
             this.tableLayoutPanelChartGlobals.TabIndex = 1;
             // 
             // tableLayoutPanelChartSize
@@ -142,7 +142,7 @@
             this.tableLayoutPanelChartSize.Controls.Add(this.labelChartHeight, 0, 1);
             this.tableLayoutPanelChartSize.Controls.Add(this.labelChartWidth, 0, 0);
             this.tableLayoutPanelChartSize.Controls.Add(this.tableLayoutPanelChartWidth, 1, 0);
-            this.tableLayoutPanelChartSize.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelChartSize.Dock = System.Windows.Forms.DockStyle.Left;
             this.tableLayoutPanelChartSize.Location = new System.Drawing.Point(403, 3);
             this.tableLayoutPanelChartSize.Name = "tableLayoutPanelChartSize";
             this.tableLayoutPanelChartSize.RowCount = 2;
@@ -238,8 +238,30 @@
             this.panelTicks.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelTicks.Location = new System.Drawing.Point(0, 58);
             this.panelTicks.Name = "panelTicks";
-            this.panelTicks.Size = new System.Drawing.Size(380, 537);
+            this.panelTicks.Size = new System.Drawing.Size(380, 486);
             this.panelTicks.TabIndex = 2;
+            // 
+            // gridTickSelectorYAxisTicks
+            // 
+            this.gridTickSelectorYAxisTicks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
+            this.gridTickSelectorYAxisTicks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridTickSelectorYAxisTicks.Home = null;
+            this.gridTickSelectorYAxisTicks.Location = new System.Drawing.Point(190, 0);
+            this.gridTickSelectorYAxisTicks.Name = "gridTickSelectorYAxisTicks";
+            this.gridTickSelectorYAxisTicks.Size = new System.Drawing.Size(190, 486);
+            this.gridTickSelectorYAxisTicks.TabIndex = 1;
+            this.gridTickSelectorYAxisTicks.Ticks = null;
+            // 
+            // gridTickSelectorXAxisTicks
+            // 
+            this.gridTickSelectorXAxisTicks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
+            this.gridTickSelectorXAxisTicks.Dock = System.Windows.Forms.DockStyle.Left;
+            this.gridTickSelectorXAxisTicks.Home = null;
+            this.gridTickSelectorXAxisTicks.Location = new System.Drawing.Point(0, 0);
+            this.gridTickSelectorXAxisTicks.Name = "gridTickSelectorXAxisTicks";
+            this.gridTickSelectorXAxisTicks.Size = new System.Drawing.Size(190, 486);
+            this.gridTickSelectorXAxisTicks.TabIndex = 0;
+            this.gridTickSelectorXAxisTicks.Ticks = null;
             // 
             // panelLegend
             // 
@@ -248,8 +270,18 @@
             this.panelLegend.Location = new System.Drawing.Point(380, 58);
             this.panelLegend.Name = "panelLegend";
             this.panelLegend.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.panelLegend.Size = new System.Drawing.Size(512, 148);
+            this.panelLegend.Size = new System.Drawing.Size(644, 148);
             this.panelLegend.TabIndex = 3;
+            // 
+            // legendDisplay
+            // 
+            this.legendDisplay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
+            this.legendDisplay.Dock = System.Windows.Forms.DockStyle.Left;
+            this.legendDisplay.Home = null;
+            this.legendDisplay.Location = new System.Drawing.Point(20, 0);
+            this.legendDisplay.Name = "legendDisplay";
+            this.legendDisplay.Size = new System.Drawing.Size(107, 148);
+            this.legendDisplay.TabIndex = 1;
             // 
             // panelDependantVariable
             // 
@@ -259,7 +291,7 @@
             this.panelDependantVariable.Location = new System.Drawing.Point(380, 206);
             this.panelDependantVariable.Name = "panelDependantVariable";
             this.panelDependantVariable.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.panelDependantVariable.Size = new System.Drawing.Size(512, 68);
+            this.panelDependantVariable.Size = new System.Drawing.Size(644, 68);
             this.panelDependantVariable.TabIndex = 4;
             // 
             // tableLayoutPanel1
@@ -274,7 +306,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(353, 68);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(485, 68);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // textBoxDependantVariableName
@@ -286,7 +318,7 @@
             this.textBoxDependantVariableName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(239)))), ((int)(((byte)(231)))));
             this.textBoxDependantVariableName.Location = new System.Drawing.Point(3, 24);
             this.textBoxDependantVariableName.Name = "textBoxDependantVariableName";
-            this.textBoxDependantVariableName.Size = new System.Drawing.Size(347, 19);
+            this.textBoxDependantVariableName.Size = new System.Drawing.Size(479, 19);
             this.textBoxDependantVariableName.TabIndex = 1;
             this.textBoxDependantVariableName.TextChanged += new System.EventHandler(this.textBoxDependantVariableName_TextChanged);
             // 
@@ -309,7 +341,7 @@
             this.panelRegression.Location = new System.Drawing.Point(380, 274);
             this.panelRegression.Name = "panelRegression";
             this.panelRegression.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.panelRegression.Size = new System.Drawing.Size(512, 52);
+            this.panelRegression.Size = new System.Drawing.Size(644, 52);
             this.panelRegression.TabIndex = 5;
             // 
             // checkBoxRegression
@@ -327,38 +359,6 @@
             this.checkBoxRegression.UseVisualStyleBackColor = true;
             this.checkBoxRegression.CheckedChanged += new System.EventHandler(this.checkBoxRegression_CheckedChanged);
             // 
-            // legendDisplay
-            // 
-            this.legendDisplay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
-            this.legendDisplay.Dock = System.Windows.Forms.DockStyle.Left;
-            this.legendDisplay.Home = null;
-            this.legendDisplay.Location = new System.Drawing.Point(20, 0);
-            this.legendDisplay.Name = "legendDisplay";
-            this.legendDisplay.Size = new System.Drawing.Size(107, 148);
-            this.legendDisplay.TabIndex = 1;
-            // 
-            // gridTickSelectorYAxisTicks
-            // 
-            this.gridTickSelectorYAxisTicks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
-            this.gridTickSelectorYAxisTicks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridTickSelectorYAxisTicks.Home = null;
-            this.gridTickSelectorYAxisTicks.Location = new System.Drawing.Point(190, 0);
-            this.gridTickSelectorYAxisTicks.Name = "gridTickSelectorYAxisTicks";
-            this.gridTickSelectorYAxisTicks.Size = new System.Drawing.Size(190, 537);
-            this.gridTickSelectorYAxisTicks.TabIndex = 1;
-            this.gridTickSelectorYAxisTicks.Ticks = null;
-            // 
-            // gridTickSelectorXAxisTicks
-            // 
-            this.gridTickSelectorXAxisTicks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
-            this.gridTickSelectorXAxisTicks.Dock = System.Windows.Forms.DockStyle.Left;
-            this.gridTickSelectorXAxisTicks.Home = null;
-            this.gridTickSelectorXAxisTicks.Location = new System.Drawing.Point(0, 0);
-            this.gridTickSelectorXAxisTicks.Name = "gridTickSelectorXAxisTicks";
-            this.gridTickSelectorXAxisTicks.Size = new System.Drawing.Size(190, 537);
-            this.gridTickSelectorXAxisTicks.TabIndex = 0;
-            this.gridTickSelectorXAxisTicks.Ticks = null;
-            // 
             // panelAxisRanges
             // 
             this.panelAxisRanges.Controls.Add(this.axisRangeY);
@@ -366,8 +366,20 @@
             this.panelAxisRanges.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelAxisRanges.Location = new System.Drawing.Point(380, 326);
             this.panelAxisRanges.Name = "panelAxisRanges";
-            this.panelAxisRanges.Size = new System.Drawing.Size(512, 151);
+            this.panelAxisRanges.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.panelAxisRanges.Size = new System.Drawing.Size(644, 151);
             this.panelAxisRanges.TabIndex = 6;
+            // 
+            // axisRangeY
+            // 
+            this.axisRangeY.Axis = null;
+            this.axisRangeY.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
+            this.axisRangeY.Dock = System.Windows.Forms.DockStyle.Left;
+            this.axisRangeY.Home = null;
+            this.axisRangeY.Location = new System.Drawing.Point(270, 0);
+            this.axisRangeY.Name = "axisRangeY";
+            this.axisRangeY.Size = new System.Drawing.Size(250, 151);
+            this.axisRangeY.TabIndex = 1;
             // 
             // axisRangeX
             // 
@@ -375,28 +387,17 @@
             this.axisRangeX.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
             this.axisRangeX.Dock = System.Windows.Forms.DockStyle.Left;
             this.axisRangeX.Home = null;
-            this.axisRangeX.Location = new System.Drawing.Point(0, 0);
+            this.axisRangeX.Location = new System.Drawing.Point(20, 0);
             this.axisRangeX.Name = "axisRangeX";
             this.axisRangeX.Size = new System.Drawing.Size(250, 151);
             this.axisRangeX.TabIndex = 0;
-            // 
-            // axisRangeY
-            // 
-            this.axisRangeY.Axis = null;
-            this.axisRangeY.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
-            this.axisRangeY.Dock = System.Windows.Forms.DockStyle.Right;
-            this.axisRangeY.Home = null;
-            this.axisRangeY.Location = new System.Drawing.Point(262, 0);
-            this.axisRangeY.Name = "axisRangeY";
-            this.axisRangeY.Size = new System.Drawing.Size(250, 151);
-            this.axisRangeY.TabIndex = 1;
             // 
             // Chart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
-            this.ClientSize = new System.Drawing.Size(892, 595);
+            this.ClientSize = new System.Drawing.Size(1024, 544);
             this.Controls.Add(this.panelAxisRanges);
             this.Controls.Add(this.panelRegression);
             this.Controls.Add(this.panelDependantVariable);
