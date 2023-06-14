@@ -1,6 +1,6 @@
 ﻿namespace DataPlotter
 {
-    partial class Home
+    partial class Home_Old
     {
         /// <summary>
         /// Variable nécessaire au concepteur.

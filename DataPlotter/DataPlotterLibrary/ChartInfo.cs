@@ -7,7 +7,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace DataPlotter.DataPlotterLibrary
 {
-    internal class ChartInfo
+    public class ChartInfo
     {
         private string iD;
         
@@ -17,23 +17,50 @@ namespace DataPlotter.DataPlotterLibrary
             set { iD = value; }
         }
 
+        private string _infoFilePath;
+
+        public string InfoFilePath
+        {
+            get { return _infoFilePath; }
+            set { _infoFilePath = value; }
+        }
+
+        private string _dataFilePath;
+
+        public string DataFilePath
+        {
+            get { return _dataFilePath; }
+            set { _dataFilePath = value; }
+        }
+
         #region Variables Settings
 
-        private string _xVar = string.Empty;
-        private string _yVar = string.Empty;
-        private string _yVar2 = string.Empty;
-        private string _yVar2Level = string.Empty;
-        private string _depVarName = string.Empty;
-        private bool _isDepVarNum = true;
-        private bool _isDepVarLog = true;
+        private IndependantVariable _xVariable;
 
-        public bool IsDepVarNum { get => _isDepVarNum; set => _isDepVarNum = value; }
-        public bool IsDepVarLog { get => _isDepVarLog; set => _isDepVarLog = value; }
-        public string DepVarName { get => _depVarName; set => _depVarName = value; }
-        public string XVar { get => _xVar; set => _xVar = value; }
-        public string YVar { get => _yVar; set => _yVar = value; }
-        public string YVar2 { get => _yVar2; set => _yVar2 = value; }
-        public string YVar2Level { get => _yVar2Level; set => _yVar2Level = value; }
+        public IndependantVariable XVariable
+        {
+            get { return _xVariable; }
+            set { _xVariable = value; }
+        }
+
+        private DependantVariable dependantVariable;
+
+        public DependantVariable DependantVariable
+        {
+            get { return dependantVariable; }
+            set { dependantVariable = value; }
+        }
+
+
+
+        // List of tuples because the JSON serializer can't serialize Dictionary keys without parsing them to a string
+        private List<(int YVarIndex, IndependantVariable variable, List<string> levels )> _levelsToPlot;
+
+        public List<(int YVarIndex, IndependantVariable variable, List<string> levels)> LevelsToPlot
+        {
+            get { return _levelsToPlot; }
+            set { _levelsToPlot = value; }
+        }
 
         #endregion
 
@@ -69,11 +96,10 @@ namespace DataPlotter.DataPlotterLibrary
         public ChartInfo()
         {
             ID = "default";
-        }
-
-        public void SetID (string dataFilePath)
-        {
-            ID = dataFilePath + "_" + String.Join("_", new string[] { XVar, YVar, YVar2, YVar2Level }).TrimEnd('_');
+            InfoFilePath = string.Empty;
+            DataFilePath = string.Empty;
+            LevelsToPlot = new List<(int YVarIndex, IndependantVariable variable, List<string> levels)>();
+            DependantVariable = new DependantVariable("default", true);
         }
     }
 }

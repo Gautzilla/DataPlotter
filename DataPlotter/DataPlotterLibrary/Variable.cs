@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Xml.Linq;
 
 namespace DataPlotter.DataPlotterLibrary
 {
-    internal class Variable
+    public class Variable
     {
         private string name;        
         private bool isNum;
@@ -47,13 +48,24 @@ namespace DataPlotter.DataPlotterLibrary
         }
     }
 
-    internal class IndependantVariable : Variable
+    public class IndependantVariable : Variable
     {
         private string[] levels;
+
+        /// <summary>
+        /// Levels formatted as "variableName_levelName"
+        /// </summary>
         public string[] Levels
         {
             get { return levels; }
             private set { levels = value; }
+        }
+
+
+        [JsonConstructor]
+        public IndependantVariable()
+        {
+            
         }
 
         public IndependantVariable(string name, string[] levels, bool isNum)
@@ -88,9 +100,16 @@ namespace DataPlotter.DataPlotterLibrary
         {
             levels = levels.Where(l => l != level).ToArray();
         }
+
+        /// <summary>
+        /// Return the level formatted as "levelName" instead of "variableName_levelName"
+        /// </summary>
+        /// <param name="level"></param>
+        /// <returns></returns>
+        public string CleanLevel(string level) => level.Remove(0, Name.Length + 1);
     }
 
-    internal class DependantVariable : Variable
+    public class DependantVariable : Variable
     {
         public DependantVariable(string name, bool isNum)
         {

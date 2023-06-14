@@ -15,7 +15,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace DataPlotter
 {
-    public partial class Home : Form
+    public partial class Home_Old : Form
     {
         private ChartInfo _chartInfo;
 
@@ -30,7 +30,7 @@ namespace DataPlotter
 
         #endregion
 
-        public Home()
+        public Home_Old()
         {
             InitializeComponent();
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
@@ -318,9 +318,9 @@ namespace DataPlotter
                 return;
             }
 
-            Plot plotForm = new Plot(_dataManager, _chartInfo, this);
-            plotForm.Show();
-            this.Hide();
+            //Plot plotForm = new Plot(_dataManager, _chartInfo, this);
+            //plotForm.Show();
+            //this.Hide();
         }
 
         private bool ValidInputs(ChartInfo chart)
@@ -338,17 +338,17 @@ namespace DataPlotter
 
         }
 
-        private void Btn_savePreset_Click(object sender, EventArgs e)
+        public void Btn_savePreset_Click(object sender, EventArgs e)
         {
             ChartInfo copy = DeepCopier.DeepCopy(_chartInfo);
-            copy.SetID(_dataFilePath);
+            copy.SetID();
             PresetManager.WritePreset(copy);
         }
 
         private void Btn_loadPreset_Click(object sender, EventArgs e)
         {
             ChartInfo copy = DeepCopier.DeepCopy(_chartInfo);
-            copy.SetID(_dataFilePath);
+            copy.SetID();
             LoadChartInfos(PresetManager.LoadPreset(copy));
         }
 

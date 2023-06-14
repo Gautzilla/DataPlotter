@@ -37,11 +37,12 @@
             // 
             // chart
             // 
+            this.chart.Anchor = System.Windows.Forms.AnchorStyles.Left;
             chartArea1.Name = "ChartArea1";
             this.chart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart.Legends.Add(legend1);
-            this.chart.Location = new System.Drawing.Point(206, 77);
+            this.chart.Location = new System.Drawing.Point(52, 23);
             this.chart.Name = "chart";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
