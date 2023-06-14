@@ -24,6 +24,8 @@ namespace DataPlotter.Forms
             InitializeGridTicks();
 
             legendDisplay.Home = _home;
+
+            InitializeAxisRanges();
             
             RefreshDisplay();
         }
@@ -41,6 +43,18 @@ namespace DataPlotter.Forms
             gridTickSelectorYAxisTicks.SetMinorTick(_home.ChartInfo.MinorTicksInterval.y);
 
             checkBoxRegression.Checked = _home.ChartInfo.Regression;
+        }
+
+        private void InitializeAxisRanges()
+        {
+            axisRangeX.Home = _home;
+            axisRangeY.Home = _home;
+
+            axisRangeX.Axis = "X-axis";
+            axisRangeY.Axis = "Y-axis";
+
+            axisRangeX.RefreshDisplay();
+            axisRangeY.RefreshDisplay();
         }
 
         private void RefreshDisplay()

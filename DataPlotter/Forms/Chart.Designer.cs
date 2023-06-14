@@ -51,6 +51,9 @@
             this.legendDisplay = new DataPlotter.UserControls.LegendDisplay();
             this.gridTickSelectorYAxisTicks = new DataPlotter.UserControls.GridTickSelector();
             this.gridTickSelectorXAxisTicks = new DataPlotter.UserControls.GridTickSelector();
+            this.panelAxisRanges = new System.Windows.Forms.Panel();
+            this.axisRangeX = new DataPlotter.UserControls.AxisRange();
+            this.axisRangeY = new DataPlotter.UserControls.AxisRange();
             this.panelChartName.SuspendLayout();
             this.tableLayoutPanelChartName.SuspendLayout();
             this.tableLayoutPanelChartGlobals.SuspendLayout();
@@ -62,6 +65,7 @@
             this.panelDependantVariable.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelRegression.SuspendLayout();
+            this.panelAxisRanges.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelChartName
@@ -126,7 +130,7 @@
             this.tableLayoutPanelChartGlobals.Name = "tableLayoutPanelChartGlobals";
             this.tableLayoutPanelChartGlobals.RowCount = 1;
             this.tableLayoutPanelChartGlobals.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelChartGlobals.Size = new System.Drawing.Size(800, 58);
+            this.tableLayoutPanelChartGlobals.Size = new System.Drawing.Size(892, 58);
             this.tableLayoutPanelChartGlobals.TabIndex = 1;
             // 
             // tableLayoutPanelChartSize
@@ -144,7 +148,7 @@
             this.tableLayoutPanelChartSize.RowCount = 2;
             this.tableLayoutPanelChartSize.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanelChartSize.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelChartSize.Size = new System.Drawing.Size(394, 52);
+            this.tableLayoutPanelChartSize.Size = new System.Drawing.Size(486, 52);
             this.tableLayoutPanelChartSize.TabIndex = 1;
             // 
             // tableLayoutPanelChartHeight
@@ -153,13 +157,13 @@
             this.tableLayoutPanelChartHeight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanelChartHeight.Controls.Add(this.textBoxChartHeight, 0, 1);
             this.tableLayoutPanelChartHeight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelChartHeight.Location = new System.Drawing.Point(98, 29);
+            this.tableLayoutPanelChartHeight.Location = new System.Drawing.Point(120, 29);
             this.tableLayoutPanelChartHeight.Name = "tableLayoutPanelChartHeight";
             this.tableLayoutPanelChartHeight.RowCount = 3;
             this.tableLayoutPanelChartHeight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanelChartHeight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanelChartHeight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelChartHeight.Size = new System.Drawing.Size(293, 20);
+            this.tableLayoutPanelChartHeight.Size = new System.Drawing.Size(363, 20);
             this.tableLayoutPanelChartHeight.TabIndex = 4;
             // 
             // textBoxChartHeight
@@ -171,7 +175,7 @@
             this.textBoxChartHeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(239)))), ((int)(((byte)(231)))));
             this.textBoxChartHeight.Location = new System.Drawing.Point(3, 3);
             this.textBoxChartHeight.Name = "textBoxChartHeight";
-            this.textBoxChartHeight.Size = new System.Drawing.Size(287, 19);
+            this.textBoxChartHeight.Size = new System.Drawing.Size(357, 19);
             this.textBoxChartHeight.TabIndex = 2;
             this.textBoxChartHeight.TextChanged += new System.EventHandler(this.textBoxChartHeight_TextChanged);
             // 
@@ -182,7 +186,7 @@
             this.labelChartHeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(239)))), ((int)(((byte)(231)))));
             this.labelChartHeight.Location = new System.Drawing.Point(3, 26);
             this.labelChartHeight.Name = "labelChartHeight";
-            this.labelChartHeight.Size = new System.Drawing.Size(89, 26);
+            this.labelChartHeight.Size = new System.Drawing.Size(111, 26);
             this.labelChartHeight.TabIndex = 2;
             this.labelChartHeight.Text = "Height:";
             this.labelChartHeight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -194,7 +198,7 @@
             this.labelChartWidth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(239)))), ((int)(((byte)(231)))));
             this.labelChartWidth.Location = new System.Drawing.Point(3, 0);
             this.labelChartWidth.Name = "labelChartWidth";
-            this.labelChartWidth.Size = new System.Drawing.Size(89, 26);
+            this.labelChartWidth.Size = new System.Drawing.Size(111, 26);
             this.labelChartWidth.TabIndex = 1;
             this.labelChartWidth.Text = "Width:";
             this.labelChartWidth.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -205,13 +209,13 @@
             this.tableLayoutPanelChartWidth.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanelChartWidth.Controls.Add(this.textBoxChartWidth, 0, 1);
             this.tableLayoutPanelChartWidth.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelChartWidth.Location = new System.Drawing.Point(98, 3);
+            this.tableLayoutPanelChartWidth.Location = new System.Drawing.Point(120, 3);
             this.tableLayoutPanelChartWidth.Name = "tableLayoutPanelChartWidth";
             this.tableLayoutPanelChartWidth.RowCount = 3;
             this.tableLayoutPanelChartWidth.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanelChartWidth.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanelChartWidth.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelChartWidth.Size = new System.Drawing.Size(293, 20);
+            this.tableLayoutPanelChartWidth.Size = new System.Drawing.Size(363, 20);
             this.tableLayoutPanelChartWidth.TabIndex = 3;
             // 
             // textBoxChartWidth
@@ -223,7 +227,7 @@
             this.textBoxChartWidth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(239)))), ((int)(((byte)(231)))));
             this.textBoxChartWidth.Location = new System.Drawing.Point(3, 3);
             this.textBoxChartWidth.Name = "textBoxChartWidth";
-            this.textBoxChartWidth.Size = new System.Drawing.Size(287, 19);
+            this.textBoxChartWidth.Size = new System.Drawing.Size(357, 19);
             this.textBoxChartWidth.TabIndex = 2;
             this.textBoxChartWidth.TextChanged += new System.EventHandler(this.textBoxChartWidth_TextChanged);
             // 
@@ -234,7 +238,7 @@
             this.panelTicks.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelTicks.Location = new System.Drawing.Point(0, 58);
             this.panelTicks.Name = "panelTicks";
-            this.panelTicks.Size = new System.Drawing.Size(380, 388);
+            this.panelTicks.Size = new System.Drawing.Size(380, 537);
             this.panelTicks.TabIndex = 2;
             // 
             // panelLegend
@@ -244,7 +248,7 @@
             this.panelLegend.Location = new System.Drawing.Point(380, 58);
             this.panelLegend.Name = "panelLegend";
             this.panelLegend.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.panelLegend.Size = new System.Drawing.Size(420, 148);
+            this.panelLegend.Size = new System.Drawing.Size(512, 148);
             this.panelLegend.TabIndex = 3;
             // 
             // panelDependantVariable
@@ -255,7 +259,7 @@
             this.panelDependantVariable.Location = new System.Drawing.Point(380, 206);
             this.panelDependantVariable.Name = "panelDependantVariable";
             this.panelDependantVariable.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.panelDependantVariable.Size = new System.Drawing.Size(420, 68);
+            this.panelDependantVariable.Size = new System.Drawing.Size(512, 68);
             this.panelDependantVariable.TabIndex = 4;
             // 
             // tableLayoutPanel1
@@ -270,7 +274,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(261, 68);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(353, 68);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // textBoxDependantVariableName
@@ -282,7 +286,7 @@
             this.textBoxDependantVariableName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(239)))), ((int)(((byte)(231)))));
             this.textBoxDependantVariableName.Location = new System.Drawing.Point(3, 24);
             this.textBoxDependantVariableName.Name = "textBoxDependantVariableName";
-            this.textBoxDependantVariableName.Size = new System.Drawing.Size(255, 19);
+            this.textBoxDependantVariableName.Size = new System.Drawing.Size(347, 19);
             this.textBoxDependantVariableName.TabIndex = 1;
             this.textBoxDependantVariableName.TextChanged += new System.EventHandler(this.textBoxDependantVariableName_TextChanged);
             // 
@@ -305,7 +309,7 @@
             this.panelRegression.Location = new System.Drawing.Point(380, 274);
             this.panelRegression.Name = "panelRegression";
             this.panelRegression.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.panelRegression.Size = new System.Drawing.Size(420, 52);
+            this.panelRegression.Size = new System.Drawing.Size(512, 52);
             this.panelRegression.TabIndex = 5;
             // 
             // checkBoxRegression
@@ -340,7 +344,7 @@
             this.gridTickSelectorYAxisTicks.Home = null;
             this.gridTickSelectorYAxisTicks.Location = new System.Drawing.Point(190, 0);
             this.gridTickSelectorYAxisTicks.Name = "gridTickSelectorYAxisTicks";
-            this.gridTickSelectorYAxisTicks.Size = new System.Drawing.Size(190, 388);
+            this.gridTickSelectorYAxisTicks.Size = new System.Drawing.Size(190, 537);
             this.gridTickSelectorYAxisTicks.TabIndex = 1;
             this.gridTickSelectorYAxisTicks.Ticks = null;
             // 
@@ -351,16 +355,49 @@
             this.gridTickSelectorXAxisTicks.Home = null;
             this.gridTickSelectorXAxisTicks.Location = new System.Drawing.Point(0, 0);
             this.gridTickSelectorXAxisTicks.Name = "gridTickSelectorXAxisTicks";
-            this.gridTickSelectorXAxisTicks.Size = new System.Drawing.Size(190, 388);
+            this.gridTickSelectorXAxisTicks.Size = new System.Drawing.Size(190, 537);
             this.gridTickSelectorXAxisTicks.TabIndex = 0;
             this.gridTickSelectorXAxisTicks.Ticks = null;
+            // 
+            // panelAxisRanges
+            // 
+            this.panelAxisRanges.Controls.Add(this.axisRangeY);
+            this.panelAxisRanges.Controls.Add(this.axisRangeX);
+            this.panelAxisRanges.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelAxisRanges.Location = new System.Drawing.Point(380, 326);
+            this.panelAxisRanges.Name = "panelAxisRanges";
+            this.panelAxisRanges.Size = new System.Drawing.Size(512, 151);
+            this.panelAxisRanges.TabIndex = 6;
+            // 
+            // axisRangeX
+            // 
+            this.axisRangeX.Axis = null;
+            this.axisRangeX.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
+            this.axisRangeX.Dock = System.Windows.Forms.DockStyle.Left;
+            this.axisRangeX.Home = null;
+            this.axisRangeX.Location = new System.Drawing.Point(0, 0);
+            this.axisRangeX.Name = "axisRangeX";
+            this.axisRangeX.Size = new System.Drawing.Size(250, 151);
+            this.axisRangeX.TabIndex = 0;
+            // 
+            // axisRangeY
+            // 
+            this.axisRangeY.Axis = null;
+            this.axisRangeY.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
+            this.axisRangeY.Dock = System.Windows.Forms.DockStyle.Right;
+            this.axisRangeY.Home = null;
+            this.axisRangeY.Location = new System.Drawing.Point(262, 0);
+            this.axisRangeY.Name = "axisRangeY";
+            this.axisRangeY.Size = new System.Drawing.Size(250, 151);
+            this.axisRangeY.TabIndex = 1;
             // 
             // Chart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
-            this.ClientSize = new System.Drawing.Size(800, 446);
+            this.ClientSize = new System.Drawing.Size(892, 595);
+            this.Controls.Add(this.panelAxisRanges);
             this.Controls.Add(this.panelRegression);
             this.Controls.Add(this.panelDependantVariable);
             this.Controls.Add(this.panelLegend);
@@ -384,6 +421,7 @@
             this.tableLayoutPanel1.PerformLayout();
             this.panelRegression.ResumeLayout(false);
             this.panelRegression.PerformLayout();
+            this.panelAxisRanges.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -413,5 +451,8 @@
         private System.Windows.Forms.Label labelDependantVariableName;
         private System.Windows.Forms.Panel panelRegression;
         private System.Windows.Forms.CheckBox checkBoxRegression;
+        private System.Windows.Forms.Panel panelAxisRanges;
+        private UserControls.AxisRange axisRangeY;
+        private UserControls.AxisRange axisRangeX;
     }
 }

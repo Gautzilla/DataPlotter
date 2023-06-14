@@ -110,6 +110,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\AxisRange.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\AxisRange.Designer.cs">
+      <DependentUpon>AxisRange.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\GridTickSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -161,6 +167,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserControls\AxisRange.resx">
+      <DependentUpon>AxisRange.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\GridTickSelector.resx">
       <DependentUpon>GridTickSelector.cs</DependentUpon>
     </EmbeddedResource>
