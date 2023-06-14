@@ -66,6 +66,8 @@ namespace DataPlotter.Forms
             textBoxChartHeight.Text = _home.ChartInfo.Size.h.ToString();
 
             textBoxDependantVariableName.Text = _home.ChartInfo.DepVarName;
+
+            legendDisplay.RefreshButtonsColor();
         }
 
         private void textBoxChartName_TextChanged(object sender, EventArgs e)

@@ -40,6 +40,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelActiveForm = new System.Windows.Forms.Label();
             this.panelDockingForm = new System.Windows.Forms.Panel();
+            this.buttonSave = new System.Windows.Forms.Button();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -48,6 +49,7 @@
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(137)))), ((int)(((byte)(132)))));
+            this.panelMenu.Controls.Add(this.buttonSave);
             this.panelMenu.Controls.Add(this.buttonPlot);
             this.panelMenu.Controls.Add(this.buttonChart);
             this.panelMenu.Controls.Add(this.buttonVariables);
@@ -209,6 +211,21 @@
             this.panelDockingForm.Size = new System.Drawing.Size(774, 317);
             this.panelDockingForm.TabIndex = 2;
             // 
+            // buttonSave
+            // 
+            this.buttonSave.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.buttonSave.FlatAppearance.BorderSize = 0;
+            this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSave.Font = new System.Drawing.Font("Consolas", 14F, System.Drawing.FontStyle.Bold);
+            this.buttonSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(239)))), ((int)(((byte)(231)))));
+            this.buttonSave.Location = new System.Drawing.Point(0, 297);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(170, 50);
+            this.buttonSave.TabIndex = 6;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -241,5 +258,6 @@
         private System.Windows.Forms.Label labelActiveForm;
         private System.Windows.Forms.Panel panelDockingForm;
         private System.Windows.Forms.Label labelLogoPlotter;
+        private System.Windows.Forms.Button buttonSave;
     }
 }

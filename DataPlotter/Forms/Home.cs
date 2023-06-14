@@ -19,6 +19,19 @@ namespace DataPlotter.Forms
         private Color activeButtonColor = Color.FromArgb(246, 186, 111);
         private Color unactiveButtonColor = Color.FromArgb(245, 239, 231);
 
+        private bool _isDataGathered;
+
+        public bool IsDataGathered
+        {
+            get { return _isDataGathered; }
+            set 
+            {
+                _isDataGathered = value;
+                labelLogoData.ForeColor = _isDataGathered ? Color.FromArgb(74, 169, 108) : Color.FromArgb(245, 92, 71);
+            }
+        }
+
+
         private ChartInfo chartInfo;
 
         public ChartInfo ChartInfo
@@ -104,7 +117,7 @@ namespace DataPlotter.Forms
             }
 
             MessageBox.Show("The data were succesfully gathered.");
-            labelLogoData.ForeColor = Color.FromArgb(74, 169, 108);
+            IsDataGathered = true;
         }
 
         private void buttonPlot_Click(object sender, EventArgs e)
@@ -120,6 +133,19 @@ namespace DataPlotter.Forms
             {
                 MessageBox.Show("An error occured.");
             }
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            if (!IsDataGathered)
+            {
+                MessageBox.Show("Please gather data first.");
+                return;
+            }
+
+            ChartInfo copy = DeepCopier.DeepCopy(ChartInfo);
+            copy.SetID();
+            PresetManager.WritePreset(copy);
         }
     }
 }
