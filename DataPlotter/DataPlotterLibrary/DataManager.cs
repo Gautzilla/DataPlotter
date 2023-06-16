@@ -46,23 +46,6 @@ namespace DataPlotter.DataPlotterLibrary
             chartInfo.DependantVariable = DepVariable;
         }
 
-        /// <summary>
-        /// Parse all files containing the participants' results and combine them in a dataFile.
-        /// </summary>
-        /// <param name="resultsFolderPath">Absolute path of the folder containing the raw result files</param>
-        /// <param name="infoFilePath">Absolute path of the .txt infoFile path</param>
-        public DataManager(string resultsFolderPath, ChartInfo chartInfo, string dataFileName, int valuesToSkip)
-        {
-            Variables = new List<IndependantVariable>();
-            DepVariable = new DependantVariable("dependant variable", true);
-
-            ParseDependantVariable(chartInfo.InfoFilePath);
-            SortFactors(chartInfo.InfoFilePath);
-            GatherData(resultsFolderPath, valuesToSkip);
-            WriteDataFile(dataFileName);
-            chartInfo.DependantVariable = DepVariable;
-        }
-
         private void ParseDependantVariable(string path)
         {
             string[] fields = File.ReadAllLines(path).First().Split(';').Select(s => s.Trim()).ToArray();
@@ -94,72 +77,9 @@ namespace DataPlotter.DataPlotterLibrary
             }
         }
 
-        private void GatherData(string path, int valuesToSkip)
-        {
-            _data = new List<(List<string> var, List<float> val)>();
-
-            foreach (string file in Directory.EnumerateFiles(path))
-            {
-                if (file.EndsWith(".gitignore")) continue;
-
-                ExtractData(File.ReadAllLines(file), valuesToSkip);
-            }
-        }
-
-        /// <summary>
-        /// Extract the data corresponding to each variable combination (each line).
-        /// </summary>
-        /// <param name="file">File containing a participant's results.</param>
-        private void ExtractData(string[] file, int valuesToSkip)
-        {
-            file = file.Where(line => line != string.Empty).Select(line => line.TrimEnd(';')).ToArray();
-
-            foreach (string line in file)
-            {
-                List<string> var = line.Split(',')[1].Split(' ').Where(level => _variables.Any(variable => variable.Levels.Contains(level))).ToList();
-                // TODO: Add option to skip data points (e.g. adaptive curve) or to treat each datapoint differently
-                float val = line.Split(',').Last().Trim().Split(' ').Skip(valuesToSkip).Select(v => v == string.Empty? 1f/3 : float.Parse(v)).Average();
-
-                if (_data.Any(v => Enumerable.SequenceEqual(v.var, var))) _data.Single(v => Enumerable.SequenceEqual(v.var, var)).val.Add(val);
-                else _data.Add((var, new List<float>() { val }));
-            }
-        }
-
-        private void WriteDataFile(string fileName)
-        {
-            int varCombinations = _variables.Select(v => v.Levels.Length).Aggregate((a, b) => a * b);
-
-            float[,] results = new float[varCombinations,_data.Max(d => d.val.Count)];
-
-            for (int varComb = 0; varComb < varCombinations; varComb++)
-            {
-                List<string> variableLevels = _variablesOrdering
-                    .Select(v => _variables.FirstOrDefault(var => var.Name == v).Levels[varComb / LevelsAfter(v) % _variables.FirstOrDefault(var => var.Name == v).Levels.Length])
-                    .ToList();
-
-                for (int participant = 0; participant < results.GetLength(1); participant++)
-                {
-                    results[varComb, participant] = _data.Single(d => variableLevels.All(level => d.var.Contains(level))).val[participant];
-                }
-            }
-
-            float[][] jaggedResults = new float[results.GetLength(1)][];
-
-            for (int participant = 0; participant < jaggedResults.Length; participant++)
-            {
-                jaggedResults[participant] = new float[results.GetLength(0)];
-                for (int varComb = 0; varComb < results.GetLength(0); varComb++)
-                {
-                    jaggedResults[participant][varComb] = results[varComb, participant];
-                }
-            }
-
-            File.WriteAllText(fileName, String.Join("\r\n", jaggedResults.Select(jR => String.Join(",", jR))));
-        }
-
         private void SortData(string path)
         {
-            var lines = File.ReadAllLines(path);
+            var lines = File.ReadAllLines(path).Where(line => line.Where(c => c != ',').Count() > 0);
 
             _data = new List<(List<string> var, List<float> val)>();
 
