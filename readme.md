@@ -42,7 +42,7 @@ The organized data columns would thus be:
 
 The home **Set** window of the application asks for a **data file** (comma-separated values, organiazed as seen before) and a **variables info file**, which contains infos on the dependant and independant variables:
 
-![Set window](assets/Set.png)|
+![Set window](assets/Set.png)
 
 The **variables info file** should be formatted as follow:
 - First line describes the dependent variable
@@ -76,9 +76,9 @@ The **Variables** window is used for chosing which independant variable(s) (and 
 
 ## Chart parameters
 
-The vizualisation is parametrable: the axis ranges, names and types (lin or log), the legend docking position, the ticks and more can be configured in the **Chart** window:
+The vizualisation is parametrable: the axis ranges, names and types (lin or log), the use or not of a linear regression between the means, the legend docking position, the ticks and more can be configured in the **Chart** window:
 
-![Chart window](assets/Chart.png)|
+![Chart window](assets/Chart.png)
 
 ## Vizualisation saving
 
@@ -86,4 +86,4 @@ After hitting the **Plot** button, a new window depicting the vizualisation is c
 
 The vizualisation parameters (including the info and data file paths, the chart configuration and the chosen variables)can be saved by hitting the **Save** button and recalled by hitting **Load existing set** in the **Set** window:
 
-![Set loading window](assets/SetLoading.png)|
+![Set loading window](assets/SetLoading.png)
