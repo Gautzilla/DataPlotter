@@ -1,0 +1,5 @@
+Loudness estimate ; log 
+Room ; qualitative ; Free field, Concert hall,  Sports hall ;
+Virtual source distance; log ; 1, 2, 4, 8, 16 ; m
+Level ; qualitative ; 0 dB, -6 dB, -12 dB
+Visibility ; qualitative ; Visible source, Hidden source
