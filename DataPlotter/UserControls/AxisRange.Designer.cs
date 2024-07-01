@@ -125,6 +125,7 @@
             this.checkBoxLogarithmic.TabIndex = 2;
             this.checkBoxLogarithmic.Text = "Logarithmic";
             this.checkBoxLogarithmic.UseVisualStyleBackColor = true;
+            this.checkBoxLogarithmic.CheckedChanged += new System.EventHandler(this.checkBoxLogarithmic_CheckedChanged);
             // 
             // AxisRange
             // 

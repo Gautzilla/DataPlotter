@@ -78,5 +78,17 @@ namespace DataPlotter.UserControls
 
             RefreshDisplay();
         }
+
+        private void checkBoxLogarithmic_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Home.ChartInfo == null) return;
+
+            CheckBox cb = sender as CheckBox;
+            bool isAxisLog = cb.Checked;
+
+            if (_isXAxis) Home.ChartInfo.IsAxisLog = (isAxisLog, Home.ChartInfo.IsAxisLog.y);
+            else Home.ChartInfo.IsAxisLog = (Home.ChartInfo.IsAxisLog.x, isAxisLog);
+
+        }
     }
 }
